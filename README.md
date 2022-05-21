@@ -62,6 +62,11 @@ module.exports = {
       files: ["*.astro"],
       // Enable this plugin
       plugins: ["astro"],
+      env: {
+        // Enables global variables available in Astro components.
+        node: true,
+        "astro/astro": true,
+      },
       parser: "astro-eslint-parser",
       // Parse the script in `.astro` as TypeScript by adding the following configuration.
       parserOptions: {
@@ -71,6 +76,14 @@ module.exports = {
       rules: {
         // override/add rules settings here, such as:
         // 'astro/rule-name': 'error'
+      },
+    },
+    {
+      // Define the configuration for `<script>` tag.
+      // Script in `<script>` is assigned a virtual file name with the `.js` extension.
+      files: ["**/*.astro/*.js", "*.astro/*.js"],
+      env: {
+        browser: true,
       },
     },
     // ...

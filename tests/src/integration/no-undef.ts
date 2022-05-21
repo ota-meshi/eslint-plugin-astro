@@ -1,16 +1,19 @@
 import { RuleTester, Linter } from "eslint"
 import { processor } from "../../../src/processor"
 
-describe("Integration test for no-unused-vars", () => {
-  const ruleNoUnusedVars = new Linter().getRules().get("no-unused-vars")!
+describe("Integration test for no-undef", () => {
+  const ruleNoUnusedVars = new Linter().getRules().get("no-undef")!
   const tester = new RuleTester({
     parser: require.resolve("./auto-parser"),
     parserOptions: {
       ecmaVersion: 2020,
       sourceType: "module",
     },
+    globals: {
+      console: false,
+    },
   })
-  tester.run("no-unused-vars", ruleNoUnusedVars, {
+  tester.run("no-undef", ruleNoUnusedVars, {
     valid: [
       {
         // @ts-expect-error -- fine name with processor
@@ -19,7 +22,7 @@ describe("Integration test for no-unused-vars", () => {
           ...processor,
         },
         code: `
-        <script define:vars={{ foo: 42 }}>
+        <script define:vars={{ foo: 42, bar: 42 }}>
           console.log(foo)
         </script>
         `,
@@ -33,15 +36,15 @@ describe("Integration test for no-unused-vars", () => {
           ...processor,
         },
         code: `
-        <script define:vars={{ foo: 42, bar: 42 }}>
+        <script define:vars={{ bar: 42 }}>
           console.log(foo)
         </script>
         `,
         errors: [
           {
-            message: "'bar' is defined but never used.",
-            line: 2,
-            column: 41,
+            message: "'foo' is not defined.",
+            line: 3,
+            column: 23,
           },
         ],
       },
