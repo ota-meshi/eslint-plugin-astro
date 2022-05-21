@@ -1,0 +1,73 @@
+{
+  "name": "eslint-plugin-astro",
+  "version": "0.0.0",
+  "description": "ESLint plugin for Astro component",
+  "main": "lib/index.js",
+  "scripts": {
+    "prebuild": "npm run -s clean",
+    "build": "npm run build:ts",
+    "build:ts": "tsc --project ./tsconfig.build.json",
+    "clean": "rimraf lib .nyc_output dist coverage",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "eslint-fix": "eslint . --fix",
+    "update": "ts-node --transpile-only ./tools/update.ts && npm run format-for-gen-file",
+    "format-for-gen-file": "eslint src/types-for-node.ts src/utils/rules.ts src/configs --fix",
+    "new": "ts-node --transpile-only ./tools/new-rule.ts",
+    "docs:watch": "node --experimental-loader ./svelte-kit-import-hook.mjs node_modules/@sveltejs/kit/svelte-kit.js dev",
+    "docs:build": "node --experimental-loader ./svelte-kit-import-hook.mjs node_modules/@sveltejs/kit/svelte-kit.js build",
+    "docs:preview": "node --experimental-loader ./svelte-kit-import-hook.mjs node_modules/@sveltejs/kit/svelte-kit.js preview",
+    "preversion": "npm test && git add .",
+    "version": "env-cmd -e version npm run update && git add ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ota-meshi/eslint-plugin-astro.git"
+  },
+  "keywords": [
+    "eslint",
+    "eslint-plugin",
+    "eslintplugin",
+    "astro",
+    "astrojs"
+  ],
+  "author": "Yosuke Ota (https://github.com/ota-meshi)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ota-meshi/eslint-plugin-astro/issues"
+  },
+  "homepage": "https://github.com/ota-meshi/eslint-plugin-astro#readme",
+  "dependencies": {
+    "eslint-utils": "^3.0.0",
+    "@typescript-eslint/parser": "^5.25.0",
+    "@typescript-eslint/types": "^5.25.0"
+  },
+  "peerDependencies": {
+    "astro-eslint-parser": "^0.1.0"
+  },
+  "devDependencies": {
+    "@ota-meshi/eslint-plugin": "^0.9.0",
+    "@types/eslint": "^8.4.2",
+    "@types/estree": "0.0.51",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "^17.0.35",
+    "@typescript-eslint/eslint-plugin": "^5.25.0",
+    "astro-eslint-parser": "^0.1.0",
+    "eslint": "^8.15.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-eslint-plugin": "^4.2.0",
+    "eslint-plugin-json-schema-validator": "^3.0.2",
+    "eslint-plugin-jsonc": "^2.2.1",
+    "eslint-plugin-markdown": "^2.2.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-node-dependencies": "^0.8.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-regexp": "^1.0.0",
+    "eslint-plugin-yml": "^1.0.0",
+    "prettier": "^2.6.2",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.4"
+  }
+}

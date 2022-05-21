@@ -1,0 +1,14 @@
+/.nyc_output
+/coverage
+/lib
+/node_modules
+!/.vscode
+!/.github
+/prettier-playground
+/tests/fixtures/rules/indent/invalid/ts
+/tests/fixtures/rules/indent/invalid/ts-v5
+/tests/fixtures/rules/valid-compile/invalid/ts
+/tests/fixtures/rules/valid-compile/valid/babel
+/tests/fixtures/rules/valid-compile/valid/ts
+/tests/fixtures/rules/prefer-style-directive
+/build

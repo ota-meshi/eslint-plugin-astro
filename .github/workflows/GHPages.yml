@@ -1,0 +1,29 @@
+name: GHPages
+
+on:
+  workflow_dispatch: null
+  push:
+    branches: [main]
+
+jobs:
+  deploy-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+      - name: Install And Build
+        run: |+
+          npm install --legacy-peer-deps
+          npm run build
+          cd explorer-v3
+          npm install --legacy-peer-deps
+          npm run pre-build
+          npm run build
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./explorer-v3/dist
+          force_orphan: true
