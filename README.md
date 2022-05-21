@@ -12,6 +12,8 @@ You can check on the [Online DEMO](https://ota-meshi.github.io/eslint-plugin-ast
 [![NPM downloads](https://img.shields.io/npm/dt/eslint-plugin-astro.svg)](http://www.npmtrends.com/eslint-plugin-astro)
 [![Build Status](https://github.com/ota-meshi/eslint-plugin-astro/workflows/CI/badge.svg?branch=main)](https://github.com/ota-meshi/eslint-plugin-astro/actions?query=workflow%3ACI)
 
+This parser is in the **_experimental stages_** of development.
+
 ## :name_badge: What is this plugin?
 
 [ESLint] plugin for [Astro] components.
@@ -29,7 +31,7 @@ See [documents](https://ota-meshi.github.io/eslint-plugin-astro/).
 ## :cd: Installation
 
 ```bash
-npm install --save-dev eslint eslint-plugin-astro astro-eslint-parser
+npm install --save-dev eslint eslint-plugin-astro astro-eslint-parser @typescript-eslint/parser
 ```
 
 > **Requirements**
@@ -54,82 +56,38 @@ Example **.eslintrc.js**:
 
 ```js
 module.exports = {
-  extends: [
-    // add more generic rule sets here, such as:
-    // 'eslint:recommended',
-    "plugin:astro/recommended",
-  ],
-  rules: {
-    // override/add rules settings here, such as:
-    // 'astro/rule-name': 'error'
-  },
-}
-```
-
-This plugin provides configs:
-
-- `plugin:astro/base` ... Configuration to enable correct Astro component parsing.
-- `plugin:astro/recommended` ... Above, plus rules to prevent errors or unintended behavior.
-
-See [the rule list](https://ota-meshi.github.io/eslint-plugin-astro/rules/) to get the `rules` that this plugin provides.
-
-#### Parser Configuration
-
-If you have specified a parser, you need to configure a parser for `.astro`.
-
-For example, if you are using the `"@typescript-eslint/parser"`, and if you want to use TypeScript in frontmatter of `.astro`, you need to add more `parserOptions` configuration.
-
-```js
-module.exports = {
   // ...
-  extends: ["plugin:astro/recommended"],
-  // ...
-  parser: "@typescript-eslint/parser",
-  parserOptions: {
-    // ...
-    project: "path/to/your/tsconfig.json",
-    extraFileExtensions: [".astro"],
-  },
   overrides: [
     {
       files: ["*.astro"],
+      // Enable this plugin
+      plugins: ["astro"],
       parser: "astro-eslint-parser",
       // Parse the script in `.astro` as TypeScript by adding the following configuration.
       parserOptions: {
         parser: "@typescript-eslint/parser",
+        extraFileExtensions: [".astro"],
+      },
+      rules: {
+        // override/add rules settings here, such as:
+        // 'astro/rule-name': 'error'
       },
     },
     // ...
   ],
-  // ...
 }
 ```
 
-See also [https://github.com/ota-meshi/astro-eslint-parser#readme](https://github.com/ota-meshi/astro-eslint-parser#readme).
+<!-- This plugin provides configs:
 
-#### settings["astro"]
+- `plugin:astro/base` ... Configuration to enable correct Astro component parsing.
+- `plugin:astro/recommended` ... Above, plus rules to prevent errors or unintended behavior.
 
-You can change the behavior of this plugin with some settings.
+See [the rule list](https://ota-meshi.github.io/eslint-plugin-astro/rules/) to get the `rules` that this plugin provides. -->
 
-- `ignoreWarnings` (optional) ... Specifies an array of rules that ignore reports in the template.  
-  For example, set rules on the template that cannot avoid false positives.
+#### Parser Configuration
 
-e.g.
-
-```js
-module.exports = {
-  // ...
-  settings: {
-    astro: {
-      ignoreWarnings: [
-        "@typescript-eslint/no-unsafe-assignment",
-        "@typescript-eslint/no-unsafe-member-access",
-      ],
-    },
-  },
-  // ...
-}
-```
+See [https://github.com/ota-meshi/astro-eslint-parser#readme](https://github.com/ota-meshi/astro-eslint-parser#readme).
 
 ### Running ESLint from the command line
 
@@ -165,58 +123,13 @@ Example **.vscode/settings.json**:
 
 <!--RULES_SECTION_START-->
 
-The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) automatically fixes problems reported by rules which have a wrench :wrench: below.  
-The rules with the following star :star: are included in the configs.
+The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) automatically fixes problems reported by rules which have a wrench :wrench: below.
+
+<!-- The rules with the following star :star: are included in the configs. -->
 
 <!--RULES_TABLE_START-->
 
-## Possible Errors
-
-These rules relate to possible syntax or logic errors in Astro component code:
-
-| Rule ID | Description |    |
-|:--------|:------------|:---|
-
-
-## Security Vulnerability
-
-These rules relate to security vulnerabilities in Astro component code:
-
-| Rule ID | Description |    |
-|:--------|:------------|:---|
-
-
-## Best Practices
-
-These rules relate to better ways of doing things to help you avoid problems:
-
-| Rule ID | Description |    |
-|:--------|:------------|:---|
-
-
-## Stylistic Issues
-
-These rules relate to style guidelines, and are therefore quite subjective:
-
-| Rule ID | Description |    |
-|:--------|:------------|:---|
-
-
-## Extension Rules
-
-These rules extend the rules provided by ESLint itself to work well in Astro component:
-
-| Rule ID | Description |    |
-|:--------|:------------|:---|
-
-
-## System
-
-These rules relate to this plugin works:
-
-| Rule ID | Description |    |
-|:--------|:------------|:---|
-
+_No rules have been provided yet._
 
 <!--RULES_TABLE_END-->
 <!--RULES_SECTION_END-->

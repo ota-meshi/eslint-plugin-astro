@@ -25,82 +25,38 @@ Example **.eslintrc.js**:
 
 ```js
 module.exports = {
-  extends: [
-    // add more generic rule sets here, such as:
-    // 'eslint:recommended',
-    "plugin:astro/recommended",
-  ],
-  rules: {
-    // override/add rules settings here, such as:
-    // 'astro/rule-name': 'error'
-  },
-}
-```
-
-This plugin provides configs:
-
-- `plugin:astro/base` ... Configuration to enable correct Astro component parsing.
-- `plugin:astro/recommended` ... Above, plus rules to prevent errors or unintended behavior.
-
-See [the rule list](./rules.md) to get the `rules` that this plugin provides.
-
-#### Parser Configuration
-
-If you have specified a parser, you need to configure a parser for `.astro`.
-
-For example, if you are using the `"@typescript-eslint/parser"`, and if you want to use TypeScript in frontmatter of `.astro`, you need to add more `parserOptions` configuration.
-
-```js
-module.exports = {
   // ...
-  extends: ["plugin:astro/recommended"],
-  // ...
-  parser: "@typescript-eslint/parser",
-  parserOptions: {
-    // ...
-    project: "path/to/your/tsconfig.json",
-    extraFileExtensions: [".astro"],
-  },
   overrides: [
     {
       files: ["*.astro"],
+      // Enable this plugin
+      plugins: ["astro"],
       parser: "astro-eslint-parser",
       // Parse the script in `.astro` as TypeScript by adding the following configuration.
       parserOptions: {
         parser: "@typescript-eslint/parser",
+        extraFileExtensions: [".astro"],
+      },
+      rules: {
+        // override/add rules settings here, such as:
+        // 'astro/rule-name': 'error'
       },
     },
     // ...
   ],
-  // ...
 }
 ```
 
-See also [https://github.com/ota-meshi/astro-eslint-parser#readme](https://github.com/ota-meshi/astro-eslint-parser#readme).
+<!-- This plugin provides configs:
 
-#### settings["astro"]
+- `plugin:astro/base` ... Configuration to enable correct Astro component parsing.
+- `plugin:astro/recommended` ... Above, plus rules to prevent errors or unintended behavior.
 
-You can change the behavior of this plugin with some settings.
+See [the rule list](./rules.md) to get the `rules` that this plugin provides. -->
 
-- `ignoreWarnings` (optional) ... Specifies an array of rules that ignore reports in the template.  
-  For example, set rules on the template that cannot avoid false positives.
+#### Parser Configuration
 
-e.g.
-
-```js
-module.exports = {
-  // ...
-  settings: {
-    astro: {
-      ignoreWarnings: [
-        "@typescript-eslint/no-unsafe-assignment",
-        "@typescript-eslint/no-unsafe-member-access",
-      ],
-    },
-  },
-  // ...
-}
-```
+See [https://github.com/ota-meshi/astro-eslint-parser#readme](https://github.com/ota-meshi/astro-eslint-parser#readme).
 
 ### Running ESLint from the command line
 

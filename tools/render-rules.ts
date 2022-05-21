@@ -75,6 +75,7 @@ export default function renderRulesTableContent(
 
   // -----------------------------------------------------------------------------
   let rulesTableContent = categoryRules
+    .filter((cat) => cat.rules.length)
     .map((cat) => {
       return `
 ## ${cat.title}
@@ -99,6 +100,11 @@ ${cat.rules.map(toRuleRow).join("\n")}
 | Rule ID | Replaced by |
 |:--------|:------------|
 ${deprecatedRules.map(toDeprecatedRuleRow).join("\n")}
+`
+  }
+  if (!rulesTableContent.trim()) {
+    return `
+*No rules have been provided yet.*
 `
   }
   return rulesTableContent

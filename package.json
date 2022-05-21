@@ -39,10 +39,10 @@
   "homepage": "https://github.com/ota-meshi/eslint-plugin-astro#readme",
   "dependencies": {
     "eslint-utils": "^3.0.0",
-    "@typescript-eslint/parser": "^5.25.0",
     "@typescript-eslint/types": "^5.25.0"
   },
   "peerDependencies": {
+    "@typescript-eslint/parser": "^5.25.0",
     "astro-eslint-parser": "^0.1.0"
   },
   "devDependencies": {
