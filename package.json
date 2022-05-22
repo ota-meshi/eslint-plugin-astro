@@ -70,6 +70,7 @@
     "assert": "^2.0.0",
     "astro": "^1.0.0-beta.31",
     "astro-eslint-parser": "^0.1.0",
+    "env-cmd": "^10.1.0",
     "esbuild": "^0.14.39",
     "eslint": "^8.15.0",
     "eslint-config-prettier": "^8.5.0",
