@@ -19,6 +19,7 @@
       if (typeof window !== "undefined") {
         window.require.define("@typescript-eslint/parser", parser)
       }
+      return window.waitSetupForAstroCompilerWasm
     })
     .then(() => {
       return createLinter()
