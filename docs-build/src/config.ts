@@ -36,6 +36,7 @@ export const SIDEBAR = {
   en: [
     { text: "Introduction", link: "" },
     { text: "User Guide", link: "user-guide/" },
+    { text: "Demo", link: "playground/" },
 
     { text: "Rules", header: true, link: "rules/" },
   ],

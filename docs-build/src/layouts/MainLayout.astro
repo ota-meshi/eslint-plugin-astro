@@ -7,7 +7,7 @@ import LeftSidebar from '../components/LeftSidebar/LeftSidebar.astro';
 import RightSidebar from '../components/RightSidebar/RightSidebar.astro';
 import * as CONFIG from '../config';
 
-const { content = {} } = Astro.props;
+const { content = {}, hiddenRight } = Astro.props;
 const deployCanonicalURL = `https://ota-meshi.github.io${import.meta.env.BASE_URL  }${new URL(Astro.canonicalURL).pathname.replace(/^\//u,'')}`
 const currentPage = new URL(Astro.request.url).pathname;
 const currentFile = `src/pages${currentPage.replace(/\/$/, '')}.md`;
@@ -36,6 +36,11 @@ const githubEditUrl = CONFIG.GITHUB_EDIT_URL && CONFIG.GITHUB_EDIT_URL + current
 					minmax(var(--gutter), 1fr);
 				overflow-x: hidden;
 			}
+			.hidden-right.layout {
+				grid-template-columns:
+					minmax(var(--gutter), 1fr)
+					minmax(0, var(--max-width))
+			}
 			.layout :global(> *) {
 				width: 100%;
 				height: 100%;
@@ -58,6 +63,9 @@ const githubEditUrl = CONFIG.GITHUB_EDIT_URL && CONFIG.GITHUB_EDIT_URL + current
 				display: flex;
 				flex-direction: column;
 				height: 100%;
+			}
+			.hidden-right #grid-main {
+				padding-right: 2rem;
 			}
 			#grid-right {
 				display: none;
@@ -95,6 +103,12 @@ const githubEditUrl = CONFIG.GITHUB_EDIT_URL && CONFIG.GITHUB_EDIT_URL + current
 					padding-right: 0;
 					margin: 0 auto;
 				}
+				.hidden-right.layout {
+					grid-template-columns:
+						20rem
+						minmax(0, var(--max-width));
+					margin: 0;
+				}
 				#grid-right {
 					grid-column: 3;
 					display: flex;
@@ -105,18 +119,21 @@ const githubEditUrl = CONFIG.GITHUB_EDIT_URL && CONFIG.GITHUB_EDIT_URL + current
 
 	<body>
 		<Header {currentPage} />
-		<main class="layout">
+		<main class:list={["layout", { 'hidden-right': hiddenRight}]}>
 			<aside id="grid-left" class="grid-sidebar" title="Site Navigation">
 				<LeftSidebar {currentPage} />
 			</aside>
 			<div id="grid-main">
-				<PageContent {content} {githubEditUrl}>
+				<PageContent {content} {githubEditUrl} hiddenRight>
 					<slot />
 				</PageContent>
 			</div>
-			<aside id="grid-right" class="grid-sidebar" title="Table of Contents">
-				<RightSidebar {content} {githubEditUrl} />
-			</aside>
+			{
+				!hiddenRight &&
+				<aside id="grid-right" class="grid-sidebar" title="Table of Contents">
+					<RightSidebar {content} {githubEditUrl} />
+				</aside>
+			}
 		</main>
 	</body>
 </html>

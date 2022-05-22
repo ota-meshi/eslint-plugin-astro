@@ -33,7 +33,7 @@ const content = {
   astro: { headers: [] }
 }
 ---
-<MainLayout {content}>
+<MainLayout {content} hiddenRight>
     <ESLintPlayground />
 </MainLayout>
 `,

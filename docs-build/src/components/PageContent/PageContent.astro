@@ -2,12 +2,12 @@
 import MoreMenu from '../RightSidebar/MoreMenu.astro';
 import TableOfContents from '../RightSidebar/TableOfContents.tsx';
 
-const { content, githubEditUrl } = Astro.props;
+const { content, githubEditUrl, hiddenRight } = Astro.props;
 const title = content.title;
 const headers = content.astro.headers;
 ---
 
-<article id="article" class="content">
+<article id="article" class:list={["content", { 'hidden-right': hiddenRight}]}>
 	<section class="main-section">
 		<h1 class="content-title" id="overview">{title}</h1>
 		<nav class="block sm:hidden">
@@ -23,11 +23,13 @@ const headers = content.astro.headers;
 <style>
 	.content {
 		padding: 0;
-		max-width: 75ch;
 		width: 100%;
 		height: 100%;
 		display: flex;
 		flex-direction: column;
+	}
+	.content:not(.hidden-right) {
+		max-width: 75ch;
 	}
 	.content > section {
 		margin-bottom: 4rem;
