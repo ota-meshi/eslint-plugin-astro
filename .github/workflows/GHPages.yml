@@ -3,7 +3,7 @@ name: GHPages
 on:
   workflow_dispatch: null
   push:
-    branches: [main]
+    branches: [main, dev]
 
 jobs:
   deploy-docs:
@@ -12,18 +12,15 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 16
       - name: Install And Build
         run: |+
           npm install --legacy-peer-deps
           npm run build
-          cd explorer-v3
-          npm install --legacy-peer-deps
-          npm run pre-build
-          npm run build
+          npm run docs:build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./explorer-v3/dist
+          publish_dir: ./docs-build/dist
           force_orphan: true

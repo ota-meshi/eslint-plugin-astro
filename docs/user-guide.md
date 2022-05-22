@@ -1,17 +1,19 @@
 # User Guide
 
+<!--INSTALL_GUIDE_START-->
+
 ## :cd: Installation
 
 ```bash
-npm install --save-dev eslint eslint-plugin-astro astro-eslint-parser
+npm install --save-dev eslint eslint-plugin-astro astro-eslint-parser @typescript-eslint/parser
 ```
 
-::: tip Requirements
+> **Requirements**
+>
+> - ESLint v7.0.0 and above
+> - Node.js v14.17.x, v16.x and above
 
-- ESLint v7.0.0 and above
-- Node.js v14.17.x, v16.x and above
-
-:::
+<!--INSTALL_GUIDE_END-->
 
 ## :book: Usage
 
@@ -31,6 +33,11 @@ module.exports = {
       files: ["*.astro"],
       // Enable this plugin
       plugins: ["astro"],
+      env: {
+        // Enables global variables available in Astro components.
+        node: true,
+        "astro/astro": true,
+      },
       parser: "astro-eslint-parser",
       // Parse the script in `.astro` as TypeScript by adding the following configuration.
       parserOptions: {
@@ -40,6 +47,14 @@ module.exports = {
       rules: {
         // override/add rules settings here, such as:
         // 'astro/rule-name': 'error'
+      },
+    },
+    {
+      // Define the configuration for `<script>` tag.
+      // Script in `<script>` is assigned a virtual file name with the `.js` extension.
+      files: ["**/*.astro/*.js", "*.astro/*.js"],
+      env: {
+        browser: true,
       },
     },
     // ...

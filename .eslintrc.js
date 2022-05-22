@@ -44,9 +44,24 @@ module.exports = {
     {
       files: ["*.astro"],
       parser: "astro-eslint-parser",
+      globals: {
+        Astro: false,
+        Footer: false,
+      },
+      env: {
+        node: true,
+      },
       parserOptions: {
         parser: "@typescript-eslint/parser",
       },
+      rules: {
+        "prettier/prettier": "off", // TODO
+        "no-console": "off",
+      },
+    },
+    {
+      files: ["*.svelte"],
+      extends: ["plugin:@ota-meshi/svelte/recommended"],
     },
     {
       files: ["*.ts"],

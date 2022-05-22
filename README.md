@@ -142,7 +142,7 @@ The `--fix` option on the [command line](https://eslint.org/docs/user-guide/comm
 
 <!--RULES_TABLE_START-->
 
-_No rules have been provided yet._
+*No rules have been provided yet.*
 
 <!--RULES_TABLE_END-->
 <!--RULES_SECTION_END-->
