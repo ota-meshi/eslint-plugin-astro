@@ -25,10 +25,6 @@ async function setup() {
   const { default: Go } = await import(
     "../../node_modules/@astrojs/compiler/browser/wasm_exec.js"
   )
-  const go = new Go()
-  const { default: wasmURL } = await import("@astrojs/compiler/astro.wasm?url")
-  const wasmBuffer = await fetch(wasmURL).then((res) => res.arrayBuffer())
-
   // Adjust process object
   if (bkProcess) {
     // eslint-disable-next-line require-atomic-updates -- ignore
@@ -39,6 +35,10 @@ async function setup() {
     process.cwd = () => ""
     process.hrtime = () => Date.now()
   }
+  const go = new Go()
+  const { default: wasmURL } = await import("@astrojs/compiler/astro.wasm?url")
+  const wasmBuffer = await fetch(wasmURL).then((res) => res.arrayBuffer())
+
   try {
     const mod = await WebAssembly.compile(wasmBuffer)
     const instance = await WebAssembly.instantiate(mod, go.importObject)
