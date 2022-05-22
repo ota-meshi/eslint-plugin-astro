@@ -3,7 +3,7 @@ name: GHPages
 on:
   workflow_dispatch: null
   push:
-    branches: [main, dev]
+    branches: [main]
 
 jobs:
   deploy-docs:
