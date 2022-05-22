@@ -1,0 +1,21 @@
+{
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+    "markdown",
+    "svelte",
+    "astro",
+    "json",
+    "jsonc",
+    "yaml"
+  ],
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "vetur.validation.script": false,
+  "vetur.validation.style": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.fixAll.stylelint": true
+  },
+  "svelte.plugin.typescript.diagnostics.enable": false
+}

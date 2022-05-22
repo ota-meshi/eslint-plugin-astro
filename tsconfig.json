@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "commonjs",
+    "lib": ["es2020", "dom"],
+    "allowJs": true,
+    "checkJs": true,
+    "declaration": true,
+    "strict": true,
+    "noImplicitAny": true,
+
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    // "paths": {
+    //     "*": ["typings/*"]
+    // },
+    "esModuleInterop": true,
+    "outDir": "lib",
+    "paths": {
+      "*": ["typings/*"]
+    }
+  },
+  "include": [
+    "src/**/*",
+    "tests/src/**/*",
+    "tests/utils/**/*",
+    "tools/**/*",
+    "docs-build/src/**/*.ts",
+    "docs-build/src/**/*.tsx",
+    "typings/**/*"
+  ],
+  "exclude": ["lib/**/*", "tests/fixtures/**/*"]
+}

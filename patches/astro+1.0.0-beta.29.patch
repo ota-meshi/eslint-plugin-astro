@@ -1,0 +1,14 @@
+diff --git a/node_modules/astro/dist/core/build/static-build.js b/node_modules/astro/dist/core/build/static-build.js
+index 2a5056d..d9ed4a2 100644
+--- a/node_modules/astro/dist/core/build/static-build.js
++++ b/node_modules/astro/dist/core/build/static-build.js
+@@ -191,7 +191,8 @@ ${bgGreen(black(" building client "))}`);
+     root: viteConfig.root,
+     envPrefix: "PUBLIC_",
+     server: viteConfig.server,
+-    base: astroConfig.base
++    base: astroConfig.base,
++    resolve: viteConfig.resolve
+   };
+   await runHookBuildSetup({
+     config: astroConfig,

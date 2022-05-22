@@ -41,9 +41,6 @@ build/Release
 node_modules/
 jspm_packages/
 
-# TypeScript v1 declaration files
-typings/
-
 # TypeScript cache
 *.tsbuildinfo
 
@@ -102,3 +99,11 @@ dist
 
 # TernJS port file
 .tern-port
+
+## repo
+/lib
+/docs-build/src/md
+/docs-build/src/pages
+/docs-build/shim/assert.mjs
+/docs-build/shim/eslint.mjs
+/docs-build/shim/astro-eslint-parser.mjs
