@@ -272,10 +272,10 @@
     color: #fff;
   }
 
-  .svelte-category .category-title {
+  .astro-category .category-title {
     color: #40b3ff;
   }
-  .svelte-category a > svg {
+  .astro-category a > svg {
     color: #40b3ff;
   }
   .core-category .category-title {
