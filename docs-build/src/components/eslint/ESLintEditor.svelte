@@ -216,7 +216,7 @@
   }
 </script>
 
-<div class="eslint-editor">
+<div class="eslint-editor" style="height: 100%">
   <MonacoEditor
     bind:this={editor}
     bind:code

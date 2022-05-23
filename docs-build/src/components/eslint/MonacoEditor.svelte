@@ -260,6 +260,7 @@
 {#await loading}
   {#if started}
     <div
+      style="height: 100%"
       class="eslint-editor-monaco-root eslint-editor-monaco-root--wait"
       in:loadingTypewriter
     />
