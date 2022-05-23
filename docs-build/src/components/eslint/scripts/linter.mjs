@@ -8,32 +8,32 @@ const linter = new Linter()
 export const categories = [
   {
     title: "Possible Errors",
-    classes: "svelte-category",
+    classes: "astro-category",
     rules: [],
   },
   {
     title: "Security Vulnerability",
-    classes: "svelte-category",
+    classes: "astro-category",
     rules: [],
   },
   {
     title: "Best Practices",
-    classes: "svelte-category",
+    classes: "astro-category",
     rules: [],
   },
   {
     title: "Stylistic Issues",
-    classes: "svelte-category",
+    classes: "astro-category",
     rules: [],
   },
   {
     title: "Extension Rules",
-    classes: "svelte-category",
+    classes: "astro-category",
     rules: [],
   },
   {
     title: "System",
-    classes: "svelte-category",
+    classes: "astro-category",
     rules: [],
   },
   {

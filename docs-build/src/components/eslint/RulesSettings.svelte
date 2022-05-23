@@ -206,6 +206,7 @@
   .categories {
     font-size: 14px;
     list-style-type: none;
+    padding-left: 32px;
   }
   .category {
     position: relative;
@@ -271,10 +272,10 @@
     color: #fff;
   }
 
-  .svelte-category .category-title {
+  .astro-category .category-title {
     color: #40b3ff;
   }
-  .svelte-category a > svg {
+  .astro-category a > svg {
     color: #40b3ff;
   }
   .core-category .category-title {

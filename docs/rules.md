@@ -12,3 +12,11 @@ These rules relate to security vulnerabilities in Astro component code:
 | Rule ID | Description |    |
 |:--------|:------------|:---|
 | [astro/no-set-html-directive](./rules/no-set-html-directive.md) | disallow use of `set:html` to prevent XSS attack |  |
+
+## Best Practices
+
+These rules relate to better ways of doing things to help you avoid problems:
+
+| Rule ID | Description |    |
+|:--------|:------------|:---|
+| [astro/no-set-text-directive](./rules/no-set-text-directive.md) | disallow use of `set:text` | :wrench: |

@@ -1,0 +1,12 @@
+[
+  {
+    "message": "Don't use `set:text`.",
+    "line": 5,
+    "column": 6
+  },
+  {
+    "message": "Don't use `set:text`.",
+    "line": 6,
+    "column": 6
+  }
+]
