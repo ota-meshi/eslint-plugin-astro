@@ -7,6 +7,8 @@ title: "eslint-plugin-astro"
 `eslint-plugin-astro` is [ESLint] plugin for [Astro] components.  
 You can check on the [Online DEMO](./playground.md).
 
+[![sponsors](https://img.shields.io/badge/-Sponsor-fafbfc?logo=GitHub%20Sponsors)](https://github.com/sponsors/ota-meshi)
+
 [![NPM license](https://img.shields.io/npm/l/eslint-plugin-astro.svg)](https://www.npmjs.com/package/eslint-plugin-astro)
 [![NPM version](https://img.shields.io/npm/v/eslint-plugin-astro.svg)](https://www.npmjs.com/package/eslint-plugin-astro)
 [![NPM downloads](https://img.shields.io/badge/dynamic/json.svg?label=downloads&colorB=green&suffix=/day&query=$.downloads&uri=https://api.npmjs.org//downloads/point/last-day/eslint-plugin-astro&maxAge=3600)](http://www.npmtrends.com/eslint-plugin-astro)
@@ -31,6 +33,12 @@ See [User Guide](./user-guide.md).
 ## :white_check_mark: Rules
 
 See [Available Rules](./rules.md).
+
+## :heart: Supporting
+
+If you are willing to see that this package continues to be maintained, please consider sponsoring me.
+
+[![sponsors](https://img.shields.io/badge/-Sponsor-fafbfc?logo=GitHub%20Sponsors)](https://github.com/sponsors/ota-meshi)
 
 ## :lock: License
 

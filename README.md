@@ -3,6 +3,8 @@
 `eslint-plugin-astro` is [ESLint] plugin for [Astro] components.  
 You can check on the [Online DEMO](https://ota-meshi.github.io/eslint-plugin-astro/playground/).
 
+[![sponsors](https://img.shields.io/badge/-Sponsor-fafbfc?logo=GitHub%20Sponsors)](https://github.com/sponsors/ota-meshi)
+
 [![NPM license](https://img.shields.io/npm/l/eslint-plugin-astro.svg)](https://www.npmjs.com/package/eslint-plugin-astro)
 [![NPM version](https://img.shields.io/npm/v/eslint-plugin-astro.svg)](https://www.npmjs.com/package/eslint-plugin-astro)
 [![NPM downloads](https://img.shields.io/badge/dynamic/json.svg?label=downloads&colorB=green&suffix=/day&query=$.downloads&uri=https://api.npmjs.org//downloads/point/last-day/eslint-plugin-astro&maxAge=3600)](http://www.npmtrends.com/eslint-plugin-astro)
@@ -165,6 +167,12 @@ Please use GitHub's Issues/PRs.
 This plugin uses [astro-eslint-parser](https://github.com/ota-meshi/astro-eslint-parser) for the parser. Check [here](https://ota-meshi.github.io/astro-eslint-parser/) to find out about AST.
 
 <!--DOCS_IGNORE_END-->
+
+## :heart: Supporting
+
+If you are willing to see that this package continues to be maintained, please consider sponsoring me.
+
+[![sponsors](https://img.shields.io/badge/-Sponsor-fafbfc?logo=GitHub%20Sponsors)](https://github.com/sponsors/ota-meshi)
 
 ## :lock: License
 
