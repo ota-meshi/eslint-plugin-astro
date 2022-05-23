@@ -6,11 +6,7 @@ import renderRulesTableContent from "./render-rules"
 const readmeFilePath = path.resolve(__dirname, "../docs/rules.md")
 fs.writeFileSync(
   readmeFilePath,
-  `---
-sidebarDepth: 0
----
-
-# Available Rules
+  `# Available Rules
 
 The \`--fix\` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) automatically fixes problems reported by rules which have a wrench :wrench: below.  
 <!-- The rules with the following star :star: are included in the \`plugin:astro/recommended\` config. -->

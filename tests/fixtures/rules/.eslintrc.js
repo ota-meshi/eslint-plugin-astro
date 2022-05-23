@@ -8,6 +8,12 @@ module.exports = {
         "prettier/prettier": "off",
       },
     },
+    {
+      files: ["*.astro"],
+      parserOptions: {
+        project: null,
+      },
+    },
   ],
   rules: {
     "no-undef": "off",

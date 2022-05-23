@@ -27,12 +27,7 @@ const sidebarSections = SIDEBAR.en.reduce((col, item, i) => {
 			<li>
 				<div class="nav-group">
 					<h2 class="nav-group-title">
-						{section.link
-							? <a href={`${baseUrl}${section.link}`} aria-current={`${currentPageMatch === section.link ? 'page' : 'false'}`} >
-								{section.text}
-							</a>
-							: section.text
-						}
+						{section.text}
 					</h2>
 					<ul>
 						{section.children.map((child) => (
@@ -97,8 +92,7 @@ const sidebarSections = SIDEBAR.en.reduce((col, item, i) => {
 		margin: 1px;
 		padding: 0.3rem 1rem;
 	}
-	.nav-link a,
-	.nav-group-title a
+	.nav-link a
 	 {
 		font: inherit;
 		color: inherit;

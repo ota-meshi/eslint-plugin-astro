@@ -201,10 +201,10 @@ ${
     const { ruleId, description } = this.rule.meta.docs
 
     const fileIntro = {
-      pageClass: "rule-details",
-      sidebarDepth: 0,
       title: ruleId,
       description,
+      setup:
+        "import ESLintCodeBlock from '../docs-build/src/components/ESLintCodeBlockWrap.astro'",
       ...(this.since ? { since: this.since } : {}),
     }
     const computed = `---\n${Object.keys(fileIntro)

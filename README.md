@@ -144,7 +144,13 @@ The `--fix` option on the [command line](https://eslint.org/docs/user-guide/comm
 
 <!--RULES_TABLE_START-->
 
-*No rules have been provided yet.*
+## Security Vulnerability
+
+These rules relate to security vulnerabilities in Astro component code:
+
+| Rule ID | Description |    |
+|:--------|:------------|:---|
+| [astro/no-set-html-directive](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-set-html-directive/) | disallow use of `set:html` to prevent XSS attack |  |
 
 <!--RULES_TABLE_END-->
 <!--RULES_SECTION_END-->

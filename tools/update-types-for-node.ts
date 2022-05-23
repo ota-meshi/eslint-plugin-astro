@@ -11,7 +11,9 @@ const { visitorKeys } = parseForESLint("")
 
 const esNextNodeNames = ["Decorator", "ImportAttribute"]
 const esAstroNodeNames = ["Program"]
-const tsEsNodeNames = Object.keys(AST_NODE_TYPES).filter((k) => k !== "Program")
+const tsEsNodeNames = Object.keys(AST_NODE_TYPES).filter(
+  (k) => k !== "Program" && !k.startsWith("JSX"),
+)
 const esNodeNames = tsEsNodeNames.filter(
   (k) =>
     !k.startsWith("TS") && !k.startsWith("JSX") && !esNextNodeNames.includes(k),
@@ -29,8 +31,12 @@ import type * as ESTree from "estree"
 
 export type ASTNode =
   | AST.AstroNode
+  | AST.JSXNode
   | ESTree.Node
-  | Exclude<TSESTree.Node, { type: ESTree.Node["type"] }>
+  | Exclude<
+      TSESTree.Node,
+      { type: ESTree.Node["type"] } | { type: AST.JSXNode["type"] }
+    >
 export type ASTNodeWithParent =
   | (Exclude<ASTNode, ESTree.Program> & { parent: ASTNodeWithParent })
   | AST.AstroProgram

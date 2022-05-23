@@ -4,8 +4,12 @@ import type * as ESTree from "estree"
 
 export type ASTNode =
   | AST.AstroNode
+  | AST.JSXNode
   | ESTree.Node
-  | Exclude<TSESTree.Node, { type: ESTree.Node["type"] }>
+  | Exclude<
+      TSESTree.Node,
+      { type: ESTree.Node["type"] } | { type: AST.JSXNode["type"] }
+    >
 export type ASTNodeWithParent =
   | (Exclude<ASTNode, ESTree.Program> & { parent: ASTNodeWithParent })
   | AST.AstroProgram
@@ -88,39 +92,6 @@ export type ASTNodeListener = {
     node: TSESTree.ImportNamespaceSpecifier & ASTNodeWithParent,
   ) => void
   ImportSpecifier?: (node: TSESTree.ImportSpecifier & ASTNodeWithParent) => void
-  JSXAttribute?: (node: TSESTree.JSXAttribute & ASTNodeWithParent) => void
-  JSXClosingElement?: (
-    node: TSESTree.JSXClosingElement & ASTNodeWithParent,
-  ) => void
-  JSXClosingFragment?: (
-    node: TSESTree.JSXClosingFragment & ASTNodeWithParent,
-  ) => void
-  JSXElement?: (node: TSESTree.JSXElement & ASTNodeWithParent) => void
-  JSXEmptyExpression?: (
-    node: TSESTree.JSXEmptyExpression & ASTNodeWithParent,
-  ) => void
-  JSXExpressionContainer?: (
-    node: TSESTree.JSXExpressionContainer & ASTNodeWithParent,
-  ) => void
-  JSXFragment?: (node: TSESTree.JSXFragment & ASTNodeWithParent) => void
-  JSXIdentifier?: (node: TSESTree.JSXIdentifier & ASTNodeWithParent) => void
-  JSXMemberExpression?: (
-    node: TSESTree.JSXMemberExpression & ASTNodeWithParent,
-  ) => void
-  JSXNamespacedName?: (
-    node: TSESTree.JSXNamespacedName & ASTNodeWithParent,
-  ) => void
-  JSXOpeningElement?: (
-    node: TSESTree.JSXOpeningElement & ASTNodeWithParent,
-  ) => void
-  JSXOpeningFragment?: (
-    node: TSESTree.JSXOpeningFragment & ASTNodeWithParent,
-  ) => void
-  JSXSpreadAttribute?: (
-    node: TSESTree.JSXSpreadAttribute & ASTNodeWithParent,
-  ) => void
-  JSXSpreadChild?: (node: TSESTree.JSXSpreadChild & ASTNodeWithParent) => void
-  JSXText?: (node: TSESTree.JSXText & ASTNodeWithParent) => void
   LabeledStatement?: (
     node: TSESTree.LabeledStatement & ASTNodeWithParent,
   ) => void
@@ -333,6 +304,32 @@ export type ASTNodeListener = {
     node: TSESTree.TSUnknownKeyword & ASTNodeWithParent,
   ) => void
   TSVoidKeyword?: (node: TSESTree.TSVoidKeyword & ASTNodeWithParent) => void
+  JSXAttribute?: (node: AST.JSXAttribute & ASTNodeWithParent) => void
+  JSXClosingElement?: (node: AST.JSXClosingElement & ASTNodeWithParent) => void
+  JSXElement?: (node: AST.JSXElement & ASTNodeWithParent) => void
+  JSXEmptyExpression?: (
+    node: AST.JSXEmptyExpression & ASTNodeWithParent,
+  ) => void
+  JSXExpressionContainer?: (
+    node: AST.JSXExpressionContainer & ASTNodeWithParent,
+  ) => void
+  JSXIdentifier?: (node: AST.JSXIdentifier & ASTNodeWithParent) => void
+  JSXMemberExpression?: (
+    node: AST.JSXMemberExpression & ASTNodeWithParent,
+  ) => void
+  JSXNamespacedName?: (node: AST.JSXNamespacedName & ASTNodeWithParent) => void
+  JSXOpeningElement?: (node: AST.JSXOpeningElement & ASTNodeWithParent) => void
+  JSXSpreadAttribute?: (
+    node: AST.JSXSpreadAttribute & ASTNodeWithParent,
+  ) => void
+  JSXText?: (node: AST.JSXText & ASTNodeWithParent) => void
+  JSXFragment?: (node: AST.JSXFragment & ASTNodeWithParent) => void
+  JSXClosingFragment?: (
+    node: AST.JSXClosingFragment & ASTNodeWithParent,
+  ) => void
+  JSXOpeningFragment?: (
+    node: AST.JSXOpeningFragment & ASTNodeWithParent,
+  ) => void
   Program?: (node: AST.AstroProgram & ASTNodeWithParent) => void
   AstroFragment?: (node: AST.AstroFragment & ASTNodeWithParent) => void
   AstroHTMLComment?: (node: AST.AstroHTMLComment & ASTNodeWithParent) => void
@@ -622,6 +619,32 @@ export type TSNodeListener = {
   TSVoidKeyword?: (node: TSESTree.TSVoidKeyword & ASTNodeWithParent) => void
 }
 export type AstroNodeListener = {
+  JSXAttribute?: (node: AST.JSXAttribute & ASTNodeWithParent) => void
+  JSXClosingElement?: (node: AST.JSXClosingElement & ASTNodeWithParent) => void
+  JSXElement?: (node: AST.JSXElement & ASTNodeWithParent) => void
+  JSXEmptyExpression?: (
+    node: AST.JSXEmptyExpression & ASTNodeWithParent,
+  ) => void
+  JSXExpressionContainer?: (
+    node: AST.JSXExpressionContainer & ASTNodeWithParent,
+  ) => void
+  JSXIdentifier?: (node: AST.JSXIdentifier & ASTNodeWithParent) => void
+  JSXMemberExpression?: (
+    node: AST.JSXMemberExpression & ASTNodeWithParent,
+  ) => void
+  JSXNamespacedName?: (node: AST.JSXNamespacedName & ASTNodeWithParent) => void
+  JSXOpeningElement?: (node: AST.JSXOpeningElement & ASTNodeWithParent) => void
+  JSXSpreadAttribute?: (
+    node: AST.JSXSpreadAttribute & ASTNodeWithParent,
+  ) => void
+  JSXText?: (node: AST.JSXText & ASTNodeWithParent) => void
+  JSXFragment?: (node: AST.JSXFragment & ASTNodeWithParent) => void
+  JSXClosingFragment?: (
+    node: AST.JSXClosingFragment & ASTNodeWithParent,
+  ) => void
+  JSXOpeningFragment?: (
+    node: AST.JSXOpeningFragment & ASTNodeWithParent,
+  ) => void
   AstroFragment?: (node: AST.AstroFragment & ASTNodeWithParent) => void
   AstroHTMLComment?: (node: AST.AstroHTMLComment & ASTNodeWithParent) => void
   AstroDoctype?: (node: AST.AstroDoctype & ASTNodeWithParent) => void

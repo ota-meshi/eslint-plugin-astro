@@ -1,3 +1,14 @@
+import { rules } from "../../src/utils/rules"
+
+const categories = [
+  "Possible Errors",
+  "Security Vulnerability",
+  "Best Practices",
+  "Stylistic Issues",
+  "Extension Rules",
+  "System",
+] as const
+
 export const SITE = {
   title: "eslint-plugin-astro",
   description: "ESLint plugin for Astro component.",
@@ -33,7 +44,23 @@ export const SIDEBAR = {
     { text: "Introduction", link: "" },
     { text: "User Guide", link: "user-guide/" },
     { text: "Demo", link: "playground/" },
-
-    { text: "Rules", header: true, link: "rules/" },
+    { text: "Rules", link: "rules/" },
+    ...categories.flatMap((category) => {
+      const categoryRules = rules.filter(
+        (rule) => rule.meta.docs.category === category,
+      )
+      if (!categoryRules.length) {
+        return []
+      }
+      return [
+        { text: category, header: true },
+        ...categoryRules.map((rule) => {
+          return {
+            text: rule.meta.docs.ruleId,
+            link: `rules/${rule.meta.docs.ruleName}/`,
+          }
+        }),
+      ]
+    }),
   ],
 }
