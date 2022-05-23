@@ -14,10 +14,6 @@ export const OPEN_GRAPH = {
   twitter: "astrodotbuild",
 }
 
-export const KNOWN_LANGUAGES = {
-  English: "en",
-}
-
 // Uncomment this to add an "Edit this page" button to every page of documentation.
 // export const GITHUB_EDIT_URL = `https://github.com/withastro/astro/blob/main/docs/`;
 

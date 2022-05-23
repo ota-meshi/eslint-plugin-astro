@@ -1,15 +1,10 @@
 ---
-import { getLanguageFromURL, KNOWN_LANGUAGE_CODES } from '../../languages.ts';
 import * as CONFIG from '../../config.ts';
 import AstroLogo from './AstroLogo.astro';
 import SkipToContent from './SkipToContent.astro';
-import SidebarToggle from './SidebarToggle.tsx';
-import LanguageSelect from './LanguageSelect.tsx';
-import Search from './Search.tsx';
+import SidebarToggle from './SidebarToggle.svelte';
 
 const baseUrl = import.meta.env.BASE_URL
-const { currentPage } = Astro.props;
-const lang = currentPage && getLanguageFromURL(currentPage);
 ---
 
 <header>
@@ -25,12 +20,6 @@ const lang = currentPage && getLanguageFromURL(currentPage);
 			</a>
 		</div>
 		<div style="flex-grow: 1;"></div>
-		{KNOWN_LANGUAGE_CODES.length > 1 && <LanguageSelect lang={lang} client:idle />}
-		{CONFIG.ALGOLIA && (
-			<div class="search-item">
-				<Search client:idle />
-			</div>
-		)}
 		<div class="flex">
 			<a
 				href="https://github.com/ota-meshi/eslint-plugin-astro"
