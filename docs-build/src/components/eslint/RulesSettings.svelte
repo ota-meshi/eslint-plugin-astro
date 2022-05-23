@@ -206,6 +206,7 @@
   .categories {
     font-size: 14px;
     list-style-type: none;
+    padding-left: 32px;
   }
   .category {
     position: relative;
