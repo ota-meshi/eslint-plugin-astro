@@ -152,6 +152,14 @@ These rules relate to security vulnerabilities in Astro component code:
 |:--------|:------------|:---|
 | [astro/no-set-html-directive](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-set-html-directive/) | disallow use of `set:html` to prevent XSS attack |  |
 
+## Best Practices
+
+These rules relate to better ways of doing things to help you avoid problems:
+
+| Rule ID | Description |    |
+|:--------|:------------|:---|
+| [astro/no-set-text-directive](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-set-text-directive/) | disallow use of `set:text` | :wrench: |
+
 <!--RULES_TABLE_END-->
 <!--RULES_SECTION_END-->
 
