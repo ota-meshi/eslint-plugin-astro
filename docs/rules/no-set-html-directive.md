@@ -40,6 +40,10 @@ Nothing.
 
 If you are certain the content passed to `set:html` is sanitized HTML you can disable this rule.
 
+## :books: Further Reading
+
+- [Astro Documentation | Template Directives Reference > set:html](https://docs.astro.build/en/reference/directives-reference/#sethtml)
+
 ## :mag: Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/no-set-html-directive.ts)
