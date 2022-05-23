@@ -14,7 +14,7 @@ body:
     validations:
       required: true
   - type: input
-    id: eslint-version
+    id: eslint-plugin-astro-version
     attributes:
       label: What version of `eslint-plugin-astro` are you using?
       placeholder: 0.0.0
