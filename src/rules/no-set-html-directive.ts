@@ -15,6 +15,10 @@ export default createRule("no-set-html-directive", {
     type: "suggestion",
   },
   create(context) {
+    if (!context.parserServices.isAstro) {
+      return {}
+    }
+
     /** Verify */
     function verifyName({
       name: node,

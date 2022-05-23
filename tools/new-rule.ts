@@ -37,20 +37,23 @@ const logger = console
 import { createRule } from "../utils"
 
 export default createRule("${ruleId}", {
-    meta: {
-        docs: {
-            description: "",
-            category: "",
-            recommended: false,
-        },
-        schema: [],
-        messages: {},
-        type: "suggestion", // "problem", or "layout",
+  meta: {
+    docs: {
+      description: "",
+      category: "",
+      recommended: false,
     },
-    create(context) {
-        
-        return {}
-    },
+    schema: [],
+    messages: {},
+    type: "suggestion", // "problem", or "layout",
+  },
+  create(context) {
+    if (!context.parserServices.isAstro) {
+      return {}
+    }
+    
+    return {}
+  },
 })
 `,
   )
