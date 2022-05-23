@@ -2,13 +2,12 @@
 title: "astro/no-set-html-directive"
 description: "disallow use of `set:html` to prevent XSS attack"
 setup: "import ESLintCodeBlock from '../docs-build/src/components/ESLintCodeBlockWrap.astro'"
+since: "v0.2.0"
 ---
 
 # astro/no-set-html-directive
 
 > disallow use of `set:html` to prevent XSS attack
-
-- :exclamation: <badge text="This rule has not been released yet." vertical="middle" type="error"> **_This rule has not been released yet._** </badge>
 
 ## :book: Rule Details
 
@@ -44,6 +43,10 @@ If you are certain the content passed to `set:html` is sanitized HTML you can di
 ## :books: Further Reading
 
 - [Astro Documentation | Template Directives Reference > set:html](https://docs.astro.build/en/reference/directives-reference/#sethtml)
+
+## :rocket: Version
+
+This rule was introduced in eslint-plugin-astro v0.2.0
 
 ## :mag: Implementation
 
