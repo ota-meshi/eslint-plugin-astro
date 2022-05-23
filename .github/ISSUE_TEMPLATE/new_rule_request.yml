@@ -1,0 +1,41 @@
+name: New rule request
+description: Propose a new rule to be added.
+labels: [enhancement, new rule]
+
+body:
+  - type: textarea
+    attributes:
+      label: Motivation
+      description: |
+        A clear and concise description of the problem the new rule is supposed to solve.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Description
+      description: |
+        A clear and concise description of the new rule.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Examples
+      description: |
+        Add a few examples of astro that the rule does and does not report.
+      value: |
+        ```astro
+        ---
+        ---
+
+        <!-- ✓ GOOD -->
+        <Foo />
+        <Foo />
+        <Foo />
+
+        <!-- ✗ BAD -->
+        <Foo />
+        <Foo />
+        <Foo />
+        ```
+    validations:
+      required: true
