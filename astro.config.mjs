@@ -1,6 +1,4 @@
 import { defineConfig } from "astro/config"
-import preact from "@astrojs/preact"
-import react from "@astrojs/react"
 import svelte from "@astrojs/svelte"
 import emoji from "remark-emoji"
 import replaceLink from "./docs-build/remark-replace-link.mjs"
@@ -17,13 +15,7 @@ export default defineConfig({
   publicDir: "./docs-build/public",
   outDir: "./docs-build/dist",
   root: dirname,
-  integrations: [
-    svelte(),
-    // Enable Preact to support Preact JSX components.
-    preact(),
-    // Enable React for the Algolia search component.
-    react(),
-  ],
+  integrations: [svelte()],
   markdown: {
     remarkPlugins: [emoji, replaceLink],
   },
