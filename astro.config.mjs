@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config"
 import svelte from "@astrojs/svelte"
 import emoji from "remark-emoji"
+import gfm from "remark-gfm"
 import replaceLink from "./docs-build/remark-replace-link.mjs"
 import "./docs-build/setup-docs.mjs"
 import path from "path"
@@ -17,7 +18,17 @@ export default defineConfig({
   root: dirname,
   integrations: [svelte()],
   markdown: {
-    remarkPlugins: [emoji, replaceLink],
+    remarkPlugins: [
+      emoji,
+      gfm,
+      [
+        replaceLink,
+        {
+          srcDir: "./docs-build/src",
+          base: "/eslint-plugin-astro",
+        },
+      ],
+    ],
   },
   vite: {
     server: {

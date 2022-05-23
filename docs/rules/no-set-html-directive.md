@@ -1,6 +1,7 @@
 ---
 title: "astro/no-set-html-directive"
 description: "disallow use of `set:html` to prevent XSS attack"
+setup: "import ESLintCodeBlock from '../docs-build/src/components/ESLintCodeBlockWrap.astro'"
 ---
 
 # astro/no-set-html-directive

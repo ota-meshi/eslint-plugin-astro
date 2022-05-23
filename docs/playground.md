@@ -1,6 +1,8 @@
 ---
 setup: |
   import ESLintPlayground from '../docs-build/src/components/ESLintPlaygroundWrap.astro'
+hiddenRight: true
+hiddenTOC: true
 ---
 
 # Playground

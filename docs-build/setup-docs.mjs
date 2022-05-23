@@ -2,6 +2,7 @@ import fs from "fs"
 import path from "path"
 import { URL } from "url"
 import "./build-system/build.js"
+import { load, dump } from "js-yaml"
 
 const dirname = path.dirname(new URL(import.meta.url).pathname)
 setupDocs()
@@ -16,50 +17,30 @@ function setupDocs() {
   }
   const docsDir = path.resolve(dirname, "../docs")
   for (const md of listup(docsDir, ".md")) {
-    const from = (
-      md.endsWith("README.md") ? md.replace(/README.md$/u, "index.md") : md
-    ).replace(/\.md$/u, ".astro")
-    const to = path.resolve(buildDocsDir, path.relative(docsDir, from))
+    const to = path.resolve(
+      buildDocsDir,
+      path.relative(
+        docsDir,
+        md.endsWith("README.md") ? md.replace(/README.md$/u, "index.md") : md,
+      ),
+    )
     mkDirs(path.dirname(to))
 
-    if (md.endsWith("/playground.md")) {
-      fs.writeFileSync(
-        to,
-        `---
-import ESLintPlayground from '../components/ESLintPlaygroundWrap.astro'
-import MainLayout from '../layouts/MainLayout.astro'
-const content = {
-  title: 'Playground',
-  astro: { headers: [] }
-}
----
-<MainLayout {content} hiddenRight>
-    <ESLintPlayground />
-</MainLayout>
-`,
-        "utf8",
-      )
-      continue
-    }
+    const content = fs.readFileSync(md, "utf8")
+    const frontmatter = /^---\n([\s\S]*?)\n---\n/u.exec(content)?.[1]
+    const data = frontmatter ? load(frontmatter) : {}
+    data.layout = `./${path.relative(path.dirname(to), mainLayoutPath)}`
+    data.markdownPath = `${to}`
+    const newFrontmatter = `---
+${dump(data)}---
 
-    fs.writeFileSync(
-      to,
-      `---
-import * as all from '${path.relative(path.dirname(to), md)}'
-import MainLayout from '${path.relative(path.dirname(to), mainLayoutPath)}'
-const content = await all.getHeaders().then(headers=>{
-    return {
-        astro: {headers}
-    }
-})
-const Md = all.Content
----
-<MainLayout {content}>
-    <Md />
-</MainLayout>
-`,
-      "utf8",
-    )
+<!-- markdownPath: ${to} -->
+`
+    const pageContent = frontmatter
+      ? content.replace(/^---\n[\s\S]*?\n---\n/u, newFrontmatter)
+      : `${newFrontmatter}\n${content}`
+
+    fs.writeFileSync(to, pageContent, "utf8")
   }
 }
 

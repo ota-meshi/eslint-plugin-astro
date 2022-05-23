@@ -2,17 +2,20 @@
 import MoreMenu from '../RightSidebar/MoreMenu.astro';
 import TableOfContents from '../RightSidebar/TableOfContents.svelte';
 
-const { content, githubEditUrl, hiddenRight } = Astro.props;
+const { content, githubEditUrl, hiddenRight, hiddenTOC } = Astro.props;
 const title = content.title;
 const headers = content.astro.headers;
 ---
 
-<article id="article" class:list={["content", { 'hidden-right': hiddenRight}]}>
+<article id="article" class:list={["content", { 'hidden-right': hiddenRight, hiddenTOC}]}>
 	<section class="main-section">
 		<h1 class="content-title" id="overview">{title}</h1>
-		<nav class="block sm:hidden">
-			<TableOfContents client:media="(max-width: 50em)" {headers} />
-		</nav>
+		{
+			!hiddenTOC &&
+			<nav class="block sm:hidden">
+				<TableOfContents client:media="(max-width: 50em)" {headers} />
+			</nav>
+		}
 		<slot />
 	</section>
 	<nav class="block sm:hidden">
