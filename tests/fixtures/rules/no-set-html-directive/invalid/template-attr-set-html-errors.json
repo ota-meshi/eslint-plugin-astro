@@ -1,0 +1,7 @@
+[
+  {
+    "message": "`set:html` can lead to XSS attack.",
+    "line": 1,
+    "column": 4
+  }
+]

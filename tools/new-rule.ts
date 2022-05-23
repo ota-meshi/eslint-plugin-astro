@@ -85,9 +85,9 @@ This rule reports ???.
 <!--eslint-skip-->
 
 \`\`\`astro
-<script>
-  /* eslint astro/${ruleId}: "error" */
-</script>
+---
+/* eslint astro/${ruleId}: "error" */
+---
 
 <!-- ✓ GOOD -->
 
@@ -119,4 +119,15 @@ This rule reports ???.
   cp.execSync(`code "${ruleFile}"`)
   cp.execSync(`code "${testFile}"`)
   cp.execSync(`code "${docFile}"`)
+
+  const yellow = "\u001b[33m"
+
+  const reset = "\u001b[0m"
+
+  // eslint-disable-next-line no-console -- ignore
+  console.log(`Test Command:
+
+${yellow}npx mocha --require ts-node/register/transpile-only "tests/**/${ruleId}.ts" --reporter dot --timeout 60000${reset}
+
+`)
 })(process.argv[2])

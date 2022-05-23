@@ -201,8 +201,6 @@ ${
     const { ruleId, description } = this.rule.meta.docs
 
     const fileIntro = {
-      pageClass: "rule-details",
-      sidebarDepth: 0,
       title: ruleId,
       description,
       ...(this.since ? { since: this.since } : {}),

@@ -106,7 +106,7 @@ export type RuleContext = {
   }
   parserPath: string
   parserOptions: Linter.ParserOptions
-  parserServices: ESLintSourceCode.ParserServices
+  parserServices: { isAstro?: boolean }
 
   getAncestors(): ASTNode[]
 

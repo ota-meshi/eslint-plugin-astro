@@ -4,6 +4,8 @@
 /node_modules
 !/.vscode
 !/.github
+/tests/fixtures/rules/*/invalid/template-attr-*.astro
+/tests/fixtures/rules/*/invalid/template-attr-*.astro
 /docs-build/src/md
 /docs-build/src/pages
 /docs-build/README.md
