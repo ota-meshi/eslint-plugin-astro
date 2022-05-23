@@ -9,7 +9,7 @@ const headers = content.astro.headers;
 
 <article id="article" class:list={["content", { 'hidden-right': hiddenRight, hiddenTOC}]}>
 	<section class="main-section">
-		<h1 class="content-title" id="overview">{title}</h1>
+		{title !== content?.astro?.headers?.[0]?.text && <h1 class="content-title" id="overview">{title}</h1>}
 		{
 			!hiddenTOC &&
 			<nav class="block sm:hidden">
