@@ -42,7 +42,7 @@
   "bugs": {
     "url": "https://github.com/ota-meshi/eslint-plugin-astro/issues"
   },
-  "homepage": "https://github.com/ota-meshi/eslint-plugin-astro#readme",
+  "homepage": "https://ota-meshi.github.io/eslint-plugin-astro/",
   "dependencies": {
     "eslint-utils": "^3.0.0",
     "@typescript-eslint/types": "^5.25.0"
