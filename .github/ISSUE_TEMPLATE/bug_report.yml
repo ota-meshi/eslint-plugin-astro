@@ -66,3 +66,6 @@ body:
         https://ota-meshi.github.io/eslint-plugin-astro/playground/#[hash]
     validations:
       required: true
+  - type: textarea
+    attributes:
+      label: Additional comments

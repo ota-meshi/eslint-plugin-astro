@@ -39,3 +39,6 @@ body:
         ```
     validations:
       required: true
+  - type: textarea
+    attributes:
+      label: Additional comments
