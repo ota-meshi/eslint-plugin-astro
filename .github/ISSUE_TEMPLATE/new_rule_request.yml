@@ -21,7 +21,7 @@ body:
     attributes:
       label: Examples
       description: |
-        Add a few examples of astro that the rule does and does not report.
+        Add some examples of astro that the rule does and does not report.
       value: |
         ```astro
         ---
