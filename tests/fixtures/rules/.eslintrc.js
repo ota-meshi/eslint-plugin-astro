@@ -9,6 +9,12 @@ module.exports = {
       },
     },
     {
+      files: ["*input.astro"],
+      rules: {
+        "prettier/prettier": "off", // TODO
+      },
+    },
+    {
       files: ["*.astro"],
       parserOptions: {
         project: null,
@@ -23,5 +29,8 @@ module.exports = {
     "no-empty-function": "off",
     "one-var": "off",
     "func-style": "off",
+
+    "astro/no-set-html-directive": "off",
+    "astro/no-set-text-directive": "off",
   },
 }

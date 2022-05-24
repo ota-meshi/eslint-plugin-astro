@@ -43,20 +43,34 @@ module.exports = {
     },
     {
       files: ["*.astro"],
+      plugins: ["astro"],
       parser: "astro-eslint-parser",
-      globals: {
-        Astro: false,
-        Footer: false,
-      },
       env: {
         node: true,
+        "astro/astro": true,
       },
       parserOptions: {
         parser: "@typescript-eslint/parser",
       },
       rules: {
-        "prettier/prettier": "off", // TODO
+        "astro/no-set-html-directive": "error",
+        "astro/no-set-text-directive": "error",
+        "prettier/prettier": "error",
         "no-console": "off",
+      },
+    },
+    {
+      // Define the configuration for `<script>` tag.
+      // Script in `<script>` is assigned a virtual file name with the `.js` extension.
+      files: ["**/*.astro/*.js", "*.astro/*.js"],
+      env: {
+        browser: true,
+      },
+      parserOptions: {
+        sourceType: "module",
+      },
+      rules: {
+        "prettier/prettier": "off",
       },
     },
     {
