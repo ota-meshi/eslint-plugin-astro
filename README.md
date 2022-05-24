@@ -74,10 +74,11 @@ module.exports = {
       parserOptions: {
         parser: "@typescript-eslint/parser",
         extraFileExtensions: [".astro"],
+        sourceType: "module",
       },
       rules: {
         // override/add rules settings here, such as:
-        // 'astro/rule-name': 'error'
+        // "astro/no-set-html-directive": "error"
       },
     },
     {
@@ -86,6 +87,17 @@ module.exports = {
       files: ["**/*.astro/*.js", "*.astro/*.js"],
       env: {
         browser: true,
+      },
+      parserOptions: {
+        sourceType: "module",
+      },
+      rules: {
+        // override/add rules settings here, such as:
+        // "astro/no-set-html-directive": "error"
+
+        // If you are using "prettier/prettier" rule,
+        // you don't need to format inside <script> as it will be formatted as a `.astro` file.
+        "prettier/prettier": "off",
       },
     },
     // ...
