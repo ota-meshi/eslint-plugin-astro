@@ -1,7 +1,6 @@
 import path from "path"
-import fs from "fs"
 import { rules } from "./lib/load-rules"
-import { ESLint } from "eslint"
+import { formatAndSave } from "./lib/utils"
 
 /**
  * Convert text to camelCase
@@ -29,13 +28,4 @@ export const rules = [
 const filePath = path.resolve(__dirname, "../src/utils/rules.ts")
 
 // Update file.
-fs.writeFileSync(filePath, content)
-
-// Format files.
-// const linter = new eslint.CLIEngine({ fix: true })
-// const report = linter.executeOnFiles([filePath])
-// eslint.CLIEngine.outputFixes(report)
-
-// Format files.
-const linter = new ESLint({ fix: true })
-void linter.lintFiles([filePath]).then((report) => ESLint.outputFixes(report))
+void formatAndSave(filePath, content)

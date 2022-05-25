@@ -2,6 +2,7 @@ import path from "path"
 import fs from "fs"
 import { rules } from "../src/utils/rules"
 import type { RuleModule } from "../src/types"
+import { formatAndSave } from "./lib/utils"
 
 //eslint-disable-next-line require-jsdoc -- tools
 function formatItems(items: string[]) {
@@ -229,7 +230,7 @@ ${
   public write() {
     this.content = this.content.replace(/\r?\n/gu, "\n")
 
-    fs.writeFileSync(this.filePath, this.content)
+    void formatAndSave(this.filePath, this.content)
   }
 }
 

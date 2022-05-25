@@ -1,6 +1,7 @@
 import path from "path"
 import fs from "fs"
 import renderRulesTableContent from "./render-rules"
+import { formatAndSave } from "./lib/utils"
 
 const insertText = `\n${renderRulesTableContent(
   (name) => `https://ota-meshi.github.io/eslint-plugin-astro/rules/${name}/`,
@@ -16,11 +17,11 @@ const newReadme = fs
       "$$$$",
     )}<!--RULES_TABLE_END-->`,
   )
-fs.writeFileSync(readmeFilePath, newReadme)
+void formatAndSave(readmeFilePath, newReadme)
 
 const docsReadmeFilePath = path.resolve(__dirname, "../docs/README.md")
 
-fs.writeFileSync(
+void formatAndSave(
   docsReadmeFilePath,
   `---
 title: "eslint-plugin-astro"
@@ -70,7 +71,7 @@ const docsUserGuideFilePath = path.resolve(__dirname, "../docs/user-guide.md")
 
 const docsUserGuide = fs.readFileSync(docsUserGuideFilePath, "utf8")
 
-fs.writeFileSync(
+void formatAndSave(
   docsUserGuideFilePath,
   docsUserGuide
     .replace(

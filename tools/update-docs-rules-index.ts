@@ -1,10 +1,10 @@
 import path from "path"
-import fs from "fs"
 import renderRulesTableContent from "./render-rules"
+import { formatAndSave } from "./lib/utils"
 
 // -----------------------------------------------------------------------------
 const readmeFilePath = path.resolve(__dirname, "../docs/rules.md")
-fs.writeFileSync(
+void formatAndSave(
   readmeFilePath,
   `# Available Rules
 

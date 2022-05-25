@@ -1,7 +1,7 @@
 import { AST_NODE_TYPES } from "@typescript-eslint/types"
 import { parseForESLint } from "astro-eslint-parser"
 import path from "path"
-import fs from "fs"
+import { formatAndSave } from "./lib/utils"
 
 // import { fileURLToPath } from "url"
 // const filename = fileURLToPath(import.meta.url)
@@ -108,4 +108,4 @@ for (const nodeType of astroNodeNames.filter(
 code += `
 }`
 
-fs.writeFileSync(codeFilename, code)
+void formatAndSave(codeFilename, code)

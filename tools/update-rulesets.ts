@@ -33,7 +33,7 @@
 // const baseFilePath = path.resolve(__dirname, "../src/configs/base.ts")
 
 // // Update file.
-// fs.writeFileSync(baseFilePath, baseContent)
+// void formatAndSave(baseFilePath, baseContent)
 
 // const recommendedRules = rules.filter(
 //   (rule) => rule.meta.docs.recommended && !rule.meta.deprecated,
@@ -63,7 +63,7 @@
 // )
 
 // // Update file.
-// fs.writeFileSync(recommendedFilePath, recommendedContent)
+// void formatAndSave(recommendedFilePath, recommendedContent)
 
 // // Format files.
 // const linter = new ESLint({ fix: true })
