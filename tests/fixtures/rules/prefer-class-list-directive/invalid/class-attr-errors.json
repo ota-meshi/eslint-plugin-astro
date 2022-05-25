@@ -1,0 +1,7 @@
+[
+  {
+    "message": "Unexpected `class` using expression. Use 'class:list' instead.",
+    "line": 5,
+    "column": 6
+  }
+]

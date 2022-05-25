@@ -23,6 +23,7 @@ See [Astro Documentation | Template Directives Reference > set:text](https://doc
 
 <ESLintCodeBlock fix>
 
+<!-- prettier-ignore-start -->
 <!--eslint-skip-->
 
 ```astro
@@ -37,6 +38,8 @@ See [Astro Documentation | Template Directives Reference > set:text](https://doc
 <p set:text={foo} />
 
 ```
+
+<!-- prettier-ignore-end -->
 
 </ESLintCodeBlock>
 

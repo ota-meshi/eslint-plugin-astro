@@ -172,6 +172,14 @@ These rules relate to better ways of doing things to help you avoid problems:
 |:--------|:------------|:---|
 | [astro/no-set-text-directive](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-set-text-directive/) | disallow use of `set:text` | :wrench: |
 
+## Stylistic Issues
+
+These rules relate to style guidelines, and are therefore quite subjective:
+
+| Rule ID | Description |    |
+|:--------|:------------|:---|
+| [astro/prefer-class-list-directive](https://ota-meshi.github.io/eslint-plugin-astro/rules/prefer-class-list-directive/) | require `class:list` directives instead of `class` with expressions | :wrench: |
+
 <!--RULES_TABLE_END-->
 <!--RULES_SECTION_END-->
 
