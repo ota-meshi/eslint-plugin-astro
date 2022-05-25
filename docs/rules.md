@@ -20,3 +20,11 @@ These rules relate to better ways of doing things to help you avoid problems:
 | Rule ID | Description |    |
 |:--------|:------------|:---|
 | [astro/no-set-text-directive](./rules/no-set-text-directive.md) | disallow use of `set:text` | :wrench: |
+
+## Stylistic Issues
+
+These rules relate to style guidelines, and are therefore quite subjective:
+
+| Rule ID | Description |    |
+|:--------|:------------|:---|
+| [astro/prefer-class-list-directive](./rules/prefer-class-list-directive.md) | require `class:list` directives instead of `class` with expressions | :wrench: |

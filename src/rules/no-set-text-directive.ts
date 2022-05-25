@@ -1,5 +1,6 @@
 import type { AST } from "astro-eslint-parser"
 import { createRule } from "../utils"
+import { getDirectiveName } from "../utils/ast-utils"
 
 export default createRule("no-set-text-directive", {
   meta: {
@@ -24,16 +25,11 @@ export default createRule("no-set-text-directive", {
     function verifyName(
       attr: AST.JSXAttribute | AST.AstroTemplateLiteralAttribute,
     ) {
-      const { name: node } = attr
-      if (
-        node.type !== "JSXNamespacedName" ||
-        node.namespace.name !== "set" ||
-        node.name.name !== "text"
-      ) {
+      if (getDirectiveName(attr) !== "set:text") {
         return
       }
       context.report({
-        node,
+        node: attr.name,
         messageId: "disallow",
         *fix(fixer) {
           const element = attr.parent!.parent!

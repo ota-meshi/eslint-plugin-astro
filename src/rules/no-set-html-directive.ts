@@ -1,5 +1,6 @@
 import type { AST } from "astro-eslint-parser"
 import { createRule } from "../utils"
+import { getDirectiveName } from "../utils/ast-utils"
 
 export default createRule("no-set-html-directive", {
   meta: {
@@ -20,20 +21,14 @@ export default createRule("no-set-html-directive", {
     }
 
     /** Verify */
-    function verifyName({
-      name: node,
-    }: {
-      name: AST.JSXIdentifier | AST.JSXNamespacedName
-    }) {
-      if (
-        node.type !== "JSXNamespacedName" ||
-        node.namespace.name !== "set" ||
-        node.name.name !== "html"
-      ) {
+    function verifyName(
+      attr: AST.JSXAttribute | AST.AstroTemplateLiteralAttribute,
+    ) {
+      if (getDirectiveName(attr) !== "set:html") {
         return
       }
       context.report({
-        node,
+        node: attr.name,
         messageId: "unexpected",
       })
     }
