@@ -51,6 +51,7 @@ module.exports = {
       },
       parserOptions: {
         parser: "@typescript-eslint/parser",
+        extraFileExtensions: [".astro"],
       },
       rules: {
         "astro/no-set-html-directive": "error",
