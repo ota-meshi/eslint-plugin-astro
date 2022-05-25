@@ -90,5 +90,4 @@ void formatAndSave(
       /\(https:\/\/ota-meshi.github.io\/eslint-plugin-astro(.*?)\)/gu,
       (_s, c: string) => `(.${c.endsWith("/") ? c.slice(0, -1) : c}.md)`,
     ),
-  "utf8",
 )
