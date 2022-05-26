@@ -18,7 +18,7 @@ You can check on the [Online DEMO](./playground.md).
 [![NPM downloads](https://img.shields.io/npm/dt/eslint-plugin-astro.svg)](http://www.npmtrends.com/eslint-plugin-astro)
 [![Build Status](https://github.com/ota-meshi/eslint-plugin-astro/workflows/CI/badge.svg?branch=main)](https://github.com/ota-meshi/eslint-plugin-astro/actions?query=workflow%3ACI)
 
-This parser is in the **_experimental stages_** of development.
+This plugin is in the **_experimental stages_** of development.
 
 ## :name_badge: What is this plugin?
 

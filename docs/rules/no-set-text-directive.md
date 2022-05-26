@@ -36,7 +36,6 @@ See [Astro Documentation | Template Directives Reference > set:text](https://doc
 
 <!-- ✗ BAD -->
 <p set:text={foo} />
-
 ```
 
 <!-- prettier-ignore-end -->
