@@ -1,4 +1,5 @@
 import type { AST } from "astro-eslint-parser"
+import type { TSESTree } from "@typescript-eslint/types"
 /**
  * Get the directive name from given attribute node
  */
@@ -7,7 +8,9 @@ export function getDirectiveName(
     | AST.JSXAttribute
     | AST.AstroTemplateLiteralAttribute
     | AST.AstroShorthandAttribute
-    | AST.JSXSpreadAttribute,
+    | AST.JSXSpreadAttribute
+    | TSESTree.JSXAttribute
+    | TSESTree.JSXSpreadAttribute,
 ): string | null {
   if (node.type === "JSXSpreadAttribute") {
     return null
@@ -29,7 +32,9 @@ export function getAttributeName(
     | AST.JSXAttribute
     | AST.AstroTemplateLiteralAttribute
     | AST.AstroShorthandAttribute
-    | AST.JSXSpreadAttribute,
+    | AST.JSXSpreadAttribute
+    | TSESTree.JSXAttribute
+    | TSESTree.JSXSpreadAttribute,
 ): string | null {
   if (node.type === "JSXSpreadAttribute") {
     return null

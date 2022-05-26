@@ -28,3 +28,4 @@ These rules relate to style guidelines, and are therefore quite subjective:
 | Rule ID | Description |    |
 |:--------|:------------|:---|
 | [astro/prefer-class-list-directive](./rules/prefer-class-list-directive.md) | require `class:list` directives instead of `class` with expressions | :wrench: |
+| [astro/prefer-split-class-list](./rules/prefer-split-class-list.md) | require use split array elements in `class:list` | :wrench: |

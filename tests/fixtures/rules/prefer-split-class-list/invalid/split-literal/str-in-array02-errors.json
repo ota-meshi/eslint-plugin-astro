@@ -1,0 +1,32 @@
+[
+  {
+    "message": "Can split elements with spaces.",
+    "line": 5,
+    "column": 22
+  },
+  {
+    "message": "Can split elements with spaces.",
+    "line": 5,
+    "column": 24
+  },
+  {
+    "message": "Can split elements with spaces.",
+    "line": 5,
+    "column": 34
+  },
+  {
+    "message": "Can split elements with spaces.",
+    "line": 6,
+    "column": 22
+  },
+  {
+    "message": "Can split elements with spaces.",
+    "line": 6,
+    "column": 24
+  },
+  {
+    "message": "Can split elements with spaces.",
+    "line": 6,
+    "column": 29
+  }
+]

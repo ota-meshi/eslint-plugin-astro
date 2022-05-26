@@ -41,6 +41,12 @@ This rule aims to replace the `class` attribute with expression with the `class:
 
 Nothing.
 
+## :couple: Related Rules
+
+- [astro/prefer-split-class-list]
+
+[astro/prefer-split-class-list]: ./prefer-split-class-list.md
+
 ## :books: Further Reading
 
 - [Astro Documentation | Template Directives Reference > class:list](https://docs.astro.build/en/reference/directives-reference/#classlist)
