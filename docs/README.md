@@ -24,6 +24,17 @@ This plugin is in the **_experimental stages_** of development.
 
 [ESLint] plugin for [Astro components].
 
+- Linting Astro components using ESLint.
+- Find problems with Astro components.
+- Apply a consistent code style to Astro components.
+- Linting targets include [Frontmatter], [HTML Template], [Dynamic JSX Expressions], [Client-Side Scripts], [Directives], and more.
+- Check code in real time with the ESLint editor integrations.
+
+[frontmatter]: https://docs.astro.build/ja/core-concepts/astro-components/#the-component-script
+[html template]: https://docs.astro.build/ja/core-concepts/astro-components/#the-component-template
+[dynamic jsx expressions]: https://docs.astro.build/ja/core-concepts/astro-components/#dynamic-jsx-expressions
+[client-side scripts]: https://docs.astro.build/ja/core-concepts/astro-components/#client-side-scripts
+[directives]: https://docs.astro.build/ja/reference/directives-reference/
 [astro-eslint-parser]: https://github.com/ota-meshi/astro-eslint-parser
 
 ## :book: Usage
