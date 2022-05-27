@@ -1,0 +1,9 @@
+---
+let a = true
+let b = true
+let c = true
+let d = true
+---
+
+<button class:list={a && b && c ? "a b c" : " "}>foo</button>
+<button class:list={d ? "??" : " "}>foo</button>

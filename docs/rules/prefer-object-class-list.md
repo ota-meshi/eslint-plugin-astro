@@ -1,36 +1,36 @@
 ---
-title: "astro/prefer-class-list-directive"
-description: "require `class:list` directives instead of `class` with expressions"
+title: "astro/prefer-object-class-list"
+description: "require use object instead of ternary expression in `class:list`"
 setup: "import ESLintCodeBlock from '../docs-build/src/components/ESLintCodeBlockWrap.astro'"
 ---
 
-# astro/prefer-class-list-directive
+# astro/prefer-object-class-list
 
-> require `class:list` directives instead of `class` with expressions
+> require use object instead of ternary expression in `class:list`
 
 - :exclamation: <badge text="This rule has not been released yet." vertical="middle" type="error"> **_This rule has not been released yet._** </badge>
 - :wrench: The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
 
 ## :book: Rule Details
 
-This rule aims to replace the `class` attribute with expression with the `class:list` directive.
+This rule aims to use object elements than ternary expression in `class:list`.
 
 <ESLintCodeBlock fix>
 
 <!-- prettier-ignore-start -->
-
 <!--eslint-skip-->
 
 ```astro
 ---
-/* eslint astro/prefer-class-list-directive: "error" */
+/* eslint astro/prefer-object-class-list: "error" */
 ---
 
 <!-- ✓ GOOD -->
-<div class:list={[foo, bar]}></div>
+<div class:list={["a", { b: num > 0, c }]}></div>
 
 <!-- ✗ BAD -->
-<div class={foo + " " + bar}></div>
+<div class:list={"a " + (num > 0 ? 'b' : '') + ' ' + (c ? 'c' : '')}></div>
+<div class:list={`a ${num > 0 ? 'b' : ''} ${c ? 'c' : ''}`}></div>
 ```
 
 <!-- prettier-ignore-end -->
@@ -43,11 +43,11 @@ Nothing.
 
 ## :couple: Related Rules
 
+- [astro/prefer-class-list-directive]
 - [astro/prefer-split-class-list]
-- [astro/prefer-object-class-list]
 
+[astro/prefer-class-list-directive]: ./prefer-class-list-directive.md
 [astro/prefer-split-class-list]: ./prefer-split-class-list.md
-[astro/prefer-object-class-list]: ./prefer-object-class-list.md
 
 ## :books: Further Reading
 
@@ -55,5 +55,5 @@ Nothing.
 
 ## :mag: Implementation
 
-- [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/prefer-class-list-directive.ts)
-- [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/prefer-class-list-directive.ts)
+- [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/prefer-object-class-list.ts)
+- [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/prefer-object-class-list.ts)
