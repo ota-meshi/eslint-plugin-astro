@@ -4,7 +4,7 @@ title: "eslint-plugin-astro"
 
 # Introduction
 
-`eslint-plugin-astro` is [ESLint] plugin for [Astro] components.  
+`eslint-plugin-astro` is [ESLint] plugin for [Astro components].  
 You can check on the [Online DEMO](./playground.md).
 
 [![sponsors](https://img.shields.io/badge/-Sponsor-fafbfc?logo=GitHub%20Sponsors)](https://github.com/sponsors/ota-meshi)
@@ -22,7 +22,7 @@ This plugin is in the **_experimental stages_** of development.
 
 ## :name_badge: What is this plugin?
 
-[ESLint] plugin for [Astro] components.
+[ESLint] plugin for [Astro components].
 
 [astro-eslint-parser]: https://github.com/ota-meshi/astro-eslint-parser
 
@@ -46,3 +46,4 @@ See the [LICENSE](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/LIC
 
 [astro]: https://astro.build/
 [eslint]: https://eslint.org/
+[astro components]: https://docs.astro.build/en/core-concepts/astro-components/

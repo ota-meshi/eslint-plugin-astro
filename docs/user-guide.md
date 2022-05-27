@@ -108,7 +108,13 @@ Example **.vscode/settings.json**:
 
 ```json
 {
-  "eslint.validate": ["javascript", "javascriptreact", "astro"]
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "astro", // Enable .astro
+    "typescript", // Enable .ts
+    "typescriptreact" // Enable .tsx
+  ]
 }
 ```
 

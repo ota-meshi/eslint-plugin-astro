@@ -1,6 +1,6 @@
 # Introduction
 
-`eslint-plugin-astro` is [ESLint] plugin for [Astro] components.  
+`eslint-plugin-astro` is [ESLint] plugin for [Astro components].  
 You can check on the [Online DEMO](https://ota-meshi.github.io/eslint-plugin-astro/playground/).
 
 [![sponsors](https://img.shields.io/badge/-Sponsor-fafbfc?logo=GitHub%20Sponsors)](https://github.com/sponsors/ota-meshi)
@@ -18,7 +18,7 @@ This plugin is in the **_experimental stages_** of development.
 
 ## :name_badge: What is this plugin?
 
-[ESLint] plugin for [Astro] components.
+[ESLint] plugin for [Astro components].
 
 [astro-eslint-parser]: https://github.com/ota-meshi/astro-eslint-parser
 
@@ -139,7 +139,13 @@ Example **.vscode/settings.json**:
 
 ```json
 {
-  "eslint.validate": ["javascript", "javascriptreact", "astro"]
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "astro", // Enable .astro
+    "typescript", // Enable .ts
+    "typescriptreact" // Enable .tsx
+  ]
 }
 ```
 
@@ -216,3 +222,4 @@ See the [LICENSE](LICENSE) file for license rights and limitations (MIT).
 
 [astro]: https://astro.build/
 [eslint]: https://eslint.org/
+[astro components]: https://docs.astro.build/en/core-concepts/astro-components/
