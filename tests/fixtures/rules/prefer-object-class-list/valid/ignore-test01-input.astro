@@ -1,0 +1,7 @@
+---
+let selected = "foo"
+---
+
+<button class:list={[`${selected ? 'selected' : ''}-b`]}>foo</button>
+<button class:list={[`a-${selected ? 'selected' : ''}`]}>foo</button>
+<button class:list={[`a${selected ? ' selected ' : ''}b`]}>foo</button>

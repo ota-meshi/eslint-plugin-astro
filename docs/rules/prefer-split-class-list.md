@@ -57,8 +57,10 @@ import clsx from "clsx"
 ## :couple: Related Rules
 
 - [astro/prefer-class-list-directive]
+- [astro/prefer-object-class-list]
 
 [astro/prefer-class-list-directive]: ./prefer-class-list-directive.md
+[astro/prefer-object-class-list]: ./prefer-object-class-list.md
 
 ## :books: Further Reading
 

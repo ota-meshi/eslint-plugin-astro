@@ -1,0 +1,12 @@
+[
+  {
+    "message": "Unexpected class using the ternary operator.",
+    "line": 1,
+    "column": 19
+  },
+  {
+    "message": "Unexpected class using the ternary operator.",
+    "line": 4,
+    "column": 5
+  }
+]

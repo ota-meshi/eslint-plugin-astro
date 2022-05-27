@@ -1,0 +1,15 @@
+---
+let a = true
+let b = true
+let c = true
+let d = true
+---
+
+<button
+  class:list={[
+    `${a ? " a " : b ? " b " : ""}`,
+    { c: c, "no-c": !c,"d": d === true },
+  ]}
+  >foo
+</button>
+<!-- complex02-input.astro -->

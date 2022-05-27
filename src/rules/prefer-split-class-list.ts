@@ -3,12 +3,13 @@ import { AST_NODE_TYPES } from "@typescript-eslint/types"
 import type { TSESTree } from "@typescript-eslint/types"
 import { createRule } from "../utils"
 import type { TrackedReferences } from "eslint-utils"
+import { isOpeningParenToken, ReferenceTracker } from "eslint-utils"
 import {
-  isParenthesized,
-  isOpeningParenToken,
-  ReferenceTracker,
-} from "eslint-utils"
-import { getDirectiveName } from "../utils/ast-utils"
+  extractConcatExpressions,
+  getDirectiveName,
+  isStringCallExpression,
+  isStringLiteral,
+} from "../utils/ast-utils"
 import type { Token } from "../utils/string-literal-parser"
 import { parseStringTokens } from "../utils/string-literal-parser"
 import type { Rule } from "eslint"
@@ -193,7 +194,7 @@ export default createRule("prefer-split-class-list", {
       node: TSESTree.BinaryExpression,
       transformArray: TransformArray,
     ) {
-      const elements = extractConcatExpressions(node)
+      const elements = extractConcatExpressions(node, sourceCode)
       if (elements == null) {
         return
       }
@@ -206,40 +207,6 @@ export default createRule("prefer-split-class-list", {
             isLastElement: last === element,
             transformArray,
           })
-        }
-      }
-
-      /** Check str concat and extract expressions */
-      function extractConcatExpressions(
-        bin: TSESTree.BinaryExpression,
-      ): null | (TSESTree.Expression | TSESTree.PrivateIdentifier)[] {
-        const results: (TSESTree.Expression | TSESTree.PrivateIdentifier)[] = []
-        if (bin.operator !== "+") {
-          return null
-        }
-        const leftResult = processLeft(bin.left)
-        if (leftResult == null) {
-          return null
-        }
-        results.push(...leftResult)
-        results.push(bin.right)
-
-        return results
-
-        /** Process for left expression */
-        function processLeft(
-          expr: TSESTree.Expression | TSESTree.PrivateIdentifier,
-        ) {
-          if (expr.type === AST_NODE_TYPES.BinaryExpression) {
-            if (
-              !isParenthesized(expr, sourceCode) &&
-              expr.operator !== "*" &&
-              expr.operator !== "/"
-            ) {
-              return extractConcatExpressions(expr)
-            }
-          }
-          return [expr]
         }
       }
     }
@@ -404,13 +371,6 @@ export default createRule("prefer-split-class-list", {
   },
 })
 
-/** Checks whether given node is StringLiteral */
-function isStringLiteral(
-  node: TSESTree.Expression | TSESTree.PrivateIdentifier,
-): node is TSESTree.StringLiteral {
-  return node.type === AST_NODE_TYPES.Literal && typeof node.value === "string"
-}
-
 /** Checks whether given node evaluate type is string */
 function isStringType(
   node: TSESTree.Expression | TSESTree.PrivateIdentifier,
@@ -422,18 +382,5 @@ function isStringType(
   } else if (node.type === AST_NODE_TYPES.BinaryExpression) {
     return isStringType(node.left) || isStringType(node.right)
   }
-  return isCallString(node)
-}
-
-/** Checks whether given node evaluate type is string */
-function isCallString(
-  node: TSESTree.Expression | TSESTree.PrivateIdentifier,
-): node is TSESTree.CallExpression & { callee: TSESTree.Identifier } {
-  if (node.type === AST_NODE_TYPES.CallExpression) {
-    return (
-      node.callee.type === AST_NODE_TYPES.Identifier &&
-      node.callee.name === "String"
-    )
-  }
-  return false
+  return isStringCallExpression(node)
 }
