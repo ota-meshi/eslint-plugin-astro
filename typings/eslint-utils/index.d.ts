@@ -38,6 +38,19 @@ export function isParenthesized(
   sourceCode: SourceCode,
 ): boolean
 
+export function getPropertyName(
+  node:
+    | ESTree.MemberExpression
+    | ESTree.MethodDefinition
+    | ESTree.Property
+    | ESTree.PropertyDefinition
+    | TSESTree.MemberExpression
+    | TSESTree.MethodDefinition
+    | TSESTree.Property
+    | TSESTree.PropertyDefinition,
+  initialScope?: Scope.Scope,
+): string | null
+
 export function findVariable(
   initialScope: Scope.Scope,
   nameOrNode: ESTree.Identifier | string,

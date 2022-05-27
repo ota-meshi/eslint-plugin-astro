@@ -1,0 +1,12 @@
+[
+  {
+    "message": "'foregroundColor' is defined but never used.",
+    "line": 6,
+    "column": 23
+  },
+  {
+    "message": "'backgroundColor' is defined but never used.",
+    "line": 6,
+    "column": 40
+  }
+]

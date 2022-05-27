@@ -92,9 +92,9 @@ This rule reports ???.
 /* eslint astro/${ruleId}: "error" */
 ---
 
-<!-- ✓ GOOD -->
+{/* ✓ GOOD */}
 
-<!-- ✗ BAD -->
+{/* ✗ BAD */}
 
 \`\`\`
 
