@@ -19,7 +19,7 @@ export default (options = {}) => {
       }
     })
     if (markdownPath) {
-      visit(tree, "link", (node) => {
+      visit(tree, ["link", "definition"], (node) => {
         if (node.url.startsWith(".")) {
           const linkPath = path.resolve(path.dirname(markdownPath), node.url)
           const relativeLinkPath = path.relative(pagesDir, linkPath)
