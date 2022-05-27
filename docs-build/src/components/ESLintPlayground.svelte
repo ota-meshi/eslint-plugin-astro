@@ -35,6 +35,10 @@ let b: number = 1;
 
 <p>{a} + {b} + {c} = {a + b + c}</p>
 
+<span class={
+  'hello goodbye ' + (a ? 'hello' : '') + \` \${b ? 'world' : ''}\`
+} />
+
 <script define:vars={{a, b}}>
   console.log(a);
 <` +
