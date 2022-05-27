@@ -2,6 +2,11 @@
   {
     "message": "Unexpected class using the ternary operator.",
     "line": 10,
+    "column": 8
+  },
+  {
+    "message": "Unexpected class using the ternary operator.",
+    "line": 10,
     "column": 37
   }
 ]

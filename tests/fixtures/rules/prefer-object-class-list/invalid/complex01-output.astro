@@ -6,7 +6,7 @@ let d = true
 ---
 
 <button
-  class:list={[`${a ? ' a ' : b ? ' b ' : ''}${d === true ? ' d' : ''}`,{"c": c, "no-c": !c}]}
+  class:list={[`${c ? 'c' : 'no-c'}${d === true ? ' d' : ''}`,{"a": a, "b": !a}]}
   >foo
 </button>
 <!-- complex01-input.astro -->

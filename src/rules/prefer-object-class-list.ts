@@ -248,6 +248,13 @@ export default createRule("prefer-object-class-list", {
         const valueNode = elements[i]
         const strings = getStrings(valueNode)
         if (strings == null) {
+          if (valueNode.type === AST_NODE_TYPES.TemplateLiteral) {
+            const quasiValue =
+              valueNode.quasis[valueNode.quasis.length - 1].value.cooked
+            if (quasiValue && !quasiValue[quasiValue.length - 1].trim()) {
+              return true
+            }
+          }
           // unknown
           return false
         }
@@ -283,6 +290,12 @@ export default createRule("prefer-object-class-list", {
         const valueNode = elements[i]
         const strings = getStrings(valueNode)
         if (strings == null) {
+          if (valueNode.type === AST_NODE_TYPES.TemplateLiteral) {
+            const quasiValue = valueNode.quasis[0].value.cooked
+            if (quasiValue && !quasiValue[0].trim()) {
+              return true
+            }
+          }
           // unknown
           return false
         }
@@ -358,10 +371,6 @@ export default createRule("prefer-object-class-list", {
       const map = parseConditionalExpression(node)
       if (map == null) {
         // has unknown
-        return
-      }
-      if (map.size > 2) {
-        // It's too complicated.
         return
       }
       let canTransform = true
