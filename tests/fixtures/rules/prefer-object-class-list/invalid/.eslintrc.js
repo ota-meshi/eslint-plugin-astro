@@ -10,6 +10,7 @@ module.exports = {
         "no-useless-concat": "off",
         "object-shorthand": "off",
         "no-sparse-arrays": "off",
+        eqeqeq: "off",
       },
     },
   ],
