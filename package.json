@@ -64,7 +64,7 @@
     "@typescript-eslint/parser": "^5.25.0",
     "assert": "^2.0.0",
     "astro": "^1.0.0-beta.35",
-    "astro-eslint-parser": "^0.2.1",
+    "astro-eslint-parser": "^0.2.0",
     "env-cmd": "^10.1.0",
     "esbuild": "0.14.39",
     "eslint": "^8.15.0",
