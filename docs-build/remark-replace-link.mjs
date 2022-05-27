@@ -12,9 +12,9 @@ export default (options = {}) => {
     )
     const pagesDir = path.join(srcDir, "pages")
     let markdownPath
-    visit(tree, "html", (node, _i, parent) => {
-      if (node.value.startsWith("<!-- markdownPath:")) {
-        markdownPath = node.value.slice(18, -3).trim()
+    visit(tree, "mdxFlowExpression", (node, _i, parent) => {
+      if (node.value.startsWith("/*<!-- markdownPath:")) {
+        markdownPath = node.value.slice(20, -5).trim()
         parent.children.splice(parent.children.indexOf(node), 1)
       }
     })
