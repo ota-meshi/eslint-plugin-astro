@@ -17,7 +17,6 @@ This rule aims to use split array elements than string concatenation in `class:l
 
 <ESLintCodeBlock fix>
 
-<!-- prettier-ignore-start -->
 <!--eslint-skip-->
 
 ```astro
@@ -26,16 +25,14 @@ This rule aims to use split array elements than string concatenation in `class:l
 import clsx from "clsx"
 ---
 
-<!-- ✓ GOOD -->
+{/* ✓ GOOD */}
 <div class:list={["a", "b", c]}></div>
 
-<!-- ✗ BAD -->
+{/* ✗ BAD */}
 <div class:list={"a b " + c}></div>
 <div class:list={`a ${b} c`}></div>
 <div class:list={clsx(["a", "b", c])}></div>
 ```
-
-<!-- prettier-ignore-end -->
 
 </ESLintCodeBlock>
 

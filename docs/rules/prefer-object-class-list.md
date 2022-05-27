@@ -17,7 +17,6 @@ This rule aims to use object elements than ternary expression in `class:list`.
 
 <ESLintCodeBlock fix>
 
-<!-- prettier-ignore-start -->
 <!--eslint-skip-->
 
 ```astro
@@ -25,15 +24,13 @@ This rule aims to use object elements than ternary expression in `class:list`.
 /* eslint astro/prefer-object-class-list: "error" */
 ---
 
-<!-- ✓ GOOD -->
+{/* ✓ GOOD */}
 <div class:list={["a", { b: num > 0, c }]}></div>
 
-<!-- ✗ BAD -->
+{/* ✗ BAD */}
 <div class:list={"a " + (num > 0 ? 'b' : '') + ' ' + (c ? 'c' : '')}></div>
 <div class:list={`a ${num > 0 ? 'b' : ''} ${c ? 'c' : ''}`}></div>
 ```
-
-<!-- prettier-ignore-end -->
 
 </ESLintCodeBlock>
 

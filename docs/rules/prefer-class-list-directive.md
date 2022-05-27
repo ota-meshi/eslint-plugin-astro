@@ -17,8 +17,6 @@ This rule aims to replace the `class` attribute with expression with the `class:
 
 <ESLintCodeBlock fix>
 
-<!-- prettier-ignore-start -->
-
 <!--eslint-skip-->
 
 ```astro
@@ -26,14 +24,12 @@ This rule aims to replace the `class` attribute with expression with the `class:
 /* eslint astro/prefer-class-list-directive: "error" */
 ---
 
-<!-- ✓ GOOD -->
+{/* ✓ GOOD */}
 <div class:list={[foo, bar]}></div>
 
-<!-- ✗ BAD -->
+{/* ✗ BAD */}
 <div class={foo + " " + bar}></div>
 ```
-
-<!-- prettier-ignore-end -->
 
 </ESLintCodeBlock>
 

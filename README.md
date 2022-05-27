@@ -162,6 +162,14 @@ The `--fix` option on the [command line](https://eslint.org/docs/user-guide/comm
 
 <!--RULES_TABLE_START-->
 
+## Possible Errors
+
+These rules relate to possible syntax or logic errors in Astro component code:
+
+| Rule ID | Description |    |
+|:--------|:------------|:---|
+| [astro/no-unused-define-vars-in-style](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-unused-define-vars-in-style/) | disallow unused `define:vars={...}` in `style` tag |  |
+
 ## Security Vulnerability
 
 These rules relate to security vulnerabilities in Astro component code:

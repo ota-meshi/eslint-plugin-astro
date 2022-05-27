@@ -15,7 +15,6 @@ This rule reports all uses of `set:html` in order to reduce the risk of injectin
 
 <ESLintCodeBlock>
 
-<!-- prettier-ignore-start -->
 <!--eslint-skip-->
 
 ```astro
@@ -23,15 +22,13 @@ This rule reports all uses of `set:html` in order to reduce the risk of injectin
 /* eslint astro/no-set-html-directive: "error" */
 ---
 
-<!-- ✓ GOOD -->
+{/* ✓ GOOD */}
 <p>{foo}</p>
 <p set:text={foo} />
 
-<!-- ✗ BAD -->
+{/* ✗ BAD */}
 <p set:html={foo} />
 ```
-
-<!-- prettier-ignore-end -->
 
 </ESLintCodeBlock>
 

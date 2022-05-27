@@ -27,12 +27,12 @@ body:
         ---
         ---
 
-        <!-- ✓ GOOD -->
+        {/* ✓ GOOD */}
         <Foo />
         <Foo />
         <Foo />
 
-        <!-- ✗ BAD -->
+        {/* ✗ BAD */}
         <Foo />
         <Foo />
         <Foo />
