@@ -30,6 +30,7 @@ module.exports = {
   // ...
   overrides: [
     {
+      // Define the configuration for `.astro` file.
       files: ["*.astro"],
       // Enable this plugin
       plugins: ["astro"],
@@ -38,11 +39,13 @@ module.exports = {
         node: true,
         "astro/astro": true,
       },
+      // Allows Astro components to be parsed.
       parser: "astro-eslint-parser",
       // Parse the script in `.astro` as TypeScript by adding the following configuration.
       parserOptions: {
         parser: "@typescript-eslint/parser",
         extraFileExtensions: [".astro"],
+        // The script of Astro components uses ESM.
         sourceType: "module",
       },
       rules: {
