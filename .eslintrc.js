@@ -52,6 +52,7 @@ module.exports = {
       parserOptions: {
         parser: "@typescript-eslint/parser",
         extraFileExtensions: [".astro"],
+        project: [require.resolve("./tsconfig.json")],
       },
       rules: {
         "astro/no-set-html-directive": "error",

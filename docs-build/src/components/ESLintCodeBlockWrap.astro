@@ -2,6 +2,6 @@
 import ESLintCodeBlock from "./ESLintCodeBlock.svelte"
 ---
 
-<ESLintCodeBlock client:only="svelte">
+<ESLintCodeBlock client:only="svelte" fix={true} rules={{}}>
   <slot></slot>
 </ESLintCodeBlock>
