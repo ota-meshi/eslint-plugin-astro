@@ -1,0 +1,10 @@
+---
+let string = "Foo"
+---
+
+<p set:text={string} set:html={string}></p>
+<p set:html={string} set:text={string}></p>
+<p set:text="string" set:html="string"></p>
+<p set:html="string" set:text="string"></p>
+<p set:text={string} set:html="string"></p>
+<p set:html={string} set:text="string"></p>

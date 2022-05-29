@@ -182,6 +182,7 @@ These rules relate to possible syntax or logic errors in Astro component code:
 
 | Rule ID | Description |    |
 |:--------|:------------|:---|
+| [astro/no-conflict-set-directives](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-conflict-set-directives/) | disallow conflicting set directives and child contents |  |
 | [astro/no-unused-define-vars-in-style](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-unused-define-vars-in-style/) | disallow unused `define:vars={...}` in `style` tag |  |
 
 ## Security Vulnerability

@@ -11,6 +11,7 @@ These rules relate to possible syntax or logic errors in Astro component code:
 
 | Rule ID | Description |    |
 |:--------|:------------|:---|
+| [astro/no-conflict-set-directives](./rules/no-conflict-set-directives.md) | disallow conflicting set directives and child contents |  |
 | [astro/no-unused-define-vars-in-style](./rules/no-unused-define-vars-in-style.md) | disallow unused `define:vars={...}` in `style` tag |  |
 
 ## Security Vulnerability
