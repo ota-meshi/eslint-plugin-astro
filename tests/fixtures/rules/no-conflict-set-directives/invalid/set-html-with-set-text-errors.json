@@ -1,0 +1,62 @@
+[
+  {
+    "message": "'set:text' conflicts with 'set:html'.",
+    "line": 5,
+    "column": 4
+  },
+  {
+    "message": "'set:html' conflicts with 'set:text'.",
+    "line": 5,
+    "column": 22
+  },
+  {
+    "message": "'set:html' conflicts with 'set:text'.",
+    "line": 6,
+    "column": 4
+  },
+  {
+    "message": "'set:text' conflicts with 'set:html'.",
+    "line": 6,
+    "column": 22
+  },
+  {
+    "message": "'set:text' conflicts with 'set:html'.",
+    "line": 7,
+    "column": 4
+  },
+  {
+    "message": "'set:html' conflicts with 'set:text'.",
+    "line": 7,
+    "column": 22
+  },
+  {
+    "message": "'set:html' conflicts with 'set:text'.",
+    "line": 8,
+    "column": 4
+  },
+  {
+    "message": "'set:text' conflicts with 'set:html'.",
+    "line": 8,
+    "column": 22
+  },
+  {
+    "message": "'set:text' conflicts with 'set:html'.",
+    "line": 9,
+    "column": 4
+  },
+  {
+    "message": "'set:html' conflicts with 'set:text'.",
+    "line": 9,
+    "column": 22
+  },
+  {
+    "message": "'set:html' conflicts with 'set:text'.",
+    "line": 10,
+    "column": 4
+  },
+  {
+    "message": "'set:text' conflicts with 'set:html'.",
+    "line": 10,
+    "column": 22
+  }
+]

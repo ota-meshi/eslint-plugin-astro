@@ -1,0 +1,32 @@
+[
+  {
+    "message": "'set:html' conflicts with 'set:text', and child contents.",
+    "line": 5,
+    "column": 4
+  },
+  {
+    "message": "'set:text' conflicts with 'set:html', and child contents.",
+    "line": 5,
+    "column": 22
+  },
+  {
+    "message": "child contents conflicts with 'set:html', and 'set:text'.",
+    "line": 5,
+    "column": 40
+  },
+  {
+    "message": "'set:html' conflicts with 'set:text', and child contents.",
+    "line": 6,
+    "column": 4
+  },
+  {
+    "message": "'set:text' conflicts with 'set:html', and child contents.",
+    "line": 6,
+    "column": 22
+  },
+  {
+    "message": "child contents conflicts with 'set:html', and 'set:text'.",
+    "line": 6,
+    "column": 40
+  }
+]

@@ -9,7 +9,22 @@
     "jsonc",
     "yaml"
   ],
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
+  "[typescript]": {
+    "editor.formatOnSave": true
+  },
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "[json]": {
+    "editor.formatOnSave": true
+  },
+  "[jsonc]": {
+    "editor.formatOnSave": true
+  },
+  "[astro]": {
+    "editor.formatOnSave": true
+  },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "vetur.validation.script": false,
   "vetur.validation.style": false,

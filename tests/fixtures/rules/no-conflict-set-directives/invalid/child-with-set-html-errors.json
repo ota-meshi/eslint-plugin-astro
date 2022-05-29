@@ -1,0 +1,72 @@
+[
+  {
+    "message": "'set:html' conflicts with child contents.",
+    "line": 5,
+    "column": 4
+  },
+  {
+    "message": "child contents conflicts with 'set:html'.",
+    "line": 5,
+    "column": 22
+  },
+  {
+    "message": "'set:html' conflicts with child contents.",
+    "line": 6,
+    "column": 4
+  },
+  {
+    "message": "child contents conflicts with 'set:html'.",
+    "line": 6,
+    "column": 22
+  },
+  {
+    "message": "'set:html' conflicts with child contents.",
+    "line": 7,
+    "column": 4
+  },
+  {
+    "message": "child contents conflicts with 'set:html'.",
+    "line": 7,
+    "column": 22
+  },
+  {
+    "message": "'set:html' conflicts with child contents.",
+    "line": 8,
+    "column": 4
+  },
+  {
+    "message": "child contents conflicts with 'set:html'.",
+    "line": 8,
+    "column": 22
+  },
+  {
+    "message": "'set:html' conflicts with child contents.",
+    "line": 9,
+    "column": 9
+  },
+  {
+    "message": "child contents conflicts with 'set:html'.",
+    "line": 10,
+    "column": 3
+  },
+  {
+    "message": "'set:html' conflicts with child contents.",
+    "line": 12,
+    "column": 9
+  },
+  {
+    "message": "child contents conflicts with 'set:html'.",
+    "line": 13,
+    "column": 3
+  },
+  {
+    "message": "'set:html' conflicts with child contents.",
+    "line": 15,
+    "column": 4
+  },
+  {
+    "message": "child contents conflicts with 'set:html'.",
+    "line": 16,
+    "column": 19
+  }
+]
