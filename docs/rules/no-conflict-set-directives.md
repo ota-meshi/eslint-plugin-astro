@@ -2,13 +2,12 @@
 title: "astro/no-conflict-set-directives"
 description: "disallow conflicting set directives and child contents"
 setup: "import ESLintCodeBlock from '../docs-build/src/components/ESLintCodeBlockWrap.astro'"
+since: "v0.7.0"
 ---
 
 # astro/no-conflict-set-directives
 
 > disallow conflicting set directives and child contents
-
-- :exclamation: <badge text="This rule has not been released yet." vertical="middle" type="error"> **_This rule has not been released yet._** </badge>
 
 ## :book: Rule Details
 
@@ -44,6 +43,10 @@ Nothing.
 
 - [Astro Documentation | Template Directives Reference > set:html](https://docs.astro.build/en/reference/directives-reference/#sethtml)
 - [Astro Documentation | Template Directives Reference > set:text](https://docs.astro.build/en/reference/directives-reference/#settext)
+
+## :rocket: Version
+
+This rule was introduced in eslint-plugin-astro v0.7.0
 
 ## :mag: Implementation
 
