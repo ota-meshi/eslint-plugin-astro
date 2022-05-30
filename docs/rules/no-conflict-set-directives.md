@@ -21,7 +21,7 @@ This rule reports conflicting `set:text`, `set:html`, and child content.
 ```astro
 ---
 /* eslint astro/no-conflict-set-directives: "error" */
-const foo = "foo"
+const foo = "hello"
 ---
 
 {/* ✓ GOOD */}
