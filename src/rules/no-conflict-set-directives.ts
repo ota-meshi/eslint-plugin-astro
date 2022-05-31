@@ -7,7 +7,7 @@ export default createRule("no-conflict-set-directives", {
     docs: {
       description: "disallow conflicting set directives and child contents",
       category: "Possible Errors",
-      recommended: false,
+      recommended: true,
     },
     schema: [],
     messages: {

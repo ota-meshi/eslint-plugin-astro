@@ -23,7 +23,38 @@ npm install --save-dev eslint eslint-plugin-astro astro-eslint-parser @typescrip
 
 Use `.eslintrc.*` file to configure rules. See also: [https://eslint.org/docs/user-guide/configuring](https://eslint.org/docs/user-guide/configuring).
 
-Example **.eslintrc.js**:
+Example **.eslintrc.js**. When using the shareable configuration provided by the plugin:
+
+```js
+module.exports = {
+  // ...
+  extends: [
+    // ...
+    "plugin:astro/recommended",
+  ],
+  // ...
+  overrides: [
+    {
+      // Define the configuration for `.astro` file.
+      files: ["*.astro"],
+      // Allows Astro components to be parsed.
+      parser: "astro-eslint-parser",
+      // Parse the script in `.astro` as TypeScript by adding the following configuration.
+      parserOptions: {
+        parser: "@typescript-eslint/parser",
+        extraFileExtensions: [".astro"],
+      },
+      rules: {
+        // override/add rules settings here, such as:
+        // "astro/no-set-html-directive": "error"
+      },
+    },
+    // ...
+  ],
+}
+```
+
+If you do not use a shareable configuration, it is the same as the following configuration:
 
 ```js
 module.exports = {
@@ -49,6 +80,10 @@ module.exports = {
         sourceType: "module",
       },
       rules: {
+        // Enable recommended rules
+        "astro/no-conflict-set-directives": "error",
+        "astro/no-unused-define-vars-in-style": "error",
+
         // override/add rules settings here, such as:
         // "astro/no-set-html-directive": "error"
       },
@@ -77,12 +112,13 @@ module.exports = {
 }
 ```
 
-<!-- This plugin provides configs:
+This plugin provides configs:
 
-- `plugin:astro/base` ... Configuration to enable correct Astro component parsing.
+- `plugin:astro/base` ... Minimal configuration to enable correct Astro component linting.
 - `plugin:astro/recommended` ... Above, plus rules to prevent errors or unintended behavior.
+- `plugin:astro/all` ... Configuration enables all astro rules. It's meant for testing, not for production use because it changes with every minor and major version of the plugin. Use it at your own risk.
 
-See [the rule list](./rules.md) to get the `rules` that this plugin provides. -->
+See [the rule list](./rules.md) to get the `rules` that this plugin provides.
 
 #### Parser Configuration
 
