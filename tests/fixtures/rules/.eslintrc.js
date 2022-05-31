@@ -1,5 +1,7 @@
 "use strict"
 
+const allConfig = require("eslint-plugin-astro").configs.all
+
 module.exports = {
   overrides: [
     {
@@ -30,10 +32,9 @@ module.exports = {
     "one-var": "off",
     "func-style": "off",
 
-    "astro/no-set-html-directive": "off",
-    "astro/no-set-text-directive": "off",
-    "astro/prefer-class-list-directive": "off",
-    "astro/prefer-object-class-list": "off",
-    "astro/prefer-split-class-list": "off",
+    // eslint-disable-next-line node/no-unsupported-features/es-syntax, node/no-unsupported-features/es-builtins -- ignore
+    ...Object.fromEntries(
+      Object.keys(allConfig.rules).map((ruleId) => [ruleId, "off"]),
+    ),
   },
 }

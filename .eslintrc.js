@@ -17,6 +17,7 @@ module.exports = {
     "plugin:@ota-meshi/+json",
     "plugin:@ota-meshi/+yaml",
     "plugin:@ota-meshi/+md",
+    "plugin:astro/all",
     "plugin:@ota-meshi/+prettier",
   ],
   rules: {
@@ -43,22 +44,14 @@ module.exports = {
     },
     {
       files: ["*.astro"],
-      plugins: ["astro"],
       parser: "astro-eslint-parser",
-      env: {
-        node: true,
-        "astro/astro": true,
-      },
       parserOptions: {
         parser: "@typescript-eslint/parser",
         extraFileExtensions: [".astro"],
         project: [require.resolve("./tsconfig.json")],
+        sourceType: "module",
       },
       rules: {
-        "astro/no-set-html-directive": "error",
-        "astro/no-set-text-directive": "error",
-        "astro/prefer-class-list-directive": "error",
-        "astro/prefer-object-class-list": "error",
         "astro/prefer-split-class-list": [
           "error",
           {
@@ -73,14 +66,8 @@ module.exports = {
       // Define the configuration for `<script>` tag.
       // Script in `<script>` is assigned a virtual file name with the `.js` extension.
       files: ["**/*.astro/*.js", "*.astro/*.js"],
-      env: {
-        browser: true,
-      },
       parserOptions: {
         sourceType: "module",
-      },
-      rules: {
-        "prettier/prettier": "off",
       },
     },
     {
