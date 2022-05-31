@@ -17,6 +17,7 @@ const baseContent = `export = {
         // Enables global variables available in Astro components.
         node: true,
         "astro/astro": true,
+        es2022: true,
       },
       // Allows Astro components to be parsed.
       parser: require.resolve("astro-eslint-parser"),
@@ -44,6 +45,7 @@ const baseContent = `export = {
       files: ["**/*.astro/*.js", "*.astro/*.js"],
       env: {
         browser: true,
+        es2022: true,
       },
       parserOptions: {
         sourceType: "module",
