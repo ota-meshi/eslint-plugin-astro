@@ -9,6 +9,8 @@ since: "v0.6.0"
 
 > disallow unused `define:vars={...}` in `style` tag
 
+- :gear: This rule is included in `"plugin:astro/recommended"`.
+
 ## :book: Rule Details
 
 This rule is aimed at eliminating unused defined variables in `define:vars={...}` in `style` tag.

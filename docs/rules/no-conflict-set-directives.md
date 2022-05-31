@@ -9,6 +9,8 @@ since: "v0.7.0"
 
 > disallow conflicting set directives and child contents
 
+- :gear: This rule is included in `"plugin:astro/recommended"`.
+
 ## :book: Rule Details
 
 This rule reports conflicting `set:text`, `set:html`, and child content.

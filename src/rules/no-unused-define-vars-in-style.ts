@@ -11,7 +11,7 @@ export default createRule("no-unused-define-vars-in-style", {
     docs: {
       description: "disallow unused `define:vars={...}` in `style` tag",
       category: "Possible Errors",
-      recommended: false,
+      recommended: true,
     },
     schema: [],
     messages: {
