@@ -13,6 +13,7 @@ import {
 import type { Token } from "../utils/string-literal-parser"
 import { parseStringTokens } from "../utils/string-literal-parser"
 import type { Rule } from "eslint"
+import { getPropertyName } from "eslint-utils"
 
 export default createRule("prefer-split-class-list", {
   meta: {
@@ -104,6 +105,7 @@ export default createRule("prefer-split-class-list", {
     function verifyExpression(
       node: TSESTree.Expression | TSESTree.SpreadElement,
       transformArray: TransformArray,
+      call?: string,
     ) {
       if (node.type === AST_NODE_TYPES.TemplateLiteral) {
         const first = node.quasis[0]
@@ -113,6 +115,7 @@ export default createRule("prefer-split-class-list", {
             isFirstElement: first === quasi,
             isLastElement: last === quasi,
             transformArray,
+            call,
           })
         }
       } else if (node.type === AST_NODE_TYPES.BinaryExpression) {
@@ -129,7 +132,15 @@ export default createRule("prefer-split-class-list", {
             isFirstElement: true,
             isLastElement: true,
             transformArray,
+            call,
           })
+        }
+      } else if (node.type === AST_NODE_TYPES.CallExpression) {
+        if (
+          node.callee.type === AST_NODE_TYPES.MemberExpression &&
+          getPropertyName(node.callee) === "trim"
+        ) {
+          verifyExpression(node.callee.object, transformArray, ".trim()")
         }
       }
     }
@@ -141,6 +152,7 @@ export default createRule("prefer-split-class-list", {
         isFirstElement: boolean
         isLastElement: boolean
         transformArray: TransformArray
+        call?: string
       },
     ) {
       const stringEndOffset = node.tail ? node.range[1] - 1 : node.range[1] - 2
@@ -183,7 +195,7 @@ export default createRule("prefer-split-class-list", {
           messageId: "split",
           *fix(fixer) {
             yield* state.transformArray(fixer)
-            yield fixer.replaceTextRange(range, "`,`")
+            yield fixer.replaceTextRange(range, `\`${state.call || ""},\``)
           },
         })
       }
@@ -218,6 +230,7 @@ export default createRule("prefer-split-class-list", {
         isFirstElement: boolean
         isLastElement: boolean
         transformArray: TransformArray
+        call?: string
       },
     ) {
       const quote = sourceCode.text[node.range[0]]
@@ -308,7 +321,7 @@ export default createRule("prefer-split-class-list", {
 
             yield fixer.replaceTextRange(
               replaceRange,
-              `${leftQuote},${rightQuote}`,
+              `${leftQuote}${state.call || ""},${rightQuote}`,
             )
           },
         })

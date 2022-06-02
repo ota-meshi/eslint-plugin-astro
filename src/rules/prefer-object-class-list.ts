@@ -2,6 +2,7 @@ import type { TSESTree } from "@typescript-eslint/types"
 import { AST_NODE_TYPES } from "@typescript-eslint/types"
 import type { AST } from "astro-eslint-parser"
 import type { Rule } from "eslint"
+import { getPropertyName } from "eslint-utils"
 import { isCommaToken } from "eslint-utils"
 import { createRule } from "../utils"
 import {
@@ -645,6 +646,24 @@ export default createRule("prefer-object-class-list", {
                 yield data.fixer.removeRange([
                   stripStart.range[0],
                   tokens.right.range[1],
+                ])
+                yield* state.fixExpression(data)
+              },
+            })
+          } else if (
+            node.callee.type === AST_NODE_TYPES.MemberExpression &&
+            getPropertyName(node.callee) === "trim"
+          ) {
+            const men = node.callee
+            visitElementExpression(men.object, {
+              beforeIsWord: state.beforeIsWord,
+              afterIsWord: state.afterIsWord,
+              fixArrayElement: state.fixArrayElement,
+              *fixExpression(data) {
+                const tokens = getParenthesizedTokens(men.object, sourceCode)
+                yield data.fixer.removeRange([
+                  tokens.right.range[1],
+                  node.range[1],
                 ])
                 yield* state.fixExpression(data)
               },

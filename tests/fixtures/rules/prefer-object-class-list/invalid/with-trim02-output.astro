@@ -1,0 +1,15 @@
+---
+const { class: className = "" } = Astro.props
+const { variant = "primary" } = Astro.props
+const { before, after } = Astro.slots
+---
+
+<span
+  class:list={[
+    `link pixel variant-${variant}  
+      
+     ${className}`.trim(),
+    { "has-before": before,"has-after": after },
+  ]}
+>
+</span>
