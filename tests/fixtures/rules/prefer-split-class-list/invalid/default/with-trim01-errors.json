@@ -1,0 +1,17 @@
+[
+  {
+    "message": "Can split elements with spaces.",
+    "line": 8,
+    "column": 45
+  },
+  {
+    "message": "Can split elements with spaces.",
+    "line": 8,
+    "column": 75
+  },
+  {
+    "message": "Can split elements with spaces.",
+    "line": 10,
+    "column": 4
+  }
+]
