@@ -18,9 +18,9 @@ const githubEditUrl = CONFIG.GITHUB_EDIT_URL && CONFIG.GITHUB_EDIT_URL + current
 
 <html dir={content.dir ?? 'ltr'} lang={content.lang ?? 'en'} class="initial">
 	<head>
+		<title>{content.title && content.title !== CONFIG.SITE.title ? `${content.title} 🚀 ${CONFIG.SITE.title}` : CONFIG.SITE.title}</title>
 		<HeadCommon />
 		<HeadSEO {content} canonicalURL={deployCanonicalURL} />
-		<title>{content.title ? `${content.title} 🚀 ${CONFIG.SITE.title}` : CONFIG.SITE.title}</title>
 		<style>
 			body {
 				width: 100%;
