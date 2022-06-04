@@ -174,7 +174,7 @@ function writeFixtures(
       },
       parser: "astro-eslint-parser",
       parserOptions: {
-        ecmaVersion: 2020,
+        ecmaVersion: "latest",
         sourceType: "module",
         parser: "@typescript-eslint/parser",
       },

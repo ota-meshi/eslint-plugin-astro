@@ -5,7 +5,7 @@
 module.exports = {
   parserOptions: {
     sourceType: "script",
-    ecmaVersion: 2020,
+    ecmaVersion: "latest",
     project: require.resolve("./tsconfig.json"),
   },
   extends: [

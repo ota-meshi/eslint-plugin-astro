@@ -138,7 +138,7 @@ let b: number = 1;
         config={{
           parser: "astro-auto-eslint-parser",
           parserOptions: {
-            ecmaVersion: 2020,
+            ecmaVersion: "latest",
             sourceType: "module",
             parser: "@typescript-eslint/parser",
           },
