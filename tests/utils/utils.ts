@@ -176,10 +176,7 @@ function writeFixtures(
       parserOptions: {
         ecmaVersion: 2020,
         sourceType: "module",
-        parser: {
-          ts: "@typescript-eslint/parser",
-          js: "espree",
-        },
+        parser: "@typescript-eslint/parser",
       },
     },
     config.filename,

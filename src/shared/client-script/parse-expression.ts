@@ -1,12 +1,12 @@
-import { parseForESLint } from "@typescript-eslint/parser"
 import { traverseNodes } from "astro-eslint-parser"
 import type { TSESTree } from "@typescript-eslint/types"
+import { resolveParser } from "../../utils/resolve-parser"
 
 /**
  * Parse expression
  */
 export function parseExpression(code: string): TSESTree.Expression {
-  const result = parseForESLint(
+  const result = resolveParser().parseForESLint(
     `(
 ${code}
 )`,
