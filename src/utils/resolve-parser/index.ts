@@ -26,6 +26,15 @@ export function resolveParser(): { parseForESLint: typeof parseForESLint } {
   return toParserForESLint(getEspree())!
 }
 
+/** Get the installed parser ID */
+export function getInstalledParserId():
+  | "@typescript-eslint/parser"
+  | "@babel/eslint-parser"
+  | undefined {
+  const modules = ["@typescript-eslint/parser", "@babel/eslint-parser"] as const
+  return modules.find(requireUserLocal)
+}
+
 /** To the parser for ESLint */
 function toParserForESLint(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- ignore
@@ -49,20 +58,4 @@ function toParserForESLint(
     }
   }
   return null
-}
-
-/** Get the installed parser ID */
-export function getInstalledParserId():
-  | "@typescript-eslint/parser"
-  | "@babel/eslint-parser"
-  | undefined {
-  const modules = ["@typescript-eslint/parser", "@babel/eslint-parser"] as const
-  for (const id of modules) {
-    const mod = requireUserLocal(id)
-    if (!mod) {
-      continue
-    }
-    return id
-  }
-  return undefined
 }
