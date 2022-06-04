@@ -1,7 +1,6 @@
-import { createRequire } from "module"
-import path from "path"
 import type { parseForESLint } from "@typescript-eslint/parser"
 import { getEspree } from "./espree"
+import { requireUserLocal } from "./require-user"
 
 /** Resolve parser */
 export function resolveParser(): { parseForESLint: typeof parseForESLint } {
@@ -11,7 +10,7 @@ export function resolveParser(): { parseForESLint: typeof parseForESLint } {
     "espree",
   ]
   for (const id of modules) {
-    const parser = toParserForESLint(requireLocal(id))
+    const parser = toParserForESLint(requireUserLocal(id))
     if (!parser) {
       continue
     }
@@ -59,23 +58,11 @@ export function getInstalledParserId():
   | undefined {
   const modules = ["@typescript-eslint/parser", "@babel/eslint-parser"] as const
   for (const id of modules) {
-    const mod = requireLocal(id)
+    const mod = requireUserLocal(id)
     if (!mod) {
       continue
     }
     return id
   }
   return undefined
-}
-
-/** Require from use local */
-function requireLocal(id: string) {
-  try {
-    // Apply a patch to parse .astro files as TSX.
-    const cwd = process.cwd()
-    const relativeTo = path.join(cwd, "__placeholder__.js")
-    return createRequire(relativeTo)(id)
-  } catch {
-    return null
-  }
 }
