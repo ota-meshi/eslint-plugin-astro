@@ -20,6 +20,8 @@ You can check on the [Online DEMO](./playground.md).
 
 This plugin is in the **_experimental stages_** of development.
 
+At least it works fine with a [withastro/docs](https://github.com/withastro/docs) repository.
+
 ## :name_badge: What is this plugin?
 
 [ESLint] plugin for [Astro components].

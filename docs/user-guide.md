@@ -114,6 +114,8 @@ module.exports = {
 }
 ```
 
+The pull request diff [here](https://github.com/withastro/docs/pull/710/files) is an example of introducing `eslint-plugin-astro` to the [withastro/docs](https://github.com/withastro/docs) repository.
+
 This plugin provides configs:
 
 - `plugin:astro/base` ... Minimal configuration to enable correct Astro component linting.

@@ -16,6 +16,8 @@ You can check on the [Online DEMO](https://ota-meshi.github.io/eslint-plugin-ast
 
 This plugin is in the **_experimental stages_** of development.
 
+At least it works fine with a [withastro/docs](https://github.com/withastro/docs) repository.
+
 ## :name_badge: What is this plugin?
 
 [ESLint] plugin for [Astro components].
@@ -155,6 +157,8 @@ module.exports = {
   ],
 }
 ```
+
+The pull request diff [here](https://github.com/withastro/docs/pull/710/files) is an example of introducing `eslint-plugin-astro` to the [withastro/docs](https://github.com/withastro/docs) repository.
 
 This plugin provides configs:
 
