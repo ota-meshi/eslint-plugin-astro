@@ -46,7 +46,13 @@ See [documents](https://ota-meshi.github.io/eslint-plugin-astro/).
 ## :cd: Installation
 
 ```bash
-npm install --save-dev eslint eslint-plugin-astro astro-eslint-parser @typescript-eslint/parser
+npm install --save-dev eslint eslint-plugin-astro
+```
+
+If you write TypeScript in Astro components, install the `@typescript-eslint/parser` as well:
+
+```bash
+npm install --save-dev @typescript-eslint/parser
 ```
 
 > **Requirements**
@@ -84,6 +90,7 @@ module.exports = {
       // Allows Astro components to be parsed.
       parser: "astro-eslint-parser",
       // Parse the script in `.astro` as TypeScript by adding the following configuration.
+      // It's the setting you need when using TypeScript.
       parserOptions: {
         parser: "@typescript-eslint/parser",
         extraFileExtensions: [".astro"],
@@ -118,6 +125,7 @@ module.exports = {
       // Allows Astro components to be parsed.
       parser: "astro-eslint-parser",
       // Parse the script in `.astro` as TypeScript by adding the following configuration.
+      // It's the setting you need when using TypeScript.
       parserOptions: {
         parser: "@typescript-eslint/parser",
         extraFileExtensions: [".astro"],
