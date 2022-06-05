@@ -1,0 +1,7 @@
+[
+  {
+    "message": "Unused CSS selector `.foo .foo`",
+    "line": 6,
+    "column": 3
+  }
+]

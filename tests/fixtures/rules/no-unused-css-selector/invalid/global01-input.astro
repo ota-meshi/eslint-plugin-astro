@@ -1,0 +1,9 @@
+<div class="foo">
+  <div class="bar"><slot></slot></div>
+</div>
+
+<style>
+  .foo > .foo :global(.baz) {
+    height: 10px;
+  }
+</style>

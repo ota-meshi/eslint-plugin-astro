@@ -1,0 +1,10 @@
+<div class="foo">
+  <div class="bar foo"></div>
+</div>
+
+<style>
+  .foo div:where(.foo.bar) {
+    height: 10px;
+    width: 10px;
+  }
+</style>

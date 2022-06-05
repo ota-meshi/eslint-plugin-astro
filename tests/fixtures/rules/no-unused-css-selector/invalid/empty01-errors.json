@@ -1,0 +1,7 @@
+[
+  {
+    "message": "Unused CSS selector `.box:empty`",
+    "line": 11,
+    "column": 3
+  }
+]

@@ -1,36 +1,15 @@
 import type { AST } from "astro-eslint-parser"
 import type { TSESTree } from "@typescript-eslint/types"
 import { AST_NODE_TYPES } from "@typescript-eslint/types"
-import type { SourceCode } from "../types"
+import type { RuleContext, SourceCode } from "../types"
+import type { StaticValue } from "eslint-utils"
 import {
   isParenthesized,
   isOpeningParenToken,
   isClosingParenToken,
+  getStaticValue,
 } from "eslint-utils"
-/**
- * Get the directive name from given attribute node
- */
-export function getDirectiveName(
-  node:
-    | AST.JSXAttribute
-    | AST.AstroTemplateLiteralAttribute
-    | AST.AstroShorthandAttribute
-    | AST.JSXSpreadAttribute
-    | TSESTree.JSXAttribute
-    | TSESTree.JSXSpreadAttribute,
-): string | null {
-  if (node.type === "JSXSpreadAttribute") {
-    return null
-  }
-  const { name } = node
-  if (name.type === "JSXNamespacedName") {
-    return `${name.namespace.name}:${name.name.name}`
-  }
-  if (name.type === "JSXIdentifier" && name.name.includes(":")) {
-    return name.name
-  }
-  return null
-}
+
 /**
  * Get the attribute key name from given attribute node
  */
@@ -47,9 +26,98 @@ export function getAttributeName(
     return null
   }
   const { name } = node
-  if (name.type === "JSXIdentifier") {
-    return name.name
+  return getName(name)
+}
+
+/**
+ * Get the element name from given node
+ */
+export function getElementName(node: AST.JSXElement): string | null {
+  const nameNode = node.openingElement.name
+  return getName(nameNode)
+}
+/**
+ * Find the attribute from the given element node
+ */
+export function findAttribute<N extends string>(
+  node: AST.JSXElement,
+  name: N,
+):
+  | (
+      | AST.JSXAttribute
+      | AST.AstroTemplateLiteralAttribute
+      | AST.AstroShorthandAttribute
+    )
+  | null {
+  const openingElement = node.openingElement
+  for (const attr of openingElement.attributes) {
+    if (attr.type === "JSXSpreadAttribute") {
+      continue
+    }
+    if (getAttributeName(attr) === name) {
+      return attr
+    }
   }
+  return null
+}
+
+/**
+ * Gets the spread attributes from the given element node
+ */
+export function getSpreadAttributes(
+  node: AST.JSXElement,
+): AST.JSXSpreadAttribute[] {
+  const openingElement = node.openingElement
+  return openingElement.attributes.filter(
+    (attr): attr is AST.JSXSpreadAttribute =>
+      attr.type === "JSXSpreadAttribute",
+  )
+}
+
+/**
+ * Get the static attribute string value from given attribute
+ */
+export function getStaticAttributeStringValue(
+  node:
+    | AST.JSXAttribute
+    | AST.AstroTemplateLiteralAttribute
+    | AST.AstroShorthandAttribute,
+  context?: RuleContext,
+): string | null | undefined {
+  const value = getStaticAttributeValue(node, context)
+  if (!value) {
+    return null
+  }
+  return value.value != null ? String(value.value) : value.value
+}
+
+/**
+ * Get the static attribute value from given attribute
+ */
+export function getStaticAttributeValue(
+  node:
+    | AST.JSXAttribute
+    | AST.AstroTemplateLiteralAttribute
+    | AST.AstroShorthandAttribute,
+  context?: RuleContext,
+): StaticValue | null {
+  if (node.value?.type === AST_NODE_TYPES.Literal) {
+    return { value: node.value.value }
+  }
+  if (
+    context &&
+    node.value?.type === "JSXExpressionContainer" &&
+    node.value.expression.type !== "JSXEmptyExpression"
+  ) {
+    const staticValue = getStaticValue(
+      node.value.expression as never,
+      context.getSourceCode().scopeManager.globalScope!,
+    )
+    if (staticValue != null) {
+      return staticValue
+    }
+  }
+
   return null
 }
 
@@ -285,4 +353,28 @@ function getParentSyntaxParen(
     default:
       return null
   }
+}
+
+/**
+ * Get the name from given name node
+ */
+function getName(
+  nameNode:
+    | AST.JSXIdentifier
+    | AST.JSXMemberExpression
+    | AST.JSXNamespacedName
+    | TSESTree.JSXIdentifier
+    | TSESTree.JSXMemberExpression
+    | TSESTree.JSXNamespacedName,
+): string | null {
+  if (nameNode.type === "JSXIdentifier") {
+    return nameNode.name
+  }
+  if (nameNode.type === "JSXNamespacedName") {
+    return `${nameNode.namespace.name}:${nameNode.name.name}`
+  }
+  if (nameNode.type === "JSXMemberExpression") {
+    return `${getName(nameNode.object)}.${nameNode.property.name}`
+  }
+  return null
 }

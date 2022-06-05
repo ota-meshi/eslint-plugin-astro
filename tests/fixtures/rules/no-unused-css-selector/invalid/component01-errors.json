@@ -1,0 +1,12 @@
+[
+  {
+    "message": "Unused CSS selector `.foo .bar`",
+    "line": 10,
+    "column": 3
+  },
+  {
+    "message": "Unused CSS selector `.foo Component`",
+    "line": 14,
+    "column": 3
+  }
+]

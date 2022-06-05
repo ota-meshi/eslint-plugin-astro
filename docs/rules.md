@@ -29,6 +29,7 @@ These rules relate to better ways of doing things to help you avoid problems:
 | Rule ID | Description |    |
 |:--------|:------------|:---|
 | [astro/no-set-text-directive](./rules/no-set-text-directive.md) | disallow use of `set:text` | :wrench: |
+| [astro/no-unused-css-selector](./rules/no-unused-css-selector.md) | disallow selectors defined in `style` tag that don't use in HTML |  |
 
 ## Stylistic Issues
 

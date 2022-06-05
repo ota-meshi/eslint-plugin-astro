@@ -1,0 +1,18 @@
+---
+import Component from "./component.astro"
+---
+
+<div class="foo">
+  <Component class="bar" />
+</div>
+
+<style>
+  .foo .bar {
+    height: 10px;
+    width: 10px;
+  }
+  .foo Component {
+    height: 10px;
+    width: 10px;
+  }
+</style>

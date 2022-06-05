@@ -1,0 +1,7 @@
+[
+  {
+    "message": "Unused CSS selector `a[href^=\"#\"]`",
+    "line": 10,
+    "column": 3
+  }
+]

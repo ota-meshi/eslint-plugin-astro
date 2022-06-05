@@ -249,6 +249,7 @@ These rules relate to better ways of doing things to help you avoid problems:
 | Rule ID | Description |    |
 |:--------|:------------|:---|
 | [astro/no-set-text-directive](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-set-text-directive/) | disallow use of `set:text` | :wrench: |
+| [astro/no-unused-css-selector](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-unused-css-selector/) | disallow selectors defined in `style` tag that don't use in HTML |  |
 
 ## Stylistic Issues
 

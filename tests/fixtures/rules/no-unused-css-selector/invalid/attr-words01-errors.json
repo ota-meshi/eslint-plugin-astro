@@ -1,0 +1,7 @@
+[
+  {
+    "message": "Unused CSS selector `div[lang~=\"en-us\"]`",
+    "line": 11,
+    "column": 3
+  }
+]

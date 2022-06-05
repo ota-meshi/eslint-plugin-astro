@@ -7,7 +7,7 @@ import { isCommaToken } from "eslint-utils"
 import { createRule } from "../utils"
 import {
   extractConcatExpressions,
-  getDirectiveName,
+  getAttributeName,
   getParenthesizedRange,
   getParenthesizedTokens,
   getStringIfConstant,
@@ -403,7 +403,7 @@ export default createRule("prefer-object-class-list", {
     function verifyAttr(
       attr: AST.JSXAttribute | AST.AstroTemplateLiteralAttribute,
     ) {
-      if (getDirectiveName(attr) !== "class:list") {
+      if (getAttributeName(attr) !== "class:list") {
         return
       }
       if (
