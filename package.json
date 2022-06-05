@@ -44,14 +44,14 @@
   "homepage": "https://ota-meshi.github.io/eslint-plugin-astro/",
   "dependencies": {
     "@typescript-eslint/types": "^5.25.0",
+    "astro-eslint-parser": "^0.2.1",
     "eslint-utils": "^3.0.0",
     "postcss": "^8.4.14",
     "postcss-selector-parser": "^6.0.10",
     "sourcemap-codec": "^1.4.8"
   },
   "peerDependencies": {
-    "@typescript-eslint/parser": "^5.25.0",
-    "astro-eslint-parser": "^0.2.0"
+    "eslint": ">=7.0.0"
   },
   "devDependencies": {
     "@astrojs/svelte": "^0.1.3",
@@ -69,7 +69,6 @@
     "@typescript-eslint/parser": "^5.25.0",
     "assert": "^2.0.0",
     "astro": "^1.0.0-beta.35",
-    "astro-eslint-parser": "^0.2.1",
     "env-cmd": "^10.1.0",
     "esbuild": "^0.14.41",
     "eslint": "^8.15.0",
