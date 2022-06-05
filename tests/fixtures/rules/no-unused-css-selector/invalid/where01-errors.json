@@ -1,0 +1,7 @@
+[
+  {
+    "message": "Unused CSS selector `.foo div:where(.foo.baz)`",
+    "line": 6,
+    "column": 3
+  }
+]

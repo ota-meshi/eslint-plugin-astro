@@ -1,0 +1,14 @@
+---
+const baz = false
+---
+
+<div class:list={["foo", "bar"]}>
+  <div class:list={[{ baz }]}></div>
+</div>
+
+<style>
+  .foo.bar .foo {
+    height: 10px;
+    width: 10px;
+  }
+</style>

@@ -1,4 +1,7 @@
+import type { TSESTree } from "@typescript-eslint/types"
+import { AST_NODE_TYPES } from "@typescript-eslint/types"
 import type { AST } from "astro-eslint-parser"
+import { getStaticValue } from "eslint-utils"
 import postcss from "postcss"
 import parser from "postcss-selector-parser"
 import type { RuleContext } from "../types"
@@ -6,14 +9,20 @@ import { createRule } from "../utils"
 import {
   findAttribute,
   getElementName,
-  getStaticAttributeValue,
+  getSpreadAttributes,
+  getStaticAttributeStringValue,
 } from "../utils/ast-utils"
 import type { StyleContentCSS } from "../utils/transform"
 import { getStyleContentCSS } from "../utils/transform"
 
 type JSXElementTreeNode = {
-  parent?: JSXElementTreeNode | null
+  parent: JSXElementTreeNode | RootJSXElementTreeNode
   node: AST.JSXElement
+  childElements: JSXElementTreeNode[]
+}
+type RootJSXElementTreeNode = {
+  parent?: null
+  node: null
   childElements: JSXElementTreeNode[]
 }
 
@@ -37,8 +46,13 @@ export default createRule("no-unused-css-selector", {
       return {}
     }
     const styles: AST.JSXElement[] = []
+    const rootTree: RootJSXElementTreeNode = {
+      parent: null,
+      node: null,
+      childElements: [],
+    }
     const allTreeElements: JSXElementTreeNode[] = []
-    let currTree: JSXElementTreeNode | null | undefined = null
+    let currTree: JSXElementTreeNode | RootJSXElementTreeNode = rootTree
 
     /** Verify for CSS */
     function verifyCSS(css: StyleContentCSS) {
@@ -95,18 +109,16 @@ export default createRule("no-unused-css-selector", {
           styles.push(node)
         }
         const tree: JSXElementTreeNode = {
+          parent: currTree,
           node,
           childElements: [],
         }
         allTreeElements.unshift(tree)
-        if (currTree) {
-          currTree.childElements.push(tree)
-          tree.parent = currTree
-        }
+        currTree.childElements.push(tree)
         currTree = tree
       },
       "JSXElement:exit"(node) {
-        if (currTree?.node === node) {
+        if (currTree.node === node) {
           const parent = currTree.parent
           const name = getElementName(node)
           if (name === "slot") {
@@ -356,7 +368,7 @@ function combination(
       return (element, subject) => {
         if (right(element, null)) {
           let parent = element.parent
-          while (parent) {
+          while (parent.node) {
             if (left(parent, subject)) {
               return true
             }
@@ -370,7 +382,7 @@ function combination(
       return (element, subject) => {
         if (right(element, null)) {
           const parent = element.parent
-          if (parent) {
+          if (parent.node) {
             return left(parent, subject)
           }
         }
@@ -628,7 +640,9 @@ function pseudoNodeToJSXElementMatcher(
       // https://developer.mozilla.org/en-US/docs/Web/CSS/:empty
       return (element) =>
         element.node.children.every(
-          (child) => child.type === "JSXText" && !child.value.trim(),
+          (child) =>
+            (child.type === "JSXText" && !child.value.trim()) ||
+            child.type === "AstroHTMLComment",
         )
     // https://docs.astro.build/en/guides/styling/#global-styles
     case ":global": {
@@ -673,34 +687,30 @@ function pseudoHasSelectorToJSXElementMatcher(
     (firstNode.value === "+" || firstNode.value === "~")
   ) {
     // adjacent or sibling
-    return buildJSXElementMatcher(selectors, (element) =>
-      getAfterElements(element),
-    )
+    return buildJSXElementMatcher((element) => getAfterElements(element))
   }
   // descendant or child
-  return buildJSXElementMatcher(selectors, (element) => element.childElements)
-}
+  return buildJSXElementMatcher((element) => element.childElements)
 
-/**
- * @param {JSXElementMatcher} selectors
- * @param {(element: JSXElementTreeNode) => JSXElementTreeNode[]} getStartElements
- * @returns {JSXElementMatcher}
- */
-function buildJSXElementMatcher(
-  selectors: JSXElementMatcher,
-  getStartElements: (element: JSXElementTreeNode) => JSXElementTreeNode[],
-): JSXElementMatcher {
-  return (element) => {
-    const elements = [...getStartElements(element)]
-    let curr: JSXElementTreeNode | undefined
-    while ((curr = elements.shift())) {
-      const el = curr
-      if (selectors(el, element)) {
-        return true
+  /**
+   * @param {(element: JSXElementTreeNode) => JSXElementTreeNode[]} getStartElements
+   * @returns {JSXElementMatcher}
+   */
+  function buildJSXElementMatcher(
+    getStartElements: (element: JSXElementTreeNode) => JSXElementTreeNode[],
+  ): JSXElementMatcher {
+    return (element) => {
+      const elements = [...getStartElements(element)]
+      let curr: JSXElementTreeNode | undefined
+      while ((curr = elements.shift())) {
+        const el = curr
+        if (selectors(el, element)) {
+          return true
+        }
+        elements.push(...el.childElements)
       }
-      elements.push(...el.childElements)
+      return false
     }
-    return false
   }
 }
 
@@ -815,8 +825,8 @@ function getAttribute(
         staticValue: { value: "" },
       }
     }
-    const value = getStaticAttributeValue(attr, context)
-    if (value === null) {
+    const value = getStaticAttributeStringValue(attr, context)
+    if (value == null) {
       return {
         unknown: false,
         hasAttr: true,
@@ -830,6 +840,158 @@ function getAttribute(
     }
   }
 
-  // TODO process unknown
+  if (attribute === "class") {
+    const result = getClassListAttribute(element, context)
+    if (result) {
+      return result
+    }
+  }
+
+  const spreadAttributes = getSpreadAttributes(element.node)
+  if (spreadAttributes.length === 0) {
+    return null
+  }
+
+  return {
+    unknown: true,
+  }
+}
+
+/**
+ * Get class:list attribute from given element.
+ * @param {JSXElementTreeNode} element The element node.
+ */
+function getClassListAttribute(
+  element: JSXElementTreeNode,
+  context: RuleContext,
+):
+  | {
+      unknown: false
+      hasAttr: boolean
+      staticValue: { value: string } | null
+    }
+  | {
+      unknown: true
+    }
+  | null {
+  const attr = findAttribute(element.node, "class:list")
+  if (attr) {
+    if (attr.value == null) {
+      return {
+        unknown: false,
+        hasAttr: true,
+        staticValue: { value: "" },
+      }
+    }
+    const classList = extractClassList(attr, context)
+    if (classList === null) {
+      return {
+        unknown: false,
+        hasAttr: true,
+        staticValue: null,
+      }
+    }
+    return {
+      unknown: false,
+      hasAttr: true,
+      staticValue: { value: classList.classList.join(" ") },
+    }
+  }
+
   return null
+}
+
+/** Extract class:list class names */
+function extractClassList(
+  node:
+    | AST.JSXAttribute
+    | AST.AstroTemplateLiteralAttribute
+    | AST.AstroShorthandAttribute,
+  context: RuleContext,
+): { classList: string[] } | null {
+  if (node.value?.type === AST_NODE_TYPES.Literal) {
+    return { classList: [String(node.value.value)] }
+  }
+  if (
+    node.value?.type === "JSXExpressionContainer" &&
+    node.value.expression.type !== "JSXEmptyExpression"
+  ) {
+    const classList: string[] = []
+    for (const className of extractClassListFromExpression(
+      node.value.expression,
+      context,
+    )) {
+      if (className == null) {
+        return null
+      }
+      classList.push(className)
+    }
+    return { classList }
+  }
+
+  return null
+}
+
+/** Extract class:list class names */
+function* extractClassListFromExpression(
+  node: TSESTree.Expression,
+  context: RuleContext,
+): Iterable<string | null> {
+  if (node.type === AST_NODE_TYPES.ArrayExpression) {
+    for (const element of node.elements) {
+      if (element == null) continue
+      if (element.type === AST_NODE_TYPES.SpreadElement) {
+        yield* extractClassListFromExpression(element.argument, context)
+      } else {
+        yield* extractClassListFromExpression(element, context)
+      }
+    }
+    return
+  }
+  if (node.type === AST_NODE_TYPES.ObjectExpression) {
+    for (const prop of node.properties) {
+      if (prop.type === AST_NODE_TYPES.SpreadElement) {
+        yield* extractClassListFromExpression(prop.argument, context)
+      } else {
+        if (!prop.computed) {
+          if (prop.key.type === AST_NODE_TYPES.Literal) {
+            yield String(prop.key.value)
+          } else {
+            yield prop.key.name
+          }
+        } else {
+          yield* extractClassListFromExpression(prop.key, context)
+        }
+      }
+    }
+    return
+  }
+  const staticValue = getStaticValue(
+    node as never,
+    context.getSourceCode().scopeManager.globalScope!,
+  )
+  if (staticValue) {
+    yield* extractClassListFromUnknown(staticValue.value)
+    return
+  }
+
+  yield null
+}
+
+/** Extract class:list class names */
+function* extractClassListFromUnknown(value: unknown): Iterable<string | null> {
+  if (!value) {
+    return
+  }
+  if (Array.isArray(value)) {
+    for (const e of value) {
+      yield* extractClassListFromUnknown(e)
+    }
+    return
+  }
+  if (typeof value === "object") {
+    yield* Object.keys(value)
+    return
+  }
+  yield String(value)
 }

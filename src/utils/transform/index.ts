@@ -2,7 +2,7 @@ import type { AST } from "astro-eslint-parser"
 import type { SourceMapMappings } from "sourcemap-codec"
 import { decode } from "sourcemap-codec"
 import type { RuleContext } from "../../types"
-import { findAttribute, getStaticAttributeValue } from "../ast-utils"
+import { findAttribute, getStaticAttributeStringValue } from "../ast-utils"
 import { getContentRange } from "./utils"
 import { transform as transformWithPostCSS } from "./postcss"
 import { transform as transformWithSass } from "./sass"
@@ -27,7 +27,7 @@ export function getStyleContentCSS(
     return cachedResult
   }
   const langNode = findAttribute(node, "lang")
-  const lang = langNode && getStaticAttributeValue(langNode)
+  const lang = langNode && getStaticAttributeStringValue(langNode)
   if (!langNode || lang === "css") {
     const inputRange = getContentRange(node)
     return {

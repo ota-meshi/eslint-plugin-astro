@@ -1,0 +1,15 @@
+---
+const baz = "baz qux"
+const qux = false
+---
+
+<div class:list={["foo", "bar"]}>
+  <div class:list={[{ [baz]: qux }]}></div>
+</div>
+
+<style>
+  .foo.bar .baz.qux {
+    height: 10px;
+    width: 10px;
+  }
+</style>

@@ -2,6 +2,7 @@ import type { AST } from "astro-eslint-parser"
 import type { TSESTree } from "@typescript-eslint/types"
 import { AST_NODE_TYPES } from "@typescript-eslint/types"
 import type { RuleContext, SourceCode } from "../types"
+import type { StaticValue } from "eslint-utils"
 import {
   isParenthesized,
   isOpeningParenToken,
@@ -61,6 +62,36 @@ export function findAttribute<N extends string>(
 }
 
 /**
+ * Gets the spread attributes from the given element node
+ */
+export function getSpreadAttributes(
+  node: AST.JSXElement,
+): AST.JSXSpreadAttribute[] {
+  const openingElement = node.openingElement
+  return openingElement.attributes.filter(
+    (attr): attr is AST.JSXSpreadAttribute =>
+      attr.type === "JSXSpreadAttribute",
+  )
+}
+
+/**
+ * Get the static attribute string value from given attribute
+ */
+export function getStaticAttributeStringValue(
+  node:
+    | AST.JSXAttribute
+    | AST.AstroTemplateLiteralAttribute
+    | AST.AstroShorthandAttribute,
+  context?: RuleContext,
+): string | null | undefined {
+  const value = getStaticAttributeValue(node, context)
+  if (!value) {
+    return null
+  }
+  return value.value != null ? String(value.value) : value.value
+}
+
+/**
  * Get the static attribute value from given attribute
  */
 export function getStaticAttributeValue(
@@ -69,9 +100,9 @@ export function getStaticAttributeValue(
     | AST.AstroTemplateLiteralAttribute
     | AST.AstroShorthandAttribute,
   context?: RuleContext,
-): string | null {
+): StaticValue | null {
   if (node.value?.type === AST_NODE_TYPES.Literal) {
-    return node.value != null ? String(node.value.value) : null
+    return { value: node.value.value }
   }
   if (
     context &&
@@ -83,7 +114,7 @@ export function getStaticAttributeValue(
       context.getSourceCode().scopeManager.globalScope!,
     )
     if (staticValue != null) {
-      return staticValue.value != null ? String(staticValue.value) : null
+      return staticValue
     }
   }
 
