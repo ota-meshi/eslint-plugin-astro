@@ -31,9 +31,8 @@ export default createRule("no-unused-css-selector", {
     docs: {
       description:
         "disallow selectors defined in `style` tag that don't use in HTML",
-      category: "Possible Errors",
-      recommended: true,
-      default: "warn",
+      category: "Best Practices",
+      recommended: false,
     },
     schema: [],
     messages: {
@@ -428,26 +427,34 @@ function nodeToJSXElementMatcher(
   >,
   context: RuleContext,
 ): JSXElementMatcher {
-  switch (selector.type) {
-    case "attribute":
-      return attributeNodeToJSXElementMatcher(selector, context)
-    case "class":
-      return classNameNodeToJSXElementMatcher(selector, context)
-    case "id":
-      return identifierNodeToJSXElementMatcher(selector, context)
-    case "tag":
-      return tagNodeToJSXElementMatcher(selector)
-    case "universal":
-      return universalNodeToJSXElementMatcher(selector)
-    case "pseudo":
-      return pseudoNodeToJSXElementMatcher(selector, context)
-    case "nesting":
-      throw new SelectorError("Unsupported nesting selector.")
-    case "string":
-      throw new SelectorError(`Unknown selector: ${selector.value}.`)
-    default:
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- ignore
-      throw new SelectorError(`Unknown selector: ${(selector as any).value}.`)
+  const baseMatcher = (() => {
+    switch (selector.type) {
+      case "attribute":
+        return attributeNodeToJSXElementMatcher(selector, context)
+      case "class":
+        return classNameNodeToJSXElementMatcher(selector, context)
+      case "id":
+        return identifierNodeToJSXElementMatcher(selector, context)
+      case "tag":
+        return tagNodeToJSXElementMatcher(selector)
+      case "universal":
+        return universalNodeToJSXElementMatcher(selector)
+      case "pseudo":
+        return pseudoNodeToJSXElementMatcher(selector, context)
+      case "nesting":
+        throw new SelectorError("Unsupported nesting selector.")
+      case "string":
+        throw new SelectorError(`Unknown selector: ${selector.value}.`)
+      default:
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- ignore
+        throw new SelectorError(`Unknown selector: ${(selector as any).value}.`)
+    }
+  })()
+  return (element, subject) => {
+    if (isComponentElement(element)) {
+      return false
+    }
+    return baseMatcher(element, subject)
   }
 }
 
@@ -463,10 +470,6 @@ function attributeNodeToJSXElementMatcher(
   const key = selector.attribute
   if (!selector.operator) {
     return (element, _) => {
-      if (isComponent(element)) {
-        // It is unknown if the component has attributes, so it is considered a match.
-        return true
-      }
       return hasAttribute(element, key, context)
     }
   }
@@ -512,10 +515,6 @@ function attributeNodeToJSXElementMatcher(
       ? selectorValue.toLowerCase()
       : selectorValue
     return (element) => {
-      if (isComponent(element)) {
-        // It is unknown if the component has attributes, so it is considered a match.
-        return true
-      }
       const attr = getAttribute(element, key, context)
       if (attr == null) {
         return false
@@ -544,10 +543,6 @@ function classNameNodeToJSXElementMatcher(
 ): JSXElementMatcher {
   const className = selector.value
   return (element) => {
-    if (isComponent(element)) {
-      // It is unknown if the component has attributes, so it is considered a match.
-      return true
-    }
     const attr = getAttribute(element, "class", context)
     if (attr == null) {
       return false
@@ -572,10 +567,6 @@ function identifierNodeToJSXElementMatcher(
 ): JSXElementMatcher {
   const id = selector.value
   return (element) => {
-    if (isComponent(element)) {
-      // It is unknown if the component has attributes, so it is considered a match.
-      return true
-    }
     const attr = getAttribute(element, "id", context)
     if (attr == null) {
       return false
@@ -597,10 +588,6 @@ function identifierNodeToJSXElementMatcher(
 function tagNodeToJSXElementMatcher(selector: parser.Tag): JSXElementMatcher {
   const name = selector.value
   return (element) => {
-    if (isComponent(element)) {
-      // It is unknown if the component has attributes, so it is considered a match.
-      return true
-    }
     const elementName = getElementName(element.node)
     return elementName === name
   }
@@ -760,7 +747,7 @@ function compound(
 /**
  * Checks whether the given element is component.
  */
-function isComponent(element: JSXElementTreeNode) {
+function isComponentElement(element: JSXElementTreeNode) {
   const elementName = getElementName(element.node)
   return elementName == null || elementName.toLowerCase() !== elementName
 }

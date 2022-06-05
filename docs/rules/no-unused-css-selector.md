@@ -9,7 +9,6 @@ setup: "import ESLintCodeBlock from '../docs-build/src/components/ESLintCodeBloc
 > disallow selectors defined in `style` tag that don't use in HTML
 
 - :exclamation: <badge text="This rule has not been released yet." vertical="middle" type="error"> **_This rule has not been released yet._** </badge>
-- :gear: This rule is included in `"plugin:astro/recommended"`.
 
 ## :book: Rule Details
 

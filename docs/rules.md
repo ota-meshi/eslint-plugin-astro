@@ -12,7 +12,6 @@ These rules relate to possible syntax or logic errors in Astro component code:
 | Rule ID | Description |    |
 |:--------|:------------|:---|
 | [astro/no-conflict-set-directives](./rules/no-conflict-set-directives.md) | disallow conflicting set directives and child contents | :star: |
-| [astro/no-unused-css-selector](./rules/no-unused-css-selector.md) | disallow selectors defined in `style` tag that don't use in HTML | :star: |
 | [astro/no-unused-define-vars-in-style](./rules/no-unused-define-vars-in-style.md) | disallow unused `define:vars={...}` in `style` tag | :star: |
 
 ## Security Vulnerability
@@ -30,6 +29,7 @@ These rules relate to better ways of doing things to help you avoid problems:
 | Rule ID | Description |    |
 |:--------|:------------|:---|
 | [astro/no-set-text-directive](./rules/no-set-text-directive.md) | disallow use of `set:text` | :wrench: |
+| [astro/no-unused-css-selector](./rules/no-unused-css-selector.md) | disallow selectors defined in `style` tag that don't use in HTML |  |
 
 ## Stylistic Issues
 
