@@ -6,7 +6,7 @@ import type { TrackedReferences } from "eslint-utils"
 import { isOpeningParenToken, ReferenceTracker } from "eslint-utils"
 import {
   extractConcatExpressions,
-  getDirectiveName,
+  getAttributeName,
   isStringCallExpression,
   isStringLiteral,
 } from "../utils/ast-utils"
@@ -80,7 +80,7 @@ export default createRule("prefer-split-class-list", {
         | AST.AstroTemplateLiteralAttribute
         | AST.AstroShorthandAttribute,
     ) {
-      if (getDirectiveName(attr) !== "class:list") {
+      if (getAttributeName(attr) !== "class:list") {
         return
       }
       if (
@@ -347,7 +347,7 @@ export default createRule("prefer-split-class-list", {
         !parentParent ||
         parentParent.type !== AST_NODE_TYPES.JSXAttribute ||
         parentParent.value !== parent ||
-        getDirectiveName(parentParent) !== "class:list"
+        getAttributeName(parentParent) !== "class:list"
       ) {
         return
       }

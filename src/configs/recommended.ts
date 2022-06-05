@@ -7,6 +7,7 @@ export = {
   rules: {
     // eslint-plugin-astro rules
     "astro/no-conflict-set-directives": "error",
+    "astro/no-unused-css-selector": "warn",
     "astro/no-unused-define-vars-in-style": "error",
   },
 }

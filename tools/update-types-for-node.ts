@@ -49,6 +49,7 @@ for (const nodeType of tsEsNodeNames) {
     argType = `TSESTree.Node & { type: AST_NODE_TYPES.${nodeType}}`
   }
   code += `  ${nodeType}?: (node: ${argType} & ASTNodeWithParent) => void
+  "${nodeType}:exit"?: (node: ${argType} & ASTNodeWithParent) => void
 `
 }
 for (const nodeType of astroNodeNames) {
@@ -57,6 +58,7 @@ for (const nodeType of astroNodeNames) {
     argType = `AST.AstroProgram`
   }
   code += `  ${nodeType}?: (node: ${argType} & ASTNodeWithParent) => void
+  "${nodeType}:exit"?: (node: ${argType} & ASTNodeWithParent) => void
 `
 }
 code += `
@@ -68,6 +70,7 @@ export type ESNodeListener = {
 for (const nodeType of esNodeNames) {
   const argType = `ESTree.${nodeType}`
   code += `  ${nodeType}?: (node: ${argType} & ASTNodeWithParent) => void
+  "${nodeType}:exit"?: (node: ${argType} & ASTNodeWithParent) => void
 `
 }
 for (const nodeType of esAstroNodeNames) {
@@ -76,6 +79,7 @@ for (const nodeType of esAstroNodeNames) {
     argType = `AST.AstroProgram`
   }
   code += `  ${nodeType}?: (node: ${argType} & ASTNodeWithParent) => void
+  "${nodeType}:exit"?: (node: ${argType} & ASTNodeWithParent) => void
 `
 }
 code += `
@@ -90,6 +94,7 @@ for (const nodeType of tsNodeNames) {
     argType = `TSESTree.Node & { type: AST_NODE_TYPES.${nodeType}}`
   }
   code += `  ${nodeType}?: (node: ${argType} & ASTNodeWithParent) => void
+  "${nodeType}:exit"?: (node: ${argType} & ASTNodeWithParent) => void
 `
 }
 code += `
@@ -103,6 +108,7 @@ for (const nodeType of astroNodeNames.filter(
 )) {
   const argType = `AST.${nodeType}`
   code += `  ${nodeType}?: (node: ${argType} & ASTNodeWithParent) => void
+  "${nodeType}:exit"?: (node: ${argType} & ASTNodeWithParent) => void
 `
 }
 code += `

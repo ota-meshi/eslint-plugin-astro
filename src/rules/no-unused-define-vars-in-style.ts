@@ -3,7 +3,7 @@ import { AST_NODE_TYPES } from "@typescript-eslint/types"
 import type { AST } from "astro-eslint-parser"
 import { getPropertyName } from "eslint-utils"
 import { createRule } from "../utils"
-import { getAttributeName, getDirectiveName } from "../utils/ast-utils"
+import { getAttributeName } from "../utils/ast-utils"
 import { iterateCSSVars } from "../utils/style"
 
 export default createRule("no-unused-define-vars-in-style", {
@@ -35,7 +35,7 @@ export default createRule("no-unused-define-vars-in-style", {
             | AST.JSXAttribute
             | AST.AstroTemplateLiteralAttribute
             | AST.AstroShorthandAttribute =>
-            getDirectiveName(attr) === "define:vars",
+            getAttributeName(attr) === "define:vars",
         )
 
         if (!defineVars) {

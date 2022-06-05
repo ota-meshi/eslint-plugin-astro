@@ -1,6 +1,6 @@
 import type { AST } from "astro-eslint-parser"
 import { createRule } from "../utils"
-import { getDirectiveName } from "../utils/ast-utils"
+import { getAttributeName } from "../utils/ast-utils"
 
 export default createRule("no-conflict-set-directives", {
   meta: {
@@ -28,7 +28,7 @@ export default createRule("no-conflict-set-directives", {
           name: string
         }[] = []
         for (const attr of node.openingElement.attributes) {
-          const directiveName = getDirectiveName(attr)
+          const directiveName = getAttributeName(attr)
           if (directiveName === "set:text" || directiveName === "set:html") {
             reportData.push({
               loc: attr.loc,
