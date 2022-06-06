@@ -16,17 +16,23 @@ function setupDocs() {
     fs.unlinkSync(md)
   }
   const docsDir = path.resolve(dirname, "../docs")
-  for (const md of listup(docsDir, ".md")) {
+  for (const page of listup(docsDir, [".astro", ".md"])) {
     const to = path.resolve(
       buildDocsDir,
       path.relative(
         docsDir,
-        md.endsWith("README.md") ? md.replace(/README.md$/u, "index.md") : md,
+        page.endsWith("README.md")
+          ? page.replace(/README.md$/u, "index.md")
+          : page,
       ),
     )
     mkDirs(path.dirname(to))
+    const content = fs.readFileSync(page, "utf8")
+    if (!page.endsWith(".md")) {
+      fs.writeFileSync(to, content, "utf8")
+      continue
+    }
 
-    const content = fs.readFileSync(md, "utf8")
     const frontmatter = /^---\n([\s\S]*?)\n---\n/u.exec(content)?.[1]
     const data = frontmatter ? load(frontmatter) : {}
     data.layout = `./${path.relative(path.dirname(to), mainLayoutPath)}`

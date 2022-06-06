@@ -2,7 +2,7 @@
 import TableOfContents from './TableOfContents.svelte';
 import MoreMenu from './MoreMenu.astro';
 const { content, githubEditUrl, hiddenTOC } = Astro.props;
-const headers = content.astro.headers;
+const headers = content?.astro?.headers;
 ---
 
 <nav class="sidebar-nav" aria-labelledby="grid-right">
