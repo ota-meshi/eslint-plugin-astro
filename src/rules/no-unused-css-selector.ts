@@ -19,6 +19,7 @@ type JSXElementTreeNode = {
   parent: JSXElementTreeNode | RootJSXElementTreeNode
   node: AST.JSXElement
   childElements: JSXElementTreeNode[]
+  withinExpression?: boolean
 }
 type RootJSXElementTreeNode = {
   parent?: null
@@ -101,7 +102,7 @@ export default createRule("no-unused-css-selector", {
     return {
       JSXElement(node) {
         const name = getElementName(node)
-        if (name === "Fragment") {
+        if (name === "Fragment" || name === "slot") {
           return
         }
         if (name === "style" && !findAttribute(node, "is:global")) {
@@ -118,21 +119,24 @@ export default createRule("no-unused-css-selector", {
       },
       "JSXElement:exit"(node) {
         if (currTree.node === node) {
-          const parent = currTree.parent
-          const name = getElementName(node)
-          if (name === "slot") {
-            const slotChildElements = currTree.childElements.map(
-              (e): JSXElementTreeNode => {
-                return {
-                  ...e,
-                  parent,
-                }
-              },
+          // Process within expression
+          if (currTree.node) {
+            const expressions = currTree.node.children.filter(
+              (e): e is AST.JSXExpressionContainer =>
+                e.type === "JSXExpressionContainer",
             )
-            ;(parent?.childElements ?? allTreeElements).push(
-              ...slotChildElements,
-            )
+            if (expressions.length) {
+              for (const child of currTree.childElements) {
+                child.withinExpression = expressions.some(
+                  (e) =>
+                    e.range[0] <= child.node.range[0] &&
+                    child.node.range[1] <= e.range[1],
+                )
+              }
+            }
           }
+
+          // Pop state
           currTree = currTree.parent
         }
       },
@@ -187,43 +191,7 @@ function parseSelector(
   }
 
   return astSelector.nodes.map((sel) => {
-    const nodes = cleanSelectorChildren(sel)
-    if (nodes.some(isGlobalPseudo)) {
-      // Remove :global selector
-      // e.g.
-      // `.foo > :global(.bar)` -> `.foo`
-      // `:global(.foo) > .bar` -> `.bar`
-      // `.foo > .bar :global(.baz)` -> `.foo > .bar`
-      while (
-        nodes[nodes.length - 1] &&
-        isGlobalPseudo(nodes[nodes.length - 1])
-      ) {
-        nodes.pop()
-        if (nodes[nodes.length - 1]?.type === "combinator") {
-          nodes.pop()
-        }
-      }
-
-      while (nodes[0] && isGlobalPseudo(nodes[0])) {
-        nodes.shift()
-        if (nodes[0]?.type === "combinator") {
-          nodes.shift()
-        }
-      }
-    }
-    if (nodes.some(isRootPseudo)) {
-      // Remove :root selector
-      // e.g.
-      // `:root.foo > .bar` -> `.bar`
-      let node = nodes.shift()
-      while (node && !isRootPseudo(node)) {
-        node = nodes.shift()
-      }
-      while (nodes[0] && nodes[0].type !== "combinator") {
-        nodes.shift()
-      }
-      nodes.shift()
-    }
+    const nodes = removeGlobals(cleanSelectorChildren(sel))
     try {
       const test = selectorToJSXElementMatcher(nodes, context)
 
@@ -246,6 +214,47 @@ function parseSelector(
       throw error
     }
   })
+
+  /** Remove :global() on both sides */
+  function removeGlobals(nodes: ChildNode[]) {
+    let start = 0
+    let end = nodes.length
+    // Remove :global selector
+    // e.g.
+    // `.foo > :global(.bar)` -> `.foo`
+    // `:global(.foo) > .bar` -> `.bar`
+    // `.foo > .bar :global(.baz)` -> `.foo > .bar`
+    while (nodes[end - 1] && isGlobalPseudo(nodes[end - 1])) {
+      end--
+      if (nodes[end - 1]?.type === "combinator") {
+        end--
+      }
+    }
+
+    while (nodes[start] && isGlobalPseudo(nodes[start])) {
+      start++
+      if (nodes[start]?.type === "combinator") {
+        start++
+      }
+    }
+
+    if (nodes.some(isRootPseudo)) {
+      // Remove :root selector
+      // e.g.
+      // `:root.foo > .bar` -> `.bar`
+      while (nodes[start] && !isRootPseudo(nodes[start])) {
+        start++
+      }
+      start++
+      while (nodes[start] && nodes[start].type !== "combinator") {
+        start++
+      }
+      if (nodes[start]?.type === "combinator") {
+        start++
+      }
+    }
+    return nodes.slice(start, end)
+  }
 }
 
 /**
@@ -717,7 +726,10 @@ function getBeforeElements(element: JSXElementTreeNode) {
     return []
   }
   const index = parent.childElements.indexOf(element)
-  return parent.childElements.slice(0, index)
+  return parent.childElements.slice(
+    0,
+    element.withinExpression ? index + 1 : index,
+  )
 }
 
 /**
@@ -729,7 +741,9 @@ function getAfterElements(element: JSXElementTreeNode) {
     return []
   }
   const index = parent.childElements.indexOf(element)
-  return parent.childElements.slice(index + 1)
+  return parent.childElements.slice(
+    element.withinExpression ? index : index + 1,
+  )
 }
 
 /**
