@@ -2,6 +2,7 @@ import type { TSESTree } from "@typescript-eslint/types"
 import { AST_NODE_TYPES } from "@typescript-eslint/types"
 import type { AST } from "astro-eslint-parser"
 import { getStaticValue } from "eslint-utils"
+import type { Node as PostcssNode } from "postcss"
 import postcss from "postcss"
 import parser from "postcss-selector-parser"
 import type { RuleContext } from "../types"
@@ -62,7 +63,21 @@ export default createRule("no-unused-css-selector", {
       } catch (e) {
         return
       }
-      root.walkRules((rule) => {
+      const ignoreNodes = new Set<PostcssNode>()
+      root.walk((psNode) => {
+        if (psNode.parent && ignoreNodes.has(psNode.parent)) {
+          ignoreNodes.add(psNode)
+          return
+        }
+        if (psNode.type !== "rule") {
+          if (psNode.type === "atrule") {
+            if (psNode.name === "keyframes") {
+              ignoreNodes.add(psNode)
+            }
+          }
+          return
+        }
+        const rule = psNode
         const raws = rule.raws
         const rawSelectorText = raws.selector
           ? raws.selector.raw
