@@ -1,0 +1,19 @@
+---
+const sidebarSections = [{ text: "foo" }]
+---
+
+<nav aria-labelledby="grid-left">
+  <ul class="nav-groups">
+    {sidebarSections.map((section) => (
+      <li>
+        <div class="nav-group">{section.text}</div>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  .nav-groups > li + li {
+    margin-top: 2rem;
+  }
+</style>
