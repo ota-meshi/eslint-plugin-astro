@@ -142,21 +142,7 @@ const baseUrl = import.meta.env.BASE_URL
     --docsearch-logo-color: var(--theme-text);
   }
 
-  .search-item {
-    display: none;
-    position: relative;
-    z-index: 10;
-    flex-grow: 1;
-    padding-right: 0.7rem;
-    display: flex;
-    max-width: 200px;
-  }
   :global(.search-item > *) {
     flex-grow: 1;
-  }
-  @media (min-width: 50em) {
-    .search-item {
-      max-width: 400px;
-    }
   }
 </style>
