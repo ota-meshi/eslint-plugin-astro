@@ -219,7 +219,7 @@ function parseSelector(
       while (node && !isRootPseudo(node)) {
         node = nodes.shift()
       }
-      while (nodes[0]?.type !== "combinator") {
+      while (nodes[0] && nodes[0].type !== "combinator") {
         nodes.shift()
       }
       nodes.shift()
