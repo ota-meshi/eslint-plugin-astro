@@ -1,0 +1,12 @@
+[
+  {
+    "message": "Unused CSS selector `.search-item`",
+    "line": 145,
+    "column": 3
+  },
+  {
+    "message": "Unused CSS selector `.search-item`",
+    "line": 158,
+    "column": 5
+  }
+]
