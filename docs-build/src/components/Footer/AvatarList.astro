@@ -61,9 +61,8 @@ const recentContributors = unique.slice(0, 3) // only show avatars for the 3 mos
 const additionalContributors = unique.length - recentContributors.length // list the rest of them as # of extra contributors
 ---
 
-<!-- Thanks to @5t3ph for https://smolcss.dev/#smol-avatar-list! --><div
-  class="contributors"
->
+<!-- Thanks to @5t3ph for https://smolcss.dev/#smol-avatar-list! -->
+<div class="contributors">
   <ul
     class="avatar-list"
     style={`--avatar-count: ${recentContributors.length}`}

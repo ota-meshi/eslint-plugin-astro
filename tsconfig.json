@@ -30,6 +30,7 @@
     "tools/**/*",
     "docs-build/src/**/*.ts",
     "docs-build/src/**/*.astro",
+    "docs/**/*.astro",
     "typings/**/*"
   ],
   "exclude": ["lib/**/*", "tests/fixtures/**/*"]

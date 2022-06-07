@@ -14,7 +14,8 @@ const canonicalImageSrc = imageSrc && new URL(imageSrc, Astro.site)
 const imageAlt = content?.image?.alt ?? OPEN_GRAPH.image.alt
 ---
 
-<!-- Page Metadata --><link rel="canonical" href={canonicalURL} />
+<!-- Page Metadata -->
+<link rel="canonical" href={canonicalURL} />
 
 <!-- OpenGraph Tags -->
 <meta property="og:title" content={formattedContentTitle} />

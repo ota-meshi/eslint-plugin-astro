@@ -6,7 +6,8 @@ import "../styles/components.css"
 const baseUrl = import.meta.env.BASE_URL
 ---
 
-<!-- Global Metadata --><meta charset="utf-8" />
+<!-- Global Metadata -->
+<meta charset="utf-8" />
 <meta name="viewport" content="width=device-width" />
 
 <link rel="icon" type="image/svg+xml" href={`${baseUrl}favicon.svg`} />
@@ -23,7 +24,9 @@ const baseUrl = import.meta.env.BASE_URL
 />
 
 <!-- Scrollable a11y code helper -->
-<script src={`${baseUrl}make-scrollable-code-focusable.js`} is:inline></script>
+<script src={`${baseUrl}make-scrollable-code-focusable.js`} is:inline>
+  // FIXME: Avoid conflict format
+</script>
 
 <!-- This is intentionally inlined to avoid FOUC -->
 <script is:inline>
