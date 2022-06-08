@@ -61,3 +61,4 @@ See the [LICENSE](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/LIC
 [astro]: https://astro.build/
 [eslint]: https://eslint.org/
 [astro components]: https://docs.astro.build/en/core-concepts/astro-components/
+[eslint-plugin-jsx-a11y]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y

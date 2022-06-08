@@ -19,9 +19,11 @@ ${rules
       }"`,
   )
   .join("\n")}
+import { buildA11yRules } from "../a11y"
 
 export const rules = [
-    ${rules.map((rule) => camelCase(rule.meta.docs.ruleName)).join(",")}
+  ${rules.map((rule) => camelCase(rule.meta.docs.ruleName)).join(",")},
+  ...buildA11yRules()
 ] as RuleModule[]
 `
 

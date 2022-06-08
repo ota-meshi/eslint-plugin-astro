@@ -53,7 +53,11 @@ class DocFile {
   public constructor(rule: RuleModule) {
     this.rule = rule
     this.filePath = path.join(ROOT, `${rule.meta.docs.ruleName}.md`)
-    this.content = fs.readFileSync(this.filePath, "utf8")
+    this.content = fs.existsSync(this.filePath)
+      ? fs.readFileSync(this.filePath, "utf8")
+      : `
+
+`
     this.since = pickSince(this.content)
   }
 
@@ -148,8 +152,12 @@ This rule was introduced in eslint-plugin-astro ${this.since}
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/${ruleName}.ts)
 ${
   extensionRule
-    ? `
+    ? typeof extensionRule === "string"
+      ? `
 <sup>Taken with ❤️ [from ESLint core](https://eslint.org/docs/rules/${extensionRule})</sup>
+`
+      : `
+<sup>Taken with ❤️ [from ${extensionRule.plugin}](${extensionRule.url})</sup>
 `
     : ""
 }`
