@@ -85,7 +85,7 @@ module.exports = {
         // Enables global variables available in Astro components.
         node: true,
         "astro/astro": true,
-        es2022: true,
+        es2020: true,
       },
       // Allows Astro components to be parsed.
       parser: "astro-eslint-parser",
@@ -112,7 +112,7 @@ module.exports = {
       files: ["**/*.astro/*.js", "*.astro/*.js"],
       env: {
         browser: true,
-        es2022: true,
+        es2020: true,
       },
       parserOptions: {
         sourceType: "module",
