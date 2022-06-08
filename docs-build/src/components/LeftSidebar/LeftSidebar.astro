@@ -32,9 +32,9 @@ const sidebarSections = SIDEBAR.en.reduce((col, item, i) => {
               <li class="nav-link">
                 <a
                   href={`${baseUrl}${child.link}`}
-                  aria-current={`${
+                  aria-current={
                     currentPageMatch === child.link ? "page" : "false"
-                  }`}
+                  }
                 >
                   {child.text}
                 </a>
