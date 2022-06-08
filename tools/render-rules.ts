@@ -6,6 +6,7 @@ const categories = [
   "Security Vulnerability",
   "Best Practices",
   "Stylistic Issues",
+  "A11Y Extension Rules",
   "Extension Rules",
   "System",
 ] as const
@@ -19,6 +20,8 @@ const descriptions: Record<typeof categories[number], string> = {
     "These rules relate to better ways of doing things to help you avoid problems:",
   "Stylistic Issues":
     "These rules relate to style guidelines, and are therefore quite subjective:",
+  "A11Y Extension Rules":
+    "These rules extend the rules provided by [eslint-plugin-jsx-a11y] to work well in Astro component:  \n(You need to install [eslint-plugin-jsx-a11y] to use the rules.)",
   "Extension Rules":
     "These rules extend the rules provided by ESLint itself to work well in Astro component:",
   System: "These rules relate to this plugin works:",

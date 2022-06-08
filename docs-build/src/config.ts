@@ -5,6 +5,7 @@ const categories = [
   "Security Vulnerability",
   "Best Practices",
   "Stylistic Issues",
+  "A11Y Extension Rules",
   "Extension Rules",
   "System",
 ] as const

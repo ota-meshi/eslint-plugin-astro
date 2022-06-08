@@ -27,6 +27,11 @@ export const categories = [
     rules: [],
   },
   {
+    title: "A11Y Extension Rules",
+    classes: "astro-category",
+    rules: [],
+  },
+  {
     title: "Extension Rules",
     classes: "astro-category",
     rules: [],

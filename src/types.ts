@@ -52,6 +52,7 @@ export type RuleCategory =
   | "Security Vulnerability"
   | "Best Practices"
   | "Stylistic Issues"
+  | "A11Y Extension Rules"
   | "Extension Rules"
   | "System"
 
@@ -60,14 +61,21 @@ export interface RuleMetaData {
     description: string
     category: RuleCategory
     recommended: boolean | "base"
-    extensionRule?: string
+    extensionRule?:
+      | string
+      | {
+          plugin: string
+          url: string
+        }
     url: string
     ruleId: string
     ruleName: string
     default?: "error" | "warn"
+    available: () => boolean
   }
   messages: { [messageId: string]: string }
   fixable?: "code" | "whitespace"
+  hasSuggestions?: boolean
   schema: JSONSchema4 | JSONSchema4[]
   deprecated?: boolean
   replacedBy?: string[]
@@ -84,11 +92,18 @@ export interface PartialRuleMetaData {
     description: string
     category: RuleCategory
     recommended: boolean | "base"
-    extensionRule?: string
+    extensionRule?:
+      | string
+      | {
+          plugin: string
+          url: string
+        }
     default?: "error" | "warn"
+    available?: () => boolean
   }
   messages: { [messageId: string]: string }
   fixable?: "code" | "whitespace"
+  hasSuggestions?: boolean
   schema: JSONSchema4 | JSONSchema4[]
   deprecated?: boolean
   replacedBy?: string[]

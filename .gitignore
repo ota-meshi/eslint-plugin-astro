@@ -107,3 +107,4 @@ dist
 /docs-build/shim/assert.mjs
 /docs-build/shim/eslint.mjs
 /docs-build/shim/astro-eslint-parser.mjs
+/docs-build/shim/eslint-plugin-jsx-a11y.mjs

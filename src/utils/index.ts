@@ -13,6 +13,7 @@ export function createRule(
     meta: {
       ...rule.meta,
       docs: {
+        available: () => true,
         ...rule.meta.docs,
         url: `https://ota-meshi.github.io/eslint-plugin-astro/rules/${ruleName}/`,
         ruleId: `astro/${ruleName}`,

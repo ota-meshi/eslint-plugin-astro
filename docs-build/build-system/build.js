@@ -27,6 +27,10 @@ build(
     ),
   ],
 )
+build(
+  require.resolve("./src/eslint-plugin-jsx-a11y.mjs"),
+  path.join(__dirname, "../shim/eslint-plugin-jsx-a11y.mjs"),
+)
 
 /** build */
 function build(input, out, injects = []) {

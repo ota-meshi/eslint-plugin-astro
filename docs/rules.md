@@ -40,3 +40,46 @@ These rules relate to style guidelines, and are therefore quite subjective:
 | [astro/prefer-class-list-directive](./rules/prefer-class-list-directive.md) | require `class:list` directives instead of `class` with expressions | :wrench: |
 | [astro/prefer-object-class-list](./rules/prefer-object-class-list.md) | require use object instead of ternary expression in `class:list` | :wrench: |
 | [astro/prefer-split-class-list](./rules/prefer-split-class-list.md) | require use split array elements in `class:list` | :wrench: |
+
+## A11Y Extension Rules
+
+These rules extend the rules provided by [eslint-plugin-jsx-a11y] to work well in Astro component:  
+(You need to install [eslint-plugin-jsx-a11y] to use the rules.)
+
+| Rule ID | Description |    |
+|:--------|:------------|:---|
+| [astro/jsx-a11y/alt-text](./rules/jsx-a11y/alt-text.md) | apply `jsx-a11y/alt-text` rule to Astro components |  |
+| [astro/jsx-a11y/anchor-has-content](./rules/jsx-a11y/anchor-has-content.md) | apply `jsx-a11y/anchor-has-content` rule to Astro components |  |
+| [astro/jsx-a11y/anchor-is-valid](./rules/jsx-a11y/anchor-is-valid.md) | apply `jsx-a11y/anchor-is-valid` rule to Astro components |  |
+| [astro/jsx-a11y/aria-activedescendant-has-tabindex](./rules/jsx-a11y/aria-activedescendant-has-tabindex.md) | apply `jsx-a11y/aria-activedescendant-has-tabindex` rule to Astro components |  |
+| [astro/jsx-a11y/aria-props](./rules/jsx-a11y/aria-props.md) | apply `jsx-a11y/aria-props` rule to Astro components |  |
+| [astro/jsx-a11y/aria-proptypes](./rules/jsx-a11y/aria-proptypes.md) | apply `jsx-a11y/aria-proptypes` rule to Astro components |  |
+| [astro/jsx-a11y/aria-role](./rules/jsx-a11y/aria-role.md) | apply `jsx-a11y/aria-role` rule to Astro components |  |
+| [astro/jsx-a11y/aria-unsupported-elements](./rules/jsx-a11y/aria-unsupported-elements.md) | apply `jsx-a11y/aria-unsupported-elements` rule to Astro components |  |
+| [astro/jsx-a11y/autocomplete-valid](./rules/jsx-a11y/autocomplete-valid.md) | apply `jsx-a11y/autocomplete-valid` rule to Astro components |  |
+| [astro/jsx-a11y/click-events-have-key-events](./rules/jsx-a11y/click-events-have-key-events.md) | apply `jsx-a11y/click-events-have-key-events` rule to Astro components |  |
+| [astro/jsx-a11y/control-has-associated-label](./rules/jsx-a11y/control-has-associated-label.md) | apply `jsx-a11y/control-has-associated-label` rule to Astro components |  |
+| [astro/jsx-a11y/heading-has-content](./rules/jsx-a11y/heading-has-content.md) | apply `jsx-a11y/heading-has-content` rule to Astro components |  |
+| [astro/jsx-a11y/html-has-lang](./rules/jsx-a11y/html-has-lang.md) | apply `jsx-a11y/html-has-lang` rule to Astro components |  |
+| [astro/jsx-a11y/iframe-has-title](./rules/jsx-a11y/iframe-has-title.md) | apply `jsx-a11y/iframe-has-title` rule to Astro components |  |
+| [astro/jsx-a11y/img-redundant-alt](./rules/jsx-a11y/img-redundant-alt.md) | apply `jsx-a11y/img-redundant-alt` rule to Astro components |  |
+| [astro/jsx-a11y/interactive-supports-focus](./rules/jsx-a11y/interactive-supports-focus.md) | apply `jsx-a11y/interactive-supports-focus` rule to Astro components |  |
+| [astro/jsx-a11y/label-has-associated-control](./rules/jsx-a11y/label-has-associated-control.md) | apply `jsx-a11y/label-has-associated-control` rule to Astro components |  |
+| [astro/jsx-a11y/lang](./rules/jsx-a11y/lang.md) | apply `jsx-a11y/lang` rule to Astro components |  |
+| [astro/jsx-a11y/media-has-caption](./rules/jsx-a11y/media-has-caption.md) | apply `jsx-a11y/media-has-caption` rule to Astro components |  |
+| [astro/jsx-a11y/mouse-events-have-key-events](./rules/jsx-a11y/mouse-events-have-key-events.md) | apply `jsx-a11y/mouse-events-have-key-events` rule to Astro components |  |
+| [astro/jsx-a11y/no-access-key](./rules/jsx-a11y/no-access-key.md) | apply `jsx-a11y/no-access-key` rule to Astro components |  |
+| [astro/jsx-a11y/no-autofocus](./rules/jsx-a11y/no-autofocus.md) | apply `jsx-a11y/no-autofocus` rule to Astro components |  |
+| [astro/jsx-a11y/no-distracting-elements](./rules/jsx-a11y/no-distracting-elements.md) | apply `jsx-a11y/no-distracting-elements` rule to Astro components |  |
+| [astro/jsx-a11y/no-interactive-element-to-noninteractive-role](./rules/jsx-a11y/no-interactive-element-to-noninteractive-role.md) | apply `jsx-a11y/no-interactive-element-to-noninteractive-role` rule to Astro components |  |
+| [astro/jsx-a11y/no-noninteractive-element-interactions](./rules/jsx-a11y/no-noninteractive-element-interactions.md) | apply `jsx-a11y/no-noninteractive-element-interactions` rule to Astro components |  |
+| [astro/jsx-a11y/no-noninteractive-element-to-interactive-role](./rules/jsx-a11y/no-noninteractive-element-to-interactive-role.md) | apply `jsx-a11y/no-noninteractive-element-to-interactive-role` rule to Astro components |  |
+| [astro/jsx-a11y/no-noninteractive-tabindex](./rules/jsx-a11y/no-noninteractive-tabindex.md) | apply `jsx-a11y/no-noninteractive-tabindex` rule to Astro components |  |
+| [astro/jsx-a11y/no-redundant-roles](./rules/jsx-a11y/no-redundant-roles.md) | apply `jsx-a11y/no-redundant-roles` rule to Astro components |  |
+| [astro/jsx-a11y/no-static-element-interactions](./rules/jsx-a11y/no-static-element-interactions.md) | apply `jsx-a11y/no-static-element-interactions` rule to Astro components |  |
+| [astro/jsx-a11y/role-has-required-aria-props](./rules/jsx-a11y/role-has-required-aria-props.md) | apply `jsx-a11y/role-has-required-aria-props` rule to Astro components |  |
+| [astro/jsx-a11y/role-supports-aria-props](./rules/jsx-a11y/role-supports-aria-props.md) | apply `jsx-a11y/role-supports-aria-props` rule to Astro components |  |
+| [astro/jsx-a11y/scope](./rules/jsx-a11y/scope.md) | apply `jsx-a11y/scope` rule to Astro components |  |
+| [astro/jsx-a11y/tabindex-no-positive](./rules/jsx-a11y/tabindex-no-positive.md) | apply `jsx-a11y/tabindex-no-positive` rule to Astro components |  |
+
+[eslint-plugin-jsx-a11y]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y
