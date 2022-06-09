@@ -25,7 +25,7 @@ describe("Integration test for a11y config", () => {
     const eslint = new ESLint({
       plugins: {
         "jsx-a11y": jsxA11yPlugin,
-        astro: astroPlugin,
+        astro: astroPlugin as any,
       },
       useEslintrc: false,
       overrideConfig: {
@@ -68,7 +68,7 @@ const src = 'icon.png'
     const eslint = new ESLint({
       plugins: {
         "jsx-a11y": jsxA11yPlugin,
-        astro: astroPlugin,
+        astro: astroPlugin as any,
       },
       useEslintrc: false,
       overrideConfig: {
