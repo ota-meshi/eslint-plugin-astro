@@ -178,6 +178,9 @@ function writeFixtures(
         sourceType: "module",
         parser: "@typescript-eslint/parser",
       },
+      globals: {
+        Astro: false,
+      },
     },
     config.filename,
   )

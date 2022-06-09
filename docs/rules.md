@@ -12,6 +12,8 @@ These rules relate to possible syntax or logic errors in Astro component code:
 | Rule ID | Description |    |
 |:--------|:------------|:---|
 | [astro/no-conflict-set-directives](./rules/no-conflict-set-directives.md) | disallow conflicting set directives and child contents | :star: |
+| [astro/no-deprecated-astro-fetchcontent](./rules/no-deprecated-astro-fetchcontent.md) | disallow using deprecated `Astro.fetchContent()` | :star::wrench: |
+| [astro/no-deprecated-astro-resolve](./rules/no-deprecated-astro-resolve.md) | disallow using deprecated `Astro.resolve()` | :star: |
 | [astro/no-unused-define-vars-in-style](./rules/no-unused-define-vars-in-style.md) | disallow unused `define:vars={...}` in `style` tag | :star: |
 
 ## Security Vulnerability

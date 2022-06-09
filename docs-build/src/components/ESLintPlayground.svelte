@@ -151,6 +151,9 @@ let b: number = 1;
             browser: true,
             es2021: true,
           },
+          globals: {
+            Astro: false,
+          },
         }}
         {options}
         on:result={onLintedResult}

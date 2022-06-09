@@ -1,0 +1,6 @@
+---
+const { animal } = Astro.props;
+---
+
+{/* ✗ BAD */}
+<img src={Astro.resolve(`../images/${animal}.png`)} />
