@@ -236,7 +236,7 @@ table {
 }
 
 /* Zebra striping */
-tr:nth-of-type(odd) {
+tbody tr:nth-of-type(odd) {
   background: var(--theme-bg-hover);
 }
 th {
