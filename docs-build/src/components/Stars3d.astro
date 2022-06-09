@@ -1,0 +1,100 @@
+---
+const animationTime = 100
+const vars: Record<string, string> = {
+  "stars-box-shadow-bg": buildBoxShadow(600, 2000),
+  "stars-animation-duration": `${animationTime}s`,
+}
+const layers = Array.from({ length: 10 }, (_, i) => i + 1)
+for (let i of layers) {
+  vars[`stars-box-shadow${i}`] = buildBoxShadow(15, 1000)
+}
+
+function buildBoxShadow(count: number, size: number) {
+  let shadows = []
+  for (let index = 0; index < count; index++) {
+    const x = Math.floor(Math.random() * size - size / 2)
+    const y = Math.floor(Math.random() * size - size / 2)
+    shadows.push(`${x}px ${y}px var(--theme-star)`)
+  }
+  return shadows.join(",")
+}
+---
+
+<div class="stars-wrapper">
+  {layers.map((i) => (
+    <div
+      class:list={["stars", "stars-layer", `stars${i}`]}
+      style={`
+        --stars-box-shadow: var(--stars-box-shadow${i});
+        --stars-animation-delay: -${(i - 1) * (animationTime / layers.length)}s;
+      `}
+    />
+  ))}
+  <div class="stars-bg stars"></div>
+</div>
+
+<style define:vars={vars}>
+  :root {
+    --theme-star: var(--theme-text, #fff);
+  }
+
+  .stars-wrapper {
+    perspective: 5px;
+    position: absolute;
+    pointer-events: none;
+    z-index: 1000;
+    animation: rotation linear infinite;
+    animation-duration: calc(var(--stars-animation-duration) * 5);
+  }
+  @keyframes rotation {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .stars {
+    border-radius: 50%;
+    background: transparent;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+
+    width: 2px;
+    height: 2px;
+  }
+  .stars-bg {
+    box-shadow: var(--stars-box-shadow-bg);
+    width: 1px;
+    height: 1px;
+  }
+  .stars-layer {
+    animation: stars3d linear infinite;
+    animation-duration: var(--stars-animation-duration);
+    box-shadow: var(--stars-box-shadow);
+    animation-delay: var(--stars-animation-delay);
+  }
+  @keyframes stars3d {
+    from {
+      opacity: 0;
+      transform: scale(0.1) translateZ(-5px);
+    }
+    60% {
+      opacity: 1;
+    }
+    80% {
+      opacity: 1;
+    }
+    95% {
+      opacity: 0;
+    }
+    to {
+      opacity: 0;
+      transform: scale(1.5) translateZ(5px);
+    }
+  }
+</style>

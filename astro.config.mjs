@@ -14,7 +14,7 @@ export default defineConfig({
   base: "/eslint-plugin-astro",
   srcDir: "./docs-build/src",
   publicDir: "./docs-build/public",
-  outDir: "./docs-build/dist",
+  outDir: "./docs-build/dist/eslint-plugin-astro",
   root: dirname,
   integrations: [svelte()],
   markdown: {

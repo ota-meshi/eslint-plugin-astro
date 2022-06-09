@@ -1,6 +1,7 @@
 ---
 import MainLayout from "./../layouts/MainLayout.astro"
-import Stars from "./../components/Stars.astro"
+import Stars2d from "./../components/Stars2d.astro"
+import Stars3d from "./../components/Stars3d.astro"
 const baseUrl = import.meta.env.BASE_URL
 const content = { hiddenRight: true, hiddenTOC: true }
 ---
@@ -15,9 +16,23 @@ const content = { hiddenRight: true, hiddenTOC: true }
         <b>Take me home.</b>
       </a>
     </div>
-    <Stars />
+    <div class="center">
+      <div class="stars2d">
+        <Stars2d />
+      </div>
+      <div class="stars3d">
+        <Stars3d />
+      </div>
+    </div>
   </div>
 </MainLayout>
+<script is:inline>
+  if (Math.floor(Math.random() * 2)) {
+    document.documentElement.classList.add("stars-theme-start3d")
+  } else {
+    document.documentElement.classList.remove("stars-theme-start3d")
+  }
+</script>
 
 <style>
   .page-404 {
@@ -100,6 +115,22 @@ const content = { hiddenRight: true, hiddenTOC: true }
   }
   .content:is(:hover, :focus-within) {
     background-position: 0;
+  }
+  .center {
+    display: flex;
+    justify-content: center;
+  }
+  :root:not(.stars-theme-start3d) .stars3d {
+    display: none;
+  }
+  :root:not(.stars-theme-start3d) .stars2d {
+    display: block;
+  }
+  :root.stars-theme-start3d .stars3d {
+    display: block;
+  }
+  :root.stars-theme-start3d .stars2d {
+    display: none;
   }
   :global(body) {
     position: fixed;
