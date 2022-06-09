@@ -4,6 +4,7 @@ import { getPluginJsxA11y } from "./load"
 import type { ASTNode } from "../types-for-node"
 import { createRule } from "../utils"
 import { a11yRuleKeys } from "./keys"
+import { getAttributeName } from "../utils/ast-utils"
 
 const TYPE_MAP: Partial<Record<ASTNode["type"], ASTNode["type"]>> = {
   AstroRawText: "JSXText",
@@ -145,10 +146,32 @@ function defineWrapperListener(
    */
   function getProxyNode(
     node: ASTNode,
+    overrides?: Record<string | symbol, unknown>,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any -- ignore
   ): any {
     const type = TYPE_MAP[node.type] || node.type
-    const cache: Record<string | symbol, unknown> = { type }
+    const cache: Record<string | symbol, unknown> = {
+      type,
+      ...(overrides ?? {}),
+    }
+
+    if (node.type === "JSXAttribute") {
+      const attrName = getAttributeName(node)
+      if (attrName === "set:html") {
+        cache.name = getProxyNode(node.name, {
+          type: "JSXIdentifier",
+          namespace: null,
+          name: "dangerouslySetInnerHTML",
+        })
+      } else if (attrName === "set:text") {
+        cache.name = getProxyNode(node.name, {
+          type: "JSXIdentifier",
+          namespace: null,
+          name: "children",
+        })
+      }
+    }
+
     return new Proxy(node, {
       get(_t, key) {
         if (key in cache) {
