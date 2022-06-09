@@ -9,11 +9,17 @@ since: "v0.11.0"
 
 > apply `jsx-a11y/no-access-key` rule to Astro components
 
-This rule is the same rule as [jsx-a11y/no-access-key](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-access-key.md) rule but it applies to the Astro components.
+This rule is the same rule as [jsx-a11y/no-access-key] rule but it applies to the Astro components.
+
+[jsx-a11y/no-access-key]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-access-key.md
+
+The following is a partial excerpt from the [jsx-a11y/no-access-key] rule documentation. See [original documentation][jsx-a11y/no-access-key] for more details.
+
+> Enforce no accessKey prop on element. Access keys are HTML attributes that allow web developers to assign keyboard shortcuts to elements. Inconsistencies between keyboard shortcuts and keyboard commands used by screenreaders and keyboard-only users create accessibility complications so to avoid complications, access keys should not be used.
 
 ## :books: Further Reading
 
-- [jsx-a11y/no-access-key](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-access-key.md)
+- [jsx-a11y/no-access-key]
 
 ## :rocket: Version
 

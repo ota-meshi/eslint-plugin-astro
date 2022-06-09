@@ -9,11 +9,17 @@ since: "v0.11.0"
 
 > apply `jsx-a11y/aria-role` rule to Astro components
 
-This rule is the same rule as [jsx-a11y/aria-role](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/aria-role.md) rule but it applies to the Astro components.
+This rule is the same rule as [jsx-a11y/aria-role] rule but it applies to the Astro components.
+
+[jsx-a11y/aria-role]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/aria-role.md
+
+The following is a partial excerpt from the [jsx-a11y/aria-role] rule documentation. See [original documentation][jsx-a11y/aria-role] for more details.
+
+> Elements with ARIA roles must use a valid, non-abstract ARIA role. A reference to role definitions can be found at [WAI-ARIA](https://www.w3.org/TR/wai-aria/#role_definitions) site.
 
 ## :books: Further Reading
 
-- [jsx-a11y/aria-role](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/aria-role.md)
+- [jsx-a11y/aria-role]
 
 ## :rocket: Version
 

@@ -9,11 +9,17 @@ since: "v0.11.0"
 
 > apply `jsx-a11y/anchor-has-content` rule to Astro components
 
-This rule is the same rule as [jsx-a11y/anchor-has-content](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/anchor-has-content.md) rule but it applies to the Astro components.
+This rule is the same rule as [jsx-a11y/anchor-has-content] rule but it applies to the Astro components.
+
+[jsx-a11y/anchor-has-content]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/anchor-has-content.md
+
+The following is a partial excerpt from the [jsx-a11y/anchor-has-content] rule documentation. See [original documentation][jsx-a11y/anchor-has-content] for more details.
+
+> Enforce that anchors have content and that the content is accessible to screen readers. Accessible means that it is not hidden using the `aria-hidden` prop.
 
 ## :books: Further Reading
 
-- [jsx-a11y/anchor-has-content](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/anchor-has-content.md)
+- [jsx-a11y/anchor-has-content]
 
 ## :rocket: Version
 

@@ -9,11 +9,17 @@ since: "v0.11.0"
 
 > apply `jsx-a11y/tabindex-no-positive` rule to Astro components
 
-This rule is the same rule as [jsx-a11y/tabindex-no-positive](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/tabindex-no-positive.md) rule but it applies to the Astro components.
+This rule is the same rule as [jsx-a11y/tabindex-no-positive] rule but it applies to the Astro components.
+
+[jsx-a11y/tabindex-no-positive]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/tabindex-no-positive.md
+
+The following is a partial excerpt from the [jsx-a11y/tabindex-no-positive] rule documentation. See [original documentation][jsx-a11y/tabindex-no-positive] for more details.
+
+> Avoid positive `tabIndex` property values to synchronize the flow of the page with keyboard tab order.
 
 ## :books: Further Reading
 
-- [jsx-a11y/tabindex-no-positive](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/tabindex-no-positive.md)
+- [jsx-a11y/tabindex-no-positive]
 
 ## :rocket: Version
 

@@ -9,11 +9,17 @@ since: "v0.11.0"
 
 > apply `jsx-a11y/lang` rule to Astro components
 
-This rule is the same rule as [jsx-a11y/lang](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/lang.md) rule but it applies to the Astro components.
+This rule is the same rule as [jsx-a11y/lang] rule but it applies to the Astro components.
+
+[jsx-a11y/lang]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/lang.md
+
+The following is a partial excerpt from the [jsx-a11y/lang] rule documentation. See [original documentation][jsx-a11y/lang] for more details.
+
+> The `lang` prop on the `<html>` element must be a valid IETF's BCP 47 language tag.
 
 ## :books: Further Reading
 
-- [jsx-a11y/lang](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/lang.md)
+- [jsx-a11y/lang]
 
 ## :rocket: Version
 

@@ -9,11 +9,17 @@ since: "v0.11.0"
 
 > apply `jsx-a11y/no-autofocus` rule to Astro components
 
-This rule is the same rule as [jsx-a11y/no-autofocus](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-autofocus.md) rule but it applies to the Astro components.
+This rule is the same rule as [jsx-a11y/no-autofocus] rule but it applies to the Astro components.
+
+[jsx-a11y/no-autofocus]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-autofocus.md
+
+The following is a partial excerpt from the [jsx-a11y/no-autofocus] rule documentation. See [original documentation][jsx-a11y/no-autofocus] for more details.
+
+> Enforce that autoFocus prop is not used on elements. Autofocusing elements can cause usability issues for sighted and non-sighted users, alike.
 
 ## :books: Further Reading
 
-- [jsx-a11y/no-autofocus](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-autofocus.md)
+- [jsx-a11y/no-autofocus]
 
 ## :rocket: Version
 

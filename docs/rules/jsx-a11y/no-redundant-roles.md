@@ -9,11 +9,17 @@ since: "v0.11.0"
 
 > apply `jsx-a11y/no-redundant-roles` rule to Astro components
 
-This rule is the same rule as [jsx-a11y/no-redundant-roles](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-redundant-roles.md) rule but it applies to the Astro components.
+This rule is the same rule as [jsx-a11y/no-redundant-roles] rule but it applies to the Astro components.
+
+[jsx-a11y/no-redundant-roles]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-redundant-roles.md
+
+The following is a partial excerpt from the [jsx-a11y/no-redundant-roles] rule documentation. See [original documentation][jsx-a11y/no-redundant-roles] for more details.
+
+> Some HTML elements have native semantics that are implemented by the browser. This includes default/implicit ARIA roles. Setting an ARIA role that matches its default/implicit role is redundant since it is already set by the browser.
 
 ## :books: Further Reading
 
-- [jsx-a11y/no-redundant-roles](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-redundant-roles.md)
+- [jsx-a11y/no-redundant-roles]
 
 ## :rocket: Version
 

@@ -9,11 +9,21 @@ since: "v0.11.0"
 
 > apply `jsx-a11y/no-interactive-element-to-noninteractive-role` rule to Astro components
 
-This rule is the same rule as [jsx-a11y/no-interactive-element-to-noninteractive-role](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-interactive-element-to-noninteractive-role.md) rule but it applies to the Astro components.
+This rule is the same rule as [jsx-a11y/no-interactive-element-to-noninteractive-role] rule but it applies to the Astro components.
+
+[jsx-a11y/no-interactive-element-to-noninteractive-role]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-interactive-element-to-noninteractive-role.md
+
+The following is a partial excerpt from the [jsx-a11y/no-interactive-element-to-noninteractive-role] rule documentation. See [original documentation][jsx-a11y/no-interactive-element-to-noninteractive-role] for more details.
+
+> Interactive HTML elements indicate _controls_ in the user interface. Interactive elements include `<a href>`, `<button>`, `<input>`, `<select>`, `<textarea>`.
+>
+> Non-interactive HTML elements and non-interactive ARIA roles indicate _content_ and _containers_ in the user interface. Non-interactive elements include `<main>`, `<area>`, `<h1>` (,`<h2>`, etc), `<img>`, `<li>`, `<ul>` and `<ol>`.
+>
+> [WAI-ARIA roles](https://www.w3.org/TR/wai-aria-1.1/#usage_intro) should not be used to convert an interactive element to a non-interactive element. Non-interactive ARIA roles include `article`, `banner`, `complementary`, `img`, `listitem`, `main`, `region` and `tooltip`.
 
 ## :books: Further Reading
 
-- [jsx-a11y/no-interactive-element-to-noninteractive-role](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-interactive-element-to-noninteractive-role.md)
+- [jsx-a11y/no-interactive-element-to-noninteractive-role]
 
 ## :rocket: Version
 

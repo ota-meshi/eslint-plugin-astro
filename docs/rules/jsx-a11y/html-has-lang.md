@@ -9,11 +9,17 @@ since: "v0.11.0"
 
 > apply `jsx-a11y/html-has-lang` rule to Astro components
 
-This rule is the same rule as [jsx-a11y/html-has-lang](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/html-has-lang.md) rule but it applies to the Astro components.
+This rule is the same rule as [jsx-a11y/html-has-lang] rule but it applies to the Astro components.
+
+[jsx-a11y/html-has-lang]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/html-has-lang.md
+
+The following is a partial excerpt from the [jsx-a11y/html-has-lang] rule documentation. See [original documentation][jsx-a11y/html-has-lang] for more details.
+
+> `<html>` elements must have the lang prop. This rule is largely superseded by the [`lang` rule](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/lang.md).
 
 ## :books: Further Reading
 
-- [jsx-a11y/html-has-lang](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/html-has-lang.md)
+- [jsx-a11y/html-has-lang]
 
 ## :rocket: Version
 

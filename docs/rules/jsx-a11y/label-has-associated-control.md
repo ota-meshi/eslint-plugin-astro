@@ -9,11 +9,24 @@ since: "v0.11.0"
 
 > apply `jsx-a11y/label-has-associated-control` rule to Astro components
 
-This rule is the same rule as [jsx-a11y/label-has-associated-control](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/label-has-associated-control.md) rule but it applies to the Astro components.
+This rule is the same rule as [jsx-a11y/label-has-associated-control] rule but it applies to the Astro components.
+
+[jsx-a11y/label-has-associated-control]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/label-has-associated-control.md
+
+The following is a partial excerpt from the [jsx-a11y/label-has-associated-control] rule documentation. See [original documentation][jsx-a11y/label-has-associated-control] for more details.
+
+> Enforce that a label tag has a text label and an associated control.
+>
+> There are two supported ways to associate a label with a control:
+>
+> - Wrapping a control in a label tag.
+> - Adding `htmlFor` to a label and assigning it a DOM ID string that indicates an input on the page.
+>
+> This rule checks that any `label` tag (or an indicated custom component that will output a `label` tag) either (1) wraps an `input` element (or an indicated custom component that will output an `input` tag) or (2) has an `htmlFor` attribute and that the `label` tag has text content.
 
 ## :books: Further Reading
 
-- [jsx-a11y/label-has-associated-control](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/label-has-associated-control.md)
+- [jsx-a11y/label-has-associated-control]
 
 ## :rocket: Version
 

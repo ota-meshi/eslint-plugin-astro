@@ -9,11 +9,17 @@ since: "v0.11.0"
 
 > apply `jsx-a11y/aria-props` rule to Astro components
 
-This rule is the same rule as [jsx-a11y/aria-props](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/aria-props.md) rule but it applies to the Astro components.
+This rule is the same rule as [jsx-a11y/aria-props] rule but it applies to the Astro components.
+
+[jsx-a11y/aria-props]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/aria-props.md
+
+The following is a partial excerpt from the [jsx-a11y/aria-props] rule documentation. See [original documentation][jsx-a11y/aria-props] for more details.
+
+> Elements cannot use an invalid ARIA attribute. This will fail if it finds an `aria-*` property that is not listed in [WAI-ARIA States and Properties spec](https://www.w3.org/WAI/PF/aria-1.1/states_and_properties).
 
 ## :books: Further Reading
 
-- [jsx-a11y/aria-props](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/aria-props.md)
+- [jsx-a11y/aria-props]
 
 ## :rocket: Version
 

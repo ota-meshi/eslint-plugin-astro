@@ -9,11 +9,17 @@ since: "v0.11.0"
 
 > apply `jsx-a11y/aria-proptypes` rule to Astro components
 
-This rule is the same rule as [jsx-a11y/aria-proptypes](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/aria-proptypes.md) rule but it applies to the Astro components.
+This rule is the same rule as [jsx-a11y/aria-proptypes] rule but it applies to the Astro components.
+
+[jsx-a11y/aria-proptypes]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/aria-proptypes.md
+
+The following is a partial excerpt from the [jsx-a11y/aria-proptypes] rule documentation. See [original documentation][jsx-a11y/aria-proptypes] for more details.
+
+> ARIA state and property values must be valid.
 
 ## :books: Further Reading
 
-- [jsx-a11y/aria-proptypes](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/aria-proptypes.md)
+- [jsx-a11y/aria-proptypes]
 
 ## :rocket: Version
 

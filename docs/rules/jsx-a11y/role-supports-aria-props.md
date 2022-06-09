@@ -9,11 +9,17 @@ since: "v0.11.0"
 
 > apply `jsx-a11y/role-supports-aria-props` rule to Astro components
 
-This rule is the same rule as [jsx-a11y/role-supports-aria-props](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/role-supports-aria-props.md) rule but it applies to the Astro components.
+This rule is the same rule as [jsx-a11y/role-supports-aria-props] rule but it applies to the Astro components.
+
+[jsx-a11y/role-supports-aria-props]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/role-supports-aria-props.md
+
+The following is a partial excerpt from the [jsx-a11y/role-supports-aria-props] rule documentation. See [original documentation][jsx-a11y/role-supports-aria-props] for more details.
+
+> Enforce that elements with explicit or implicit roles defined contain only `aria-*` properties supported by that `role`. Many ARIA attributes (states and properties) can only be used on elements with particular roles. Some elements have implicit roles, such as `<a href="#" />`, which will resolve to `role="link"`.
 
 ## :books: Further Reading
 
-- [jsx-a11y/role-supports-aria-props](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/role-supports-aria-props.md)
+- [jsx-a11y/role-supports-aria-props]
 
 ## :rocket: Version
 

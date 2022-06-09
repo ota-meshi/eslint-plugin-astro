@@ -9,11 +9,17 @@ since: "v0.11.0"
 
 > apply `jsx-a11y/alt-text` rule to Astro components
 
-This rule is the same rule as [jsx-a11y/alt-text](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/alt-text.md) rule but it applies to the Astro components.
+This rule is the same rule as [jsx-a11y/alt-text] rule but it applies to the Astro components.
+
+[jsx-a11y/alt-text]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/alt-text.md
+
+The following is a partial excerpt from the [jsx-a11y/alt-text] rule documentation. See [original documentation][jsx-a11y/alt-text] for more details.
+
+> Enforce that all elements that require alternative text have meaningful information to relay back to the end user. This is a critical component of accessibility for screen reader users in order for them to understand the content's purpose on the page. By default, this rule checks for alternative text on the following elements: `<img>`, `<area>`, `<input type="image">`, and `<object>`.
 
 ## :books: Further Reading
 
-- [jsx-a11y/alt-text](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/alt-text.md)
+- [jsx-a11y/alt-text]
 
 ## :rocket: Version
 

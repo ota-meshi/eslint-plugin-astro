@@ -9,11 +9,17 @@ since: "v0.11.0"
 
 > apply `jsx-a11y/role-has-required-aria-props` rule to Astro components
 
-This rule is the same rule as [jsx-a11y/role-has-required-aria-props](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/role-has-required-aria-props.md) rule but it applies to the Astro components.
+This rule is the same rule as [jsx-a11y/role-has-required-aria-props] rule but it applies to the Astro components.
+
+[jsx-a11y/role-has-required-aria-props]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/role-has-required-aria-props.md
+
+The following is a partial excerpt from the [jsx-a11y/role-has-required-aria-props] rule documentation. See [original documentation][jsx-a11y/role-has-required-aria-props] for more details.
+
+> Elements with ARIA roles must have all required attributes for that role.
 
 ## :books: Further Reading
 
-- [jsx-a11y/role-has-required-aria-props](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/role-has-required-aria-props.md)
+- [jsx-a11y/role-has-required-aria-props]
 
 ## :rocket: Version
 

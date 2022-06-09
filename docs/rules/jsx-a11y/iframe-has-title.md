@@ -9,11 +9,17 @@ since: "v0.11.0"
 
 > apply `jsx-a11y/iframe-has-title` rule to Astro components
 
-This rule is the same rule as [jsx-a11y/iframe-has-title](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/iframe-has-title.md) rule but it applies to the Astro components.
+This rule is the same rule as [jsx-a11y/iframe-has-title] rule but it applies to the Astro components.
+
+[jsx-a11y/iframe-has-title]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/iframe-has-title.md
+
+The following is a partial excerpt from the [jsx-a11y/iframe-has-title] rule documentation. See [original documentation][jsx-a11y/iframe-has-title] for more details.
+
+> `<iframe>` elements must have a unique title property to indicate its content to the user.
 
 ## :books: Further Reading
 
-- [jsx-a11y/iframe-has-title](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/iframe-has-title.md)
+- [jsx-a11y/iframe-has-title]
 
 ## :rocket: Version
 

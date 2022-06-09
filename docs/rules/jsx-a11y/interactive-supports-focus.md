@@ -9,11 +9,17 @@ since: "v0.11.0"
 
 > apply `jsx-a11y/interactive-supports-focus` rule to Astro components
 
-This rule is the same rule as [jsx-a11y/interactive-supports-focus](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/interactive-supports-focus.md) rule but it applies to the Astro components.
+This rule is the same rule as [jsx-a11y/interactive-supports-focus] rule but it applies to the Astro components.
+
+[jsx-a11y/interactive-supports-focus]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/interactive-supports-focus.md
+
+The following is a partial excerpt from the [jsx-a11y/interactive-supports-focus] rule documentation. See [original documentation][jsx-a11y/interactive-supports-focus] for more details.
+
+> Elements with an interactive role and interaction handlers (mouse or key press) must be focusable.
 
 ## :books: Further Reading
 
-- [jsx-a11y/interactive-supports-focus](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/interactive-supports-focus.md)
+- [jsx-a11y/interactive-supports-focus]
 
 ## :rocket: Version
 

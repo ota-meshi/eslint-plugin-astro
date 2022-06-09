@@ -9,11 +9,17 @@ since: "v0.11.0"
 
 > apply `jsx-a11y/img-redundant-alt` rule to Astro components
 
-This rule is the same rule as [jsx-a11y/img-redundant-alt](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/img-redundant-alt.md) rule but it applies to the Astro components.
+This rule is the same rule as [jsx-a11y/img-redundant-alt] rule but it applies to the Astro components.
+
+[jsx-a11y/img-redundant-alt]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/img-redundant-alt.md
+
+The following is a partial excerpt from the [jsx-a11y/img-redundant-alt] rule documentation. See [original documentation][jsx-a11y/img-redundant-alt] for more details.
+
+> Enforce img alt attribute does not contain the word image, picture, or photo. Screenreaders already announce `img` elements as an image. There is no need to use words such as *image*, *photo*, and/or *picture*.
 
 ## :books: Further Reading
 
-- [jsx-a11y/img-redundant-alt](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/img-redundant-alt.md)
+- [jsx-a11y/img-redundant-alt]
 
 ## :rocket: Version
 

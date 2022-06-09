@@ -9,11 +9,15 @@ since: "v0.11.0"
 
 > apply `jsx-a11y/mouse-events-have-key-events` rule to Astro components
 
-This rule is the same rule as [jsx-a11y/mouse-events-have-key-events](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/mouse-events-have-key-events.md) rule but it applies to the Astro components.
+This rule is the same rule as [jsx-a11y/mouse-events-have-key-events] rule but it applies to the Astro components.
+
+[jsx-a11y/mouse-events-have-key-events]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/mouse-events-have-key-events.md
+
+However, this rule probably doesn't work for Astro components because Astro components don't provide an event listener as syntax.
 
 ## :books: Further Reading
 
-- [jsx-a11y/mouse-events-have-key-events](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/mouse-events-have-key-events.md)
+- [jsx-a11y/mouse-events-have-key-events]
 
 ## :rocket: Version
 

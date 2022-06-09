@@ -9,11 +9,17 @@ since: "v0.11.0"
 
 > apply `jsx-a11y/aria-unsupported-elements` rule to Astro components
 
-This rule is the same rule as [jsx-a11y/aria-unsupported-elements](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/aria-unsupported-elements.md) rule but it applies to the Astro components.
+This rule is the same rule as [jsx-a11y/aria-unsupported-elements] rule but it applies to the Astro components.
+
+[jsx-a11y/aria-unsupported-elements]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/aria-unsupported-elements.md
+
+The following is a partial excerpt from the [jsx-a11y/aria-unsupported-elements] rule documentation. See [original documentation][jsx-a11y/aria-unsupported-elements] for more details.
+
+> Certain reserved DOM elements do not support ARIA roles, states and properties. This is often because they are not visible, for example `meta`, `html`, `script`, `style`. This rule enforces that these DOM elements do not contain the `role` and/or `aria-*` props.
 
 ## :books: Further Reading
 
-- [jsx-a11y/aria-unsupported-elements](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/aria-unsupported-elements.md)
+- [jsx-a11y/aria-unsupported-elements]
 
 ## :rocket: Version
 
