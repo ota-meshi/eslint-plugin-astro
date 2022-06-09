@@ -1,0 +1,22 @@
+[
+  {
+    "message": "The autoFocus prop should not be used, as it can reduce usability and accessibility for users.",
+    "line": 4,
+    "column": 6
+  },
+  {
+    "message": "The autoFocus prop should not be used, as it can reduce usability and accessibility for users.",
+    "line": 5,
+    "column": 6
+  },
+  {
+    "message": "The autoFocus prop should not be used, as it can reduce usability and accessibility for users.",
+    "line": 6,
+    "column": 6
+  },
+  {
+    "message": "The autoFocus prop should not be used, as it can reduce usability and accessibility for users.",
+    "line": 7,
+    "column": 6
+  }
+]

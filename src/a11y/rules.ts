@@ -12,6 +12,12 @@ const TYPE_MAP: Partial<Record<ASTNode["type"], ASTNode["type"]>> = {
   AstroShorthandAttribute: "JSXAttribute",
 }
 
+const ATTRIBUTE_MAP: Record<string, string | undefined> = {
+  "set:html": "dangerouslySetInnerHTML",
+  "set:text": "children",
+  autofocus: "autoFocus",
+}
+
 /** Get `eslint-plugin-jsx-a11y` rule. */
 function getPluginJsxA11yRule(ruleName: string) {
   const base = getPluginJsxA11y()
@@ -157,17 +163,12 @@ function defineWrapperListener(
 
     if (node.type === "JSXAttribute") {
       const attrName = getAttributeName(node)
-      if (attrName === "set:html") {
+      const converted = attrName != null && ATTRIBUTE_MAP[attrName]
+      if (converted) {
         cache.name = getProxyNode(node.name, {
           type: "JSXIdentifier",
           namespace: null,
-          name: "dangerouslySetInnerHTML",
-        })
-      } else if (attrName === "set:text") {
-        cache.name = getProxyNode(node.name, {
-          type: "JSXIdentifier",
-          namespace: null,
-          name: "children",
+          name: converted,
         })
       }
     }
