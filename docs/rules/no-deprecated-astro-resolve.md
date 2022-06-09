@@ -2,13 +2,13 @@
 title: "astro/no-deprecated-astro-resolve"
 description: "disallow using deprecated `Astro.resolve()`"
 setup: "import ESLintCodeBlock from '../docs-build/src/components/ESLintCodeBlockWrap.astro'"
+since: "v0.12.0"
 ---
 
 # astro/no-deprecated-astro-resolve
 
 > disallow using deprecated `Astro.resolve()`
 
-- :exclamation: <badge text="This rule has not been released yet." vertical="middle" type="error"> **_This rule has not been released yet._** </badge>
 - :gear: This rule is included in `"plugin:astro/recommended"`.
 
 ## :book: Rule Details
@@ -41,6 +41,10 @@ Nothing.
 ## :books: Further Reading
 
 - [Astro Documentation | Migration Guide > Migrate to v0.24 - Deprecated: Astro.resolve()](https://astro.build/deprecated/resolve)
+
+## :rocket: Version
+
+This rule was introduced in eslint-plugin-astro v0.12.0
 
 ## :mag: Implementation
 
