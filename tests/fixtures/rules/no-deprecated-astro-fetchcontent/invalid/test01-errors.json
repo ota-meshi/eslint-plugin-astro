@@ -1,0 +1,7 @@
+[
+  {
+    "message": "'Astro.fetchContent()' is deprecated. Use 'Astro.glob()' instead.",
+    "line": 3,
+    "column": 21
+  }
+]

@@ -1,0 +1,14 @@
+---
+/* ✗ BAD */
+const posts = await Astro.fetchContent("../pages/post/*.md")
+---
+
+<div>
+  {posts.slice(0, 3).map((post) => (
+    <article>
+      <h1>{post.frontmatter.title}</h1>
+      <p>{post.frontmatter.description}</p>
+      <a href={post.frontmatter.url}>Read more</a>
+    </article>
+  ))}
+</div>

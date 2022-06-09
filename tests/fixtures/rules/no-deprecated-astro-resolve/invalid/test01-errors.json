@@ -1,0 +1,7 @@
+[
+  {
+    "message": "'Astro.resolve()' is deprecated.",
+    "line": 6,
+    "column": 11
+  }
+]
