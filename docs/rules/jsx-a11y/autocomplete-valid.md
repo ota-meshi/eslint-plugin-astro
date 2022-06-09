@@ -9,8 +9,10 @@ since: "v0.11.0"
 
 > apply `jsx-a11y/autocomplete-valid` rule to Astro components
 
-This rule is the same rule as [jsx-a11y/autocomplete-valid] rule but it applies to the Astro components.
+This rule is the same rule as [jsx-a11y/autocomplete-valid] rule but it applies to the Astro components.  
+You must have [eslint-plugin-jsx-a11y] installed to use this rule.
 
+[eslint-plugin-jsx-a11y]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y
 [jsx-a11y/autocomplete-valid]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/autocomplete-valid.md
 
 The following is a partial excerpt from the [jsx-a11y/autocomplete-valid] rule documentation. See [original documentation][jsx-a11y/autocomplete-valid] for more details.

@@ -9,8 +9,10 @@ since: "v0.11.0"
 
 > apply `jsx-a11y/click-events-have-key-events` rule to Astro components
 
-This rule is the same rule as [jsx-a11y/click-events-have-key-events] rule but it applies to the Astro components.
+This rule is the same rule as [jsx-a11y/click-events-have-key-events] rule but it applies to the Astro components.  
+You must have [eslint-plugin-jsx-a11y] installed to use this rule.
 
+[eslint-plugin-jsx-a11y]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y
 [jsx-a11y/click-events-have-key-events]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/click-events-have-key-events.md
 
 However, this rule probably doesn't work for Astro components because Astro components don't provide an event listener as syntax.

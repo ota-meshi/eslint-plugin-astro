@@ -9,8 +9,10 @@ since: "v0.11.0"
 
 > apply `jsx-a11y/no-access-key` rule to Astro components
 
-This rule is the same rule as [jsx-a11y/no-access-key] rule but it applies to the Astro components.
+This rule is the same rule as [jsx-a11y/no-access-key] rule but it applies to the Astro components.  
+You must have [eslint-plugin-jsx-a11y] installed to use this rule.
 
+[eslint-plugin-jsx-a11y]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y
 [jsx-a11y/no-access-key]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/no-access-key.md
 
 The following is a partial excerpt from the [jsx-a11y/no-access-key] rule documentation. See [original documentation][jsx-a11y/no-access-key] for more details.
