@@ -1,36 +1,39 @@
 ---
 const animationTime = 100
 const vars: Record<string, string> = {
-  "stars-box-shadow-bg": buildBoxShadow(600, 2000),
   "stars-animation-duration": `${animationTime}s`,
 }
 const layers = Array.from({ length: 10 }, (_, i) => i + 1)
-for (let i of layers) {
-  vars[`stars-box-shadow${i}`] = buildBoxShadow(15, 1000)
-}
 
-function buildBoxShadow(count: number, size: number) {
-  let shadows = []
+function buildPoints(count: number, size: number) {
+  let points = []
   for (let index = 0; index < count; index++) {
-    const x = Math.floor(Math.random() * size - size / 2)
-    const y = Math.floor(Math.random() * size - size / 2)
-    shadows.push(`${x}px ${y}px var(--theme-star)`)
+    const x = Math.floor(Math.random() * size)
+    const y = Math.floor(Math.random() * size)
+    points.push({ x, y })
   }
-  return shadows.join(",")
+  return points
 }
 ---
 
 <div class="stars-wrapper">
   {layers.map((i) => (
-    <div
+    <svg
       class:list={["stars", "stars-layer", `stars${i}`]}
-      style={`
-        --stars-box-shadow: var(--stars-box-shadow${i});
-        --stars-animation-delay: -${(i - 1) * (animationTime / layers.length)}s;
-      `}
-    />
+      width="1000px"
+      height="1000px"
+      style={`--stars-animation-delay: -${
+        (i - 1) * (animationTime / layers.length)
+      }s;`}
+    >
+      {buildPoints(15, 1000).map(({ x, y }) => (
+        <circle cx={x} cy={y} r="1" />
+      ))}
+    </svg>
   ))}
-  <div class="stars-bg stars"></div>
+  <svg class="stars-bg stars" width="2000px" height="2000px">
+    {buildPoints(600, 2000).map(({ x, y }) => <circle cx={x} cy={y} r="0.5" />)}
+  </svg>
 </div>
 
 <style define:vars={vars}>
@@ -55,6 +58,9 @@ function buildBoxShadow(count: number, size: number) {
     }
   }
 
+  svg.stars circle {
+    fill: var(--theme-star);
+  }
   .stars {
     border-radius: 50%;
     background: transparent;
@@ -63,20 +69,17 @@ function buildBoxShadow(count: number, size: number) {
     top: 0;
     left: 0;
     pointer-events: none;
-
-    width: 2px;
-    height: 2px;
-  }
-  .stars-bg {
-    box-shadow: var(--stars-box-shadow-bg);
-    width: 1px;
-    height: 1px;
   }
   .stars-layer {
     animation: stars3d linear infinite;
     animation-duration: var(--stars-animation-duration);
-    box-shadow: var(--stars-box-shadow);
     animation-delay: var(--stars-animation-delay);
+    margin-left: -500px;
+    margin-top: -500px;
+  }
+  .stars-bg {
+    margin-left: -1000px;
+    margin-top: -1000px;
   }
   @keyframes stars3d {
     from {
