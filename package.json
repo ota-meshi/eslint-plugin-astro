@@ -37,6 +37,7 @@
     "astrojs"
   ],
   "author": "Yosuke Ota (https://github.com/ota-meshi)",
+  "funding": "https://github.com/sponsors/ota-meshi",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ota-meshi/eslint-plugin-astro/issues"
