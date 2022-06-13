@@ -39,11 +39,18 @@ export const OPEN_GRAPH = {
 //   apiKey: 'XXXXXXXXXX',
 // }
 
-export const SIDEBAR = {
+export const SIDEBAR: {
+  en: {
+    text: string
+    link?: string
+    header?: boolean
+    ignorePageNav?: boolean
+  }[]
+} = {
   en: [
     { text: "Introduction", link: "" },
     { text: "User Guide", link: "user-guide/" },
-    { text: "Demo", link: "playground/" },
+    { text: "Demo", link: "playground/", ignorePageNav: true },
     { text: "Rules", link: "rules/" },
     ...categories.flatMap((category) => {
       const categoryRules = rules.filter(

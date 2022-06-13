@@ -16,7 +16,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ["PageContent.astro", "RightSidebar.astro", "MainLayout.astro"],
+      files: ["RightSidebar.astro", "MainLayout.astro"],
       rules: {
         "prettier/prettier": "off", // TODO
       },

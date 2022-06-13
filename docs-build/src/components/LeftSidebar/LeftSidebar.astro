@@ -2,7 +2,9 @@
 import { SIDEBAR } from "../../config.ts"
 const baseUrl = import.meta.env.BASE_URL
 const { currentPage } = Astro.props
-const currentPageMatch = currentPage.slice(1)
+const currentPageMatch = currentPage
+  .replace(baseUrl, "")
+  .replace(/([^/])$/gu, "$1/")
 // SIDEBAR is a flat array. Group it by sections to properly render.
 const sidebarSections = SIDEBAR.en.reduce((col, item, i) => {
   // If the first item is not a section header, create a new container section.

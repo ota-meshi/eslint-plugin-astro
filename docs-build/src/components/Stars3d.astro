@@ -26,7 +26,7 @@ function buildPoints(count: number, size: number) {
         (i - 1) * (animationTime / layers.length)
       }s;`}
     >
-      {buildPoints(15, 1000).map(({ x, y }) => (
+      {buildPoints(30, 1000).map(({ x, y }) => (
         <circle cx={x} cy={y} r="1" />
       ))}
     </svg>
