@@ -39,8 +39,6 @@ function setupDocs() {
     data.markdownPath = `${to}`
     const newFrontmatter = `---
 ${dump(data)}---
-
-<!-- markdownPath: ${to} -->
 `
     const pageContent = frontmatter
       ? content.replace(/^---\n[\s\S]*?\n---\n/u, newFrontmatter)

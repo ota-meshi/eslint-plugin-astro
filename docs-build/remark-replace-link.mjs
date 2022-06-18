@@ -11,13 +11,7 @@ export default (options = {}) => {
       options.srcDir ? options.srcDir : "./src",
     )
     const pagesDir = path.join(srcDir, "pages")
-    let markdownPath
-    visit(tree, "mdxFlowExpression", (node, _i, parent) => {
-      if (node.value.startsWith("/*<!-- markdownPath:")) {
-        markdownPath = node.value.slice(20, -5).trim()
-        parent.children.splice(parent.children.indexOf(node), 1)
-      }
-    })
+    const markdownPath = file.path
     if (markdownPath) {
       visit(tree, ["link", "definition"], (node) => {
         if (node.url.startsWith(".")) {
