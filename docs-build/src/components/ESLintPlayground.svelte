@@ -161,7 +161,17 @@ let b: number = 1;
             es2021: true,
           },
           globals: {
+            // Astro object
             Astro: false,
+            // JSX Fragment
+            Fragment: false,
+
+            // Markdown properties
+            Layout: false,
+            frontmatter: false,
+            metadata: false,
+            rawContent: false,
+            compiledContent: false,
           },
         }}
         {options}
