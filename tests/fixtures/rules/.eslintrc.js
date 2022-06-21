@@ -32,7 +32,6 @@ module.exports = {
     "one-var": "off",
     "func-style": "off",
 
-    // eslint-disable-next-line node/no-unsupported-features/es-syntax, node/no-unsupported-features/es-builtins -- ignore
     ...Object.fromEntries(
       Object.keys(allConfig.rules).map((ruleId) => [ruleId, "off"]),
     ),
