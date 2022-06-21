@@ -29,7 +29,6 @@
   export let fix = false
   let time = ""
   let options = {
-    filename: "example.astro",
     preprocess,
     postprocess,
   }
@@ -57,6 +56,7 @@
   <ESLintEditor
     {linter}
     bind:code
+    filePath="exxample.astro"
     config={{
       parser: "astro-auto-eslint-parser",
       parserOptions: {
