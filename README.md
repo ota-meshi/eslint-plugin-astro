@@ -226,7 +226,7 @@ module.exports = {
     {
       // Define the configuration for `.md` file.
       files: ["*.md"],
-      // Allows Astro components to be parsed.
+      // Allows Astro Markdown pages to be parsed.
       parser: "astro-eslint-parser",
       // Parse the script in `.md` as TypeScript by adding the following configuration.
       // It's the setting you need when using TypeScript.
