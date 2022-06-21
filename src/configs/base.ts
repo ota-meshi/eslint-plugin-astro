@@ -1,3 +1,5 @@
+import { hasTypescriptEslintParser } from "./has-typescript-eslint-parser"
+
 export = {
   plugins: ["astro"],
   overrides: [
@@ -16,14 +18,16 @@ export = {
       parser: require.resolve("astro-eslint-parser"),
       // Parse the script in `.astro` as TypeScript by adding the following configuration.
       parserOptions: {
-        parser: "@typescript-eslint/parser",
+        parser: hasTypescriptEslintParser
+          ? "@typescript-eslint/parser"
+          : undefined,
         extraFileExtensions: [".astro"],
         // The script of Astro components uses ESM.
         sourceType: "module",
       },
       rules: {
         // eslint-plugin-astro rules
-        // Enable recommended rules
+        // Enable base rules
       },
     },
     {
