@@ -194,7 +194,22 @@ See [the rule list](https://ota-meshi.github.io/eslint-plugin-astro/rules/) to g
 
 See [https://github.com/ota-meshi/astro-eslint-parser#readme](https://github.com/ota-meshi/astro-eslint-parser#readme).
 
-#### Support for Markdown Pages
+### Running ESLint from the command line
+
+If you want to run `eslint` from the command line, make sure you include the `.astro` extension using [the `--ext` option](https://eslint.org/docs/user-guide/configuring#specifying-file-extensions-to-lint) or a glob pattern, because ESLint targets only `.js` files by default.
+
+Examples:
+
+```bash
+eslint --ext .js,.astro src
+eslint "src/**/*.{js,astro}"
+```
+
+If you also want to [target markdown](#support-for-markdown-pages), you need to add `*.md`.
+
+## :books: Advanced Usage
+
+### Support for Markdown Pages
 
 If you want to check [Markdown Pages] in the same way as the Astro component, you need to use the `"plugin:astro/base-for-markdown"` configuration.
 
@@ -244,19 +259,6 @@ module.exports = {
 }
 ```
 
-### Running ESLint from the command line
-
-If you want to run `eslint` from the command line, make sure you include the `.astro` extension using [the `--ext` option](https://eslint.org/docs/user-guide/configuring#specifying-file-extensions-to-lint) or a glob pattern, because ESLint targets only `.js` files by default.
-
-Examples:
-
-```bash
-eslint --ext .js,.astro src
-eslint "src/**/*.{js,astro}"
-```
-
-If you also want to target markdown, you need to add `*.md`.
-
 ## :computer: Editor Integrations
 
 ### Visual Studio Code
@@ -279,7 +281,7 @@ Example **.vscode/settings.json**:
 }
 ```
 
-If you also want to target markdown, you need to add `markdown`.
+If you also want to [target markdown](#support-for-markdown-pages), you need to add `markdown`.
 
 <!--USAGE_GUIDE_END-->
 <!--USAGE_SECTION_END-->

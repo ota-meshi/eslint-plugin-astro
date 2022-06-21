@@ -149,7 +149,22 @@ See [the rule list](./rules.md) to get the `rules` that this plugin provides.
 
 See [https://github.com/ota-meshi/astro-eslint-parser#readme](https://github.com/ota-meshi/astro-eslint-parser#readme).
 
-#### Support for Markdown Pages
+### Running ESLint from the command line
+
+If you want to run `eslint` from the command line, make sure you include the `.astro` extension using [the `--ext` option](https://eslint.org/docs/user-guide/configuring#specifying-file-extensions-to-lint) or a glob pattern, because ESLint targets only `.js` files by default.
+
+Examples:
+
+```bash
+eslint --ext .js,.astro src
+eslint "src/**/*.{js,astro}"
+```
+
+If you also want to [target markdown](#support-for-markdown-pages), you need to add `*.md`.
+
+## :books: Advanced Usage
+
+### Support for Markdown Pages
 
 If you want to check [Markdown Pages] in the same way as the Astro component, you need to use the `"plugin:astro/base-for-markdown"` configuration.
 
@@ -181,7 +196,7 @@ module.exports = {
     {
       // Define the configuration for `.md` file.
       files: ["*.md"],
-      // Allows Astro components to be parsed.
+      // Allows Astro Markdown pages to be parsed.
       parser: "astro-eslint-parser",
       // Parse the script in `.md` as TypeScript by adding the following configuration.
       // It's the setting you need when using TypeScript.
@@ -198,19 +213,6 @@ module.exports = {
   ],
 }
 ```
-
-### Running ESLint from the command line
-
-If you want to run `eslint` from the command line, make sure you include the `.astro` extension using [the `--ext` option](https://eslint.org/docs/user-guide/configuring#specifying-file-extensions-to-lint) or a glob pattern, because ESLint targets only `.js` files by default.
-
-Examples:
-
-```bash
-eslint --ext .js,.astro src
-eslint "src/**/*.{js,astro}"
-```
-
-If you also want to target markdown, you need to add `*.md`.
 
 ## :computer: Editor Integrations
 
@@ -234,7 +236,7 @@ Example **.vscode/settings.json**:
 }
 ```
 
-If you also want to target markdown, you need to add `markdown`.
+If you also want to [target markdown](#support-for-markdown-pages), you need to add `markdown`.
 
 <!--USAGE_GUIDE_END-->
 
