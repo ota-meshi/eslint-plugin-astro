@@ -1,0 +1,10 @@
+---
+const color = "rgb(221 243 228)"
+---
+
+<style define:vars={{ color }}>
+  h1 {
+    color: var(--color, white);
+  }
+</style>
+<h1>Hello</h1>

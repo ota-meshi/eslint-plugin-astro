@@ -12,6 +12,7 @@ const APOSTROPHE = 0x27 // '
 const LEFT_PARENTHESIS = 0x28 // (
 const RIGHT_PARENTHESIS = 0x29 // )
 const ASTERISK = 0x2a // *
+const COMMA = 0x2c // ,
 const SOLIDUS = 0x2f // /
 const COLON = 0x3a // :
 const SEMICOLON = 0x3b // ;
@@ -338,6 +339,7 @@ function isPunctuator(cp: number): boolean {
   return (
     cp === COLON ||
     cp === SEMICOLON ||
+    cp === COMMA ||
     // Brackets
     cp === LEFT_PARENTHESIS ||
     cp === RIGHT_PARENTHESIS ||
