@@ -9,6 +9,7 @@
   export let code = ""
   export let config = {}
   export let options = {}
+  export let filePath = "Example.astro"
   export let fix = true
   export let showDiff = true
 
@@ -25,13 +26,20 @@
     }
   }
 
+  $: language = filePath?.endsWith(".md") ? "markdown" : "astro"
   $: showApplyFix = fix && fixedValue !== code
   $: {
-    lint(linter, code, config, options)
+    lint(linter, code, config, {
+      ...options,
+      filename: options.filename || filePath,
+    })
   }
 
   onMount(() => {
-    lint(linter, code, config, options)
+    lint(linter, code, config, {
+      ...options,
+      filename: options.filename || filePath,
+    })
   })
 
   async function lint(linter, code, config, options) {
@@ -221,7 +229,7 @@
     bind:this={editor}
     bind:code
     bind:rightCode={fixedValue}
-    language="astro"
+    {language}
     diffEditor={fix && showDiff}
     markers={leftMarkers}
     {rightMarkers}

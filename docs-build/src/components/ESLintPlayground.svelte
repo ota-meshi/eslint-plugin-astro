@@ -48,6 +48,7 @@ let b: number = 1;
 <` +
     `/script>
 `
+  const DEFAULT_FILE_PATH = "Example.astro"
 
   const state = deserializeState(
     (typeof window !== "undefined" && window.location.hash.slice(1)) || "",
@@ -57,10 +58,10 @@ let b: number = 1;
   let messages = []
   let time = ""
   let options = {
-    filename: "example.astro",
     preprocess,
     postprocess,
   }
+  let filePath = state.filePath || DEFAULT_FILE_PATH
   let editor
 
   $: serializedString = (() => {
@@ -68,9 +69,12 @@ let b: number = 1;
     const serializeRules = equalsRules(DEFAULT_RULES_CONFIG, rules)
       ? undefined
       : rules
+    const serializeFilePath =
+      filePath === DEFAULT_FILE_PATH ? undefined : filePath
     return serializeState({
       code: serializeCode,
       rules: serializeRules,
+      filePath: serializeFilePath,
     })
   })()
   $: {
@@ -89,6 +93,7 @@ let b: number = 1;
       const state = deserializeState(newSerializedString)
       code = state.code || DEFAULT_CODE
       rules = state.rules || Object.assign({}, DEFAULT_RULES_CONFIG)
+      filePath = state.filePath || DEFAULT_FILE_PATH
     }
   }
 
@@ -130,7 +135,10 @@ let b: number = 1;
 
 <div class="playground-root">
   <div class="playground-tools">
-    <span style:margin-left="16px">{time}</span>
+    <label style="margin-left: 16px"
+      >FileName<input bind:value={filePath} /></label
+    >
+    <span style="margin-left: auto; margin-right: 16px">{time}</span>
   </div>
   <div class="playground-content">
     <RulesSettings bind:rules />
@@ -139,6 +147,7 @@ let b: number = 1;
         bind:this={editor}
         {linter}
         bind:code
+        {filePath}
         config={{
           parser: "astro-auto-eslint-parser",
           parserOptions: {
@@ -190,7 +199,7 @@ let b: number = 1;
   }
   .playground-tools {
     height: 24px;
-    text-align: end;
+    display: flex;
   }
   .playground-content {
     display: flex;

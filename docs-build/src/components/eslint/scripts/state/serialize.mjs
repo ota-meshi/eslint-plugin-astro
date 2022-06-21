@@ -23,7 +23,7 @@ export function serializeState(state) {
   const saveData = {
     code: state.code,
     rules: state.rules ? getEnabledRules(state.rules) : undefined,
-    useEslintPluginSvelte3: state.useEslintPluginSvelte3,
+    filePath: state.filePath,
   }
   const jsonString = JSON.stringify(saveData)
 
