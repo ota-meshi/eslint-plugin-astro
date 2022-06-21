@@ -5,7 +5,11 @@ import { formatAndSave } from "./lib/utils"
 const baseRules = rules.filter(
   (rule) => rule.meta.docs.recommended === "base" && !rule.meta.deprecated,
 )
-const baseContent = `export = {
+void formatAndSave(
+  path.resolve(__dirname, "../src/configs/base.ts"),
+  `import { hasTypescriptEslintParser } from "./has-typescript-eslint-parser"
+
+export = {
   plugins: ["astro"],
   overrides: [
     {
@@ -23,14 +27,16 @@ const baseContent = `export = {
       parser: require.resolve("astro-eslint-parser"),
       // Parse the script in \`.astro\` as TypeScript by adding the following configuration.
       parserOptions: {
-        parser: "@typescript-eslint/parser",
+        parser: hasTypescriptEslintParser
+          ? "@typescript-eslint/parser"
+          : undefined,
         extraFileExtensions: [".astro"],
         // The script of Astro components uses ESM.
         sourceType: "module",
       },
       rules: {
         // eslint-plugin-astro rules
-        // Enable recommended rules
+        // Enable base rules
         ${baseRules
           .map((rule) => {
             const conf = rule.meta.docs.default || "error"
@@ -58,18 +64,63 @@ const baseContent = `export = {
     },
   ],
 }
-`
+`,
+)
 
-const baseFilePath = path.resolve(__dirname, "../src/configs/base.ts")
+void formatAndSave(
+  path.resolve(__dirname, "../src/configs/base-for-markdown.ts"),
+  `import { hasTypescriptEslintParser } from "./has-typescript-eslint-parser"
 
-// Update file.
-void formatAndSave(baseFilePath, baseContent)
+export = {
+  plugins: ["astro"],
+  overrides: [
+    {
+      // Define the configuration for \`.md\` file.
+      files: ["*.md"],
+      // Enable this plugin
+      plugins: ["astro"],
+      env: {
+        // Enables global variables available in Astro Markdown pages.
+        node: true,
+        "astro/markdown": true,
+        es2020: true,
+      },
+      // Allows Astro Markdown pages to be parsed.
+      parser: require.resolve("astro-eslint-parser"),
+      // Parse the script in \`.md\` as TypeScript by adding the following configuration.
+      parserOptions: {
+        parser: hasTypescriptEslintParser
+          ? "@typescript-eslint/parser"
+          : undefined,
+        extraFileExtensions: [".md"],
+        // The script of Astro Markdown pages uses ESM.
+        sourceType: "module",
+      },
+      rules: {
+        // Turn off rules that are incompatible with markdown
+        indent: "off",
+        // eslint-plugin-astro rules
+        // Enable base rules
+        ${baseRules
+          .map((rule) => {
+            const conf = rule.meta.docs.default || "error"
+            return `"${rule.meta.docs.ruleId}": "${conf}"`
+          })
+          .join(",\n        ")}
+      },
+    },
+  ],
+}
+`,
+)
 
 const recommendedRules = rules.filter(
   (rule) => rule.meta.docs.recommended && !rule.meta.deprecated,
 )
 
-const recommendedContent = `import path from "path"
+void formatAndSave(
+  path.resolve(__dirname, "../src/configs/recommended.ts"),
+  `import path from "path"
 const base = require.resolve("./base")
 const baseExtend =
   path.extname(\`\${base}\`) === ".ts" ? "plugin:astro/base" : base
@@ -85,12 +136,5 @@ export = {
       .join(",\n    ")}
   },
 }
-`
-
-const recommendedFilePath = path.resolve(
-  __dirname,
-  "../src/configs/recommended.ts",
+`,
 )
-
-// Update file.
-void formatAndSave(recommendedFilePath, recommendedContent)
