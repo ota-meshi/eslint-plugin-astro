@@ -6,6 +6,16 @@ body:
     attributes:
       value: |
         Thanks for taking the time to fill out this bug report!
+  - type: checkboxes
+    id: sanity-checks
+    attributes:
+      label: Before You File a Bug Report Please Confirm You Have Done The Following...
+      description: If any of these required steps are not taken, we may not be able to review your issue. Help us to help you!
+      options:
+        - label: I have tried restarting my IDE and the issue persists.
+          required: true
+        - label: I have updated to the latest version of the packages.
+          required: true
   - type: input
     id: eslint-version
     attributes:
