@@ -26,6 +26,7 @@
     setLeftMarkers,
     setRightMarkers,
     getLeftEditor,
+    getRightEditor,
     codeActionProviderDisposable
   const loadingMonaco = loadMonacoEditor()
   const starting = appStarting
@@ -52,6 +53,8 @@
     }
   }
   $: {
+    // eslint-disable-next-line no-unused-expressions -- reactive
+    language
     disposeCodeActionProvider()
     if (provideCodeActions) {
       loadingMonaco.then((monaco) => {
@@ -71,6 +74,18 @@
             },
           })
       })
+    }
+  }
+  $: {
+    // eslint-disable-next-line no-unused-expressions -- reactive
+    language
+    // Set the language to the current editors.
+    for (const editor of [getLeftEditor?.(), getRightEditor?.()]) {
+      if (editor != null) {
+        loadingMonaco.then((monaco) => {
+          monaco.editor.setModelLanguage(editor.getModel(), language)
+        })
+      }
     }
   }
 
@@ -136,6 +151,7 @@
         updateMarkers(rightEditor, markers)
       }
       getLeftEditor = () => leftEditor
+      getRightEditor = () => rightEditor
 
       setLeftMarkers(markers)
       setRightMarkers(rightMarkers)
@@ -167,6 +183,7 @@
         /* noop */
       }
       getLeftEditor = () => editor
+      getRightEditor = () => null
 
       setLeftMarkers(markers)
     }

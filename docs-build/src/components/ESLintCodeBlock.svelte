@@ -28,7 +28,7 @@
   export let rules = {}
   export let fix = false
   let time = ""
-  let options = {
+  let optionsForAstro = {
     preprocess,
     postprocess,
   }
@@ -73,7 +73,7 @@
         Astro: false,
       },
     }}
-    {options}
+    options={optionsForAstro}
     on:result={onLintedResult}
     showDiff={showDiff && fix}
   />

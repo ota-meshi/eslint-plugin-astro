@@ -57,7 +57,7 @@ let b: number = 1;
   let rules = state.rules || Object.assign({}, DEFAULT_RULES_CONFIG)
   let messages = []
   let time = ""
-  let options = {
+  let optionsForAstro = {
     preprocess,
     postprocess,
   }
@@ -174,7 +174,7 @@ let b: number = 1;
             compiledContent: false,
           },
         }}
-        {options}
+        options={filePath?.endsWith(".md") ? {} : optionsForAstro}
         on:result={onLintedResult}
       />
       <div class="messages">

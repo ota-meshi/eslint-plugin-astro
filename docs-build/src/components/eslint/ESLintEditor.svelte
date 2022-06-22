@@ -51,7 +51,6 @@
     }
     code = await code
     config = await config
-    options = await options
     /* eslint-enable no-param-reassign -- ignore */
 
     const start = Date.now()
