@@ -69,7 +69,7 @@ body:
       label: Link to Minimal Reproducible Example
       description: |
         Create a minimal reproduction of the problem. **A minimal reproduction is required** so that others can help debug your issue. If a report is vague (e.g. just a generic error message) and has no reproduction, it may be closed.  
-        You can also use the [Online Demo](https://ota-meshi.github.io/eslint-plugin-astro/playground/).
+        [Why Reproductions are Required](https://antfu.me/posts/why-reproductions-are-required)
       placeholder: |
         https://github.com/[your]/[repo]
         or
