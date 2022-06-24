@@ -293,6 +293,8 @@ If you also want to [target markdown](#support-for-markdown-pages), you need to 
 The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) automatically fixes problems reported by rules which have a wrench :wrench: below.  
 The rules with the following star :star: are included in the `plugin:astro/recommended` configs.
 
+> Doesn't the rule you want exist? [Share your idea of that rule with us](https://github.com/ota-meshi/eslint-plugin-astro/issues/new?template=new_rule_request.yml).
+
 <!--RULES_TABLE_START-->
 
 ## Possible Errors
