@@ -72,7 +72,7 @@ module.exports = {
     },
     {
       files: ["*.svelte"],
-      extends: ["plugin:@ota-meshi/svelte/recommended"],
+      extends: ["plugin:svelte/recommended"],
     },
     {
       files: ["*.ts"],
