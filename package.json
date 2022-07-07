@@ -14,19 +14,21 @@
     "build": "npm run build:ts",
     "build:ts": "tsc --project ./tsconfig.build.json",
     "clean": "rimraf lib .nyc_output dist coverage",
-    "test": "mocha --require ts-node/register \"tests/src/**/*.ts\" --reporter dot --timeout 60000",
+    "test": "npm run mocha -- \"tests/src/**/*.ts\" --reporter dot --timeout 60000",
     "cover": "nyc --reporter=lcov npm run test",
-    "debug": "mocha --require ts-node/register/transpile-only \"tests/src/**/*.ts\" --reporter dot --timeout 60000",
+    "debug": "npm run mocha -- \"tests/src/**/*.ts\" --reporter dot --timeout 60000",
     "lint": "eslint .",
     "eslint-fix": "eslint . --fix",
-    "update": "ts-node --transpile-only ./tools/update.ts",
-    "new": "ts-node --transpile-only ./tools/new-rule.ts",
+    "update": "npm run ts -- ./tools/update.ts",
+    "new": "npm run ts -- ./tools/new-rule.ts",
     "docs:dev": "astro dev",
     "docs:build": "patch-package && astro build",
     "docs:setup": "node ./docs-build/setup-docs.mjs",
     "docs:preview": "astro preview",
     "preversion": "npm test && git add .",
-    "version": "env-cmd -e version npm run update && git add ."
+    "version": "env-cmd -e version npm run update && git add .",
+    "ts": "node -r esbuild-register",
+    "mocha": "npm run ts -- ./node_modules/mocha/bin/mocha.js"
   },
   "repository": {
     "type": "git",
@@ -76,6 +78,7 @@
     "astro": "^1.0.0-beta.35",
     "env-cmd": "^10.1.0",
     "esbuild": "^0.14.41",
+    "esbuild-register": "^3.3.3",
     "eslint": "^8.15.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-astro": "^0.14.0",
@@ -107,7 +110,6 @@
     "sass": "^1.52.2",
     "stylus": "^0.58.1",
     "svelte": "^3.48.0",
-    "ts-node": "^10.8.2",
     "typescript": "^4.6.4"
   }
 }

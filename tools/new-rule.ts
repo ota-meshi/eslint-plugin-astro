@@ -130,7 +130,7 @@ This rule reports ???.
   // eslint-disable-next-line no-console -- ignore
   console.log(`Test Command:
 
-${yellow}npx mocha --require ts-node/register/transpile-only "tests/**/${ruleId}.ts" --reporter dot --timeout 60000${reset}
+${yellow}npm run test -- -g ${ruleId}${reset}
 
 `)
 })(process.argv[2])
