@@ -22,8 +22,9 @@ async function setup() {
   if (typeof globalThis.process !== "undefined") {
     bkProcess = globalThis.process
   }
+  // eslint-disable-next-line node/no-unsupported-features/es-syntax -- Demo
   const { default: Go } = await import(
-    "../../node_modules/@astrojs/compiler/browser/wasm_exec.js"
+    "../../node_modules/@astrojs/compiler/browser/wasm_exec"
   )
   // Adjust process object
   if (bkProcess) {
@@ -36,6 +37,7 @@ async function setup() {
     process.hrtime = () => Date.now()
   }
   const go = new Go()
+  // eslint-disable-next-line node/no-unsupported-features/es-syntax, node/no-missing-import -- Demo
   const { default: wasmURL } = await import("@astrojs/compiler/astro.wasm?url")
   const wasmBuffer = await fetch(wasmURL).then((res) => res.arrayBuffer())
 

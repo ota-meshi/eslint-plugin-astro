@@ -1,3 +1,4 @@
+// eslint-disable-next-line node/no-extraneous-import -- Demo
 import { fromMarkdown } from "mdast-util-from-markdown"
 
 /**

@@ -85,9 +85,13 @@ export async function loadMonacoEditor() {
     (scope.editorLoaded = new Promise((resolve) => {
       if (typeof window !== "undefined") {
         // @ts-ignore
-        window.require(["vs/editor/editor.main"], (r) => {
-          resolve(r)
-        })
+        window.require(
+          // eslint-disable-next-line node/no-missing-require -- Demo
+          ["vs/editor/editor.main"],
+          (r) => {
+            resolve(r)
+          },
+        )
       }
     }))
   )
