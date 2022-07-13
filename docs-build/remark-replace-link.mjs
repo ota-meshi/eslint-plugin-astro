@@ -1,9 +1,10 @@
+// eslint-disable-next-line node/no-extraneous-import -- Site
 import { visit } from "unist-util-visit"
 import path from "path"
 
 export default (options = {}) => {
   const base =
-    // eslint-disable-next-line no-process-env -- ignore
+    // eslint-disable-next-line no-process-env -- Site
     (process?.env?.NODE_ENV === "production" ? options.base : "") || ""
   return (tree, file) => {
     const srcDir = path.resolve(
