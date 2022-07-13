@@ -1,7 +1,8 @@
 import fs from "fs"
 import path from "path"
 import { URL } from "url"
-import "./build-system/build"
+// eslint-disable-next-line node/file-extension-in-import -- Site script
+import "./build-system/build.js"
 import { load, dump } from "js-yaml"
 
 const dirname = path.dirname(new URL(import.meta.url).pathname)
