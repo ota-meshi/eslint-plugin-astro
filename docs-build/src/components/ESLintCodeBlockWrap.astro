@@ -4,5 +4,5 @@ const props = Astro.props
 ---
 
 <ESLintCodeBlock client:only="svelte" fix={props.fix || false} rules={{}}>
-  <slot></slot>
+  <slot />
 </ESLintCodeBlock>

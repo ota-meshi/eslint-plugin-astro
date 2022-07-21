@@ -49,7 +49,7 @@ const sidebarIndex = sidebarSections.findIndex(
         <TableOfContents client:media="(max-width: 50em)" headers={headers} />
       </nav>
     )}
-    <slot></slot>
+    <slot />
   </section>
   {sidebarIndex >= 0 && (
     <div class="page-nav">
