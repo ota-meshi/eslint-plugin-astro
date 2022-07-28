@@ -6,7 +6,7 @@ export interface Props {
   canonicalURL: URL | string
 }
 const { content = {}, canonicalURL } = Astro.props
-const title = content.title || content?.astro?.headers?.[0]?.text
+const title = content.title || content?.astro?.headings?.[0]?.text
 const formattedContentTitle =
   title && title !== SITE.title ? `${title} 🚀 ${SITE.title}` : SITE.title
 const description = content.description ? content.description : SITE.description

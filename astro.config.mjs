@@ -32,6 +32,9 @@ export default defineConfig({
       ],
     ],
   },
+  legacy: {
+    astroFlavoredMarkdown: true,
+  },
   vite: {
     server: {
       fs: { strict: false },

@@ -5,7 +5,7 @@ import TableOfContents from "../RightSidebar/TableOfContents.svelte"
 
 const { content, githubEditUrl, hiddenRight, hiddenTOC } = Astro.props
 const title = content.title
-const headers = content?.astro?.headers
+const headings = content?.astro?.headings
 const baseUrl = import.meta.env.BASE_URL
 const currentPage = new URL(Astro.request.url).pathname
 const currentPageMatch = currentPage
@@ -39,14 +39,14 @@ const sidebarIndex = sidebarSections.findIndex(
   class:list={["content", { "hidden-right": hiddenRight, hiddenTOC }]}
 >
   <section class="main-section">
-    {title !== content?.astro?.headers?.[0]?.text && (
+    {title !== content?.astro?.headings?.[0]?.text && (
       <h1 class="content-title" id="overview">
         {title}
       </h1>
     )}
     {!hiddenTOC && (
       <nav class="block sm:hidden">
-        <TableOfContents client:media="(max-width: 50em)" headers={headers} />
+        <TableOfContents client:media="(max-width: 50em)" headings={headings} />
       </nav>
     )}
     <slot />
