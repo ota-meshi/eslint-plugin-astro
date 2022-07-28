@@ -31,7 +31,6 @@ async function setup() {
     // eslint-disable-next-line require-atomic-updates -- ignore
     globalThis.process = bkProcess
   } else {
-    // eslint-disable-next-line no-process-env -- ignore
     process.env = {}
     process.cwd = () => ""
     process.hrtime = () => Date.now()

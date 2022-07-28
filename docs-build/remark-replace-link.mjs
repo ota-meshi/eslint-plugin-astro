@@ -4,7 +4,6 @@ import path from "path"
 
 export default (options = {}) => {
   const base =
-    // eslint-disable-next-line no-process-env -- Site
     (process?.env?.NODE_ENV === "production" ? options.base : "") || ""
   return (tree, file) => {
     const srcDir = path.resolve(
