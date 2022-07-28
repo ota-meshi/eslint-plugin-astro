@@ -3,7 +3,8 @@ import "../styles/theme.css"
 import "../styles/index.css"
 import "../styles/components.css"
 
-const baseUrl = import.meta.env.BASE_URL
+const baseUrl =
+  process.env.NODE_ENV === "development" ? "/" : import.meta.env.BASE_URL
 ---
 
 <!-- Global Metadata -->

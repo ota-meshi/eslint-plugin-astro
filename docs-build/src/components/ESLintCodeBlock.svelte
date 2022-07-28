@@ -40,7 +40,13 @@
 
   let slotRoot
   onMount(() => {
-    code = slotRoot.textContent.trim()
+    let lines = []
+    for (const line of slotRoot.querySelectorAll(
+      ".code-container code > .line",
+    )) {
+      lines.push(line.textContent)
+    }
+    code = lines.join("\n").trim()
   })
   $: blockHeight = `${Math.max(
     120,

@@ -1,7 +1,6 @@
 ---
 title: "astro/prefer-object-class-list"
 description: "require use object instead of ternary expression in `class:list`"
-setup: "import ESLintCodeBlock from '../docs-build/src/components/ESLintCodeBlockWrap.astro'"
 since: "v0.4.0"
 ---
 

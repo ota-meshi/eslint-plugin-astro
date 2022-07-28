@@ -11,6 +11,7 @@ module.exports = {
   },
   rules: {
     "require-jsdoc": "off",
+    "no-process-env": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/unbound-method": "off",
   },

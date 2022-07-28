@@ -1,7 +1,6 @@
 ---
 title: "astro/no-unused-define-vars-in-style"
 description: "disallow unused `define:vars={...}` in `style` tag"
-setup: "import ESLintCodeBlock from '../docs-build/src/components/ESLintCodeBlockWrap.astro'"
 since: "v0.6.0"
 ---
 

@@ -212,8 +212,6 @@ ${
     const fileIntro = {
       title: ruleId,
       description,
-      setup:
-        "import ESLintCodeBlock from '../docs-build/src/components/ESLintCodeBlockWrap.astro'",
       ...(this.since ? { since: this.since } : {}),
     }
     const computed = `---\n${Object.keys(fileIntro)

@@ -1,7 +1,6 @@
 ---
 title: "astro/no-deprecated-astro-canonicalurl"
 description: "disallow using deprecated `Astro.canonicalURL`"
-setup: "import ESLintCodeBlock from '../docs-build/src/components/ESLintCodeBlockWrap.astro'"
 since: "v0.16.0"
 ---
 
@@ -29,6 +28,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 /* ✗ BAD */
 const canonicalURL = Astro.canonicalURL;
 ---
+
+{canonicalURL}
 ```
 
 </ESLintCodeBlock>
