@@ -24,10 +24,10 @@ This rule reports use of deprecated `Astro.fetchContent()`.
 ---
 /* eslint astro/no-deprecated-astro-fetchcontent: "error" */
 
-{/* ✓ GOOD */}
+/* ✓ GOOD */
 const posts = await Astro.glob('../pages/post/*.md');
 
-{/* ✗ BAD */}
+/* ✗ BAD */
 const posts_bad = await Astro.fetchContent('../pages/post/*.md');
 ---
 

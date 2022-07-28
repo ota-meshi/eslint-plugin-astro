@@ -1,0 +1,7 @@
+[
+  {
+    "message": "'Astro.canonicalURL' is deprecated. Use 'Astro.url' helper instead.",
+    "line": 3,
+    "column": 22
+  }
+]
