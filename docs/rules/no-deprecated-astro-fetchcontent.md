@@ -1,7 +1,6 @@
 ---
 title: "astro/no-deprecated-astro-fetchcontent"
 description: "disallow using deprecated `Astro.fetchContent()`"
-setup: "import ESLintCodeBlock from '../docs-build/src/components/ESLintCodeBlockWrap.astro'"
 since: "v0.12.0"
 ---
 

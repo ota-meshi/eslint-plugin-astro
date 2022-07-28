@@ -1,7 +1,6 @@
 ---
 title: "astro/no-set-text-directive"
 description: "disallow use of `set:text`"
-setup: "import ESLintCodeBlock from '../docs-build/src/components/ESLintCodeBlockWrap.astro'"
 since: "v0.2.0"
 ---
 

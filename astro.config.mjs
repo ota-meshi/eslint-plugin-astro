@@ -2,12 +2,15 @@
 import { defineConfig } from "astro/config"
 // eslint-disable-next-line node/no-missing-import -- Site
 import svelte from "@astrojs/svelte"
+// eslint-disable-next-line node/no-missing-import -- Site
+import mdx from "@astrojs/mdx"
 import emoji from "remark-emoji"
 import gfm from "remark-gfm"
 import replaceLink from "./docs-build/remark-replace-link.mjs"
 import "./docs-build/setup-docs.mjs"
 import path from "path"
 import { URL } from "url"
+import rehypeCollectHeadings from "./docs-build/rehype-collect-headings.mjs"
 
 const dirname = path.dirname(new URL(import.meta.url).pathname)
 
@@ -18,7 +21,23 @@ export default defineConfig({
   publicDir: "./docs-build/public",
   outDir: "./docs-build/dist/eslint-plugin-astro",
   root: dirname,
-  integrations: [svelte()],
+  integrations: [
+    svelte(),
+    mdx({
+      remarkPlugins: [
+        emoji,
+        gfm,
+        [
+          replaceLink,
+          {
+            srcDir: "./docs-build/src",
+            base: "/eslint-plugin-astro",
+          },
+        ],
+      ],
+      rehypePlugins: [rehypeCollectHeadings],
+    }),
+  ],
   markdown: {
     remarkPlugins: [
       emoji,
@@ -31,9 +50,6 @@ export default defineConfig({
         },
       ],
     ],
-  },
-  legacy: {
-    astroFlavoredMarkdown: true,
   },
   vite: {
     server: {
@@ -67,6 +83,7 @@ export default defineConfig({
         ),
         // node
         fs: path.join(dirname, "./docs-build/shim/fs.mjs"),
+        url: path.join(dirname, "./docs-build/shim/url.mjs"),
         path: path.join(dirname, "./docs-build/shim/path.mjs"),
         module: path.join(dirname, "./docs-build/shim/module.mjs"),
         globby: path.join(dirname, "./docs-build/shim/globby.mjs"),

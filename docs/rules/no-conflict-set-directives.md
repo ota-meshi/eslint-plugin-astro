@@ -1,7 +1,6 @@
 ---
 title: "astro/no-conflict-set-directives"
 description: "disallow conflicting set directives and child contents"
-setup: "import ESLintCodeBlock from '../docs-build/src/components/ESLintCodeBlockWrap.astro'"
 since: "v0.7.0"
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: "astro/prefer-class-list-directive"
 description: "require `class:list` directives instead of `class` with expressions"
-setup: "import ESLintCodeBlock from '../docs-build/src/components/ESLintCodeBlockWrap.astro'"
 since: "v0.4.0"
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: "astro/no-unused-css-selector"
 description: "disallow selectors defined in `style` tag that don't use in HTML"
-setup: "import ESLintCodeBlock from '../docs-build/src/components/ESLintCodeBlockWrap.astro'"
 since: "v0.10.0"
 ---
 

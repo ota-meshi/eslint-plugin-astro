@@ -13,7 +13,7 @@ function setupDocs() {
 
   const buildDocsDir = path.resolve(dirname, "./src/pages")
   mkDirs(buildDocsDir)
-  for (const md of listup(buildDocsDir, [".astro", ".md"])) {
+  for (const md of listup(buildDocsDir, [".astro", ".md", ".mdx"])) {
     fs.unlinkSync(md)
   }
   const docsDir = path.resolve(dirname, "../docs")
@@ -23,7 +23,9 @@ function setupDocs() {
       path.relative(
         docsDir,
         page.endsWith("README.md")
-          ? page.replace(/README.md$/u, "index.md")
+          ? page.replace(/README.md$/u, "index.mdx")
+          : page.endsWith(".md")
+          ? `${page}x`
           : page,
       ),
     )
@@ -46,13 +48,44 @@ ${dump(data)}---
       : `${newFrontmatter}\n${content}`
     pageContent += `
 
-<br><br>
+<br /><br />
 
 
 
 <a href="https://github.com/ota-meshi/eslint-plugin-astro/edit/main/docs/${page.slice(
       docsDir.length,
     )}" target="_blank" style="display: flex; color: var(--theme-text-lighter);">Edit this page <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>`
+
+    // Remove comments
+    pageContent = pageContent.replace(/<!--[\s\S]*?-->/g, "")
+
+    pageContent = `${pageContent.replace(
+      /---[\s\S]*?---/,
+      `$&
+
+import MainLayout from '${data.layout}'
+
+<MainLayout content={ { astro: { headings: $$$$headings }, ...frontmatter } } >`,
+    )}
+
+</MainLayout>`
+
+    if (pageContent.includes("<ESLintCodeBlock")) {
+      // Import ESLintCodeBlock component
+      const eslintCodeBlockPath = path.resolve(
+        dirname,
+        "./src/components/ESLintCodeBlockWrap.astro",
+      )
+      pageContent = pageContent.replace(
+        /---[\s\S]*?---/,
+        `$&
+
+import ESLintCodeBlock from '${path.relative(
+          path.dirname(to),
+          eslintCodeBlockPath,
+        )}'`,
+      )
+    }
 
     fs.writeFileSync(to, pageContent, "utf8")
   }

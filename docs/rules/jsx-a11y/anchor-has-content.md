@@ -1,7 +1,6 @@
 ---
 title: "astro/jsx-a11y/anchor-has-content"
 description: "apply `jsx-a11y/anchor-has-content` rule to Astro components"
-setup: "import ESLintCodeBlock from '../docs-build/src/components/ESLintCodeBlockWrap.astro'"
 since: "v0.11.0"
 ---
 

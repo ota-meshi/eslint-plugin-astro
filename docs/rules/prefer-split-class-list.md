@@ -1,7 +1,6 @@
 ---
 title: "astro/prefer-split-class-list"
 description: "require use split array elements in `class:list`"
-setup: "import ESLintCodeBlock from '../docs-build/src/components/ESLintCodeBlockWrap.astro'"
 since: "v0.4.0"
 ---
 
