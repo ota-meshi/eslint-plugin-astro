@@ -1,5 +1,6 @@
 import type { RuleModule } from "../types"
 import noConflictSetDirectives from "../rules/no-conflict-set-directives"
+import noDeprecatedAstroCanonicalurl from "../rules/no-deprecated-astro-canonicalurl"
 import noDeprecatedAstroFetchcontent from "../rules/no-deprecated-astro-fetchcontent"
 import noDeprecatedAstroResolve from "../rules/no-deprecated-astro-resolve"
 import noSetHtmlDirective from "../rules/no-set-html-directive"
@@ -13,6 +14,7 @@ import { buildA11yRules } from "../a11y"
 
 export const rules = [
   noConflictSetDirectives,
+  noDeprecatedAstroCanonicalurl,
   noDeprecatedAstroFetchcontent,
   noDeprecatedAstroResolve,
   noSetHtmlDirective,
