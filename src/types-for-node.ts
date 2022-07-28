@@ -5,7 +5,7 @@ import type * as ESTree from "estree"
 export type ASTNode =
   | AST.AstroNode
   | AST.JSXNode
-  | ESTree.Node
+  | Exclude<ESTree.Node, { type: AST.JSXNode["type"] }>
   | Exclude<
       TSESTree.Node,
       { type: ESTree.Node["type"] } | { type: AST.JSXNode["type"] }
