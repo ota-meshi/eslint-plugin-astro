@@ -3,6 +3,8 @@ import ESLintCodeBlock from "./ESLintCodeBlock.svelte"
 const props = Astro.props
 ---
 
-<ESLintCodeBlock client:only="svelte" fix={props.fix || false} rules={{}}>
-  <slot />
-</ESLintCodeBlock>
+<>
+  <ESLintCodeBlock client:only="svelte" fix={props.fix || false} rules={{}}>
+    <slot />
+  </ESLintCodeBlock>
+</>

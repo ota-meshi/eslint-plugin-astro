@@ -38,7 +38,6 @@ function setupDocs() {
 
     const frontmatter = /^---\n([\s\S]*?)\n---\n/u.exec(content)?.[1]
     const data = frontmatter ? load(frontmatter) : {}
-    data.layout = `./${path.relative(path.dirname(to), mainLayoutPath)}`
     data.markdownPath = `${to}`
     const newFrontmatter = `---
 ${dump(data)}---
@@ -60,10 +59,10 @@ ${dump(data)}---
     pageContent = pageContent.replace(/<!--[\s\S]*?-->/g, "")
 
     pageContent = `${pageContent.replace(
-      /---[\s\S]*?---/,
+      /---[\s\S]*?---(?:\n+import\s[\s\S]*?\sfrom\s+(?:"[^"]+"|'[^']+'))*/,
       `$&
 
-import MainLayout from '${data.layout}'
+import MainLayout from './${path.relative(path.dirname(to), mainLayoutPath)}'
 
 <MainLayout content={ { astro: { headings: $$$$headings }, ...frontmatter } } >`,
     )}
@@ -77,7 +76,7 @@ import MainLayout from '${data.layout}'
         "./src/components/ESLintCodeBlockWrap.astro",
       )
       pageContent = pageContent.replace(
-        /---[\s\S]*?---/,
+        /---[\s\S]*?---(?:\n+import\s[\s\S]*?\sfrom\s+(?:"[^"]+"|'[^']+'))*/,
         `$&
 
 import ESLintCodeBlock from '${path.relative(
