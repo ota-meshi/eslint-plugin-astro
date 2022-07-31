@@ -7,7 +7,7 @@ const headings = content?.astro?.headings;
 
 <nav class="sidebar-nav" aria-labelledby="grid-right">
 	<div class="sidebar-nav-inner">
-		{!hiddenTOC && <TableOfContents client:media="(min-width: 50em)" {headings} />}
+		{!hiddenTOC && <><TableOfContents client:media="(min-width: 50em)" {headings} /></>}
 		<MoreMenu editHref={githubEditUrl} />
 	</div>
 </nav>

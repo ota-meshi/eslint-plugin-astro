@@ -12,7 +12,11 @@ const baseUrl =
   <SkipToContent />
   <nav class="nav-wrapper" title="Top Navigation">
     <div class="menu-toggle">
-      <SidebarToggle client:idle />
+      {(
+        <>
+          <SidebarToggle client:idle />
+        </>
+      )}
     </div>
     <div class="logo flex">
       <a href={`${baseUrl}`}>

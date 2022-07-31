@@ -47,7 +47,12 @@ const sidebarIndex = sidebarSections.findIndex(
     )}
     {!hiddenTOC && (
       <nav class="block sm:hidden">
-        <TableOfContents client:media="(max-width: 50em)" headings={headings} />
+        <>
+          <TableOfContents
+            client:media="(max-width: 50em)"
+            headings={headings}
+          />
+        </>
       </nav>
     )}
     <slot />
