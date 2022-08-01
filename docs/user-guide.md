@@ -141,7 +141,6 @@ This plugin provides configs:
 - Extension of sharable configuration provided by [eslint-plugin-jsx-a11y]. You need to install [eslint-plugin-jsx-a11y] to use it.
   - `plugin:astro/jsx-a11y-recommended` ... Similar to the [`"plugin:jsx-a11y/recommended"` configuration](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y#rule-strictness-in-different-modes), but with the rules extended for Astro components enabled.
   - `plugin:astro/jsx-a11y-strict` ... Similar to the [`"plugin:jsx-a11y/strict"` configuration](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y#rule-strictness-in-different-modes), but with the rules extended for Astro components enabled.
-- `plugin:astro/base-for-markdown` ... See [Support for Markdown Pages](#support-for-markdown-pages).
 
 See [the rule list](./rules.md) to get the `rules` that this plugin provides.
 
@@ -158,60 +157,6 @@ Examples:
 ```bash
 eslint --ext .js,.astro src
 eslint "src/**/*.{js,astro}"
-```
-
-If you also want to [target markdown](#support-for-markdown-pages), you need to add `*.md`.
-
-## :books: Advanced Usage
-
-### Support for Markdown Pages
-
-If you want to check [Markdown Pages] in the same way as the Astro component, you need to use the `"plugin:astro/base-for-markdown"` configuration.
-
-[Markdown Pages]: https://docs.astro.build/en/guides/markdown-content/
-
-> ⚠ However, there are some **known limitations** on the linting of Markdown Pages. ⚠
->
-> - Incompatible with ESLint's [indent] rule. Turn off the [indent] rule in the markdown file. Otherwise the file syntax will be broken.
-> - Incompatible with [eslint-plugin-markdown]. eslint-plugin-markdown separates the contents of markdown by the processor. So using this parser doesn't work because the parser doesn't know the whole markdown.
-
-[indent]: https://eslint.org/docs/rules/indent
-[eslint-plugin-markdown]: https://github.com/eslint/eslint-plugin-markdown
-
-Use the `"plugin:astro/base-for-markdown"` configuration to linting markdown.
-
-Example **.eslintrc.js**.
-
-```js
-module.exports = {
-  // ...
-  extends: [
-    // ...
-    "plugin:astro/recommended",
-    // Add configuration for markdown
-    "plugin:astro/base-for-markdown",
-  ],
-  // ...
-  overrides: [
-    {
-      // Define the configuration for `.md` file.
-      files: ["*.md"],
-      // Allows Astro Markdown pages to be parsed.
-      parser: "astro-eslint-parser",
-      // Parse the script in `.md` as TypeScript by adding the following configuration.
-      // It's the setting you need when using TypeScript.
-      parserOptions: {
-        parser: "@typescript-eslint/parser",
-        extraFileExtensions: [".md"],
-      },
-      rules: {
-        // override/add rules settings here, such as:
-        // "astro/no-set-html-directive": "error"
-      },
-    },
-    // ...
-  ],
-}
 ```
 
 ## :computer: Editor Integrations
@@ -235,8 +180,6 @@ Example **.vscode/settings.json**:
   ]
 }
 ```
-
-If you also want to [target markdown](#support-for-markdown-pages), you need to add `markdown`.
 
 <!--USAGE_GUIDE_END-->
 
