@@ -64,7 +64,7 @@ ${dump(data)}---
 
 import MainLayout from './${path.relative(path.dirname(to), mainLayoutPath)}'
 
-<MainLayout content={ { astro: { headings: $$$$headings }, ...frontmatter } } >`,
+<MainLayout content={ { astro: { headings: getHeadings() }, ...frontmatter } } >`,
     )}
 
 </MainLayout>`

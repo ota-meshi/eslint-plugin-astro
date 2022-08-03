@@ -10,7 +10,6 @@ import replaceLink from "./docs-build/remark-replace-link.mjs"
 import "./docs-build/setup-docs.mjs"
 import path from "path"
 import { URL } from "url"
-import rehypeCollectHeadings from "./docs-build/rehype-collect-headings.mjs"
 
 const dirname = path.dirname(new URL(import.meta.url).pathname)
 
@@ -35,7 +34,6 @@ export default defineConfig({
           },
         ],
       ],
-      rehypePlugins: [rehypeCollectHeadings],
     }),
   ],
   markdown: {
