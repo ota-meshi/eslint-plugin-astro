@@ -38,6 +38,7 @@ function setupDocs() {
 
     const frontmatter = /^---\n([\s\S]*?)\n---\n/u.exec(content)?.[1]
     const data = frontmatter ? load(frontmatter) : {}
+    data.layout = `./${path.relative(path.dirname(to), mainLayoutPath)}`
     data.markdownPath = `${to}`
     const newFrontmatter = `---
 ${dump(data)}---
@@ -58,17 +59,6 @@ ${dump(data)}---
     // Remove comments
     pageContent = pageContent.replace(/<!--[\s\S]*?-->/g, "")
 
-    pageContent = `${pageContent.replace(
-      /---[\s\S]*?---(?:\n+import\s[\s\S]*?\sfrom\s+(?:"[^"]+"|'[^']+'))*/,
-      `$&
-
-import MainLayout from './${path.relative(path.dirname(to), mainLayoutPath)}'
-
-<MainLayout content={ { astro: { headings: getHeadings() }, ...frontmatter } } >`,
-    )}
-
-</MainLayout>`
-
     if (pageContent.includes("<ESLintCodeBlock")) {
       // Import ESLintCodeBlock component
       const eslintCodeBlockPath = path.resolve(
@@ -86,7 +76,7 @@ import ESLintCodeBlock from '${path.relative(
       )
     }
 
-    fs.writeFileSync(to, pageContent, "utf8")
+    fs.writeFileSync(to, `${pageContent}\n\n`, "utf8")
   }
 }
 
