@@ -15,12 +15,4 @@ module.exports = {
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/unbound-method": "off",
   },
-  overrides: [
-    {
-      files: ["RightSidebar.astro", "MainLayout.astro"],
-      rules: {
-        "prettier/prettier": "off", // TODO
-      },
-    },
-  ],
 }
