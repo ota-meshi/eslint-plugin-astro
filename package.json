@@ -104,7 +104,7 @@
     "patch-package": "^6.4.7",
     "postcss-nested": "^5.0.6",
     "prettier": "^2.6.2",
-    "prettier-plugin-astro": "^0.3.0",
+    "prettier-plugin-astro": "^0.4.0",
     "prettier-plugin-svelte": "^2.7.0",
     "remark-emoji": "^3.0.2",
     "remark-gfm": "^3.0.1",
