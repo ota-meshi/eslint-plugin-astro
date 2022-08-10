@@ -25,9 +25,6 @@ build(
     require.resolve(
       "astro-eslint-parser/lib/parser/astro-parser/astrojs-compiler-service.js",
     ),
-    require.resolve(
-      "astro-eslint-parser/lib/markdown/mdast-util-from-markdown-service.js",
-    ),
   ],
 )
 build(
