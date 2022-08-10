@@ -17,20 +17,22 @@ function buildPoints(count: number, size: number) {
 ---
 
 <div class="stars-wrapper">
-  {layers.map((i) => (
-    <svg
-      class:list={["stars", "stars-layer", `stars${i}`]}
-      width="1000px"
-      height="1000px"
-      style={`--stars-animation-delay: -${
-        (i - 1) * (animationTime / layers.length)
-      }s;`}
-    >
-      {buildPoints(30, 1000).map(({ x, y }) => (
-        <circle cx={x} cy={y} r="1" />
-      ))}
-    </svg>
-  ))}
+  {
+    layers.map((i) => (
+      <svg
+        class:list={["stars", "stars-layer", `stars${i}`]}
+        width="1000px"
+        height="1000px"
+        style={`--stars-animation-delay: -${
+          (i - 1) * (animationTime / layers.length)
+        }s;`}
+      >
+        {buildPoints(30, 1000).map(({ x, y }) => (
+          <circle cx={x} cy={y} r="1" />
+        ))}
+      </svg>
+    ))
+  }
   <svg class="stars-bg stars" width="2000px" height="2000px">
     {buildPoints(600, 2000).map(({ x, y }) => <circle cx={x} cy={y} r="0.5" />)}
   </svg>

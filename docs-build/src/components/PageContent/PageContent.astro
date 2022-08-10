@@ -40,52 +40,58 @@ const sidebarIndex = sidebarSections.findIndex(
   class:list={["content", { "hidden-right": hiddenRight, hiddenTOC }]}
 >
   <section class="main-section">
-    {title !== content?.astro?.headings?.[0]?.text && (
-      <h1 class="content-title" id="overview">
-        {title}
-      </h1>
-    )}
-    {!hiddenTOC && (
-      <nav class="block sm:hidden">
-        <>
-          <TableOfContents
-            client:media="(max-width: 50em)"
-            headings={headings}
-          />
-        </>
-      </nav>
-    )}
+    {
+      title !== content?.astro?.headings?.[0]?.text && (
+        <h1 class="content-title" id="overview">
+          {title}
+        </h1>
+      )
+    }
+    {
+      !hiddenTOC && (
+        <nav class="block sm:hidden">
+          <>
+            <TableOfContents
+              client:media="(max-width: 50em)"
+              headings={headings}
+            />
+          </>
+        </nav>
+      )
+    }
     <slot />
   </section>
-  {sidebarIndex >= 0 && (
-    <div class="page-nav">
-      {sidebarIndex > 0 && (
-        <span class="prev">
-          Back
-          <br />←
-          <a
-            href={`${baseUrl}${sidebarSections[sidebarIndex - 1].link}`}
-            class="prev"
-          >
-            {sidebarSections[sidebarIndex - 1].text}
-          </a>
-        </span>
-      )}
-      {sidebarIndex + 1 < sidebarSections.length && (
-        <span class="next">
-          Next Page
-          <br />
-          <a
-            href={`${baseUrl}${sidebarSections[sidebarIndex + 1].link}`}
-            class="next"
-          >
-            {sidebarSections[sidebarIndex + 1].text}
-          </a>
-          →
-        </span>
-      )}
-    </div>
-  )}
+  {
+    sidebarIndex >= 0 && (
+      <div class="page-nav">
+        {sidebarIndex > 0 && (
+          <span class="prev">
+            Back
+            <br />←
+            <a
+              href={`${baseUrl}${sidebarSections[sidebarIndex - 1].link}`}
+              class="prev"
+            >
+              {sidebarSections[sidebarIndex - 1].text}
+            </a>
+          </span>
+        )}
+        {sidebarIndex + 1 < sidebarSections.length && (
+          <span class="next">
+            Next Page
+            <br />
+            <a
+              href={`${baseUrl}${sidebarSections[sidebarIndex + 1].link}`}
+              class="next"
+            >
+              {sidebarSections[sidebarIndex + 1].text}
+            </a>
+            →
+          </span>
+        )}
+      </div>
+    )
+  }
   <nav class="block sm:hidden">
     <MoreMenu editHref={githubEditUrl} />
   </nav>

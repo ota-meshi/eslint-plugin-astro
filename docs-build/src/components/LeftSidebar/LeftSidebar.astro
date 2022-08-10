@@ -26,27 +26,29 @@ const sidebarSections = SIDEBAR.en.reduce((col, item, i) => {
 
 <nav aria-labelledby="grid-left">
   <ul class="nav-groups">
-    {sidebarSections.map((section) => (
-      <li>
-        <div class="nav-group">
-          <h2 class="nav-group-title">{section.text}</h2>
-          <ul>
-            {section.children.map((child) => (
-              <li class="nav-link">
-                <a
-                  href={`${baseUrl}${child.link}`}
-                  aria-current={
-                    currentPageMatch === child.link ? "page" : "false"
-                  }
-                >
-                  {child.text}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </li>
-    ))}
+    {
+      sidebarSections.map((section) => (
+        <li>
+          <div class="nav-group">
+            <h2 class="nav-group-title">{section.text}</h2>
+            <ul>
+              {section.children.map((child) => (
+                <li class="nav-link">
+                  <a
+                    href={`${baseUrl}${child.link}`}
+                    aria-current={
+                      currentPageMatch === child.link ? "page" : "false"
+                    }
+                  >
+                    {child.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </li>
+      ))
+    }
   </ul>
 </nav>
 
