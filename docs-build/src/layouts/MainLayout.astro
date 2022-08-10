@@ -27,9 +27,11 @@ const githubEditUrl =
 >
   <head>
     <title>
-      {content.title && content.title !== CONFIG.SITE.title
-        ? `${content.title} 🚀 ${CONFIG.SITE.title}`
-        : CONFIG.SITE.title}
+      {
+        content.title && content.title !== CONFIG.SITE.title
+          ? `${content.title} 🚀 ${CONFIG.SITE.title}`
+          : CONFIG.SITE.title
+      }
     </title>
     <HeadCommon />
     <HeadSEO {content} canonicalURL={deployCanonicalURL} />
@@ -142,11 +144,13 @@ const githubEditUrl =
           <slot />
         </PageContent>
       </div>
-      {!hiddenRight && (
-        <aside id="grid-right" class="grid-sidebar" title="Table of Contents">
-          <RightSidebar {content} {githubEditUrl} {hiddenTOC} />
-        </aside>
-      )}
+      {
+        !hiddenRight && (
+          <aside id="grid-right" class="grid-sidebar" title="Table of Contents">
+            <RightSidebar {content} {githubEditUrl} {hiddenTOC} />
+          </aside>
+        )
+      }
     </main>
   </body>
 </html>

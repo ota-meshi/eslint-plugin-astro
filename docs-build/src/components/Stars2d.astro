@@ -37,16 +37,18 @@ function buildBoxShadow(count: number) {
 ---
 
 <div class="stars-wrapper">
-  {layers.map(({ no, animationDuration, size }) => (
-    <div
-      class:list={["stars", `stars${no}`]}
-      style={`
+  {
+    layers.map(({ no, animationDuration, size }) => (
+      <div
+        class:list={["stars", `stars${no}`]}
+        style={`
           --stars-box-shadow: var(--stars-box-shadow${no});
           --stars-animation-duration: ${animationDuration}s;
           --stars-size: ${size}px;
         `}
-    />
-  ))}
+      />
+    ))
+  }
 </div>
 
 <style define:vars={vars}>

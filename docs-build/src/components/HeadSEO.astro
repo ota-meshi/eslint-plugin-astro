@@ -25,12 +25,14 @@ const imageAlt = content?.image?.alt ?? OPEN_GRAPH.image.alt
 <meta property="og:type" content="article" />
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:locale" content={content.ogLocale ?? SITE.defaultLanguage} />
-{canonicalImageSrc && (
-  <>
-    <meta property="og:image" content={canonicalImageSrc} />
-    {imageAlt && <meta property="og:image:alt" content={imageAlt} />}
-  </>
-)}
+{
+  canonicalImageSrc && (
+    <>
+      <meta property="og:image" content={canonicalImageSrc} />
+      {imageAlt && <meta property="og:image:alt" content={imageAlt} />}
+    </>
+  )
+}
 <meta property="og:description" content={description} />
 <meta property="og:site_name" content={SITE.title} />
 
@@ -39,12 +41,14 @@ const imageAlt = content?.image?.alt ?? OPEN_GRAPH.image.alt
 <meta name="twitter:site" content={OPEN_GRAPH.twitter} />
 <meta name="twitter:title" content={formattedContentTitle} />
 <meta name="twitter:description" content={description} />
-{canonicalImageSrc && (
-  <>
-    <meta name="twitter:image" content={canonicalImageSrc} />
-    {imageAlt && <meta name="twitter:image:alt" content={imageAlt} />}
-  </>
-)}
+{
+  canonicalImageSrc && (
+    <>
+      <meta name="twitter:image" content={canonicalImageSrc} />
+      {imageAlt && <meta name="twitter:image:alt" content={imageAlt} />}
+    </>
+  )
+}
 
 <!--
   TODO: Add json+ld data, maybe https://schema.org/APIReference makes sense?
