@@ -3,7 +3,6 @@ import { rules as ruleList } from "./utils/rules"
 import { processor } from "./processor"
 import { environments } from "./environments"
 import base from "./configs/base"
-import baseForMarkdown from "./configs/base-for-markdown"
 import recommended from "./configs/recommended"
 import all from "./configs/all"
 import { buildA11yConfigs } from "./a11y"
@@ -12,7 +11,6 @@ const configs = {
   base,
   recommended,
   all,
-  "base-for-markdown": baseForMarkdown,
   ...buildA11yConfigs(),
 }
 
