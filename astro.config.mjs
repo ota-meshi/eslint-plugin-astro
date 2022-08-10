@@ -72,13 +72,6 @@ export default defineConfig({
           dirname,
           "./docs-build/shim/@astrojs-compiler-service4b.mjs",
         ),
-        [path.join(
-          dirname,
-          "./node_modules/astro-eslint-parser/lib/markdown/mdast-util-from-markdown-service.js",
-        )]: path.join(
-          dirname,
-          "./docs-build/shim/@mdast-util-from-markdown-service4b.mjs",
-        ),
         // node
         fs: path.join(dirname, "./docs-build/shim/fs.mjs"),
         url: path.join(dirname, "./docs-build/shim/url.mjs"),
