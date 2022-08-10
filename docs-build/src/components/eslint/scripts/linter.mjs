@@ -119,10 +119,7 @@ export function createLinter() {
   const linter = new Linter()
   linter.defineParser("astro-auto-eslint-parser", {
     parseForESLint(code, options) {
-      if (
-        options.filePath.endsWith(".astro") ||
-        options.filePath.endsWith(".md")
-      )
+      if (options.filePath.endsWith(".astro"))
         return astroEslintParser.parseForESLint(code, options)
 
       return window
