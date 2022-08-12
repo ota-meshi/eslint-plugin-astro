@@ -61,7 +61,7 @@
   },
   "devDependencies": {
     "@astrojs/compiler": "^0.23.0",
-    "@astrojs/mdx": "^0.8.0",
+    "@astrojs/mdx": "^0.9.0",
     "@astrojs/svelte": "^1.0.0",
     "@ota-meshi/eslint-plugin": "^0.11.0",
     "@types/eslint": "^8.4.2",
