@@ -39,9 +39,7 @@
   let slotRoot
   onMount(() => {
     let lines = []
-    for (const line of slotRoot.querySelectorAll(
-      ".code-container code > .line",
-    )) {
+    for (const line of slotRoot.querySelectorAll("code > .line")) {
       lines.push(line.textContent)
     }
     code = lines.join("\n").trim()
