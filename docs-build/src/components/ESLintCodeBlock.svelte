@@ -14,6 +14,7 @@
       tsParser = await import("@typescript-eslint/parser")
       const pluginJsxA11y = await import("eslint-plugin-jsx-a11y")
       if (typeof window !== "undefined") {
+        window.require.define("@typescript-eslint/parser", tsParser)
         window.require.define("eslint-plugin-jsx-a11y", pluginJsxA11y)
       }
       return window.waitSetupForAstroCompilerWasm

@@ -1,12 +1,13 @@
 diff --git a/node_modules/astro/dist/core/build/static-build.js b/node_modules/astro/dist/core/build/static-build.js
-index 10c4f3a..64fd9f8 100644
+index c576bfe..25e3a82 100644
 --- a/node_modules/astro/dist/core/build/static-build.js
 +++ b/node_modules/astro/dist/core/build/static-build.js
-@@ -186,7 +186,8 @@ ${bgGreen(black(" building client "))}`);
-     root: viteConfig.root,
-     envPrefix: "PUBLIC_",
-     server: viteConfig.server,
--    base: astroConfig.base
+@@ -181,7 +181,9 @@ ${bgGreen(black(" building client "))}`);
+       }),
+       ...viteConfig.plugins || []
+     ],
+-    envPrefix: "PUBLIC_"
++    envPrefix: "PUBLIC_",
 +    base: astroConfig.base,
 +    resolve: viteConfig.resolve
    };
