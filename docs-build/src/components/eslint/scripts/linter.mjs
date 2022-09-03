@@ -131,5 +131,7 @@ export async function createLinter() {
     linter.defineRule(rule.meta.docs.ruleId, /** @type {any} */ (rule))
   }
 
+  await astroEslintParser.setup()
+
   return linter
 }

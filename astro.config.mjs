@@ -65,13 +65,6 @@ export default defineConfig({
           dirname,
           "./docs-build/shim/eslint-plugin-jsx-a11y.mjs",
         ),
-        [path.join(
-          dirname,
-          "./node_modules/astro-eslint-parser/lib/parser/astro-parser/astrojs-compiler-service.js",
-        )]: path.join(
-          dirname,
-          "./docs-build/shim/@astrojs-compiler-service4b.mjs",
-        ),
         // node
         fs: path.join(dirname, "./docs-build/shim/fs.mjs"),
         url: path.join(dirname, "./docs-build/shim/url.mjs"),

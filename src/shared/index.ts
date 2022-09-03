@@ -1,6 +1,6 @@
 import { ClientScript } from "./client-script"
 import type { ElementNode } from "@astrojs/compiler/types"
-import type { ParseTemplateResult } from "astro-eslint-parser/lib/astro-tools"
+import type { ParseTemplateResult } from "astro-eslint-parser"
 
 export class Shared {
   public readonly clientScripts: ClientScript[] = []
