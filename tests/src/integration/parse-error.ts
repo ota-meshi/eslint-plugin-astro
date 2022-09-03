@@ -25,6 +25,9 @@ describe("Integration test for parse error", () => {
         astro: astroPlugin as any,
       },
       useEslintrc: false,
+      overrideConfig: {
+        extends: ["plugin:astro/base"],
+      },
     })
 
     const result = await eslint.lintText(
