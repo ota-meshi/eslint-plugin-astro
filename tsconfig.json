@@ -21,7 +21,9 @@
     "outDir": "lib",
     "paths": {
       "*": ["typings/*"]
-    }
+    },
+
+    "skipLibCheck": true
   },
   "include": [
     "src/**/*",

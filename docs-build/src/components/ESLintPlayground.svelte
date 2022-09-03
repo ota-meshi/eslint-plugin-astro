@@ -15,19 +15,16 @@
   } from "./eslint/scripts/linter.mjs"
 
   let tsParser = undefined
-  const linter = loadMonacoEditor()
-    .then(async () => {
-      tsParser = await import("@typescript-eslint/parser")
-      const pluginJsxA11y = await import("eslint-plugin-jsx-a11y")
-      if (typeof window !== "undefined") {
-        window.require.define("@typescript-eslint/parser", tsParser)
-        window.require.define("eslint-plugin-jsx-a11y", pluginJsxA11y)
-      }
-      return window.waitSetupForAstroCompilerWasm
-    })
-    .then(() => {
-      return createLinter()
-    })
+  const linter = loadMonacoEditor().then(async () => {
+    tsParser = await import("@typescript-eslint/parser")
+    const pluginJsxA11y = await import("eslint-plugin-jsx-a11y")
+    if (typeof window !== "undefined") {
+      window.require.define("@typescript-eslint/parser", tsParser)
+      window.require.define("eslint-plugin-jsx-a11y", pluginJsxA11y)
+    }
+
+    return createLinter()
+  })
 
   const DEFAULT_CODE =
     `---
