@@ -2,6 +2,7 @@ import path from "path"
 import fs from "fs"
 import { rules } from "../src/utils/rules"
 import type { RuleModule } from "../src/types"
+import { getNewVersion } from "./lib/changesets-util"
 import { formatAndSave } from "./lib/utils"
 
 //eslint-disable-next-line require-jsdoc -- tools
@@ -25,7 +26,7 @@ function yamlValue(val: unknown) {
 const ROOT = path.resolve(__dirname, "../docs/rules")
 
 //eslint-disable-next-line require-jsdoc -- tools
-function pickSince(content: string): string | null {
+function pickSince(content: string): string | null | Promise<string> {
   const fileIntro = /^---\n((?:.*\n)+)---\n*/.exec(content)
   if (fileIntro) {
     const since = /since: "?(v\d+\.\d+\.\d+)"?/.exec(fileIntro[1])
@@ -38,6 +39,10 @@ function pickSince(content: string): string | null {
     // eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports -- ignore
     return `v${require("../package.json").version}`
   }
+  // eslint-disable-next-line no-process-env -- ignore
+  if (process.env.IN_VERSION_CI_SCRIPT) {
+    return getNewVersion().then((v) => `v${v}`)
+  }
   return null
 }
 
@@ -48,7 +53,7 @@ class DocFile {
 
   private content: string
 
-  private readonly since: string | null
+  private readonly since: string | null | Promise<string>
 
   public constructor(rule: RuleModule) {
     this.rule = rule
@@ -69,6 +74,7 @@ class DocFile {
     const {
       meta: {
         fixable,
+        hasSuggestions,
         deprecated,
         replacedBy,
         docs: { ruleId, description, recommended },
@@ -108,6 +114,11 @@ class DocFile {
         "- :wrench: The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.",
       )
     }
+    if (hasSuggestions) {
+      notes.push(
+        "- :bulb: Some problems reported by this rule are manually fixable by editor [suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).",
+      )
+    }
     if (!this.since) {
       notes.unshift(
         `- :exclamation: <badge text="This rule has not been released yet." vertical="middle" type="error"> **_This rule has not been released yet._** </badge>`,
@@ -134,7 +145,7 @@ class DocFile {
     return this
   }
 
-  public updateFooter() {
+  public async updateFooter() {
     const { ruleName, extensionRule } = this.rule.meta.docs
     const footerPattern =
       /## (?:(?::mag:)? ?Implementation|:rocket: Version).+$/s
@@ -142,7 +153,7 @@ class DocFile {
       this.since
         ? `## :rocket: Version
 
-This rule was introduced in eslint-plugin-astro ${this.since}
+This rule was introduced in eslint-plugin-astro ${await this.since}
 
 `
         : ""
@@ -150,6 +161,7 @@ This rule was introduced in eslint-plugin-astro ${this.since}
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/${ruleName}.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/${ruleName}.ts)
+- [Test fixture sources](https://github.com/ota-meshi/eslint-plugin-astro/tree/main/tests/fixtures/rules/${ruleName})
 ${
   extensionRule
     ? typeof extensionRule === "string"
@@ -206,13 +218,13 @@ ${
     return this
   }
 
-  public updateFileIntro() {
+  public async updateFileIntro() {
     const { ruleId, description } = this.rule.meta.docs
 
     const fileIntro = {
       title: ruleId,
       description,
-      ...(this.since ? { since: this.since } : {}),
+      ...(this.since ? { since: await this.since } : {}),
     }
     const computed = `---\n${Object.keys(fileIntro)
       // eslint-disable-next-line @typescript-eslint/no-explicit-any -- tool
@@ -240,12 +252,17 @@ ${
   }
 }
 
-for (const rule of rules) {
-  DocFile.read(rule)
-    .updateHeader()
-    .updateFooter()
-    .updateCodeBlocks()
-    .updateFileIntro()
-    .adjustCodeBlocks()
-    .write()
+void main()
+
+/** main */
+async function main() {
+  for (const rule of rules) {
+    const doc = DocFile.read(rule)
+    doc.updateHeader()
+    await doc.updateFooter()
+    doc.updateCodeBlocks()
+    await doc.updateFileIntro()
+    doc.adjustCodeBlocks()
+    doc.write()
+  }
 }
