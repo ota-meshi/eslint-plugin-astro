@@ -1,0 +1,12 @@
+[
+  {
+    "message": "Extra semicolon.",
+    "line": 4,
+    "column": 5
+  },
+  {
+    "message": "Extra semicolon.",
+    "line": 9,
+    "column": 7
+  }
+]

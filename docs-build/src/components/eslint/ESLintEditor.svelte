@@ -20,6 +20,8 @@
   let messageMap = new Map()
   let editor
 
+  let lastId = 0
+
   export function setCursorPosition(loc) {
     if (editor) {
       editor.setCursorPosition(loc)
@@ -60,6 +62,9 @@
         throw new Error()
       }
     }
+
+    const currId = ++lastId
+
     const messages = linter.verify(code, config, options)
     const time = Date.now() - start
 
@@ -75,12 +80,16 @@
       fixedMessages: fixResult.messages,
     })
 
-    leftMarkers = await Promise.all(
-      messages.map((m) => messageToMarker(m, messageMap)),
-    )
-    rightMarkers = await Promise.all(
-      fixResult.messages.map((m) => messageToMarker(m)),
-    )
+    const marsers = await Promise.all([
+      Promise.all(messages.map((m) => messageToMarker(m, messageMap))),
+      Promise.all(fixResult.messages.map((m) => messageToMarker(m))),
+    ])
+
+    if (currId !== lastId) {
+      return
+    }
+
+    ;[leftMarkers, rightMarkers] = marsers
   }
 
   function applyFix() {
