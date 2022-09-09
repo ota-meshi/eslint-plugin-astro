@@ -29,6 +29,7 @@ jobs:
       - name: Install And Build
         run: |+
           npm install --legacy-peer-deps
+          npm run update
           npm run build
           npm run docs:build
       - name: Setup Pages
