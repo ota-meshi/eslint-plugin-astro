@@ -56,3 +56,4 @@ This rule was introduced in eslint-plugin-astro v0.4.0
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/prefer-class-list-directive.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/prefer-class-list-directive.ts)
+- [Test fixture sources](https://github.com/ota-meshi/eslint-plugin-astro/tree/main/tests/fixtures/rules/prefer-class-list-directive)
