@@ -1,0 +1,12 @@
+[
+  {
+    "message": "Missing semicolon.",
+    "line": 5,
+    "column": 5
+  },
+  {
+    "message": "Missing semicolon.",
+    "line": 10,
+    "column": 7
+  }
+]
