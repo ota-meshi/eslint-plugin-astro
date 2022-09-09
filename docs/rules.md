@@ -45,7 +45,6 @@ These rules relate to style guidelines, and are therefore quite subjective:
 | [astro/prefer-class-list-directive](./rules/prefer-class-list-directive.md) | require `class:list` directives instead of `class` with expressions | :wrench: |
 | [astro/prefer-object-class-list](./rules/prefer-object-class-list.md) | require use object instead of ternary expression in `class:list` | :wrench: |
 | [astro/prefer-split-class-list](./rules/prefer-split-class-list.md) | require use split array elements in `class:list` | :wrench: |
-| [astro/semi](./rules/semi.md) | Require or disallow semicolons instead of ASI | :wrench: |
 
 ## A11Y Extension Rules
 
@@ -87,5 +86,13 @@ These rules extend the rules provided by [eslint-plugin-jsx-a11y] to work well i
 | [astro/jsx-a11y/role-supports-aria-props](./rules/jsx-a11y/role-supports-aria-props.md) | apply `jsx-a11y/role-supports-aria-props` rule to Astro components |  |
 | [astro/jsx-a11y/scope](./rules/jsx-a11y/scope.md) | apply `jsx-a11y/scope` rule to Astro components |  |
 | [astro/jsx-a11y/tabindex-no-positive](./rules/jsx-a11y/tabindex-no-positive.md) | apply `jsx-a11y/tabindex-no-positive` rule to Astro components |  |
+
+## Extension Rules
+
+These rules extend the rules provided by ESLint itself to work well in Astro component:
+
+| Rule ID | Description |    |
+|:--------|:------------|:---|
+| [astro/semi](./rules/semi.md) | Require or disallow semicolons instead of ASI | :wrench: |
 
 [eslint-plugin-jsx-a11y]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y

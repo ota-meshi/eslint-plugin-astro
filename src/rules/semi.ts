@@ -8,7 +8,7 @@ export default createRule("semi", {
   meta: {
     docs: {
       description: coreRule.meta.docs.description,
-      category: "Stylistic Issues",
+      category: "Extension Rules",
       recommended: false,
       extensionRule: "semi",
     },

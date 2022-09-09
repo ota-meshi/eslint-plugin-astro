@@ -21,6 +21,7 @@ export async function getNewVersion(): Promise<string> {
     preState,
   )
 
-  return releasePlan.releases.find(({ name }) => name === "eslint-plugin-yml")!
-    .newVersion
+  return releasePlan.releases.find(
+    ({ name }) => name === "eslint-plugin-astro",
+  )!.newVersion
 }
