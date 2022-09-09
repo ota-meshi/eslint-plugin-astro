@@ -21,6 +21,7 @@ module.exports = {
     "plugin:@ota-meshi/+prettier",
   ],
   rules: {
+    "astro/semi": "off",
     "require-jsdoc": "error",
     "no-warning-comments": "warn",
     "no-lonely-if": "off",
