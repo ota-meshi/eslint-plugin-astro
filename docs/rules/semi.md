@@ -1,13 +1,13 @@
 ---
 title: "astro/semi"
 description: "Require or disallow semicolons instead of ASI"
+since: "v0.19.0"
 ---
 
 # astro/semi
 
 > Require or disallow semicolons instead of ASI
 
-- :exclamation: <badge text="This rule has not been released yet." vertical="middle" type="error"> **_This rule has not been released yet._** </badge>
 - :wrench: The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
 
 ## :book: Rule Details
@@ -90,6 +90,10 @@ Same as [semi] rule option. See [here](https://eslint.org/docs/rules/semi#option
 - [semi]
 
 [semi]: https://eslint.org/docs/rules/semi
+
+## :rocket: Version
+
+This rule was introduced in eslint-plugin-astro v0.19.0
 
 ## :mag: Implementation
 
