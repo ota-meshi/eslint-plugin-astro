@@ -34,7 +34,7 @@ export function transform(
       output: output.css,
       mappings: output.sourceMap!.mappings,
     }
-  } catch (e) {
+  } catch (_e) {
     return null
   }
 }
