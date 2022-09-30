@@ -40,7 +40,7 @@ export function transform(
       mappings: (style as unknown as { sourcemap: RawSourceMap }).sourcemap
         .mappings,
     }
-  } catch (e) {
+  } catch (_e) {
     return null
   }
 }

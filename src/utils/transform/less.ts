@@ -44,7 +44,7 @@ export function transform(
       output: output.css,
       mappings: JSON.parse(output.map).mappings,
     }
-  } catch (e) {
+  } catch (_e) {
     return null
   }
 }

@@ -39,8 +39,8 @@ export function transform(
       output: result.content,
       mappings: result.map.toJSON().mappings,
     }
-  } catch (e) {
-    // console.log(e)
+  } catch (_e) {
+    // console.log(_e)
     return null
   }
 }
