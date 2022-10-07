@@ -6,6 +6,7 @@
 !/.github
 /tests/fixtures/rules/*/invalid/template-attr-*.astro
 /tests/fixtures/rules/*/invalid/template-attr-*.astro
+/tests/fixtures/rules/*/invalid/_*.astro
 /docs-build/src/md
 /docs-build/src/pages
 /docs-build/README.md
