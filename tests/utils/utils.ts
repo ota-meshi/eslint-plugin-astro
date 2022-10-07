@@ -79,12 +79,14 @@ export function loadTestCases(
   const filter = options?.filter ?? (() => true)
 
   const valid = listupInput(validFixtureRoot)
+    .filter((file) => !path.basename(file).startsWith("_"))
     .filter(filter)
     .map((inputFile) => getConfig(ruleName, inputFile))
 
   const fixable = plugin.rules[ruleName].meta.fixable != null
 
   const invalid = listupInput(invalidFixtureRoot)
+    .filter((file) => !path.basename(file).startsWith("_"))
     .filter(filter)
     .map((inputFile) => {
       const config = getConfig(ruleName, inputFile)
