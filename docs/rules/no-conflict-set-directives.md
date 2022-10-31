@@ -12,9 +12,9 @@ since: "v0.7.0"
 
 ## :book: Rule Details
 
-**The parser now checks what this rule checks, so this rule is no longer needed.**
-
 This rule reports conflicting `set:text`, `set:html`, and child content.
+
+<ESLintCodeBlock>
 
 <!--eslint-skip-->
 
@@ -33,6 +33,8 @@ const foo = "hello"
 <p set:text={foo}>!</p>
 <p set:html={foo}>!</p>
 ```
+
+</ESLintCodeBlock>
 
 ## :wrench: Options
 
