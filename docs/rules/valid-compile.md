@@ -1,13 +1,13 @@
 ---
 title: "astro/valid-compile"
 description: "disallow warnings when compiling."
+since: "v0.21.0"
 ---
 
 # astro/valid-compile
 
 > disallow warnings when compiling.
 
-- :exclamation: <badge text="This rule has not been released yet." vertical="middle" type="error"> **_This rule has not been released yet._** </badge>
 - :gear: This rule is included in `"plugin:astro/recommended"`.
 
 ## :book: Rule Details
@@ -40,6 +40,10 @@ Nothing.
 - [astro/no-conflict-set-directives]
 
 [astro/no-conflict-set-directives]: ./no-conflict-set-directives.md
+
+## :rocket: Version
+
+This rule was introduced in eslint-plugin-astro v0.21.0
 
 ## :mag: Implementation
 
