@@ -16,6 +16,7 @@ const ATTRIBUTE_MAP: Record<string, string | undefined> = {
   "set:html": "dangerouslySetInnerHTML",
   "set:text": "children",
   autofocus: "autoFocus",
+  for: "htmlFor",
 }
 
 /** Get `eslint-plugin-jsx-a11y` rule. */
