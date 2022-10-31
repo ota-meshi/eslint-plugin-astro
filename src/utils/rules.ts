@@ -11,6 +11,7 @@ import preferClassListDirective from "../rules/prefer-class-list-directive"
 import preferObjectClassList from "../rules/prefer-object-class-list"
 import preferSplitClassList from "../rules/prefer-split-class-list"
 import semi from "../rules/semi"
+import validCompile from "../rules/valid-compile"
 import { buildA11yRules } from "../a11y"
 
 export const rules = [
@@ -26,5 +27,6 @@ export const rules = [
   preferObjectClassList,
   preferSplitClassList,
   semi,
+  validCompile,
   ...buildA11yRules(),
 ] as RuleModule[]
