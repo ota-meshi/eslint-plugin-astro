@@ -1,0 +1,12 @@
+[
+  {
+    "message": "set:html directive will overwrite child nodes. [2006]",
+    "line": 5,
+    "column": 5
+  },
+  {
+    "message": "set:html directive will overwrite child nodes. [2006]",
+    "line": 7,
+    "column": 5
+  }
+]

@@ -5,7 +5,7 @@ import type {
   Scope,
   SourceCode as ESLintSourceCode,
 } from "eslint"
-import type { AST } from "astro-eslint-parser"
+import type { AST, parseForESLint } from "astro-eslint-parser"
 import type * as ESTree from "estree"
 import type {
   ASTNode,
@@ -121,7 +121,7 @@ export type RuleContext = {
   }
   parserPath: string
   parserOptions: Linter.ParserOptions
-  parserServices: { isAstro?: boolean }
+  parserServices: Partial<ReturnType<typeof parseForESLint>["services"]>
 
   getAncestors(): ASTNode[]
 

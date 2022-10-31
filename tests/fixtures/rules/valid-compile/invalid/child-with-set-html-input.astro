@@ -1,0 +1,17 @@
+---
+let string = "Foo"
+---
+
+<p set:html="string">string</p>
+<p set:html={string}>{string}</p>
+<p set:html={string}>string</p>
+<p set:html="string">{string}</p>
+<button set:html="string">
+  <div></div>
+</button>
+<button set:html="string">
+  <div>Foo</div>{string}
+</button>
+<p set:html="string">
+  <!-- comment -->{string}
+</p>

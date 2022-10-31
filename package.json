@@ -53,7 +53,7 @@
   "homepage": "https://ota-meshi.github.io/eslint-plugin-astro/",
   "dependencies": {
     "@typescript-eslint/types": "^5.25.0",
-    "astro-eslint-parser": "^0.7.0",
+    "astro-eslint-parser": "^0.9.0",
     "eslint-utils": "^3.0.0",
     "postcss": "^8.4.14",
     "postcss-selector-parser": "^6.0.10",
