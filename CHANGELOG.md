@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 0.20.1
+
+### Patch Changes
+
+- [#126](https://github.com/ota-meshi/eslint-plugin-astro/pull/126) [`66d753e`](https://github.com/ota-meshi/eslint-plugin-astro/commit/66d753effaec49b92bbc9ccb270555cf149f51d4) Thanks [@ota-meshi](https://github.com/ota-meshi)! - fix: false positives for `for` attr in `astro/jsx-a11y/label-has-associated-control` rule
+
 ## 0.20.0
 
 ### Minor Changes
