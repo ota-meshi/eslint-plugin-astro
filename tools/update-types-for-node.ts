@@ -9,7 +9,7 @@ const dirname = __dirname // path.dirname(filename)
 const codeFilename = path.join(dirname, "../src/types-for-node.ts")
 const { visitorKeys } = parseForESLint("")
 
-const esNextNodeNames = ["Decorator", "ImportAttribute"]
+const esNextNodeNames = ["Decorator", "ImportAttribute", "AccessorProperty"]
 const esAstroNodeNames = ["Program"]
 const tsEsNodeNames = Object.keys(AST_NODE_TYPES).filter(
   (k) => k !== "Program" && !k.startsWith("JSX"),

@@ -15,6 +15,12 @@ export type ASTNodeWithParent =
   | AST.AstroProgram
 
 export type ASTNodeListener = {
+  AccessorProperty?: (
+    node: TSESTree.AccessorProperty & ASTNodeWithParent,
+  ) => void
+  "AccessorProperty:exit"?: (
+    node: TSESTree.AccessorProperty & ASTNodeWithParent,
+  ) => void
   ArrayExpression?: (node: TSESTree.ArrayExpression & ASTNodeWithParent) => void
   "ArrayExpression:exit"?: (
     node: TSESTree.ArrayExpression & ASTNodeWithParent,
@@ -343,6 +349,12 @@ export type ASTNodeListener = {
   "YieldExpression:exit"?: (
     node: TSESTree.YieldExpression & ASTNodeWithParent,
   ) => void
+  TSAbstractAccessorProperty?: (
+    node: TSESTree.TSAbstractAccessorProperty & ASTNodeWithParent,
+  ) => void
+  "TSAbstractAccessorProperty:exit"?: (
+    node: TSESTree.TSAbstractAccessorProperty & ASTNodeWithParent,
+  ) => void
   TSAbstractKeyword?: (
     node: TSESTree.TSAbstractKeyword & ASTNodeWithParent,
   ) => void
@@ -627,6 +639,12 @@ export type ASTNodeListener = {
   ) => void
   TSRestType?: (node: TSESTree.TSRestType & ASTNodeWithParent) => void
   "TSRestType:exit"?: (node: TSESTree.TSRestType & ASTNodeWithParent) => void
+  TSSatisfiesExpression?: (
+    node: TSESTree.TSSatisfiesExpression & ASTNodeWithParent,
+  ) => void
+  "TSSatisfiesExpression:exit"?: (
+    node: TSESTree.TSSatisfiesExpression & ASTNodeWithParent,
+  ) => void
   TSStaticKeyword?: (node: TSESTree.TSStaticKeyword & ASTNodeWithParent) => void
   "TSStaticKeyword:exit"?: (
     node: TSESTree.TSStaticKeyword & ASTNodeWithParent,
@@ -1101,11 +1119,23 @@ export type ESNodeListener = {
   "Program:exit"?: (node: AST.AstroProgram & ASTNodeWithParent) => void
 }
 export type TSNodeListener = {
+  AccessorProperty?: (
+    node: TSESTree.AccessorProperty & ASTNodeWithParent,
+  ) => void
+  "AccessorProperty:exit"?: (
+    node: TSESTree.AccessorProperty & ASTNodeWithParent,
+  ) => void
   Decorator?: (node: TSESTree.Decorator & ASTNodeWithParent) => void
   "Decorator:exit"?: (node: TSESTree.Decorator & ASTNodeWithParent) => void
   ImportAttribute?: (node: TSESTree.ImportAttribute & ASTNodeWithParent) => void
   "ImportAttribute:exit"?: (
     node: TSESTree.ImportAttribute & ASTNodeWithParent,
+  ) => void
+  TSAbstractAccessorProperty?: (
+    node: TSESTree.TSAbstractAccessorProperty & ASTNodeWithParent,
+  ) => void
+  "TSAbstractAccessorProperty:exit"?: (
+    node: TSESTree.TSAbstractAccessorProperty & ASTNodeWithParent,
   ) => void
   TSAbstractKeyword?: (
     node: TSESTree.TSAbstractKeyword & ASTNodeWithParent,
@@ -1391,6 +1421,12 @@ export type TSNodeListener = {
   ) => void
   TSRestType?: (node: TSESTree.TSRestType & ASTNodeWithParent) => void
   "TSRestType:exit"?: (node: TSESTree.TSRestType & ASTNodeWithParent) => void
+  TSSatisfiesExpression?: (
+    node: TSESTree.TSSatisfiesExpression & ASTNodeWithParent,
+  ) => void
+  "TSSatisfiesExpression:exit"?: (
+    node: TSESTree.TSSatisfiesExpression & ASTNodeWithParent,
+  ) => void
   TSStaticKeyword?: (node: TSESTree.TSStaticKeyword & ASTNodeWithParent) => void
   "TSStaticKeyword:exit"?: (
     node: TSESTree.TSStaticKeyword & ASTNodeWithParent,
