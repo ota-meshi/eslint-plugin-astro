@@ -35,8 +35,7 @@ describe("Integration test for parse error", () => {
 const foo = true
 ---
 
-<!-- notice the tag is not closed properly -->
-<style is:inline set:html={""}>
+<style is:inline set:html={"" >
 `,
       { filePath: "path/to/test.astro" },
     )
