@@ -1,6 +1,5 @@
 import type { AST } from "astro-eslint-parser"
-import type { SourceMapMappings } from "sourcemap-codec"
-import { decode } from "sourcemap-codec"
+import { decode, type SourceMapMappings } from "@jridgewell/sourcemap-codec"
 import type { RuleContext } from "../../types"
 import { findAttribute, getStaticAttributeStringValue } from "../ast-utils"
 import { getContentRange } from "./utils"
