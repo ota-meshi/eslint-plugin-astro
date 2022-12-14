@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 0.21.1
+
+### Patch Changes
+
+- [#139](https://github.com/ota-meshi/eslint-plugin-astro/pull/139) [`af6ceb9`](https://github.com/ota-meshi/eslint-plugin-astro/commit/af6ceb934692bf15a83f053010ab922dfad2ffa2) Thanks [@chshouyu](https://github.com/chshouyu)! - chore(deps): replace sourcemap-codec with @jridgewell/sourcemap-codec
+
 ## 0.21.0
 
 ### Minor Changes
