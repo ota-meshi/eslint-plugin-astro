@@ -29,7 +29,7 @@ export const OPEN_GRAPH = {
 // export const GITHUB_EDIT_URL = `https://github.com/withastro/astro/blob/main/docs/`;
 
 // Uncomment this to add an "Join our Community" button to every page of documentation.
-// export const COMMUNITY_INVITE_URL = `https://astro.build/chat`;
+export const COMMUNITY_INVITE_URL = "" // `https://astro.build/chat`;
 
 // Uncomment this to enable site search.
 // See "Algolia" section of the README for more information.

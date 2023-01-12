@@ -55,6 +55,7 @@ These rules extend the rules provided by [eslint-plugin-jsx-a11y] to work well i
 | Rule ID | Description |    |
 |:--------|:------------|:---|
 | [astro/jsx-a11y/alt-text](./rules/jsx-a11y/alt-text.md) | apply `jsx-a11y/alt-text` rule to Astro components |  |
+| [astro/jsx-a11y/anchor-ambiguous-text](./rules/jsx-a11y/anchor-ambiguous-text.md) | apply `jsx-a11y/anchor-ambiguous-text` rule to Astro components |  |
 | [astro/jsx-a11y/anchor-has-content](./rules/jsx-a11y/anchor-has-content.md) | apply `jsx-a11y/anchor-has-content` rule to Astro components |  |
 | [astro/jsx-a11y/anchor-is-valid](./rules/jsx-a11y/anchor-is-valid.md) | apply `jsx-a11y/anchor-is-valid` rule to Astro components |  |
 | [astro/jsx-a11y/aria-activedescendant-has-tabindex](./rules/jsx-a11y/aria-activedescendant-has-tabindex.md) | apply `jsx-a11y/aria-activedescendant-has-tabindex` rule to Astro components |  |
@@ -83,6 +84,7 @@ These rules extend the rules provided by [eslint-plugin-jsx-a11y] to work well i
 | [astro/jsx-a11y/no-noninteractive-tabindex](./rules/jsx-a11y/no-noninteractive-tabindex.md) | apply `jsx-a11y/no-noninteractive-tabindex` rule to Astro components |  |
 | [astro/jsx-a11y/no-redundant-roles](./rules/jsx-a11y/no-redundant-roles.md) | apply `jsx-a11y/no-redundant-roles` rule to Astro components |  |
 | [astro/jsx-a11y/no-static-element-interactions](./rules/jsx-a11y/no-static-element-interactions.md) | apply `jsx-a11y/no-static-element-interactions` rule to Astro components |  |
+| [astro/jsx-a11y/prefer-tag-over-role](./rules/jsx-a11y/prefer-tag-over-role.md) | apply `jsx-a11y/prefer-tag-over-role` rule to Astro components |  |
 | [astro/jsx-a11y/role-has-required-aria-props](./rules/jsx-a11y/role-has-required-aria-props.md) | apply `jsx-a11y/role-has-required-aria-props` rule to Astro components |  |
 | [astro/jsx-a11y/role-supports-aria-props](./rules/jsx-a11y/role-supports-aria-props.md) | apply `jsx-a11y/role-supports-aria-props` rule to Astro components |  |
 | [astro/jsx-a11y/scope](./rules/jsx-a11y/scope.md) | apply `jsx-a11y/scope` rule to Astro components |  |

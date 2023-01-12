@@ -11,6 +11,7 @@ const showMoreSection = CONFIG.COMMUNITY_INVITE_URL || editHref
     editHref && (
       <li class:list={[`header-link`, `depth-2`]}>
         <a class="edit-on-github" href={editHref} target="_blank">
+          {/* eslint-disable-next-line astro/jsx-a11y/prefer-tag-over-role -- how to fix it? */}
           <svg
             aria-hidden="true"
             focusable="false"
@@ -37,6 +38,7 @@ const showMoreSection = CONFIG.COMMUNITY_INVITE_URL || editHref
     CONFIG.COMMUNITY_INVITE_URL && (
       <li class:list={[`header-link`, `depth-2`]}>
         <a href={CONFIG.COMMUNITY_INVITE_URL} target="_blank">
+          {/* eslint-disable-next-line astro/jsx-a11y/prefer-tag-over-role -- how to fix it? */}
           <svg
             aria-hidden="true"
             focusable="false"

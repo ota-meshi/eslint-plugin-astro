@@ -7,6 +7,7 @@ export const a11yRuleKeys = plugin?.rules
     )
   : ([
       "alt-text",
+      "anchor-ambiguous-text",
       "anchor-has-content",
       "anchor-is-valid",
       "aria-activedescendant-has-tabindex",
@@ -35,6 +36,7 @@ export const a11yRuleKeys = plugin?.rules
       "no-noninteractive-tabindex",
       "no-redundant-roles",
       "no-static-element-interactions",
+      "prefer-tag-over-role",
       "role-has-required-aria-props",
       "role-supports-aria-props",
       "scope",

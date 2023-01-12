@@ -288,6 +288,7 @@ These rules extend the rules provided by [eslint-plugin-jsx-a11y] to work well i
 | Rule ID | Description |    |
 |:--------|:------------|:---|
 | [astro/jsx-a11y/alt-text](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/alt-text/) | apply `jsx-a11y/alt-text` rule to Astro components |  |
+| [astro/jsx-a11y/anchor-ambiguous-text](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/anchor-ambiguous-text/) | apply `jsx-a11y/anchor-ambiguous-text` rule to Astro components |  |
 | [astro/jsx-a11y/anchor-has-content](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/anchor-has-content/) | apply `jsx-a11y/anchor-has-content` rule to Astro components |  |
 | [astro/jsx-a11y/anchor-is-valid](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/anchor-is-valid/) | apply `jsx-a11y/anchor-is-valid` rule to Astro components |  |
 | [astro/jsx-a11y/aria-activedescendant-has-tabindex](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/aria-activedescendant-has-tabindex/) | apply `jsx-a11y/aria-activedescendant-has-tabindex` rule to Astro components |  |
@@ -316,6 +317,7 @@ These rules extend the rules provided by [eslint-plugin-jsx-a11y] to work well i
 | [astro/jsx-a11y/no-noninteractive-tabindex](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/no-noninteractive-tabindex/) | apply `jsx-a11y/no-noninteractive-tabindex` rule to Astro components |  |
 | [astro/jsx-a11y/no-redundant-roles](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/no-redundant-roles/) | apply `jsx-a11y/no-redundant-roles` rule to Astro components |  |
 | [astro/jsx-a11y/no-static-element-interactions](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/no-static-element-interactions/) | apply `jsx-a11y/no-static-element-interactions` rule to Astro components |  |
+| [astro/jsx-a11y/prefer-tag-over-role](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/prefer-tag-over-role/) | apply `jsx-a11y/prefer-tag-over-role` rule to Astro components |  |
 | [astro/jsx-a11y/role-has-required-aria-props](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/role-has-required-aria-props/) | apply `jsx-a11y/role-has-required-aria-props` rule to Astro components |  |
 | [astro/jsx-a11y/role-supports-aria-props](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/role-supports-aria-props/) | apply `jsx-a11y/role-supports-aria-props` rule to Astro components |  |
 | [astro/jsx-a11y/scope](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/scope/) | apply `jsx-a11y/scope` rule to Astro components |  |
