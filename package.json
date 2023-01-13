@@ -112,7 +112,7 @@
     "prettier-plugin-svelte": "^2.7.0",
     "remark-emoji": "^3.0.2",
     "remark-gfm": "^3.0.1",
-    "rimraf": "^3.0.2",
+    "rimraf": "^4.0.0",
     "sass": "^1.52.2",
     "stylus": "^0.59.0",
     "svelte": "^3.48.0",
