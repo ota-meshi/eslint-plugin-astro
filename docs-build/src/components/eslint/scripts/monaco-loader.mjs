@@ -12,11 +12,6 @@ async function setupMonaco() {
       paths: {
         vs: monacoScript.src.replace(/\/vs\/.*$/u, "/vs"),
       },
-      "vs/nls": {
-        availableLanguages: {
-          "*": "ja",
-        },
-      },
     })
   }
 }
