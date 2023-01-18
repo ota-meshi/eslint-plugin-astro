@@ -1,13 +1,12 @@
 ---
 title: "astro/jsx-a11y/prefer-tag-over-role"
 description: "apply `jsx-a11y/prefer-tag-over-role` rule to Astro components"
+since: "v0.22.0"
 ---
 
 # astro/jsx-a11y/prefer-tag-over-role
 
 > apply `jsx-a11y/prefer-tag-over-role` rule to Astro components
-
-- :exclamation: <badge text="This rule has not been released yet." vertical="middle" type="error"> **_This rule has not been released yet._** </badge>
 
 This rule is the same rule as [jsx-a11y/prefer-tag-over-role] rule but it applies to the Astro components.  
 You must have [eslint-plugin-jsx-a11y] >=v6.7.0 installed to use this rule.
@@ -22,6 +21,10 @@ The following is a partial excerpt from the [jsx-a11y/prefer-tag-over-role] rule
 ## :books: Further Reading
 
 - [jsx-a11y/prefer-tag-over-role]
+
+## :rocket: Version
+
+This rule was introduced in eslint-plugin-astro v0.22.0
 
 ## :mag: Implementation
 
