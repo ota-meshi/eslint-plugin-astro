@@ -309,6 +309,7 @@ These rules extend the rules provided by [eslint-plugin-jsx-a11y] to work well i
 | [astro/jsx-a11y/media-has-caption](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/media-has-caption/) | apply `jsx-a11y/media-has-caption` rule to Astro components |  |
 | [astro/jsx-a11y/mouse-events-have-key-events](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/mouse-events-have-key-events/) | apply `jsx-a11y/mouse-events-have-key-events` rule to Astro components |  |
 | [astro/jsx-a11y/no-access-key](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/no-access-key/) | apply `jsx-a11y/no-access-key` rule to Astro components |  |
+| [astro/jsx-a11y/no-aria-hidden-on-focusable](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/no-aria-hidden-on-focusable/) | apply `jsx-a11y/no-aria-hidden-on-focusable` rule to Astro components |  |
 | [astro/jsx-a11y/no-autofocus](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/no-autofocus/) | apply `jsx-a11y/no-autofocus` rule to Astro components |  |
 | [astro/jsx-a11y/no-distracting-elements](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/no-distracting-elements/) | apply `jsx-a11y/no-distracting-elements` rule to Astro components |  |
 | [astro/jsx-a11y/no-interactive-element-to-noninteractive-role](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/no-interactive-element-to-noninteractive-role/) | apply `jsx-a11y/no-interactive-element-to-noninteractive-role` rule to Astro components |  |

@@ -28,6 +28,7 @@ export const a11yRuleKeys = plugin?.rules
       "media-has-caption",
       "mouse-events-have-key-events",
       "no-access-key",
+      "no-aria-hidden-on-focusable",
       "no-autofocus",
       "no-distracting-elements",
       "no-interactive-element-to-noninteractive-role",

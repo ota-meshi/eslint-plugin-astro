@@ -76,6 +76,7 @@ These rules extend the rules provided by [eslint-plugin-jsx-a11y] to work well i
 | [astro/jsx-a11y/media-has-caption](./rules/jsx-a11y/media-has-caption.md) | apply `jsx-a11y/media-has-caption` rule to Astro components |  |
 | [astro/jsx-a11y/mouse-events-have-key-events](./rules/jsx-a11y/mouse-events-have-key-events.md) | apply `jsx-a11y/mouse-events-have-key-events` rule to Astro components |  |
 | [astro/jsx-a11y/no-access-key](./rules/jsx-a11y/no-access-key.md) | apply `jsx-a11y/no-access-key` rule to Astro components |  |
+| [astro/jsx-a11y/no-aria-hidden-on-focusable](./rules/jsx-a11y/no-aria-hidden-on-focusable.md) | apply `jsx-a11y/no-aria-hidden-on-focusable` rule to Astro components |  |
 | [astro/jsx-a11y/no-autofocus](./rules/jsx-a11y/no-autofocus.md) | apply `jsx-a11y/no-autofocus` rule to Astro components |  |
 | [astro/jsx-a11y/no-distracting-elements](./rules/jsx-a11y/no-distracting-elements.md) | apply `jsx-a11y/no-distracting-elements` rule to Astro components |  |
 | [astro/jsx-a11y/no-interactive-element-to-noninteractive-role](./rules/jsx-a11y/no-interactive-element-to-noninteractive-role.md) | apply `jsx-a11y/no-interactive-element-to-noninteractive-role` rule to Astro components |  |
