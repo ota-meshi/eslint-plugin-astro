@@ -82,7 +82,7 @@
     "@typescript-eslint/eslint-plugin": "^5.25.0",
     "@typescript-eslint/parser": "^5.25.0",
     "assert": "^2.0.0",
-    "astro": "^1.0.0-beta.35",
+    "astro": "^2.0.0",
     "env-cmd": "^10.1.0",
     "esbuild": "^0.17.0",
     "esbuild-register": "^3.3.3",
