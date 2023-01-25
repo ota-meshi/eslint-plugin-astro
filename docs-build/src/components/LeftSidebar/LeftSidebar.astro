@@ -1,7 +1,6 @@
 ---
 import { SIDEBAR } from "../../config.ts"
-const baseUrl =
-  process.env.NODE_ENV === "development" ? "/" : import.meta.env.BASE_URL
+const baseUrl = import.meta.env.BASE_URL
 const { currentPage } = Astro.props
 const currentPageMatch = currentPage
   .replace(baseUrl, "")

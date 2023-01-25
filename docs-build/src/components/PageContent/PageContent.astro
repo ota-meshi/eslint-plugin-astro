@@ -6,8 +6,7 @@ import TableOfContents from "../RightSidebar/TableOfContents.svelte"
 const { content, githubEditUrl, hiddenRight, hiddenTOC } = Astro.props
 const title = content.title
 const headings = content?.astro?.headings
-const baseUrl =
-  process.env.NODE_ENV === "development" ? "/" : import.meta.env.BASE_URL
+const baseUrl = import.meta.env.BASE_URL
 const currentPage = new URL(Astro.request.url).pathname
 const currentPageMatch = currentPage
   .replace(baseUrl, "")
