@@ -65,6 +65,6 @@ jobs:
       - name: Test
         run: npm run cover
       - name: Coveralls GitHub Action
-        uses: coverallsapp/github-action@v1.2.0
+        uses: coverallsapp/github-action@v1.2.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
