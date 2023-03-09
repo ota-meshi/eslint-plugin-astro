@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 0.24.0
+
+### Minor Changes
+
+- [#176](https://github.com/ota-meshi/eslint-plugin-astro/pull/176) [`dce3a82`](https://github.com/ota-meshi/eslint-plugin-astro/commit/dce3a82039bfbd5370ecf5caf71bd51206f0f424) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency astro-eslint-parser to ^0.12.0
+
 ## 0.23.0
 
 ### Minor Changes
