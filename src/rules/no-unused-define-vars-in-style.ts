@@ -1,7 +1,7 @@
 import type { TSESTree } from "@typescript-eslint/types"
 import { AST_NODE_TYPES } from "@typescript-eslint/types"
 import type { AST } from "astro-eslint-parser"
-import { getPropertyName } from "eslint-utils"
+import { getPropertyName } from "@eslint-community/eslint-utils"
 import { createRule } from "../utils"
 import { getAttributeName } from "../utils/ast-utils"
 import { iterateCSSVars } from "../utils/style"

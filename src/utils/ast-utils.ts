@@ -2,13 +2,13 @@ import type { AST } from "astro-eslint-parser"
 import type { TSESTree } from "@typescript-eslint/types"
 import { AST_NODE_TYPES } from "@typescript-eslint/types"
 import type { RuleContext, SourceCode } from "../types"
-import type { StaticValue } from "eslint-utils"
+import type { StaticValue } from "@eslint-community/eslint-utils"
 import {
   isParenthesized,
   isOpeningParenToken,
   isClosingParenToken,
   getStaticValue,
-} from "eslint-utils"
+} from "@eslint-community/eslint-utils"
 
 /**
  * Get the attribute key name from given attribute node

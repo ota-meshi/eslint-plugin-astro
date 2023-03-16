@@ -2,8 +2,8 @@ import type { TSESTree } from "@typescript-eslint/types"
 import { AST_NODE_TYPES } from "@typescript-eslint/types"
 import type { AST } from "astro-eslint-parser"
 import type { Rule } from "eslint"
-import { getPropertyName } from "eslint-utils"
-import { isCommaToken } from "eslint-utils"
+import { getPropertyName } from "@eslint-community/eslint-utils"
+import { isCommaToken } from "@eslint-community/eslint-utils"
 import { createRule } from "../utils"
 import {
   extractConcatExpressions,
