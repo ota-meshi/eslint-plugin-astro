@@ -2,8 +2,11 @@ import type { AST } from "astro-eslint-parser"
 import { AST_NODE_TYPES } from "@typescript-eslint/types"
 import type { TSESTree } from "@typescript-eslint/types"
 import { createRule } from "../utils"
-import type { TrackedReferences } from "eslint-utils"
-import { isOpeningParenToken, ReferenceTracker } from "eslint-utils"
+import type { TrackedReferences } from "@eslint-community/eslint-utils"
+import {
+  isOpeningParenToken,
+  ReferenceTracker,
+} from "@eslint-community/eslint-utils"
 import {
   extractConcatExpressions,
   getAttributeName,
@@ -13,7 +16,7 @@ import {
 import type { Token } from "../utils/string-literal-parser"
 import { parseStringTokens } from "../utils/string-literal-parser"
 import type { Rule } from "eslint"
-import { getPropertyName } from "eslint-utils"
+import { getPropertyName } from "@eslint-community/eslint-utils"
 
 export default createRule("prefer-split-class-list", {
   meta: {

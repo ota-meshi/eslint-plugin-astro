@@ -1,4 +1,4 @@
-import { READ, ReferenceTracker } from "eslint-utils"
+import { READ, ReferenceTracker } from "@eslint-community/eslint-utils"
 import { createRule } from "../utils"
 
 export default createRule("no-deprecated-astro-canonicalurl", {

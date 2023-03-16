@@ -1,7 +1,7 @@
 import type { TSESTree } from "@typescript-eslint/types"
 import { AST_NODE_TYPES } from "@typescript-eslint/types"
 import type { AST } from "astro-eslint-parser"
-import { getStaticValue } from "eslint-utils"
+import { getStaticValue } from "@eslint-community/eslint-utils"
 import type { Node as PostcssNode } from "postcss"
 import postcss from "postcss"
 import parser from "postcss-selector-parser"
