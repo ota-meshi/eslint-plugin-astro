@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 0.25.0
+
+### Minor Changes
+
+- [#180](https://github.com/ota-meshi/eslint-plugin-astro/pull/180) [`186f9c1`](https://github.com/ota-meshi/eslint-plugin-astro/commit/186f9c1036bfcb19e918e899d59a18306cb5a5ea) Thanks [@ota-meshi](https://github.com/ota-meshi)! - feat: use `@eslint-community` packages
+
 ## 0.24.0
 
 ### Minor Changes
