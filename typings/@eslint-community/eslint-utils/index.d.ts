@@ -1,9 +1,9 @@
-export * from "../../node_modules/@types/eslint-utils"
+export * from "../../../node_modules/@types/eslint-utils"
 import type { AST } from "astro-eslint-parser"
 import type { Scope } from "eslint"
 import type * as ESTree from "estree"
 import type { TSESTree } from "@typescript-eslint/types"
-import type { SourceCode } from "../../src/types"
+import type { SourceCode } from "../../../src/types"
 type Token = { type: string; value: string }
 export function isArrowToken(token: Token): boolean
 export function isCommaToken(token: Token): boolean
