@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 0.26.0
+
+### Minor Changes
+
+- [#186](https://github.com/ota-meshi/eslint-plugin-astro/pull/186) [`361f335`](https://github.com/ota-meshi/eslint-plugin-astro/commit/361f3350a05771073297164f9e004dfc44f329d4) Thanks [@ota-meshi](https://github.com/ota-meshi)! - feat: update parser and add support for typescript v5
+
 ## 0.25.0
 
 ### Minor Changes
