@@ -1,6 +1,8 @@
 export class LinesAndColumns {
   private readonly lineStartIndices: number[]
 
+  private readonly code: string
+
   public constructor(code: string) {
     const len = code.length
     const lineStartIndices = [0]
@@ -16,6 +18,7 @@ export class LinesAndColumns {
         lineStartIndices.push(index + 1)
       }
     }
+    this.code = code
     this.lineStartIndices = lineStartIndices
   }
 
@@ -28,10 +31,15 @@ export class LinesAndColumns {
   }
 
   public getIndexFromLoc(loc: { line: number; column: number }): number {
-    const lineStartIndex = this.lineStartIndices[loc.line - 1]
-    const positionIndex = lineStartIndex + loc.column
-
-    return positionIndex
+    const lineIndex = loc.line - 1
+    if (this.lineStartIndices.length > lineIndex) {
+      const lineStartIndex = this.lineStartIndices[lineIndex]
+      const positionIndex = lineStartIndex + loc.column
+      return positionIndex
+    } else if (this.lineStartIndices.length === lineIndex) {
+      return this.code.length + loc.column
+    }
+    return this.code.length + loc.column
   }
 }
 

@@ -99,7 +99,7 @@ export class ClientScript {
     const indent = getIndent(lines)
     for (let index = 0; index < lines.length; index++) {
       const line = lines[index]
-      const lineIndent = Math.min(indent, line.length - 1)
+      const lineIndent = Math.min(indent, line.length)
       textLines.push(line.slice(lineIndent))
       remapLines.push(startLoc.line + index + 1)
       remapColumnOffsets.push(lineIndent)
@@ -109,26 +109,42 @@ export class ClientScript {
     const textLocs = new Locs(textLines)
 
     /** Remap loc */
-    const remapRange = (range: [number, number]): [number, number] => {
-      return [
-        this.parsed.getIndexFromLoc(
-          remapLoc(textLocs.getLocFromIndex(range[0])),
-        ),
-        this.parsed.getIndexFromLoc(
-          remapLoc(textLocs.getLocFromIndex(range[1])),
-        ),
-      ]
-    }
-
-    /** Remap loc */
-    function remapLoc(loc: { line: number; column: number }): {
+    const remapLoc = (loc: {
       line: number
       column: number
-    } {
-      return {
-        line: remapLines[loc.line - 1] ?? -1,
-        column: loc.column + (remapColumnOffsets[loc.line - 1] ?? 0),
+    }): {
+      line: number
+      column: number
+    } => {
+      const lineIndex = loc.line - 1
+      if (remapLines.length > lineIndex) {
+        return {
+          line: remapLines[lineIndex],
+          column: loc.column + remapColumnOffsets[lineIndex],
+        }
       }
+      if (remapLines.length === lineIndex) {
+        return this.parsed.getLocFromIndex(endOffset + loc.column)
+      }
+      return {
+        line: -1,
+        column: loc.column + 0,
+      }
+    }
+
+    /** Remap range */
+    const remapRange = (range: [number, number]): [number, number] | null => {
+      const startLoc = textLocs.getLocFromIndex(range[0])
+      const endLoc = textLocs.getLocFromIndex(range[1])
+      const remappedStartLoc = remapLoc(startLoc)
+      const remappedEndLoc = remapLoc(endLoc)
+      if (remappedStartLoc.line < 0 || remappedEndLoc.line < 0) {
+        return null
+      }
+      return [
+        this.parsed.getIndexFromLoc(remappedStartLoc),
+        this.parsed.getIndexFromLoc(remappedEndLoc),
+      ]
     }
 
     return {
@@ -150,11 +166,24 @@ export class ClientScript {
         }
 
         if (message.fix) {
-          message.fix.range = remapRange(message.fix.range)
+          const remappedRange = remapRange(message.fix.range)
+          if (remappedRange) {
+            message.fix.range = remappedRange
+          } else {
+            delete message.fix
+          }
         }
         if (message.suggestions) {
-          for (const suggestion of message.suggestions) {
-            suggestion.fix.range = remapRange(suggestion.fix.range)
+          for (const suggestion of [...message.suggestions]) {
+            const remappedRange = remapRange(suggestion.fix.range)
+            if (remappedRange) {
+              suggestion.fix.range = remappedRange
+            } else {
+              message.suggestions.splice(
+                message.suggestions.indexOf(suggestion),
+                1,
+              )
+            }
           }
         }
 
@@ -208,8 +237,17 @@ export class ClientScript {
 
   public remapMessages(messages: Linter.LintMessage[]): Linter.LintMessage[] {
     return messages
+      .filter((m) => !this.isIgnoreMessage(m))
       .map((m) => this.block.remapMessage(m))
       .filter((m) => m.line >= 0)
+  }
+
+  private isIgnoreMessage(message: Linter.LintMessage) {
+    if (message.ruleId === "eol-last" && message.messageId === "unexpected") {
+      // Ignore this report as it is not possible to remove the EOF of a block.
+      return true
+    }
+    return false
   }
 }
 

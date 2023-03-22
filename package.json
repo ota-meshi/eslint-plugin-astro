@@ -55,7 +55,7 @@
     "@eslint-community/eslint-utils": "^4.2.0",
     "@jridgewell/sourcemap-codec": "^1.4.14",
     "@typescript-eslint/types": "^5.25.0",
-    "astro-eslint-parser": "^0.13.0",
+    "astro-eslint-parser": "^0.13.1",
     "postcss": "^8.4.14",
     "postcss-selector-parser": "^6.0.10"
   },
