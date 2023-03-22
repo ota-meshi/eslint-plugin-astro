@@ -71,7 +71,31 @@ export default defineConfig({
         path: path.join(dirname, "./docs-build/shim/path.mjs"),
         module: path.join(dirname, "./docs-build/shim/module.mjs"),
         globby: path.join(dirname, "./docs-build/shim/globby.mjs"),
+        // override tsconfig (it had no effect...)
+        "@eslint-community/eslint-utils": path.join(
+          dirname,
+          "./node_modules/@eslint-community/eslint-utils",
+        ),
       },
     },
+    plugins: [
+      {
+        name: "force-alias",
+        enforce: "pre",
+        config() {
+          return {
+            resolve: {
+              alias: {
+                // override tsconfig
+                "@eslint-community/eslint-utils": path.join(
+                  dirname,
+                  "./node_modules/@eslint-community/eslint-utils",
+                ),
+              },
+            },
+          }
+        },
+      },
+    ],
   },
 })

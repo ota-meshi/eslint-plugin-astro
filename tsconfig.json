@@ -20,7 +20,7 @@
     "esModuleInterop": true,
     "outDir": "lib",
     "paths": {
-      "*": ["typings/*"]
+      "@eslint-community/*": ["typings/@eslint-community/*"]
     },
 
     "skipLibCheck": true

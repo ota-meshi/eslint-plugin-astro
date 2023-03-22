@@ -62,6 +62,23 @@ ${dump(data)}---
     // Remove comments
     pageContent = pageContent.replace(/<!--[\s\S]*?-->/g, "")
 
+    // Replace import paths
+    pageContent = pageContent.replace(
+      /---[\s\S]*?---((?:\n+import\s[\s\S]*?\sfrom\s+(?:"[^"]+"|'[^']+'))+)/u,
+      (imports) => {
+        return imports
+          .replace(/"\.[^"]+"/, replacePath)
+          .replace(/'\.[^']+'/, replacePath)
+
+        function replacePath(sourcePathString) {
+          const absSourcePath = path.resolve(
+            path.dirname(page),
+            sourcePathString.slice(1, -1),
+          )
+          return `"./${path.relative(path.dirname(to), absSourcePath)}"`
+        }
+      },
+    )
     if (pageContent.includes("<ESLintCodeBlock")) {
       // Import ESLintCodeBlock component
       const eslintCodeBlockPath = path.resolve(
