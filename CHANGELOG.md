@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 0.26.1
+
+### Patch Changes
+
+- [#191](https://github.com/ota-meshi/eslint-plugin-astro/pull/191) [`8fb33ff`](https://github.com/ota-meshi/eslint-plugin-astro/commit/8fb33ff4f8b22f6973e0973bb8f8c4194f60d7de) Thanks [@ota-meshi](https://github.com/ota-meshi)! - fix: compatibility with `eol-last` rule
+
 ## 0.26.0
 
 ### Minor Changes
