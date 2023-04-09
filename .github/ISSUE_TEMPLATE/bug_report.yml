@@ -70,6 +70,12 @@ body:
       description: |
         Create a minimal reproduction of the problem. **A minimal reproduction is required** so that others can help debug your issue. If a report is vague (e.g. just a generic error message) and has no reproduction, it may be closed.  
         [Why Reproductions are Required](https://antfu.me/posts/why-reproductions-are-required)
+
+        Be sure to share the repo on GitHub. GitHub's repo is ready to debug using Codespace.  
+        Please DON'T USE non-GitHub repos such as GitLab as repro.  
+        It takes me a long time to prepare my local PC for debugging.  
+        Please DON'T USE stackblitz as a repro.  
+        We can't debug eslint with stackblitz.
       placeholder: |
         https://github.com/[your]/[repo]
         or
