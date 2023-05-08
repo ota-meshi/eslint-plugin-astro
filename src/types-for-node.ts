@@ -741,6 +741,12 @@ export type ASTNodeListener = {
   "JSXClosingElement:exit"?: (
     node: AST.JSXClosingElement & ASTNodeWithParent,
   ) => void
+  JSXClosingFragment?: (
+    node: AST.JSXClosingFragment & ASTNodeWithParent,
+  ) => void
+  "JSXClosingFragment:exit"?: (
+    node: AST.JSXClosingFragment & ASTNodeWithParent,
+  ) => void
   JSXElement?: (node: AST.JSXElement & ASTNodeWithParent) => void
   "JSXElement:exit"?: (node: AST.JSXElement & ASTNodeWithParent) => void
   JSXEmptyExpression?: (
@@ -755,6 +761,8 @@ export type ASTNodeListener = {
   "JSXExpressionContainer:exit"?: (
     node: AST.JSXExpressionContainer & ASTNodeWithParent,
   ) => void
+  JSXFragment?: (node: AST.JSXFragment & ASTNodeWithParent) => void
+  "JSXFragment:exit"?: (node: AST.JSXFragment & ASTNodeWithParent) => void
   JSXIdentifier?: (node: AST.JSXIdentifier & ASTNodeWithParent) => void
   "JSXIdentifier:exit"?: (node: AST.JSXIdentifier & ASTNodeWithParent) => void
   JSXMemberExpression?: (
@@ -771,28 +779,22 @@ export type ASTNodeListener = {
   "JSXOpeningElement:exit"?: (
     node: AST.JSXOpeningElement & ASTNodeWithParent,
   ) => void
-  JSXSpreadAttribute?: (
-    node: AST.JSXSpreadAttribute & ASTNodeWithParent,
-  ) => void
-  "JSXSpreadAttribute:exit"?: (
-    node: AST.JSXSpreadAttribute & ASTNodeWithParent,
-  ) => void
-  JSXText?: (node: AST.JSXText & ASTNodeWithParent) => void
-  "JSXText:exit"?: (node: AST.JSXText & ASTNodeWithParent) => void
-  JSXFragment?: (node: AST.JSXFragment & ASTNodeWithParent) => void
-  "JSXFragment:exit"?: (node: AST.JSXFragment & ASTNodeWithParent) => void
-  JSXClosingFragment?: (
-    node: AST.JSXClosingFragment & ASTNodeWithParent,
-  ) => void
-  "JSXClosingFragment:exit"?: (
-    node: AST.JSXClosingFragment & ASTNodeWithParent,
-  ) => void
   JSXOpeningFragment?: (
     node: AST.JSXOpeningFragment & ASTNodeWithParent,
   ) => void
   "JSXOpeningFragment:exit"?: (
     node: AST.JSXOpeningFragment & ASTNodeWithParent,
   ) => void
+  JSXSpreadAttribute?: (
+    node: AST.JSXSpreadAttribute & ASTNodeWithParent,
+  ) => void
+  "JSXSpreadAttribute:exit"?: (
+    node: AST.JSXSpreadAttribute & ASTNodeWithParent,
+  ) => void
+  JSXSpreadChild?: (node: AST.JSXSpreadChild & ASTNodeWithParent) => void
+  "JSXSpreadChild:exit"?: (node: AST.JSXSpreadChild & ASTNodeWithParent) => void
+  JSXText?: (node: AST.JSXText & ASTNodeWithParent) => void
+  "JSXText:exit"?: (node: AST.JSXText & ASTNodeWithParent) => void
   Program?: (node: AST.AstroProgram & ASTNodeWithParent) => void
   "Program:exit"?: (node: AST.AstroProgram & ASTNodeWithParent) => void
   AstroFragment?: (node: AST.AstroFragment & ASTNodeWithParent) => void
@@ -1525,6 +1527,12 @@ export type AstroNodeListener = {
   "JSXClosingElement:exit"?: (
     node: AST.JSXClosingElement & ASTNodeWithParent,
   ) => void
+  JSXClosingFragment?: (
+    node: AST.JSXClosingFragment & ASTNodeWithParent,
+  ) => void
+  "JSXClosingFragment:exit"?: (
+    node: AST.JSXClosingFragment & ASTNodeWithParent,
+  ) => void
   JSXElement?: (node: AST.JSXElement & ASTNodeWithParent) => void
   "JSXElement:exit"?: (node: AST.JSXElement & ASTNodeWithParent) => void
   JSXEmptyExpression?: (
@@ -1539,6 +1547,8 @@ export type AstroNodeListener = {
   "JSXExpressionContainer:exit"?: (
     node: AST.JSXExpressionContainer & ASTNodeWithParent,
   ) => void
+  JSXFragment?: (node: AST.JSXFragment & ASTNodeWithParent) => void
+  "JSXFragment:exit"?: (node: AST.JSXFragment & ASTNodeWithParent) => void
   JSXIdentifier?: (node: AST.JSXIdentifier & ASTNodeWithParent) => void
   "JSXIdentifier:exit"?: (node: AST.JSXIdentifier & ASTNodeWithParent) => void
   JSXMemberExpression?: (
@@ -1555,28 +1565,22 @@ export type AstroNodeListener = {
   "JSXOpeningElement:exit"?: (
     node: AST.JSXOpeningElement & ASTNodeWithParent,
   ) => void
-  JSXSpreadAttribute?: (
-    node: AST.JSXSpreadAttribute & ASTNodeWithParent,
-  ) => void
-  "JSXSpreadAttribute:exit"?: (
-    node: AST.JSXSpreadAttribute & ASTNodeWithParent,
-  ) => void
-  JSXText?: (node: AST.JSXText & ASTNodeWithParent) => void
-  "JSXText:exit"?: (node: AST.JSXText & ASTNodeWithParent) => void
-  JSXFragment?: (node: AST.JSXFragment & ASTNodeWithParent) => void
-  "JSXFragment:exit"?: (node: AST.JSXFragment & ASTNodeWithParent) => void
-  JSXClosingFragment?: (
-    node: AST.JSXClosingFragment & ASTNodeWithParent,
-  ) => void
-  "JSXClosingFragment:exit"?: (
-    node: AST.JSXClosingFragment & ASTNodeWithParent,
-  ) => void
   JSXOpeningFragment?: (
     node: AST.JSXOpeningFragment & ASTNodeWithParent,
   ) => void
   "JSXOpeningFragment:exit"?: (
     node: AST.JSXOpeningFragment & ASTNodeWithParent,
   ) => void
+  JSXSpreadAttribute?: (
+    node: AST.JSXSpreadAttribute & ASTNodeWithParent,
+  ) => void
+  "JSXSpreadAttribute:exit"?: (
+    node: AST.JSXSpreadAttribute & ASTNodeWithParent,
+  ) => void
+  JSXSpreadChild?: (node: AST.JSXSpreadChild & ASTNodeWithParent) => void
+  "JSXSpreadChild:exit"?: (node: AST.JSXSpreadChild & ASTNodeWithParent) => void
+  JSXText?: (node: AST.JSXText & ASTNodeWithParent) => void
+  "JSXText:exit"?: (node: AST.JSXText & ASTNodeWithParent) => void
   AstroFragment?: (node: AST.AstroFragment & ASTNodeWithParent) => void
   "AstroFragment:exit"?: (node: AST.AstroFragment & ASTNodeWithParent) => void
   AstroHTMLComment?: (node: AST.AstroHTMLComment & ASTNodeWithParent) => void
