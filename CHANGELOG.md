@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 0.26.2
+
+### Patch Changes
+
+- [#201](https://github.com/ota-meshi/eslint-plugin-astro/pull/201) [`cafd97c`](https://github.com/ota-meshi/eslint-plugin-astro/commit/cafd97c515498c3ca11200091754a2bdc6eb9017) Thanks [@ota-meshi](https://github.com/ota-meshi)! - fix: incompatible with ESLint v8.40 in `astro/semi` rule
+
 ## 0.26.1
 
 ### Patch Changes
