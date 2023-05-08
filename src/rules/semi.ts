@@ -34,6 +34,7 @@ export default createRule("semi", {
       }),
     )
 
+    /** Get source code wrapper instance */
     function getSourceCode() {
       if (sourceCodeWrapper) {
         return sourceCodeWrapper
