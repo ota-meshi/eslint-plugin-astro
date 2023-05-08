@@ -132,6 +132,7 @@ export type RuleContext = {
   getScope(): Scope.Scope
 
   getSourceCode(): SourceCode
+  sourceCode: SourceCode
 
   markVariableAsUsed(name: string): boolean
 
