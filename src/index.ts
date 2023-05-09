@@ -6,6 +6,7 @@ import base from "./configs/base"
 import recommended from "./configs/recommended"
 import all from "./configs/all"
 import { buildA11yConfigs } from "./a11y"
+import * as meta from "./meta"
 
 const configs = {
   base,
@@ -30,6 +31,7 @@ const rules = ruleList.reduce((obj, r) => {
 }, {} as { [key: string]: RuleModule })
 
 export = {
+  meta,
   configs,
   rules,
   processors: {

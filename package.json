@@ -11,7 +11,8 @@
   },
   "scripts": {
     "prebuild": "npm run -s clean",
-    "build": "npm run build:ts",
+    "build": "npm run build:meta && npm run build:ts",
+    "build:meta": "npm run ts -- ./tools/update-meta.ts",
     "build:ts": "tsc --project ./tsconfig.build.json",
     "clean": "rimraf lib .nyc_output dist coverage",
     "test": "npm run mocha -- \"tests/src/**/*.ts\" --reporter dot --timeout 60000",

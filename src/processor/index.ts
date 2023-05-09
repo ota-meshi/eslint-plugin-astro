@@ -2,6 +2,7 @@ import type { ParseTemplateResult } from "astro-eslint-parser"
 import { parseTemplate } from "astro-eslint-parser"
 import type { Linter } from "eslint"
 import { beginShared, terminateShared } from "../shared"
+import * as meta from "../meta"
 
 export const processor: Linter.Processor = {
   preprocess(code: string, filename: string) {
@@ -45,4 +46,6 @@ export const processor: Linter.Processor = {
     return messages
   },
   supportsAutofix: true,
+  // @ts-expect-error -- missing type
+  meta,
 }

@@ -3,7 +3,12 @@ import path from "path"
 import { rules, configs } from "eslint-plugin-jsx-a11y"
 import { formatAndSave } from "./lib/utils"
 
-const content = `import { getPluginJsxA11y } from "./load"
+const content = `/*
+ * IMPORTANT!
+ * This file has been automatically generated,
+ * in order to update its content execute "npm run update"
+ */
+import { getPluginJsxA11y } from "./load"
 
 const plugin = getPluginJsxA11y()
 export const a11yRuleKeys = plugin?.rules

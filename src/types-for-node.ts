@@ -1,3 +1,6 @@
+// IMPORTANT!
+// This file has been automatically generated,
+// in order to update its content execute "npm run update"
 import type { TSESTree, AST_NODE_TYPES } from "@typescript-eslint/types"
 import type { AST } from "astro-eslint-parser"
 import type * as ESTree from "estree"
