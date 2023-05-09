@@ -1,5 +1,13 @@
 # eslint-plugin-astro
 
+## 0.27.0
+
+### Minor Changes
+
+- [#206](https://github.com/ota-meshi/eslint-plugin-astro/pull/206) [`8aec40d`](https://github.com/ota-meshi/eslint-plugin-astro/commit/8aec40d36a26f1f211aece5638249739d74f8398) Thanks [@ota-meshi](https://github.com/ota-meshi)! - fix(deps): update astro-eslint-parser
+
+- [#204](https://github.com/ota-meshi/eslint-plugin-astro/pull/204) [`f3d54be`](https://github.com/ota-meshi/eslint-plugin-astro/commit/f3d54bee4842c781f967159cca37bdd676cab71f) Thanks [@ota-meshi](https://github.com/ota-meshi)! - feat: export meta object
+
 ## 0.26.2
 
 ### Patch Changes
