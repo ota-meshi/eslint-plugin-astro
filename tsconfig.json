@@ -23,7 +23,8 @@
       "@eslint-community/*": ["typings/@eslint-community/*"]
     },
 
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "resolveJsonModule": true
   },
   "include": [
     "src/**/*",

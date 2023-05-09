@@ -7,7 +7,12 @@ const baseRules = rules.filter(
 )
 void formatAndSave(
   path.resolve(__dirname, "../src/configs/base.ts"),
-  `import { hasTypescriptEslintParser } from "./has-typescript-eslint-parser"
+  `/*
+ * IMPORTANT!
+ * This file has been automatically generated,
+ * in order to update its content execute "npm run update"
+ */
+import { hasTypescriptEslintParser } from "./has-typescript-eslint-parser"
 
 export = {
   plugins: ["astro"],
@@ -73,7 +78,12 @@ const recommendedRules = rules.filter(
 
 void formatAndSave(
   path.resolve(__dirname, "../src/configs/recommended.ts"),
-  `import path from "path"
+  `/*
+ * IMPORTANT!
+ * This file has been automatically generated,
+ * in order to update its content execute "npm run update"
+ */
+import path from "path"
 const base = require.resolve("./base")
 const baseExtend =
   path.extname(\`\${base}\`) === ".ts" ? "plugin:astro/base" : base

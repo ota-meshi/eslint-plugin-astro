@@ -1,3 +1,6 @@
+// IMPORTANT!
+// This file has been automatically generated,
+// in order to update its content execute "npm run update"
 import { getPluginJsxA11y } from "./load"
 
 const plugin = getPluginJsxA11y()
