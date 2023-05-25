@@ -20,7 +20,11 @@ export const processor: Linter.Processor = {
         if (
           node.type === "element" &&
           node.name === "script" &&
-          node.children.length
+          node.children.length &&
+          !node.attributes.some(
+            ({ name, value }) =>
+              name === "type" && /json$|importmap/i.test(value),
+          )
         ) {
           shared.addClientScript(code, node, parsed)
         }
