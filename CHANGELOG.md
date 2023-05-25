@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 0.27.1
+
+### Patch Changes
+
+- [#211](https://github.com/ota-meshi/eslint-plugin-astro/pull/211) [`639d010`](https://github.com/ota-meshi/eslint-plugin-astro/commit/639d010e7eb542e2f27e063bdc79dfde3ac2bd59) Thanks [@SudoCat](https://github.com/SudoCat)! - fix: prevent parsing of json script tags
+
 ## 0.27.0
 
 ### Minor Changes
