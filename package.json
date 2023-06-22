@@ -116,7 +116,7 @@
     "rimraf": "^5.0.0",
     "sass": "^1.52.2",
     "stylus": "^0.59.0",
-    "svelte": "^3.48.0",
+    "svelte": "^4.0.0",
     "typescript": "^5.0.0"
   },
   "publishConfig": {
