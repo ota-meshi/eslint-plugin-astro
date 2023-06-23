@@ -115,6 +115,28 @@ module.exports = {
 }
 ```
 
+In order to lint `.ts(x)` files add another override to the cofiguration file:
+
+```js
+module.exports = {
+  // ...
+  extends: [
+    // ...
+  ],
+  // ...
+  overrides: [
+    {
+      // Define the configuration for `.astro` file.
+    },
+    // for .ts (or other) files
+    {
+      "files": ["*.ts"],
+      "parser": "@typescript-eslint/parser"
+    }
+  ],
+}
+```
+
 If you do not use a shareable configuration, it is the same as the following configuration:
 
 ```js
