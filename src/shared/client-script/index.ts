@@ -15,7 +15,7 @@ class Locs {
     const lineStartIndices = [0]
 
     let index = 0
-    for (const line of lines) {
+    for (const line of lines[lines.length - 1] ? lines : lines.slice(0, -1)) {
       index += line.length
       lineStartIndices.push(index)
     }
@@ -100,9 +100,19 @@ export class ClientScript {
     for (let index = 0; index < lines.length; index++) {
       const line = lines[index]
       const lineIndent = Math.min(indent, line.length)
-      textLines.push(line.slice(lineIndent))
+      const lineText = line.slice(lineIndent)
+      if (lineText) {
+        textLines.push(line.slice(lineIndent))
+        remapColumnOffsets.push(lineIndent)
+      } else if (line.endsWith("\n")) {
+        const eol = line.endsWith("\r\n") ? "\r\n" : "\n"
+        textLines.push(eol)
+        remapColumnOffsets.push(line.length - eol.length)
+      } else {
+        textLines.push("")
+        remapColumnOffsets.push(lineIndent)
+      }
       remapLines.push(startLoc.line + index + 1)
-      remapColumnOffsets.push(lineIndent)
     }
 
     const text = textLines.join("")
@@ -135,7 +145,11 @@ export class ClientScript {
     /** Remap range */
     const remapRange = (range: [number, number]): [number, number] | null => {
       const startLoc = textLocs.getLocFromIndex(range[0])
-      const endLoc = textLocs.getLocFromIndex(range[1])
+      const normalEndLoc = textLocs.getLocFromIndex(range[1])
+      const endLoc =
+        normalEndLoc.column > 0
+          ? normalEndLoc
+          : textLocs.getLocFromIndex(range[1] - 1)
       const remappedStartLoc = remapLoc(startLoc)
       const remappedEndLoc = remapLoc(endLoc)
       if (remappedStartLoc.line < 0 || remappedEndLoc.line < 0) {
@@ -143,7 +157,8 @@ export class ClientScript {
       }
       return [
         this.parsed.getIndexFromLoc(remappedStartLoc),
-        this.parsed.getIndexFromLoc(remappedEndLoc),
+        this.parsed.getIndexFromLoc(remappedEndLoc) +
+          (normalEndLoc.column > 0 ? 0 : 1),
       ]
     }
 

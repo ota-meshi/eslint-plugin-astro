@@ -1,8 +1,8 @@
 import { RuleTester, Linter } from "eslint"
 import { processor } from "../../../src/processor"
 
-describe("Integration test for no-undef", () => {
-  const ruleNoUnusedVars = new Linter().getRules().get("no-undef")!
+describe("Integration test for linebreak-style", () => {
+  const ruleNoUnusedVars = new Linter().getRules().get("linebreak-style")!
   const tester = new RuleTester({
     parser: require.resolve("./auto-parser"),
     parserOptions: {
@@ -13,7 +13,7 @@ describe("Integration test for no-undef", () => {
       console: false,
     },
   })
-  tester.run("no-undef", ruleNoUnusedVars, {
+  tester.run("linebreak-style", ruleNoUnusedVars, {
     valid: [
       {
         // @ts-expect-error -- fine name with processor
@@ -27,6 +27,21 @@ describe("Integration test for no-undef", () => {
         </script>
         `,
       },
+      {
+        // @ts-expect-error -- fine name with processor
+        filename: {
+          filename: "foo.astro",
+          ...processor,
+        },
+        code: `
+<script define:vars={{ bar: 42 }}>
+
+
+  // empty lines
+  console.log(foo)
+</script>
+        `,
+      },
     ],
     invalid: [
       {
@@ -35,18 +50,17 @@ describe("Integration test for no-undef", () => {
           filename: "foo.astro",
           ...processor,
         },
-        code: `
+        code: `{/*eslint linebreak-style:0*/}
+        <script define:vars={{ bar: 42 }}>
+          console.log(foo)\r
+        </script>
+        `,
+        output: `{/*eslint linebreak-style:0*/}
         <script define:vars={{ bar: 42 }}>
           console.log(foo)
         </script>
         `,
-        errors: [
-          {
-            message: "'foo' is not defined.",
-            line: 3,
-            column: 23,
-          },
-        ],
+        errors: 1,
       },
       {
         // @ts-expect-error -- fine name with processor
@@ -54,43 +68,23 @@ describe("Integration test for no-undef", () => {
           filename: "foo.astro",
           ...processor,
         },
-        code: `
-<script define:vars={{ bar: 42 }}>
+        code: `{/*eslint linebreak-style:0*/}
+<script define:vars={{ bar: 42 }}>\r
+\r
+\r
+  // empty lines\r
+  console.log(foo)\r
+</script>
+        `,
+        output: `{/*eslint linebreak-style:0*/}
+<script define:vars={{ bar: 42 }}>\r
 
-
+\r
   // empty lines
   console.log(foo)
 </script>
         `,
-        errors: [
-          {
-            message: "'foo' is not defined.",
-            line: 6,
-            column: 15,
-          },
-        ],
-      },
-      {
-        // @ts-expect-error -- fine name with processor
-        filename: {
-          filename: "foo.astro",
-          ...processor,
-        },
-        code: `
-<script define:vars={{ bar: 42 }}>
-
-
-  // empty lines
-  console.log(foo)
-</script>
-        `.replace(/\n/gu, "\r\n"),
-        errors: [
-          {
-            message: "'foo' is not defined.",
-            line: 6,
-            column: 15,
-          },
-        ],
+        errors: 4,
       },
     ],
   })
