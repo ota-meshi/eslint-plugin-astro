@@ -22,7 +22,7 @@ jobs:
           node-version: 16
 
       - name: Install Dependencies
-        run: npm install --legacy-peer-deps
+        run: npm install -f
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
