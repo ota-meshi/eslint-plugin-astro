@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 0.27.2
+
+### Patch Changes
+
+- [#220](https://github.com/ota-meshi/eslint-plugin-astro/pull/220) [`a87b659`](https://github.com/ota-meshi/eslint-plugin-astro/commit/a87b659d7595ef15185fcd21e3806561be7d8025) Thanks [@ota-meshi](https://github.com/ota-meshi)! - fix: wrong report position in client script with empty lines
+
 ## 0.27.1
 
 ### Patch Changes
