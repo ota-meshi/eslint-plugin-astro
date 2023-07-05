@@ -108,7 +108,7 @@
     "nyc": "^15.1.0",
     "pako": "^2.0.4",
     "postcss-nested": "^6.0.0",
-    "prettier": "^2.6.2",
+    "prettier": "^3.0.0",
     "prettier-plugin-astro": "^0.10.0",
     "prettier-plugin-svelte": "^2.7.0",
     "remark-emoji": "^3.0.2",
