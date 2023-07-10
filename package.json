@@ -55,7 +55,7 @@
   "dependencies": {
     "@eslint-community/eslint-utils": "^4.2.0",
     "@jridgewell/sourcemap-codec": "^1.4.14",
-    "@typescript-eslint/types": "^5.25.0",
+    "@typescript-eslint/types": "^6.0.0",
     "astro-eslint-parser": "^0.14.0",
     "postcss": "^8.4.14",
     "postcss-selector-parser": "^6.0.10"
@@ -80,8 +80,8 @@
     "@types/react": "^18.0.15",
     "@types/semver": "^7.3.9",
     "@types/stylus": "^0.48.38",
-    "@typescript-eslint/eslint-plugin": "^5.25.0",
-    "@typescript-eslint/parser": "^5.25.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
     "assert": "^2.0.0",
     "astro": "^2.0.0",
     "env-cmd": "^10.1.0",
