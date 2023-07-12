@@ -25,10 +25,13 @@ for (const configName of Object.keys(a11yConfigs)) {
   })
 }
 
-const rules = ruleList.reduce((obj, r) => {
-  obj[r.meta.docs.ruleName] = r
-  return obj
-}, {} as { [key: string]: RuleModule })
+const rules = ruleList.reduce(
+  (obj, r) => {
+    obj[r.meta.docs.ruleName] = r
+    return obj
+  },
+  {} as { [key: string]: RuleModule },
+)
 
 export = {
   meta,
