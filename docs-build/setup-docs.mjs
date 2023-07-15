@@ -1,7 +1,7 @@
 import fs from "fs"
 import path from "path"
 import { URL } from "url"
-// eslint-disable-next-line node/file-extension-in-import -- Site script
+// eslint-disable-next-line n/file-extension-in-import -- Site script
 import "./build-system/build.js"
 import { load, dump } from "js-yaml"
 

@@ -1,4 +1,4 @@
-// eslint-disable-next-line node/no-extraneous-import -- Site
+// eslint-disable-next-line n/no-extraneous-import -- Site
 import { visit } from "unist-util-visit"
 import path from "path"
 
