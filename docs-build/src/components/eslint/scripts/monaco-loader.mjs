@@ -81,7 +81,7 @@ export async function loadMonacoEditor() {
       if (typeof window !== "undefined") {
         // @ts-ignore
         window.require(
-          // eslint-disable-next-line node/no-missing-require -- Demo
+          // eslint-disable-next-line n/no-missing-require -- Demo
           ["vs/editor/editor.main"],
           (r) => {
             resolve(r)

@@ -1,8 +1,8 @@
-// eslint-disable-next-line node/no-missing-import -- Demo
+// eslint-disable-next-line n/no-missing-import -- Demo
 import { rules as pluginRules } from "../../../../../src/utils/rules"
 import { Linter } from "eslint"
 import * as astroEslintParser from "astro-eslint-parser"
-// eslint-disable-next-line node/no-missing-import -- Demo
+// eslint-disable-next-line n/no-missing-import -- Demo
 import { processor } from "../../../../../src/processor/index"
 export const { preprocess, postprocess } = processor
 const linter = new Linter()
@@ -116,7 +116,6 @@ export function getRule(ruleId) {
 }
 
 export async function createLinter() {
-  // eslint-disable-next-line node/no-unsupported-features/es-syntax -- Demo
   const tsParser = await import("@typescript-eslint/parser")
   const linter = new Linter()
   linter.defineParser("astro-auto-eslint-parser", {
