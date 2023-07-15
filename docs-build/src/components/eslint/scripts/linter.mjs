@@ -116,7 +116,6 @@ export function getRule(ruleId) {
 }
 
 export async function createLinter() {
-  // eslint-disable-next-line n/no-unsupported-features/es-syntax -- Demo
   const tsParser = await import("@typescript-eslint/parser")
   const linter = new Linter()
   linter.defineParser("astro-auto-eslint-parser", {

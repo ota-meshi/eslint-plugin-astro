@@ -1,8 +1,6 @@
-// eslint-disable-next-line n/no-missing-import -- Site
+// eslint-disable-next-line n/file-extension-in-import -- bug?
 import { defineConfig } from "astro/config"
-// eslint-disable-next-line n/no-missing-import -- Site
 import svelte from "@astrojs/svelte"
-// eslint-disable-next-line n/no-missing-import -- Site
 import mdx from "@astrojs/mdx"
 import emoji from "remark-emoji"
 import gfm from "remark-gfm"
