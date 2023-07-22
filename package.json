@@ -55,7 +55,7 @@
   "dependencies": {
     "@eslint-community/eslint-utils": "^4.2.0",
     "@jridgewell/sourcemap-codec": "^1.4.14",
-    "@typescript-eslint/types": "^6.0.0",
+    "@typescript-eslint/types": "^5.0.0",
     "astro-eslint-parser": "^0.14.0",
     "postcss": "^8.4.14",
     "postcss-selector-parser": "^6.0.10"
@@ -69,7 +69,7 @@
     "@astrojs/svelte": "^3.0.0",
     "@changesets/changelog-github": "^0.4.6",
     "@changesets/cli": "^2.24.2",
-    "@ota-meshi/eslint-plugin": "^0.13.0",
+    "@ota-meshi/eslint-plugin": "^0.15.0",
     "@types/eslint": "^8.4.2",
     "@types/eslint-scope": "^3.7.3",
     "@types/eslint-utils": "^3.0.1",
@@ -96,7 +96,7 @@
     "eslint-plugin-jsonc": "^2.2.1",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-markdown": "^3.0.0",
-    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-n": "^15.1.0",
     "eslint-plugin-node-dependencies": "^0.11.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-regexp": "^1.0.0",
