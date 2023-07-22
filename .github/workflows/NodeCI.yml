@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [16.x, 18.x, 20.x]
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
@@ -49,7 +49,26 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install eslint v7
         run: |+
-          npm i -D eslint@7 --legacy-peer-deps
+          npm i -D eslint@7 @typescript-eslint/parser@5 --legacy-peer-deps
+          npx rimraf node_modules
+      - name: Install Packages
+        run: npm install --legacy-peer-deps
+      - name: Test
+        run: npm test
+  test-for-node-v14:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install @typescript-eslint/parser v5
+        run: |+
+          npm i -D @typescript-eslint/parser@5 --legacy-peer-deps
           npx rimraf node_modules
       - name: Install Packages
         run: npm install --legacy-peer-deps

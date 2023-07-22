@@ -1,3 +1,4 @@
+// @ts-expect-error -- bug?
 import type { ElementNode, TextNode } from "@astrojs/compiler/types"
 import type { ParseTemplateResult } from "astro-eslint-parser"
 import type { Linter } from "eslint"

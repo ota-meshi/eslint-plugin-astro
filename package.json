@@ -80,8 +80,8 @@
     "@types/react": "^18.0.15",
     "@types/semver": "^7.3.9",
     "@types/stylus": "^0.48.38",
-    "@typescript-eslint/eslint-plugin": "^5.25.0",
-    "@typescript-eslint/parser": "^5.25.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
     "assert": "^2.0.0",
     "astro": "^2.0.0",
     "env-cmd": "^10.1.0",
@@ -117,7 +117,7 @@
     "sass": "^1.52.2",
     "stylus": "^0.59.0",
     "svelte": "^4.0.0",
-    "typescript": "^5.0.0"
+    "typescript": "~5.0.0"
   },
   "publishConfig": {
     "access": "public"
