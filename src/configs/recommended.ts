@@ -13,6 +13,7 @@ export = {
     "astro/no-deprecated-astro-canonicalurl": "error",
     "astro/no-deprecated-astro-fetchcontent": "error",
     "astro/no-deprecated-astro-resolve": "error",
+    "astro/no-deprecated-getentrybyslug": "error",
     "astro/no-unused-define-vars-in-style": "error",
     "astro/valid-compile": "error",
   },
