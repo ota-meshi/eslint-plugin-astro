@@ -1,13 +1,13 @@
 ---
 title: "astro/no-deprecated-getentrybyslug"
 description: "disallow using deprecated `getEntryBySlug()`"
+since: "v0.28.0"
 ---
 
 # astro/no-deprecated-getentrybyslug
 
 > disallow using deprecated `getEntryBySlug()`
 
-- :exclamation: <badge text="This rule has not been released yet." vertical="middle" type="error"> **_This rule has not been released yet._** </badge>
 - :gear: This rule is included in `"plugin:astro/recommended"`.
 
 ## :book: Rule Details
@@ -39,6 +39,10 @@ Nothing.
 ## :books: Further Reading
 
 - [Astro Documentation | API Reference - getEntryBySlug()](https://docs.astro.build/en/reference/api-reference/#getentrybyslug)
+
+## :rocket: Version
+
+This rule was introduced in eslint-plugin-astro v0.28.0
 
 ## :mag: Implementation
 

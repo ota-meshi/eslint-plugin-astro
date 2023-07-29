@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 0.28.0
+
+### Minor Changes
+
+- [#234](https://github.com/ota-meshi/eslint-plugin-astro/pull/234) [`e13ea7c`](https://github.com/ota-meshi/eslint-plugin-astro/commit/e13ea7c02d6568b251ec28af57ad6c460053343e) Thanks [@morinokami](https://github.com/morinokami)! - feat: add `astro/no-deprecated-getentrybyslug` rule
+
 ## 0.27.2
 
 ### Patch Changes
