@@ -1,0 +1,7 @@
+[
+  {
+    "message": "'getEntryBySlug()' is deprecated. Use 'getEntry()' instead.",
+    "line": 3,
+    "column": 10
+  }
+]
