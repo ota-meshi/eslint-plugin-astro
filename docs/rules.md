@@ -17,6 +17,7 @@ These rules relate to possible syntax or logic errors in Astro component code:
 | [astro/no-deprecated-astro-canonicalurl](./rules/no-deprecated-astro-canonicalurl.md) | disallow using deprecated `Astro.canonicalURL` | :star: |
 | [astro/no-deprecated-astro-fetchcontent](./rules/no-deprecated-astro-fetchcontent.md) | disallow using deprecated `Astro.fetchContent()` | :star::wrench: |
 | [astro/no-deprecated-astro-resolve](./rules/no-deprecated-astro-resolve.md) | disallow using deprecated `Astro.resolve()` | :star: |
+| [astro/no-deprecated-getentrybyslug](./rules/no-deprecated-getentrybyslug.md) | disallow using deprecated `getEntryBySlug()` | :star: |
 | [astro/no-unused-define-vars-in-style](./rules/no-unused-define-vars-in-style.md) | disallow unused `define:vars={...}` in `style` tag | :star: |
 | [astro/valid-compile](./rules/valid-compile.md) | disallow warnings when compiling. | :star: |
 
