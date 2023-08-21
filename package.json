@@ -111,7 +111,7 @@
     "prettier": "^3.0.0",
     "prettier-plugin-astro": "^0.11.0",
     "prettier-plugin-svelte": "^3.0.0",
-    "remark-emoji": "^3.0.2",
+    "remark-emoji": "^4.0.0",
     "remark-gfm": "^3.0.1",
     "rimraf": "^5.0.0",
     "sass": "^1.52.2",
