@@ -50,6 +50,5 @@ export const processor: Linter.Processor = {
     return messages
   },
   supportsAutofix: true,
-  // @ts-expect-error -- missing type
   meta,
 }
