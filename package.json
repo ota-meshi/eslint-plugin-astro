@@ -88,7 +88,7 @@
     "esbuild": "^0.19.0",
     "esbuild-register": "^3.3.3",
     "eslint": "^8.15.0",
-    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-astro": "^0.28.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-eslint-plugin": "^5.0.0",
