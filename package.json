@@ -109,7 +109,7 @@
     "pako": "^2.0.4",
     "postcss-nested": "^6.0.0",
     "prettier": "^3.0.0",
-    "prettier-plugin-astro": "^0.11.0",
+    "prettier-plugin-astro": "^0.12.0",
     "prettier-plugin-svelte": "^3.0.0",
     "remark-emoji": "^4.0.0",
     "remark-gfm": "^3.0.1",
