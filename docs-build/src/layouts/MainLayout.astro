@@ -11,9 +11,11 @@ const { frontmatter = {}, headings = [] } = Astro.props
 const content = { ...frontmatter, astro: { headings } }
 const hiddenRight = Boolean(content.hiddenRight)
 const hiddenTOC = Boolean(content.hiddenRight)
-const deployCanonicalURL = `https://ota-meshi.github.io${
-  import.meta.env.BASE_URL
-}${Astro.url.pathname.replace(/^\//u, "")}`
+const baseUrl = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/`
+const deployCanonicalURL = `https://ota-meshi.github.io${baseUrl}${Astro.url.pathname.replace(
+  /^\//u,
+  "",
+)}`
 const currentPage = new URL(Astro.request.url).pathname
 const currentFile = `src/pages${currentPage.replace(/\/$/, "")}.md`
 const githubEditUrl =

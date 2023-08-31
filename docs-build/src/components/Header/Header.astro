@@ -4,7 +4,7 @@ import AstroLogo from "./AstroLogo.astro"
 import SkipToContent from "./SkipToContent.astro"
 import SidebarToggle from "./SidebarToggle.svelte"
 
-const baseUrl = import.meta.env.BASE_URL
+const baseUrl = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/`
 ---
 
 <header>

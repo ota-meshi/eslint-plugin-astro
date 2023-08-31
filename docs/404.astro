@@ -2,7 +2,7 @@
 import MainLayout from "./../layouts/MainLayout.astro"
 import Stars2d from "./../components/Stars2d.astro"
 import Stars3d from "./../components/Stars3d.astro"
-const baseUrl = import.meta.env.BASE_URL
+const baseUrl = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/`
 const frontmatter = { hiddenRight: true, hiddenTOC: true }
 ---
 
