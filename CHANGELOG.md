@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 0.29.1
+
+### Patch Changes
+
+- [#262](https://github.com/ota-meshi/eslint-plugin-astro/pull/262) [`d463159`](https://github.com/ota-meshi/eslint-plugin-astro/commit/d46315941a068d6f32a90f85fb00f50ebbf2b585) Thanks [@ota-meshi](https://github.com/ota-meshi)! - fix: update astro-eslint-parser to v0.16
+
 ## 0.29.0
 
 ### Minor Changes
