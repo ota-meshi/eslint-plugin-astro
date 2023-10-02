@@ -21,6 +21,19 @@ jobs:
           npm run build
       - name: Lint
         run: npm run lint
+  build-doc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+      - name: Install And Build
+        run: |+
+          npm install --legacy-peer-deps
+          npm run update
+          npm run build
+          export NODE_OPTIONS="--max-old-space-size=8192"
+          npm run docs:build
   test:
     runs-on: ubuntu-latest
     strategy:
