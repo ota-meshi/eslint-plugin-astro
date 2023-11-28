@@ -1,4 +1,3 @@
-// eslint-disable-next-line n/file-extension-in-import -- bug?
 import { defineConfig } from "astro/config"
 import svelte from "@astrojs/svelte"
 import mdx from "@astrojs/mdx"
