@@ -24,8 +24,8 @@ function setupDocs() {
         page.endsWith("README.md")
           ? page.replace(/README.md$/u, "index.mdx")
           : page.endsWith(".md")
-          ? `${page}x`
-          : page,
+            ? `${page}x`
+            : page,
       ),
     )
     mkDirs(path.dirname(to))
