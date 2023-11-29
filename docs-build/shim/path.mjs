@@ -17,4 +17,8 @@ export function basename(p, ext) {
   return base.endsWith(ext) ? base.slice(0, -ext.length) : base
 }
 
-export default { extname, join, isAbsolute, basename }
+export function dirname(p) {
+  return p.split("/").slice(0, -1).join("/") || p
+}
+
+export default { extname, join, isAbsolute, basename, dirname }
