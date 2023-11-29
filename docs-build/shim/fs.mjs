@@ -1,4 +1,5 @@
 /* eslint require-jsdoc:0 -- shim */
-
-export {}
-export default {}
+export function existsSync() {
+  return true
+}
+export default { existsSync }

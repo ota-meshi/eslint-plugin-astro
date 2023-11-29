@@ -35,6 +35,7 @@ const logger = console
     ruleFile,
     `import { AST } from "astro-eslint-parser"
 import { createRule } from "../utils"
+import { getSourceCode } from "../utils/compat"
 
 export default createRule("${ruleId}", {
   meta: {
@@ -48,7 +49,8 @@ export default createRule("${ruleId}", {
     type: "suggestion", // "problem", or "layout",
   },
   create(context) {
-    if (!context.parserServices.isAstro) {
+    const sourceCode = getSourceCode(context)
+    if (!sourceCode.parserServices.isAstro) {
       return {}
     }
     

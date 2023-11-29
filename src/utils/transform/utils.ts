@@ -2,12 +2,14 @@ import type { AST } from "astro-eslint-parser"
 import Module from "module"
 import path from "path"
 import type { RuleContext } from "../../types"
+import { getCwd, getSourceCode } from "../compat"
 const cache = new WeakMap<AST.AstroProgram, Record<string, unknown>>()
 /**
  * Load module
  */
 export function loadModule<R>(context: RuleContext, name: string): R | null {
-  const key = context.getSourceCode().ast
+  const sourceCode = getSourceCode(context)
+  const key = sourceCode.ast
   let modules = cache.get(key)
   if (!modules) {
     modules = {}
@@ -16,7 +18,7 @@ export function loadModule<R>(context: RuleContext, name: string): R | null {
   const mod = modules[name]
   if (mod) return mod as R
   try {
-    const cwd = context.getCwd?.() ?? process.cwd()
+    const cwd = getCwd(context)
     const relativeTo = path.join(cwd, "__placeholder__.js")
     return (modules[name] = Module.createRequire(relativeTo)(name) as R)
   } catch {

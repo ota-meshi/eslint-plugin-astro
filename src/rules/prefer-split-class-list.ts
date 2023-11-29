@@ -17,6 +17,7 @@ import type { Token } from "../utils/string-literal-parser"
 import { parseStringTokens } from "../utils/string-literal-parser"
 import type { Rule } from "eslint"
 import { getPropertyName } from "@eslint-community/eslint-utils"
+import { getSourceCode } from "../utils/compat"
 
 export default createRule("prefer-split-class-list", {
   meta: {
@@ -42,13 +43,12 @@ export default createRule("prefer-split-class-list", {
     type: "suggestion",
   },
   create(context) {
-    if (!context.parserServices.isAstro) {
+    const sourceCode = getSourceCode(context)
+    if (!sourceCode.parserServices.isAstro) {
       return {}
     }
 
     const splitLiteral = Boolean(context.options[0]?.splitLiteral)
-
-    const sourceCode = context.getSourceCode()
 
     type TransformArray = (fixer: Rule.RuleFixer) => Iterable<Rule.Fix>
 
@@ -370,8 +370,9 @@ export default createRule("prefer-split-class-list", {
     }
 
     return {
-      Program() {
-        const referenceTracker = new ReferenceTracker(context.getScope())
+      Program(node) {
+        const sourceCode = getSourceCode(context)
+        const referenceTracker = new ReferenceTracker(sourceCode.getScope(node))
         for (const call of referenceTracker.iterateEsmReferences({
           // https://github.com/lukeed/clsx
           clsx: {

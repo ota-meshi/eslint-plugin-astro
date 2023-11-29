@@ -9,6 +9,7 @@ import {
   isClosingParenToken,
   getStaticValue,
 } from "@eslint-community/eslint-utils"
+import { getSourceCode } from "./compat"
 
 /**
  * Get the attribute key name from given attribute node
@@ -109,9 +110,10 @@ export function getStaticAttributeValue(
     node.value?.type === "JSXExpressionContainer" &&
     node.value.expression.type !== "JSXEmptyExpression"
   ) {
+    const sourceCode = getSourceCode(context)
     const staticValue = getStaticValue(
       node.value.expression as never,
-      context.getSourceCode().scopeManager.globalScope!,
+      sourceCode.scopeManager.globalScope!,
     )
     if (staticValue != null) {
       return staticValue

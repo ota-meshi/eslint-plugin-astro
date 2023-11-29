@@ -4,6 +4,7 @@ import type postcssLoadConfig from "postcss-load-config"
 import type { RuleContext } from "../../types"
 import { getContentRange, loadModule } from "./utils"
 import type { TransformResult } from "./types"
+import { getCwd, getFilename, getSourceCode } from "../compat"
 type PostcssLoadConfig = typeof postcssLoadConfig
 /**
  * Transform with postcss
@@ -18,12 +19,13 @@ export function transform(
   }
   const inputRange = getContentRange(node)
 
-  const code = context.getSourceCode().text.slice(...inputRange)
+  const sourceCode = getSourceCode(context)
+  const code = sourceCode.text.slice(...inputRange)
 
-  const filename = `${context.getFilename()}.css`
+  const filename = `${getFilename(context)}.css`
   try {
     const config = postcssLoadConfig.sync({
-      cwd: context.getCwd?.() ?? process.cwd(),
+      cwd: getCwd(context) ?? process.cwd(),
       from: filename,
     })
 

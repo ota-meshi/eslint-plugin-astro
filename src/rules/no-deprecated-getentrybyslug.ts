@@ -1,5 +1,6 @@
 import { createRule } from "../utils"
 import type { TSESTree } from "@typescript-eslint/types"
+import { getSourceCode } from "../utils/compat"
 
 export default createRule("no-deprecated-getentrybyslug", {
   meta: {
@@ -15,7 +16,8 @@ export default createRule("no-deprecated-getentrybyslug", {
     type: "problem",
   },
   create(context) {
-    if (!context.parserServices.isAstro) {
+    const sourceCode = getSourceCode(context)
+    if (!sourceCode.parserServices.isAstro) {
       return {}
     }
 

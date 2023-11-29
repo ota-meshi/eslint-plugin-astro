@@ -1,4 +1,5 @@
 import { createRule } from "../utils"
+import { getSourceCode } from "../utils/compat"
 
 export default createRule("valid-compile", {
   meta: {
@@ -12,10 +13,11 @@ export default createRule("valid-compile", {
     type: "problem",
   },
   create(context) {
-    if (!context.parserServices.getAstroResult) {
+    const sourceCode = getSourceCode(context)
+    if (!sourceCode.parserServices.isAstro) {
       return {}
     }
-    const diagnostics = context.parserServices.getAstroResult().diagnostics
+    const diagnostics = sourceCode.parserServices.getAstroResult().diagnostics
 
     return {
       Program() {

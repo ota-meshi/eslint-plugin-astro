@@ -204,6 +204,8 @@ export interface SourceCode {
   scopeManager: Scope.ScopeManager
   visitorKeys: ESLintSourceCode.VisitorKeys
 
+  getScope(node: ESTree.Node | ASTNode): Scope.Scope
+
   getText(node?: NodeOrToken, beforeCount?: number, afterCount?: number): string
 
   getLines(): string[]
