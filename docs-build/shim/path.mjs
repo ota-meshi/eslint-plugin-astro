@@ -1,16 +1,20 @@
 /* eslint require-jsdoc:0 -- shim */
 
-function extname(p) {
+export function extname(p) {
   return /\.[\w$-]+$/iu.exec(p)[0]
 }
 
-function join(...args) {
+export function join(...args) {
   return args.join("/")
 }
 
-function isAbsolute() {
+export function isAbsolute() {
   return false
 }
 
-export { extname, join, isAbsolute }
-export default { extname, join, isAbsolute }
+export function basename(p, ext) {
+  const base = p.split("/").pop() || p
+  return base.endsWith(ext) ? base.slice(0, -ext.length) : base
+}
+
+export default { extname, join, isAbsolute, basename }
