@@ -5,6 +5,7 @@ import { getPropertyName } from "@eslint-community/eslint-utils"
 import { createRule } from "../utils"
 import { getAttributeName } from "../utils/ast-utils"
 import { iterateCSSVars } from "../utils/style"
+import { getSourceCode } from "../utils/compat"
 
 export default createRule("no-unused-define-vars-in-style", {
   meta: {
@@ -20,7 +21,8 @@ export default createRule("no-unused-define-vars-in-style", {
     type: "problem",
   },
   create(context) {
-    if (!context.parserServices.isAstro) {
+    const sourceCode = getSourceCode(context)
+    if (!sourceCode.parserServices.isAstro) {
       return {}
     }
 
@@ -63,7 +65,7 @@ export default createRule("no-unused-define-vars-in-style", {
           )
           .map((prop) => ({
             prop,
-            name: getPropertyName(prop, context.getScope()),
+            name: getPropertyName(prop, sourceCode.getScope(node)),
           }))
           .filter((data): data is typeof data & { name: string } =>
             Boolean(data.name),

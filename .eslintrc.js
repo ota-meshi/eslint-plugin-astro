@@ -51,6 +51,39 @@ module.exports = {
         ],
       },
     ],
+    "no-restricted-properties": [
+      "error",
+      {
+        object: "context",
+        property: "getSourceCode",
+        message: "Use src/utils/compat.ts",
+      },
+      {
+        object: "context",
+        property: "getFilename",
+        message: "Use src/utils/compat.ts",
+      },
+      {
+        object: "context",
+        property: "getPhysicalFilename",
+        message: "Use src/utils/compat.ts",
+      },
+      {
+        object: "context",
+        property: "getCwd",
+        message: "Use src/utils/compat.ts",
+      },
+      {
+        object: "context",
+        property: "getScope",
+        message: "Use src/utils/compat.ts",
+      },
+      {
+        object: "context",
+        property: "parserServices",
+        message: "Use src/utils/compat.ts",
+      },
+    ],
   },
   overrides: [
     {

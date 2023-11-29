@@ -1,5 +1,6 @@
 import { READ, ReferenceTracker } from "@eslint-community/eslint-utils"
 import { createRule } from "../utils"
+import { getSourceCode } from "../utils/compat"
 
 export default createRule("no-deprecated-astro-fetchcontent", {
   meta: {
@@ -17,13 +18,14 @@ export default createRule("no-deprecated-astro-fetchcontent", {
     fixable: "code",
   },
   create(context) {
-    if (!context.parserServices.isAstro) {
+    const sourceCode = getSourceCode(context)
+    if (!sourceCode.parserServices.isAstro) {
       return {}
     }
 
     return {
-      "Program:exit"() {
-        const tracker = new ReferenceTracker(context.getScope())
+      "Program:exit"(node) {
+        const tracker = new ReferenceTracker(sourceCode.getScope(node))
         for (const { node, path } of tracker.iterateGlobalReferences({
           Astro: {
             fetchContent: { [READ]: true },

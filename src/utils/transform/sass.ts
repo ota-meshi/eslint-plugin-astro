@@ -3,6 +3,7 @@ import type sass from "sass"
 import type { TransformResult } from "./types"
 import { getContentRange, loadModule } from "./utils"
 import type { RuleContext } from "../../types"
+import { getSourceCode } from "../compat"
 
 type Sass = typeof sass
 /**
@@ -18,8 +19,8 @@ export function transform(
     return null
   }
   const inputRange = getContentRange(node)
-
-  const code = context.getSourceCode().text.slice(...inputRange)
+  const sourceCode = getSourceCode(context)
+  const code = sourceCode.text.slice(...inputRange)
 
   try {
     const output = sass.compileString(code, {

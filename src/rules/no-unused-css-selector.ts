@@ -15,6 +15,7 @@ import {
 } from "../utils/ast-utils"
 import type { StyleContentCSS } from "../utils/transform"
 import { getStyleContentCSS } from "../utils/transform"
+import { getSourceCode } from "../utils/compat"
 
 type JSXElementTreeNode = {
   parent: JSXElementTreeNode | RootJSXElementTreeNode
@@ -43,7 +44,8 @@ export default createRule("no-unused-css-selector", {
     type: "problem",
   },
   create(context) {
-    if (!context.parserServices.isAstro) {
+    const sourceCode = getSourceCode(context)
+    if (!sourceCode.parserServices.isAstro) {
       return {}
     }
     const styles: AST.JSXElement[] = []
@@ -100,7 +102,6 @@ export default createRule("no-unused-css-selector", {
       function reportSelector(start: number, selector: string) {
         const remapStart = css.remap(start)
         const remapEnd = css.remap(start + selector.length)
-        const sourceCode = context.getSourceCode()
         context.report({
           loc: {
             start: sourceCode.getLocFromIndex(remapStart),
@@ -982,9 +983,10 @@ function* extractClassListFromExpression(
     }
     return
   }
+  const sourceCode = getSourceCode(context)
   const staticValue = getStaticValue(
     node as never,
-    context.getSourceCode().scopeManager.globalScope!,
+    sourceCode.scopeManager.globalScope!,
   )
   if (staticValue) {
     yield* extractClassListFromUnknown(staticValue.value)

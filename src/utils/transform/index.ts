@@ -9,6 +9,7 @@ import { transform as transformWithLess } from "./less"
 import { transform as transformWithStylus } from "./stylus"
 import type { TransformResult } from "./types"
 import { LinesAndColumns } from "./lines-and-columns"
+import { getSourceCode } from "../compat"
 
 const cache = new WeakMap<AST.JSXElement, StyleContentCSS>()
 
@@ -25,12 +26,13 @@ export function getStyleContentCSS(
   if (cachedResult) {
     return cachedResult
   }
+  const sourceCode = getSourceCode(context)
   const langNode = findAttribute(node, "lang")
   const lang = langNode && getStaticAttributeStringValue(langNode)
   if (!langNode || lang === "css") {
     const inputRange = getContentRange(node)
     return {
-      css: context.getSourceCode().text.slice(...inputRange),
+      css: sourceCode.text.slice(...inputRange),
       remap: (i) => inputRange[0] + i,
     }
   }
@@ -58,6 +60,7 @@ function transformToStyleContentCSS(
   transform: TransformResult,
   context: RuleContext,
 ): StyleContentCSS {
+  const sourceCode = getSourceCode(context)
   let outputLocs: LinesAndColumns | null = null
   let inputLocs: LinesAndColumns | null = null
   let decoded: SourceMapMappings | null = null
@@ -67,9 +70,7 @@ function transformToStyleContentCSS(
       outputLocs = outputLocs ?? new LinesAndColumns(transform.output)
       inputLocs =
         inputLocs ??
-        new LinesAndColumns(
-          context.getSourceCode().text.slice(...transform.inputRange),
-        )
+        new LinesAndColumns(sourceCode.text.slice(...transform.inputRange))
       const outputCodePos = outputLocs.getLocFromIndex(index)
       const inputCodePos = remapPosition(outputCodePos)
       return inputLocs.getIndexFromLoc(inputCodePos) + transform.inputRange[0]

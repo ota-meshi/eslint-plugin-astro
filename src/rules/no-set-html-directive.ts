@@ -1,6 +1,7 @@
 import type { AST } from "astro-eslint-parser"
 import { createRule } from "../utils"
 import { getAttributeName } from "../utils/ast-utils"
+import { getSourceCode } from "../utils/compat"
 
 export default createRule("no-set-html-directive", {
   meta: {
@@ -16,7 +17,8 @@ export default createRule("no-set-html-directive", {
     type: "suggestion",
   },
   create(context) {
-    if (!context.parserServices.isAstro) {
+    const sourceCode = getSourceCode(context)
+    if (!sourceCode.parserServices.isAstro) {
       return {}
     }
 

@@ -1,6 +1,7 @@
 import type { AST } from "astro-eslint-parser"
 import { createRule } from "../utils"
 import { getAttributeName } from "../utils/ast-utils"
+import { getSourceCode } from "../utils/compat"
 
 export default createRule("no-set-text-directive", {
   meta: {
@@ -17,7 +18,8 @@ export default createRule("no-set-text-directive", {
     fixable: "code",
   },
   create(context) {
-    if (!context.parserServices.isAstro) {
+    const sourceCode = getSourceCode(context)
+    if (!sourceCode.parserServices.isAstro) {
       return {}
     }
 
@@ -43,7 +45,6 @@ export default createRule("no-set-text-directive", {
           ) {
             return
           }
-          const sourceCode = context.getSourceCode()
 
           const valueText =
             attr.type === "AstroTemplateLiteralAttribute"

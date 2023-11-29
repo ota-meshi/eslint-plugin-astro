@@ -2,6 +2,7 @@ import type { AST } from "astro-eslint-parser"
 import type { SourceCode } from "../types"
 import { createRule } from "../utils"
 import { getCoreRule, newProxy } from "../utils/eslint-core"
+import { getSourceCode } from "../utils/compat"
 
 const coreRule = getCoreRule("semi")
 export default createRule("semi", {
@@ -19,27 +20,27 @@ export default createRule("semi", {
     hasSuggestions: coreRule.meta.hasSuggestions,
   },
   create(context) {
-    if (!context.parserServices.isAstro) {
-      return coreRule.create(context)
+    const sourceCode = getSourceCode(context)
+    if (!sourceCode.parserServices.isAstro) {
+      return {}
     }
 
     let sourceCodeWrapper: SourceCode | undefined
 
     return coreRule.create(
       newProxy(context, {
-        getSourceCode,
+        getSourceCode: getSourceCodeForWrapper,
         get sourceCode() {
-          return getSourceCode()
+          return getSourceCodeForWrapper()
         },
       }),
     )
 
     /** Get source code wrapper instance */
-    function getSourceCode() {
+    function getSourceCodeForWrapper() {
       if (sourceCodeWrapper) {
         return sourceCodeWrapper
       }
-      const sourceCode = context.getSourceCode()
 
       /** Transforms token */
       function transformToken(

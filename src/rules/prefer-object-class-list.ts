@@ -15,6 +15,7 @@ import {
   isStringLiteral,
   needParentheses,
 } from "../utils/ast-utils"
+import { getSourceCode } from "../utils/compat"
 
 export default createRule("prefer-object-class-list", {
   meta: {
@@ -32,10 +33,10 @@ export default createRule("prefer-object-class-list", {
     type: "suggestion",
   },
   create(context) {
-    if (!context.parserServices.isAstro) {
+    const sourceCode = getSourceCode(context)
+    if (!sourceCode.parserServices.isAstro) {
       return {}
     }
-    const sourceCode = context.getSourceCode()
 
     type Expr = {
       not?: true
