@@ -13,7 +13,7 @@ jobs:
     name: Close stale issues with missing information
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/stale@v8
+      - uses: actions/stale@v9
         with:
           any-of-labels: "needs repro,needs info,needs more info"
           days-before-stale: 60
