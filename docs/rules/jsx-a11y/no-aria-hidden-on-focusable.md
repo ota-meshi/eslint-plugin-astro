@@ -8,11 +8,11 @@ since: "v0.22.0"
 
 > apply `jsx-a11y/no-aria-hidden-on-focusable` rule to Astro components
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.22.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/jsx-a11y/no-aria-hidden-on-focusable.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/jsx-a11y/no-aria-hidden-on-focusable.ts)

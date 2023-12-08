@@ -30,15 +30,15 @@ element.
 have an inherent `tabIndex` of zero or declare a `tabIndex` of zero with the `tabIndex`
 attribute.
 
-## :books: Further Reading
+## 📚 Further Reading
 
 - [jsx-a11y/aria-activedescendant-has-tabindex]
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.11.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/jsx-a11y/aria-activedescendant-has-tabindex.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/jsx-a11y/aria-activedescendant-has-tabindex.ts)

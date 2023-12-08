@@ -18,15 +18,15 @@ The following is a partial excerpt from the [jsx-a11y/lang] rule documentation. 
 
 > The `lang` prop on the `<html>` element must be a valid IETF's BCP 47 language tag.
 
-## :books: Further Reading
+## 📚 Further Reading
 
 - [jsx-a11y/lang]
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.11.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/jsx-a11y/lang.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/jsx-a11y/lang.ts)

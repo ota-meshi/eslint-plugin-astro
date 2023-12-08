@@ -18,15 +18,15 @@ The following is a partial excerpt from the [jsx-a11y/heading-has-content] rule 
 
 > Enforce that heading elements (`h1`, `h2`, etc.) have content and that the content is accessible to screen readers. Accessible means that it is not hidden using the `aria-hidden` prop.
 
-## :books: Further Reading
+## 📚 Further Reading
 
 - [jsx-a11y/heading-has-content]
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.11.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/jsx-a11y/heading-has-content.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/jsx-a11y/heading-has-content.ts)

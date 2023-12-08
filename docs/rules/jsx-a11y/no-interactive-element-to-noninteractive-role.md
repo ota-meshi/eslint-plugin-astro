@@ -22,15 +22,15 @@ The following is a partial excerpt from the [jsx-a11y/no-interactive-element-to-
 >
 > [WAI-ARIA roles](https://www.w3.org/TR/wai-aria-1.1/#usage_intro) should not be used to convert an interactive element to a non-interactive element. Non-interactive ARIA roles include `article`, `banner`, `complementary`, `img`, `listitem`, `main`, `region` and `tooltip`.
 
-## :books: Further Reading
+## 📚 Further Reading
 
 - [jsx-a11y/no-interactive-element-to-noninteractive-role]
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.11.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/jsx-a11y/no-interactive-element-to-noninteractive-role.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/jsx-a11y/no-interactive-element-to-noninteractive-role.ts)

@@ -8,7 +8,7 @@ since: "v0.2.0"
 
 > disallow use of `set:html` to prevent XSS attack
 
-## :book: Rule Details
+## 📖 Rule Details
 
 This rule reports all uses of `set:html` in order to reduce the risk of injecting potentially unsafe / unescaped html into the browser leading to Cross-Site Scripting (XSS) attacks.
 
@@ -31,23 +31,23 @@ This rule reports all uses of `set:html` in order to reduce the risk of injectin
 
 </ESLintCodeBlock>
 
-## :wrench: Options
+## 🔧 Options
 
 Nothing.
 
-## :mute: When Not To Use It
+## 🔇 When Not To Use It
 
 If you are certain the content passed to `set:html` is sanitized HTML you can disable this rule.
 
-## :books: Further Reading
+## 📚 Further Reading
 
 - [Astro Documentation | Template Directives Reference > set:html](https://docs.astro.build/en/reference/directives-reference/#sethtml)
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.2.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/no-set-html-directive.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/no-set-html-directive.ts)

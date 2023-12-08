@@ -8,9 +8,9 @@ since: "v0.7.0"
 
 > disallow conflicting set directives and child contents
 
-- :gear: This rule is included in `"plugin:astro/recommended"`.
+- ⚙ This rule is included in `"plugin:astro/recommended"`.
 
-## :book: Rule Details
+## 📖 Rule Details
 
 This rule reports conflicting `set:text`, `set:html`, and child content.
 
@@ -36,20 +36,20 @@ const foo = "hello"
 
 </ESLintCodeBlock>
 
-## :wrench: Options
+## 🔧 Options
 
 Nothing.
 
-## :books: Further Reading
+## 📚 Further Reading
 
 - [Astro Documentation | Template Directives Reference > set:html](https://docs.astro.build/en/reference/directives-reference/#sethtml)
 - [Astro Documentation | Template Directives Reference > set:text](https://docs.astro.build/en/reference/directives-reference/#settext)
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.7.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/no-conflict-set-directives.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/no-conflict-set-directives.ts)

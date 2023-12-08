@@ -24,15 +24,15 @@ The following is a partial excerpt from the [jsx-a11y/anchor-is-valid] rule docu
 >
 > Whilst it is possible, for example, to turn the `<a>` element into a fully functional `<button>` element with ARIA, the native user agent implementations of HTML elements are to be preferred over custom ARIA solutions.
 
-## :books: Further Reading
+## 📚 Further Reading
 
 - [jsx-a11y/anchor-is-valid]
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.11.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/jsx-a11y/anchor-is-valid.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/jsx-a11y/anchor-is-valid.ts)

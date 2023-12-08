@@ -18,15 +18,15 @@ The following is a partial excerpt from the [jsx-a11y/anchor-ambiguous-text] rul
 
 > Enforces `<a>` values are not exact matches for the phrases "click here", "here", "link", "a link", or "learn more". Screenreaders announce tags as links/interactive, but rely on values for context. Ambiguous anchor descriptions do not provide sufficient context for users.
 
-## :books: Further Reading
+## 📚 Further Reading
 
 - [jsx-a11y/anchor-ambiguous-text]
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.22.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/jsx-a11y/anchor-ambiguous-text.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/jsx-a11y/anchor-ambiguous-text.ts)

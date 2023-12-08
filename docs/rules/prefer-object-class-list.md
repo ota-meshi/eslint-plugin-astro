@@ -8,9 +8,9 @@ since: "v0.4.0"
 
 > require use object instead of ternary expression in `class:list`
 
-- :wrench: The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
+- 🔧 The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
 
-## :book: Rule Details
+## 📖 Rule Details
 
 This rule aims to use object elements than ternary expression in `class:list`.
 
@@ -33,11 +33,11 @@ This rule aims to use object elements than ternary expression in `class:list`.
 
 </ESLintCodeBlock>
 
-## :wrench: Options
+## 🔧 Options
 
 Nothing.
 
-## :couple: Related Rules
+## 👫 Related Rules
 
 - [astro/prefer-class-list-directive]
 - [astro/prefer-split-class-list]
@@ -45,15 +45,15 @@ Nothing.
 [astro/prefer-class-list-directive]: ./prefer-class-list-directive.md
 [astro/prefer-split-class-list]: ./prefer-split-class-list.md
 
-## :books: Further Reading
+## 📚 Further Reading
 
 - [Astro Documentation | Template Directives Reference > class:list](https://docs.astro.build/en/reference/directives-reference/#classlist)
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.4.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/prefer-object-class-list.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/prefer-object-class-list.ts)

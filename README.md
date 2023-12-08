@@ -19,7 +19,7 @@ This plugin is in the **_experimental stages_** of development.
 
 At least it works fine with a [withastro/docs](https://github.com/withastro/docs) repository.
 
-## :name_badge: What is this plugin?
+## 📛 What is this plugin?
 
 [ESLint] plugin for [Astro components].
 
@@ -34,17 +34,16 @@ At least it works fine with a [withastro/docs](https://github.com/withastro/docs
 [dynamic jsx expressions]: https://docs.astro.build/ja/core-concepts/astro-components/#dynamic-jsx-expressions
 [client-side scripts]: https://docs.astro.build/ja/core-concepts/astro-components/#client-side-scripts
 [directives]: https://docs.astro.build/ja/reference/directives-reference/
-[astro-eslint-parser]: https://github.com/ota-meshi/astro-eslint-parser
 
 <!--DOCS_IGNORE_START-->
 
-## :book: Documentation
+## 📖 Documentation
 
 See [documents](https://ota-meshi.github.io/eslint-plugin-astro/).
 
 <!--INSTALL_GUIDE_START-->
 
-## :cd: Installation
+## 💿 Installation
 
 ```bash
 npm install --save-dev eslint eslint-plugin-astro
@@ -74,7 +73,7 @@ npm install --save-dev eslint-plugin-jsx-a11y
 
 <!--DOCS_IGNORE_END-->
 
-## :book: Usage
+## 📖 Usage
 
 <!--USAGE_SECTION_START-->
 <!--USAGE_GUIDE_START-->
@@ -204,7 +203,7 @@ eslint --ext .js,.astro src
 eslint "src/**/*.{js,astro}"
 ```
 
-## :computer: Editor Integrations
+## 💻 Editor Integrations
 
 ### Visual Studio Code
 
@@ -229,12 +228,12 @@ Example **.vscode/settings.json**:
 <!--USAGE_GUIDE_END-->
 <!--USAGE_SECTION_END-->
 
-## :white_check_mark: Rules
+## ✅ Rules
 
 <!--RULES_SECTION_START-->
 
-The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) automatically fixes problems reported by rules which have a wrench :wrench: below.  
-The rules with the following star :star: are included in the `plugin:astro/recommended` configs.
+The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) automatically fixes problems reported by rules which have a wrench 🔧 below.  
+The rules with the following star ⭐ are included in the `plugin:astro/recommended` configs.
 
 > Doesn't the rule you want exist? [Share your idea of that rule with us](https://github.com/ota-meshi/eslint-plugin-astro/issues/new?template=new_rule_request.yml).
 
@@ -246,13 +245,13 @@ These rules relate to possible syntax or logic errors in Astro component code:
 
 | Rule ID | Description |    |
 |:--------|:------------|:---|
-| [astro/no-conflict-set-directives](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-conflict-set-directives/) | disallow conflicting set directives and child contents | :star: |
-| [astro/no-deprecated-astro-canonicalurl](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-deprecated-astro-canonicalurl/) | disallow using deprecated `Astro.canonicalURL` | :star: |
-| [astro/no-deprecated-astro-fetchcontent](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-deprecated-astro-fetchcontent/) | disallow using deprecated `Astro.fetchContent()` | :star::wrench: |
-| [astro/no-deprecated-astro-resolve](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-deprecated-astro-resolve/) | disallow using deprecated `Astro.resolve()` | :star: |
-| [astro/no-deprecated-getentrybyslug](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-deprecated-getentrybyslug/) | disallow using deprecated `getEntryBySlug()` | :star: |
-| [astro/no-unused-define-vars-in-style](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-unused-define-vars-in-style/) | disallow unused `define:vars={...}` in `style` tag | :star: |
-| [astro/valid-compile](https://ota-meshi.github.io/eslint-plugin-astro/rules/valid-compile/) | disallow warnings when compiling. | :star: |
+| [astro/no-conflict-set-directives](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-conflict-set-directives/) | disallow conflicting set directives and child contents | ⭐ |
+| [astro/no-deprecated-astro-canonicalurl](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-deprecated-astro-canonicalurl/) | disallow using deprecated `Astro.canonicalURL` | ⭐ |
+| [astro/no-deprecated-astro-fetchcontent](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-deprecated-astro-fetchcontent/) | disallow using deprecated `Astro.fetchContent()` | ⭐🔧 |
+| [astro/no-deprecated-astro-resolve](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-deprecated-astro-resolve/) | disallow using deprecated `Astro.resolve()` | ⭐ |
+| [astro/no-deprecated-getentrybyslug](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-deprecated-getentrybyslug/) | disallow using deprecated `getEntryBySlug()` | ⭐ |
+| [astro/no-unused-define-vars-in-style](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-unused-define-vars-in-style/) | disallow unused `define:vars={...}` in `style` tag | ⭐ |
+| [astro/valid-compile](https://ota-meshi.github.io/eslint-plugin-astro/rules/valid-compile/) | disallow warnings when compiling. | ⭐ |
 
 ## Security Vulnerability
 
@@ -268,7 +267,7 @@ These rules relate to better ways of doing things to help you avoid problems:
 
 | Rule ID | Description |    |
 |:--------|:------------|:---|
-| [astro/no-set-text-directive](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-set-text-directive/) | disallow use of `set:text` | :wrench: |
+| [astro/no-set-text-directive](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-set-text-directive/) | disallow use of `set:text` | 🔧 |
 | [astro/no-unused-css-selector](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-unused-css-selector/) | disallow selectors defined in `style` tag that don't use in HTML |  |
 
 ## Stylistic Issues
@@ -277,9 +276,9 @@ These rules relate to style guidelines, and are therefore quite subjective:
 
 | Rule ID | Description |    |
 |:--------|:------------|:---|
-| [astro/prefer-class-list-directive](https://ota-meshi.github.io/eslint-plugin-astro/rules/prefer-class-list-directive/) | require `class:list` directives instead of `class` with expressions | :wrench: |
-| [astro/prefer-object-class-list](https://ota-meshi.github.io/eslint-plugin-astro/rules/prefer-object-class-list/) | require use object instead of ternary expression in `class:list` | :wrench: |
-| [astro/prefer-split-class-list](https://ota-meshi.github.io/eslint-plugin-astro/rules/prefer-split-class-list/) | require use split array elements in `class:list` | :wrench: |
+| [astro/prefer-class-list-directive](https://ota-meshi.github.io/eslint-plugin-astro/rules/prefer-class-list-directive/) | require `class:list` directives instead of `class` with expressions | 🔧 |
+| [astro/prefer-object-class-list](https://ota-meshi.github.io/eslint-plugin-astro/rules/prefer-object-class-list/) | require use object instead of ternary expression in `class:list` | 🔧 |
+| [astro/prefer-split-class-list](https://ota-meshi.github.io/eslint-plugin-astro/rules/prefer-split-class-list/) | require use split array elements in `class:list` | 🔧 |
 
 ## A11Y Extension Rules
 
@@ -331,14 +330,14 @@ These rules extend the rules provided by ESLint itself to work well in Astro com
 
 | Rule ID | Description |    |
 |:--------|:------------|:---|
-| [astro/semi](https://ota-meshi.github.io/eslint-plugin-astro/rules/semi/) | Require or disallow semicolons instead of ASI | :wrench: |
+| [astro/semi](https://ota-meshi.github.io/eslint-plugin-astro/rules/semi/) | Require or disallow semicolons instead of ASI | 🔧 |
 
 <!--RULES_TABLE_END-->
 <!--RULES_SECTION_END-->
 
 <!--DOCS_IGNORE_START-->
 
-## :beers: Contributing
+## 🍻 Contributing
 
 Welcome contributing!
 
@@ -355,17 +354,15 @@ This plugin uses [astro-eslint-parser](https://github.com/ota-meshi/astro-eslint
 
 <!--DOCS_IGNORE_END-->
 
-## :heart: Supporting
+## ❤️ Supporting
 
 If you are willing to see that this package continues to be maintained, please consider sponsoring me.
 
 [![sponsors](https://img.shields.io/badge/-Sponsor-fafbfc?logo=GitHub%20Sponsors)](https://github.com/sponsors/ota-meshi)
 
-## :lock: License
+## 🔒 License
 
 See the [LICENSE](LICENSE) file for license rights and limitations (MIT).
 
-[astro]: https://astro.build/
 [eslint]: https://eslint.org/
 [astro components]: https://docs.astro.build/en/core-concepts/astro-components/
-[eslint-plugin-jsx-a11y]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y

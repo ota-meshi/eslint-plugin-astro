@@ -18,15 +18,15 @@ The following is a partial excerpt from the [jsx-a11y/role-supports-aria-props] 
 
 > Enforce that elements with explicit or implicit roles defined contain only `aria-*` properties supported by that `role`. Many ARIA attributes (states and properties) can only be used on elements with particular roles. Some elements have implicit roles, such as `<a href="#" />`, which will resolve to `role="link"`.
 
-## :books: Further Reading
+## 📚 Further Reading
 
 - [jsx-a11y/role-supports-aria-props]
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.11.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/jsx-a11y/role-supports-aria-props.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/jsx-a11y/role-supports-aria-props.ts)

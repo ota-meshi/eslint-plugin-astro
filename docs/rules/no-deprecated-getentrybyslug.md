@@ -8,9 +8,9 @@ since: "v0.28.0"
 
 > disallow using deprecated `getEntryBySlug()`
 
-- :gear: This rule is included in `"plugin:astro/recommended"`.
+- ⚙ This rule is included in `"plugin:astro/recommended"`.
 
-## :book: Rule Details
+## 📖 Rule Details
 
 This rule reports use of deprecated `getEntryBySlug()`.
 
@@ -32,19 +32,19 @@ import { getEntryBySlug } from "astro:content";
 
 </ESLintCodeBlock>
 
-## :wrench: Options
+## 🔧 Options
 
 Nothing.
 
-## :books: Further Reading
+## 📚 Further Reading
 
 - [Astro Documentation | API Reference - getEntryBySlug()](https://docs.astro.build/en/reference/api-reference/#getentrybyslug)
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.28.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/no-deprecated-getentrybyslug.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/no-deprecated-getentrybyslug.ts)

@@ -18,15 +18,15 @@ The following is a partial excerpt from the [jsx-a11y/img-redundant-alt] rule do
 
 > Enforce img alt attribute does not contain the word image, picture, or photo. Screenreaders already announce `img` elements as an image. There is no need to use words such as *image*, *photo*, and/or *picture*.
 
-## :books: Further Reading
+## 📚 Further Reading
 
 - [jsx-a11y/img-redundant-alt]
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.11.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/jsx-a11y/img-redundant-alt.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/jsx-a11y/img-redundant-alt.ts)

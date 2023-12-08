@@ -18,15 +18,15 @@ The following is a partial excerpt from the [jsx-a11y/prefer-tag-over-role] rule
 
 > Enforces using semantic DOM elements over the ARIA `role` property.
 
-## :books: Further Reading
+## 📚 Further Reading
 
 - [jsx-a11y/prefer-tag-over-role]
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.22.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/jsx-a11y/prefer-tag-over-role.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/jsx-a11y/prefer-tag-over-role.ts)

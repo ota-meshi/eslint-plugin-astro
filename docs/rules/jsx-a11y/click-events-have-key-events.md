@@ -16,15 +16,15 @@ You must have [eslint-plugin-jsx-a11y] installed to use this rule.
 
 However, this rule probably doesn't work for Astro components because Astro components don't provide an event listener as syntax.
 
-## :books: Further Reading
+## 📚 Further Reading
 
 - [jsx-a11y/click-events-have-key-events]
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.11.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/jsx-a11y/click-events-have-key-events.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/jsx-a11y/click-events-have-key-events.ts)

@@ -1,7 +1,6 @@
 import { defineConfig } from "astro/config"
 import svelte from "@astrojs/svelte"
 import mdx from "@astrojs/mdx"
-import emoji from "remark-emoji"
 import gfm from "remark-gfm"
 import replaceLink from "./docs-build/remark-replace-link.mjs"
 import "./docs-build/setup-docs.mjs"
@@ -21,7 +20,6 @@ export default defineConfig({
     svelte(),
     mdx({
       remarkPlugins: [
-        emoji,
         gfm,
         [
           replaceLink,
@@ -35,7 +33,6 @@ export default defineConfig({
   ],
   markdown: {
     remarkPlugins: [
-      emoji,
       gfm,
       [
         replaceLink,

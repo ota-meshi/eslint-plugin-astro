@@ -8,9 +8,9 @@ since: "v0.12.0"
 
 > disallow using deprecated `Astro.resolve()`
 
-- :gear: This rule is included in `"plugin:astro/recommended"`.
+- ⚙ This rule is included in `"plugin:astro/recommended"`.
 
-## :book: Rule Details
+## 📖 Rule Details
 
 This rule reports use of deprecated `Astro.resolve()`.
 
@@ -33,19 +33,19 @@ const { animal } = Astro.props;
 
 </ESLintCodeBlock>
 
-## :wrench: Options
+## 🔧 Options
 
 Nothing.
 
-## :books: Further Reading
+## 📚 Further Reading
 
 - [Astro Documentation | Migration Guide > Migrate to v0.24 - Deprecated: Astro.resolve()](https://astro.build/deprecated/resolve)
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.12.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/no-deprecated-astro-resolve.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/no-deprecated-astro-resolve.ts)

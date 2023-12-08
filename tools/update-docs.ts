@@ -89,39 +89,39 @@ class DocFile {
           (name) => `[astro/${name}](${name}.md) rule`,
         )
         notes.push(
-          `- :warning: This rule was **deprecated** and replaced by ${formatItems(
+          `- ⚠️ This rule was **deprecated** and replaced by ${formatItems(
             replacedRules,
           )}.`,
         )
       } else {
-        notes.push("- :warning: This rule was **deprecated**.")
+        notes.push("- ⚠️ This rule was **deprecated**.")
       }
     } else {
       if (recommended) {
         if (recommended === "base") {
           notes.push(
-            '- :gear: This rule is included in `"plugin:astro/base"` and `"plugin:astro/recommended"`.',
+            '- ⚙ This rule is included in `"plugin:astro/base"` and `"plugin:astro/recommended"`.',
           )
         } else {
           notes.push(
-            '- :gear: This rule is included in `"plugin:astro/recommended"`.',
+            '- ⚙ This rule is included in `"plugin:astro/recommended"`.',
           )
         }
       }
     }
     if (fixable) {
       notes.push(
-        "- :wrench: The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.",
+        "- 🔧 The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.",
       )
     }
     if (hasSuggestions) {
       notes.push(
-        "- :bulb: Some problems reported by this rule are manually fixable by editor [suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).",
+        "- 💡 Some problems reported by this rule are manually fixable by editor [suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).",
       )
     }
     if (!this.since) {
       notes.unshift(
-        `- :exclamation: <badge text="This rule has not been released yet." vertical="middle" type="error"> **_This rule has not been released yet._** </badge>`,
+        `- ❗ <badge text="This rule has not been released yet." vertical="middle" type="error"> **_This rule has not been released yet._** </badge>`,
       )
     }
 
@@ -147,17 +147,16 @@ class DocFile {
 
   public async updateFooter() {
     const { ruleName, extensionRule } = this.rule.meta.docs
-    const footerPattern =
-      /## (?:(?::mag:)? ?Implementation|:rocket: Version).+$/s
+    const footerPattern = /## (?:(?:🔍)? ?Implementation|🚀 Version).+$/s
     const footer = `${
       this.since
-        ? `## :rocket: Version
+        ? `## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro ${await this.since}
 
 `
         : ""
-    }## :mag: Implementation
+    }## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/${ruleName}.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/${ruleName}.ts)

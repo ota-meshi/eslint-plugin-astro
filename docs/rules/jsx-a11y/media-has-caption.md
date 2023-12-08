@@ -20,15 +20,15 @@ The following is a partial excerpt from the [jsx-a11y/media-has-caption] rule do
 >
 > The captions should contain all important and relevant information to understand the corresponding media. This may mean that the captions are not a 1:1 mapping of the dialogue in the media content. However, captions are *not* necessary for video components with the `muted` attribute.
 
-## :books: Further Reading
+## 📚 Further Reading
 
 - [jsx-a11y/media-has-caption]
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.11.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/jsx-a11y/media-has-caption.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/jsx-a11y/media-has-caption.ts)

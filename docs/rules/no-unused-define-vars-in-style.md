@@ -8,9 +8,9 @@ since: "v0.6.0"
 
 > disallow unused `define:vars={...}` in `style` tag
 
-- :gear: This rule is included in `"plugin:astro/recommended"`.
+- ⚙ This rule is included in `"plugin:astro/recommended"`.
 
-## :book: Rule Details
+## 📖 Rule Details
 
 This rule is aimed at eliminating unused defined variables in `define:vars={...}` in `style` tag.
 
@@ -42,19 +42,19 @@ This rule is aimed at eliminating unused defined variables in `define:vars={...}
 
 </ESLintCodeBlock>
 
-## :wrench: Options
+## 🔧 Options
 
 Nothing.
 
-## :books: Further Reading
+## 📚 Further Reading
 
 - [Astro Documentation | Template Directives Reference > define:vars](https://docs.astro.build/en/reference/directives-reference/#definevars)
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.6.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/no-unused-define-vars-in-style.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/no-unused-define-vars-in-style.ts)
