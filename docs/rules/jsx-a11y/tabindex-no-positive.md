@@ -18,15 +18,15 @@ The following is a partial excerpt from the [jsx-a11y/tabindex-no-positive] rule
 
 > Avoid positive `tabIndex` property values to synchronize the flow of the page with keyboard tab order.
 
-## :books: Further Reading
+## 📚 Further Reading
 
 - [jsx-a11y/tabindex-no-positive]
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.11.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/jsx-a11y/tabindex-no-positive.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/jsx-a11y/tabindex-no-positive.ts)

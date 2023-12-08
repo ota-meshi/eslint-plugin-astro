@@ -18,15 +18,15 @@ The following is a partial excerpt from the [jsx-a11y/alt-text] rule documentati
 
 > Enforce that all elements that require alternative text have meaningful information to relay back to the end user. This is a critical component of accessibility for screen reader users in order for them to understand the content's purpose on the page. By default, this rule checks for alternative text on the following elements: `<img>`, `<area>`, `<input type="image">`, and `<object>`.
 
-## :books: Further Reading
+## 📚 Further Reading
 
 - [jsx-a11y/alt-text]
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.11.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/jsx-a11y/alt-text.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/jsx-a11y/alt-text.ts)

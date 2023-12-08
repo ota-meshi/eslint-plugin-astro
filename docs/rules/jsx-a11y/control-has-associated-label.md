@@ -31,15 +31,15 @@ The following is a partial excerpt from the [jsx-a11y/control-has-associated-lab
 > <button type="button">{maybeSomethingThatContainsALabel}</button>
 > ```
 
-## :books: Further Reading
+## 📚 Further Reading
 
 - [jsx-a11y/control-has-associated-label]
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.11.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/jsx-a11y/control-has-associated-label.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/jsx-a11y/control-has-associated-label.ts)

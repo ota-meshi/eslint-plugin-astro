@@ -81,7 +81,7 @@ tester.run("${ruleId}", rule as any, loadTestCases("${ruleId}"))
 
 > description
 
-## :book: Rule Details
+## 📖 Rule Details
 
 This rule reports ???.
 
@@ -102,7 +102,7 @@ This rule reports ???.
 
 </ESLintCodeBlock>
 
-## :wrench: Options
+## 🔧 Options
 
 \`\`\`json
 {
@@ -114,7 +114,7 @@ This rule reports ???.
 
 - 
 
-## :books: Further Reading
+## 📚 Further Reading
 
 - 
 

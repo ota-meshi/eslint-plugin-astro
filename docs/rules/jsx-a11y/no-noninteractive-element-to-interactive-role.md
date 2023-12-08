@@ -23,15 +23,15 @@ The following is a partial excerpt from the [jsx-a11y/no-noninteractive-element-
 >
 > [WAI-ARIA roles](https://www.w3.org/TR/wai-aria-1.1/#usage_intro) should not be used to convert a non-interactive element to an interactive element. Interactive ARIA roles include `button`, `link`, `checkbox`, `menuitem`, `menuitemcheckbox`, `menuitemradio`, `option`, `radio`, `searchbox`, `switch` and `textbox`.
 
-## :books: Further Reading
+## 📚 Further Reading
 
 - [jsx-a11y/no-noninteractive-element-to-interactive-role]
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.11.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/jsx-a11y/no-noninteractive-element-to-interactive-role.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/jsx-a11y/no-noninteractive-element-to-interactive-role.ts)

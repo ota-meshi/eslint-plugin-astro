@@ -18,15 +18,15 @@ The following is a partial excerpt from the [jsx-a11y/no-redundant-roles] rule d
 
 > Some HTML elements have native semantics that are implemented by the browser. This includes default/implicit ARIA roles. Setting an ARIA role that matches its default/implicit role is redundant since it is already set by the browser.
 
-## :books: Further Reading
+## 📚 Further Reading
 
 - [jsx-a11y/no-redundant-roles]
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.11.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/jsx-a11y/no-redundant-roles.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/jsx-a11y/no-redundant-roles.ts)

@@ -18,15 +18,15 @@ The following is a partial excerpt from the [jsx-a11y/aria-unsupported-elements]
 
 > Certain reserved DOM elements do not support ARIA roles, states and properties. This is often because they are not visible, for example `meta`, `html`, `script`, `style`. This rule enforces that these DOM elements do not contain the `role` and/or `aria-*` props.
 
-## :books: Further Reading
+## 📚 Further Reading
 
 - [jsx-a11y/aria-unsupported-elements]
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.11.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/jsx-a11y/aria-unsupported-elements.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/jsx-a11y/aria-unsupported-elements.ts)

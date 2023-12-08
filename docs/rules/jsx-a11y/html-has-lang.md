@@ -18,15 +18,15 @@ The following is a partial excerpt from the [jsx-a11y/html-has-lang] rule docume
 
 > `<html>` elements must have the lang prop. This rule is largely superseded by the [`lang` rule](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/lang.md).
 
-## :books: Further Reading
+## 📚 Further Reading
 
 - [jsx-a11y/html-has-lang]
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.11.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/jsx-a11y/html-has-lang.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/jsx-a11y/html-has-lang.ts)

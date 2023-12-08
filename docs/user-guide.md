@@ -2,7 +2,7 @@
 
 <!--INSTALL_GUIDE_START-->
 
-## :cd: Installation
+## 💿 Installation
 
 ```bash
 npm install --save-dev eslint eslint-plugin-astro
@@ -30,7 +30,7 @@ npm install --save-dev eslint-plugin-jsx-a11y
 
 <!--INSTALL_GUIDE_END-->
 
-## :book: Usage
+## 📖 Usage
 
 <!--USAGE_GUIDE_START-->
 
@@ -159,7 +159,7 @@ eslint --ext .js,.astro src
 eslint "src/**/*.{js,astro}"
 ```
 
-## :computer: Editor Integrations
+## 💻 Editor Integrations
 
 ### Visual Studio Code
 
@@ -183,7 +183,7 @@ Example **.vscode/settings.json**:
 
 <!--USAGE_GUIDE_END-->
 
-## :question: FAQ
+## ❓ FAQ
 
 ### Parsing the `.astro` file fails
 

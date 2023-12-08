@@ -1,7 +1,7 @@
 # Available Rules
 
-The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) automatically fixes problems reported by rules which have a wrench :wrench: below.  
-The rules with the following star :star: are included in the `plugin:astro/recommended` config.
+The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) automatically fixes problems reported by rules which have a wrench 🔧 below.  
+The rules with the following star ⭐ are included in the `plugin:astro/recommended` config.
 
 > Doesn't the rule you want exist? [Share your idea of that rule with us](https://github.com/ota-meshi/eslint-plugin-astro/issues/new?template=new_rule_request.yml).
 
@@ -13,13 +13,13 @@ These rules relate to possible syntax or logic errors in Astro component code:
 
 | Rule ID | Description |    |
 |:--------|:------------|:---|
-| [astro/no-conflict-set-directives](./rules/no-conflict-set-directives.md) | disallow conflicting set directives and child contents | :star: |
-| [astro/no-deprecated-astro-canonicalurl](./rules/no-deprecated-astro-canonicalurl.md) | disallow using deprecated `Astro.canonicalURL` | :star: |
-| [astro/no-deprecated-astro-fetchcontent](./rules/no-deprecated-astro-fetchcontent.md) | disallow using deprecated `Astro.fetchContent()` | :star::wrench: |
-| [astro/no-deprecated-astro-resolve](./rules/no-deprecated-astro-resolve.md) | disallow using deprecated `Astro.resolve()` | :star: |
-| [astro/no-deprecated-getentrybyslug](./rules/no-deprecated-getentrybyslug.md) | disallow using deprecated `getEntryBySlug()` | :star: |
-| [astro/no-unused-define-vars-in-style](./rules/no-unused-define-vars-in-style.md) | disallow unused `define:vars={...}` in `style` tag | :star: |
-| [astro/valid-compile](./rules/valid-compile.md) | disallow warnings when compiling. | :star: |
+| [astro/no-conflict-set-directives](./rules/no-conflict-set-directives.md) | disallow conflicting set directives and child contents | ⭐ |
+| [astro/no-deprecated-astro-canonicalurl](./rules/no-deprecated-astro-canonicalurl.md) | disallow using deprecated `Astro.canonicalURL` | ⭐ |
+| [astro/no-deprecated-astro-fetchcontent](./rules/no-deprecated-astro-fetchcontent.md) | disallow using deprecated `Astro.fetchContent()` | ⭐🔧 |
+| [astro/no-deprecated-astro-resolve](./rules/no-deprecated-astro-resolve.md) | disallow using deprecated `Astro.resolve()` | ⭐ |
+| [astro/no-deprecated-getentrybyslug](./rules/no-deprecated-getentrybyslug.md) | disallow using deprecated `getEntryBySlug()` | ⭐ |
+| [astro/no-unused-define-vars-in-style](./rules/no-unused-define-vars-in-style.md) | disallow unused `define:vars={...}` in `style` tag | ⭐ |
+| [astro/valid-compile](./rules/valid-compile.md) | disallow warnings when compiling. | ⭐ |
 
 ## Security Vulnerability
 
@@ -35,7 +35,7 @@ These rules relate to better ways of doing things to help you avoid problems:
 
 | Rule ID | Description |    |
 |:--------|:------------|:---|
-| [astro/no-set-text-directive](./rules/no-set-text-directive.md) | disallow use of `set:text` | :wrench: |
+| [astro/no-set-text-directive](./rules/no-set-text-directive.md) | disallow use of `set:text` | 🔧 |
 | [astro/no-unused-css-selector](./rules/no-unused-css-selector.md) | disallow selectors defined in `style` tag that don't use in HTML |  |
 
 ## Stylistic Issues
@@ -44,9 +44,9 @@ These rules relate to style guidelines, and are therefore quite subjective:
 
 | Rule ID | Description |    |
 |:--------|:------------|:---|
-| [astro/prefer-class-list-directive](./rules/prefer-class-list-directive.md) | require `class:list` directives instead of `class` with expressions | :wrench: |
-| [astro/prefer-object-class-list](./rules/prefer-object-class-list.md) | require use object instead of ternary expression in `class:list` | :wrench: |
-| [astro/prefer-split-class-list](./rules/prefer-split-class-list.md) | require use split array elements in `class:list` | :wrench: |
+| [astro/prefer-class-list-directive](./rules/prefer-class-list-directive.md) | require `class:list` directives instead of `class` with expressions | 🔧 |
+| [astro/prefer-object-class-list](./rules/prefer-object-class-list.md) | require use object instead of ternary expression in `class:list` | 🔧 |
+| [astro/prefer-split-class-list](./rules/prefer-split-class-list.md) | require use split array elements in `class:list` | 🔧 |
 
 ## A11Y Extension Rules
 
@@ -98,6 +98,6 @@ These rules extend the rules provided by ESLint itself to work well in Astro com
 
 | Rule ID | Description |    |
 |:--------|:------------|:---|
-| [astro/semi](./rules/semi.md) | Require or disallow semicolons instead of ASI | :wrench: |
+| [astro/semi](./rules/semi.md) | Require or disallow semicolons instead of ASI | 🔧 |
 
 [eslint-plugin-jsx-a11y]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y

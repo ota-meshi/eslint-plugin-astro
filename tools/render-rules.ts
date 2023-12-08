@@ -52,9 +52,9 @@ export default function renderRulesTableContent(
 
   //eslint-disable-next-line require-jsdoc -- ignore
   function toRuleRow(rule: RuleModule) {
-    const mark = `${rule.meta.docs.recommended ? ":star:" : ""}${
-      rule.meta.fixable ? ":wrench:" : ""
-    }${rule.meta.deprecated ? ":warning:" : ""}`
+    const mark = `${rule.meta.docs.recommended ? "⭐" : ""}${
+      rule.meta.fixable ? "🔧" : ""
+    }${rule.meta.deprecated ? "⚠️" : ""}`
     const link = `[${rule.meta.docs.ruleId}](${buildRulePath(
       rule.meta.docs.ruleName || "",
     )})`
@@ -97,8 +97,8 @@ ${cat.rules.map(toRuleRow).join("\n")}
     rulesTableContent += `
 ## Deprecated
 
-- :warning: We're going to remove deprecated rules in the next major release. Please migrate to successor/new rules.
-- :innocent: We don't fix bugs which are in deprecated rules since we don't have enough resources.
+- ⚠️ We're going to remove deprecated rules in the next major release. Please migrate to successor/new rules.
+- 😇 We don't fix bugs which are in deprecated rules since we don't have enough resources.
 
 | Rule ID | Replaced by |
 |:--------|:------------|

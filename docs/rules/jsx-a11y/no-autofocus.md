@@ -18,15 +18,15 @@ The following is a partial excerpt from the [jsx-a11y/no-autofocus] rule documen
 
 > Enforce that autoFocus prop is not used on elements. Autofocusing elements can cause usability issues for sighted and non-sighted users, alike.
 
-## :books: Further Reading
+## 📚 Further Reading
 
 - [jsx-a11y/no-autofocus]
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.11.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/jsx-a11y/no-autofocus.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/jsx-a11y/no-autofocus.ts)

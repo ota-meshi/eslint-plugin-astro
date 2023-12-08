@@ -8,9 +8,9 @@ since: "v0.19.0"
 
 > Require or disallow semicolons instead of ASI
 
-- :wrench: The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
+- 🔧 The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
 
-## :book: Rule Details
+## 📖 Rule Details
 
 This rule enforces consistent use of semicolons.
 
@@ -69,7 +69,7 @@ fn();
 
 </ESLintCodeBlock>
 
-## :wrench: Options
+## 🔧 Options
 
 ```json
 {
@@ -85,17 +85,17 @@ fn();
 
 Same as [semi] rule option. See [here](https://eslint.org/docs/rules/semi#options) for details.
 
-## :couple: Related rules
+## 👫 Related rules
 
 - [semi]
 
 [semi]: https://eslint.org/docs/rules/semi
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.19.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/semi.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/semi.ts)

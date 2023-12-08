@@ -23,7 +23,7 @@ This plugin is in the **_experimental stages_** of development.
 
 At least it works fine with a [withastro/docs](https://github.com/withastro/docs) repository.
 
-## :name_badge: What is this plugin?
+## 📛 What is this plugin?
 
 [ESLint] plugin for [Astro components].
 
@@ -38,27 +38,24 @@ At least it works fine with a [withastro/docs](https://github.com/withastro/docs
 [dynamic jsx expressions]: https://docs.astro.build/ja/core-concepts/astro-components/#dynamic-jsx-expressions
 [client-side scripts]: https://docs.astro.build/ja/core-concepts/astro-components/#client-side-scripts
 [directives]: https://docs.astro.build/ja/reference/directives-reference/
-[astro-eslint-parser]: https://github.com/ota-meshi/astro-eslint-parser
 
-## :book: Usage
+## 📖 Usage
 
 See [User Guide](./user-guide.md).
 
-## :white_check_mark: Rules
+## ✅ Rules
 
 See [Available Rules](./rules.md).
 
-## :heart: Supporting
+## ❤️ Supporting
 
 If you are willing to see that this package continues to be maintained, please consider sponsoring me.
 
 [![sponsors](https://img.shields.io/badge/-Sponsor-fafbfc?logo=GitHub%20Sponsors)](https://github.com/sponsors/ota-meshi)
 
-## :lock: License
+## 🔒 License
 
 See the [LICENSE](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/LICENSE) file for license rights and limitations (MIT).
 
-[astro]: https://astro.build/
 [eslint]: https://eslint.org/
 [astro components]: https://docs.astro.build/en/core-concepts/astro-components/
-[eslint-plugin-jsx-a11y]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y

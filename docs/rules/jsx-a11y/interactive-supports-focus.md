@@ -18,15 +18,15 @@ The following is a partial excerpt from the [jsx-a11y/interactive-supports-focus
 
 > Elements with an interactive role and interaction handlers (mouse or key press) must be focusable.
 
-## :books: Further Reading
+## 📚 Further Reading
 
 - [jsx-a11y/interactive-supports-focus]
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.11.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/jsx-a11y/interactive-supports-focus.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/jsx-a11y/interactive-supports-focus.ts)

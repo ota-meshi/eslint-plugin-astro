@@ -8,9 +8,9 @@ since: "v0.21.0"
 
 > disallow warnings when compiling.
 
-- :gear: This rule is included in `"plugin:astro/recommended"`.
+- ⚙ This rule is included in `"plugin:astro/recommended"`.
 
-## :book: Rule Details
+## 📖 Rule Details
 
 This rule uses `@astrojs/compiler` to check the source code.
 
@@ -29,23 +29,23 @@ This rule uses `@astrojs/compiler` to check the source code.
 
 </ESLintCodeBlock>
 
-## :wrench: Options
+## 🔧 Options
 
 Nothing.
 
-## :books: Further Reading
+## 📚 Further Reading
 
-## :couple: Related Rules
+## 👫 Related Rules
 
 - [astro/no-conflict-set-directives]
 
 [astro/no-conflict-set-directives]: ./no-conflict-set-directives.md
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.21.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/valid-compile.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/valid-compile.ts)

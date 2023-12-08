@@ -8,7 +8,7 @@ since: "v0.10.0"
 
 > disallow selectors defined in `style` tag that don't use in HTML
 
-## :book: Rule Details
+## 📖 Rule Details
 
 This rule aims to remove unused  CSS selectors.
 
@@ -44,15 +44,15 @@ This rule aims to remove unused  CSS selectors.
 
 </ESLintCodeBlock>
 
-## :wrench: Options
+## 🔧 Options
 
 Nothing.
 
-## :rocket: Version
+## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro v0.10.0
 
-## :mag: Implementation
+## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/no-unused-css-selector.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/no-unused-css-selector.ts)
