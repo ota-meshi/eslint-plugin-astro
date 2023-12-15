@@ -406,10 +406,17 @@ export default createRule("semi", {
         if (!node.declaration) checkForSemicolon(node)
       },
       ExportDefaultDeclaration(node) {
+        if (node.declaration.type === "TSInterfaceDeclaration") return
         if (!/(?:Class|Function)Declaration/u.test(node.declaration.type))
           checkForSemicolon(node)
       },
       PropertyDefinition: checkForSemicolon,
+      TSAbstractPropertyDefinition: checkForSemicolon,
+      TSDeclareFunction: checkForSemicolon,
+      TSExportAssignment: checkForSemicolon,
+      TSImportEqualsDeclaration: checkForSemicolon,
+      TSTypeAliasDeclaration: checkForSemicolon,
+      TSEmptyBodyFunctionExpression: checkForSemicolon,
     }
   },
 })
