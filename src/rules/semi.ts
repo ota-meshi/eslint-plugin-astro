@@ -1,114 +1,415 @@
 import type { AST } from "astro-eslint-parser"
-import type { SourceCode } from "../types"
+import type { TSESTree } from "@typescript-eslint/types"
 import { createRule } from "../utils"
-import { getCoreRule, newProxy } from "../utils/eslint-core"
 import { getSourceCode } from "../utils/compat"
+import {
+  isClosingBraceToken,
+  isSemicolonToken,
+} from "@eslint-community/eslint-utils"
+import { getNextLocation, isTokenOnSameLine } from "../utils/ast-utils"
+import type { RuleFixer } from "../types"
+import FixTracker from "../utils/fix-tracker"
 
-const coreRule = getCoreRule("semi")
 export default createRule("semi", {
   meta: {
     docs: {
-      description: coreRule.meta.docs.description,
+      description: "Require or disallow semicolons instead of ASI",
       category: "Extension Rules",
       recommended: false,
       extensionRule: "semi",
     },
-    schema: coreRule.meta.schema,
-    messages: coreRule.meta.messages,
-    type: coreRule.meta.type,
-    fixable: coreRule.meta.fixable,
-    hasSuggestions: coreRule.meta.hasSuggestions,
+    type: "layout",
+    fixable: "code",
+    schema: {
+      anyOf: [
+        {
+          type: "array",
+          items: [
+            {
+              type: "string",
+              enum: ["never"],
+            },
+            {
+              type: "object",
+              properties: {
+                beforeStatementContinuationChars: {
+                  type: "string",
+                  enum: ["always", "any", "never"],
+                },
+              },
+              additionalProperties: false,
+            },
+          ],
+          minItems: 0,
+          maxItems: 2,
+        },
+        {
+          type: "array",
+          items: [
+            {
+              type: "string",
+              enum: ["always"],
+            },
+            {
+              type: "object",
+              properties: {
+                omitLastInOneLineBlock: { type: "boolean" },
+                omitLastInOneLineClassBody: { type: "boolean" },
+              },
+              additionalProperties: false,
+            },
+          ],
+          minItems: 0,
+          maxItems: 2,
+        },
+      ],
+    },
+    messages: {
+      missingSemi: "Missing semicolon.",
+      extraSemi: "Extra semicolon.",
+    },
   },
   create(context) {
     const sourceCode = getSourceCode(context)
     if (!sourceCode.parserServices.isAstro) {
       return {}
     }
-
-    let sourceCodeWrapper: SourceCode | undefined
-
-    return coreRule.create(
-      newProxy(context, {
-        getSourceCode: getSourceCodeForWrapper,
-        get sourceCode() {
-          return getSourceCodeForWrapper()
-        },
-      }),
+    const OPT_OUT_PATTERN = /^[(+\-/[`]/u // One of [(/+-`
+    const unsafeClassFieldNames = new Set(["get", "set", "static"])
+    const unsafeClassFieldFollowers = new Set(["*", "in", "instanceof"])
+    const options = context.options[1]
+    const never = context.options[0] === "never"
+    const exceptOneLine = Boolean(
+      options &&
+        "omitLastInOneLineBlock" in options &&
+        options.omitLastInOneLineBlock,
     )
+    const exceptOneLineClassBody = Boolean(
+      options &&
+        "omitLastInOneLineClassBody" in options &&
+        options.omitLastInOneLineClassBody,
+    )
+    const beforeStatementContinuationChars =
+      (options &&
+        "beforeStatementContinuationChars" in options &&
+        options.beforeStatementContinuationChars) ||
+      "any"
 
-    /** Get source code wrapper instance */
-    function getSourceCodeForWrapper() {
-      if (sourceCodeWrapper) {
-        return sourceCodeWrapper
+    /**
+     * Reports a semicolon error with appropriate location and message.
+     * @param node The node with an extra or missing semicolon.
+     * @param missing True if the semicolon is missing.
+     */
+    function report(node: TSESTree.Node, missing = false) {
+      const lastToken = sourceCode.getLastToken(node)
+      let messageId: "missingSemi" | "extraSemi" = "missingSemi"
+
+      let fix, loc: AST.SourceLocation
+
+      if (!missing) {
+        loc = {
+          start: lastToken.loc.end,
+          end: getNextLocation(sourceCode, lastToken.loc.end)!,
+        }
+        fix = function (fixer: RuleFixer) {
+          return fixer.insertTextAfter(lastToken, ";")
+        }
+      } else {
+        messageId = "extraSemi"
+        loc = lastToken.loc
+        fix = function (fixer: RuleFixer) {
+          /**
+           * Expand the replacement range to include the surrounding
+           * tokens to avoid conflicting with no-extra-semi.
+           * https://github.com/eslint/eslint/issues/7928
+           */
+          return new FixTracker(fixer, sourceCode)
+            .retainSurroundingTokens(lastToken)
+            .remove(lastToken)
+        }
       }
 
-      /** Transforms token */
-      function transformToken(
-        token: AST.Token | AST.Comment,
-      ): AST.Token | AST.Comment {
-        return token.value === "---" ? newProxy(token, { value: "___" }) : token
+      context.report({
+        node,
+        loc,
+        messageId,
+        fix,
+      })
+    }
+
+    /**
+     * Check whether a given semicolon token is redundant.
+     * @param semiToken A semicolon token to check.
+     * @returns `true` if the next token is `;` or `}`.
+     */
+    function isRedundantSemi(semiToken: TSESTree.Token) {
+      const nextToken = sourceCode.getTokenAfter(semiToken)
+
+      return (
+        !nextToken ||
+        isClosingBraceToken(nextToken) ||
+        isSemicolonToken(nextToken)
+      )
+    }
+
+    /**
+     * Check whether a given token is the closing brace of an arrow function.
+     * @param lastToken A token to check.
+     * @returns `true` if the token is the closing brace of an arrow function.
+     */
+    function isEndOfArrowBlock(lastToken: AST.Token) {
+      if (!isClosingBraceToken(lastToken)) return false
+
+      const node = sourceCode.getNodeByRangeIndex(lastToken.range[0])!
+
+      return (
+        node.type === "BlockStatement" &&
+        node.parent.type === "ArrowFunctionExpression"
+      )
+    }
+
+    /**
+     * Checks if a given PropertyDefinition node followed by a semicolon
+     * can safely remove that semicolon. It is not to safe to remove if
+     * the class field name is "get", "set", or "static", or if
+     * followed by a generator method.
+     * @param node The node to check.
+     * @returns `true` if the node cannot have the semicolon
+     *      removed.
+     */
+    function maybeClassFieldAsiHazard(node: TSESTree.Node) {
+      if (node.type !== "PropertyDefinition") return false
+
+      /**
+       * Computed property names and non-identifiers are always safe
+       * as they can be distinguished from keywords easily.
+       */
+      const needsNameCheck = !node.computed && node.key.type === "Identifier"
+
+      /**
+       * Certain names are problematic unless they also have a
+       * a way to distinguish between keywords and property
+       * names.
+       */
+      if (
+        needsNameCheck &&
+        "name" in node.key &&
+        unsafeClassFieldNames.has(node.key.name)
+      ) {
+        /**
+         * Special case: If the field name is `static`,
+         * it is only valid if the field is marked as static,
+         * so "static static" is okay but "static" is not.
+         */
+        const isStaticStatic = node.static && node.key.name === "static"
+
+        /**
+         * For other unsafe names, we only care if there is no
+         * initializer. No initializer = hazard.
+         */
+        if (!isStaticStatic && !node.value) return true
       }
 
-      return (sourceCodeWrapper = newProxy(sourceCode, {
-        /* eslint-disable @typescript-eslint/unbound-method -- ignore */
-        getFirstToken: wrapGetTokenFunction(sourceCode.getFirstToken),
-        getFirstTokens: wrapGetTokensFunction(sourceCode.getFirstTokens),
-        getFirstTokenBetween: wrapGetTokenFunction(
-          sourceCode.getFirstTokenBetween,
-        ),
-        getFirstTokensBetween: wrapGetTokensFunction(
-          sourceCode.getFirstTokensBetween,
-        ),
-        getLastToken: wrapGetTokenFunction(sourceCode.getLastToken),
-        getLastTokens: wrapGetTokensFunction(sourceCode.getLastTokens),
-        getLastTokenBetween: wrapGetTokenFunction(
-          sourceCode.getLastTokenBetween,
-        ),
-        getLastTokensBetween: wrapGetTokensFunction(
-          sourceCode.getLastTokensBetween,
-        ),
-        getTokenBefore: wrapGetTokenFunction(sourceCode.getTokenBefore),
-        getTokensBefore: wrapGetTokensFunction(sourceCode.getTokensBefore),
-        getTokenAfter: wrapGetTokenFunction(sourceCode.getTokenAfter),
-        getTokensAfter: wrapGetTokensFunction(sourceCode.getTokensAfter),
-        getTokenByRangeStart: wrapGetTokenFunction(
-          sourceCode.getTokenByRangeStart,
-        ),
-        getTokens: wrapGetTokensFunction(sourceCode.getTokens),
-        getTokensBetween: wrapGetTokensFunction(sourceCode.getTokensBetween),
-        /* eslint-enable @typescript-eslint/unbound-method -- ignore */
-      }))
+      const followingToken = sourceCode.getTokenAfter(node)!
 
-      /** Wrap token getter function */
-      function wrapGetTokenFunction<
-        T extends (
-          this: SourceCode,
-          ...args: never[]
-        ) => AST.Token | AST.Comment | null,
-      >(base: T): T {
-        return function (this: SourceCode, ...args) {
-          // eslint-disable-next-line no-invalid-this -- is valid
-          const token = base.apply(this, args)
-          if (!token) {
-            return token
-          }
-          return transformToken(token)
-        } as T
+      return unsafeClassFieldFollowers.has(followingToken.value)
+    }
+
+    /**
+     * Check whether a given node is on the same line with the next token.
+     * @param node A statement node to check.
+     * @returns `true` if the node is on the same line with the next token.
+     */
+    function isOnSameLineWithNextToken(node: TSESTree.Node) {
+      const prevToken = sourceCode.getLastToken(node, 1)
+      const nextToken = sourceCode.getTokenAfter(node)
+
+      return Boolean(nextToken) && isTokenOnSameLine(prevToken, nextToken)
+    }
+
+    /**
+     * Check whether a given node can connect the next line if the next line is unreliable.
+     * @param node A statement node to check.
+     * @returns `true` if the node can connect the next line.
+     */
+    function maybeAsiHazardAfter(node: TSESTree.Node) {
+      const t = node.type
+
+      if (
+        t === "DoWhileStatement" ||
+        t === "BreakStatement" ||
+        t === "ContinueStatement" ||
+        t === "DebuggerStatement" ||
+        t === "ImportDeclaration" ||
+        t === "ExportAllDeclaration"
+      )
+        return false
+
+      if (t === "ReturnStatement") return Boolean(node.argument)
+
+      if (t === "ExportNamedDeclaration") return Boolean(node.declaration)
+
+      const lastToken = sourceCode.getLastToken(node, 1)!
+      if (isEndOfArrowBlock(lastToken)) return false
+
+      return true
+    }
+
+    /**
+     * Check whether a given token can connect the previous statement.
+     * @param token A token to check.
+     * @returns `true` if the token is one of `[`, `(`, `/`, `+`, `-`, ```, `++`, and `--`.
+     */
+    function maybeAsiHazardBefore(token: AST.Token) {
+      return (
+        Boolean(token) &&
+        OPT_OUT_PATTERN.test(token.value) &&
+        token.value !== "++" &&
+        token.value !== "--" &&
+        token.value !== "---"
+      )
+    }
+
+    /**
+     * Check if the semicolon of a given node is unnecessary, only true if:
+     *   - next token is a valid statement divider (`;` or `}`).
+     *   - next token is on a new line and the node is not connectable to the new line.
+     * @param node A statement node to check.
+     * @returns whether the semicolon is unnecessary.
+     */
+    function canRemoveSemicolon(node: TSESTree.Node) {
+      const lastToken = sourceCode.getLastToken(node)
+      if (isRedundantSemi(lastToken)) return true // `;;` or `;}`
+
+      if (maybeClassFieldAsiHazard(node)) return false
+
+      if (isOnSameLineWithNextToken(node)) return false // One liner.
+
+      // continuation characters should not apply to class fields
+      if (
+        node.type !== "PropertyDefinition" &&
+        beforeStatementContinuationChars === "never" &&
+        !maybeAsiHazardAfter(node)
+      )
+        return true // ASI works. This statement doesn't connect to the next.
+
+      const nextToken = sourceCode.getTokenAfter(node)!
+      if (!maybeAsiHazardBefore(nextToken)) return true // ASI works. The next token doesn't connect to this statement.
+
+      return false
+    }
+
+    /**
+     * Checks a node to see if it's the last item in a one-liner block.
+     * Block is any `BlockStatement` or `StaticBlock` node. Block is a one-liner if its
+     * braces (and consequently everything between them) are on the same line.
+     * @param node The node to check.
+     * @returns whether the node is the last item in a one-liner block.
+     */
+    function isLastInOneLinerBlock(node: TSESTree.Node) {
+      const parent = node.parent as TSESTree.Node
+      const nextToken = sourceCode.getTokenAfter(node)
+
+      if (!nextToken || nextToken.value !== "}") return false
+
+      if (parent.type === "BlockStatement")
+        return parent.loc.start.line === parent.loc.end.line
+
+      if (parent.type === "StaticBlock") {
+        const openingBrace = sourceCode.getFirstToken(parent, {
+          skip: 1,
+        })!
+
+        return openingBrace.loc.start.line === parent.loc.end.line
       }
 
-      /** Wrap tokens getter function */
-      function wrapGetTokensFunction<
-        T extends (
-          this: SourceCode,
-          ...args: never[]
-        ) => (AST.Token | AST.Comment)[],
-      >(base: T): T {
-        return function (this: SourceCode, ...args) {
-          // eslint-disable-next-line no-invalid-this -- is valid
-          const tokens = base.apply(this, args)
-          return tokens.map(transformToken)
-        } as T
+      return false
+    }
+
+    /**
+     * Checks a node to see if it's the last item in a one-liner `ClassBody` node.
+     * ClassBody is a one-liner if its braces (and consequently everything between them) are on the same line.
+     * @param node The node to check.
+     * @returns whether the node is the last item in a one-liner ClassBody.
+     */
+    function isLastInOneLinerClassBody(node: TSESTree.Node) {
+      const parent = node.parent!
+      const nextToken = sourceCode.getTokenAfter(node)
+
+      if (!nextToken || nextToken.value !== "}") return false
+
+      if (parent.type === "ClassBody")
+        return parent.loc.start.line === parent.loc.end.line
+
+      return false
+    }
+
+    /**
+     * Checks a node to see if it's followed by a semicolon.
+     * @param node The node to check.
+     */
+    function checkForSemicolon(node: TSESTree.Node) {
+      const lastToken = sourceCode.getLastToken(node)
+      const isSemi = isSemicolonToken(lastToken)
+
+      if (never) {
+        const nextToken = sourceCode.getTokenAfter(node)!
+
+        if (isSemi && canRemoveSemicolon(node)) report(node, true)
+        else if (
+          !isSemi &&
+          beforeStatementContinuationChars === "always" &&
+          node.type !== "PropertyDefinition" &&
+          maybeAsiHazardBefore(nextToken)
+        )
+          report(node)
+      } else {
+        const oneLinerBlock = exceptOneLine && isLastInOneLinerBlock(node)
+        const oneLinerClassBody =
+          exceptOneLineClassBody && isLastInOneLinerClassBody(node)
+        const oneLinerBlockOrClassBody = oneLinerBlock || oneLinerClassBody
+
+        if (isSemi && oneLinerBlockOrClassBody) report(node, true)
+        else if (!isSemi && !oneLinerBlockOrClassBody) report(node)
       }
+    }
+
+    /**
+     * Checks to see if there's a semicolon after a variable declaration.
+     * @param node The node to check.
+     */
+    function checkForSemicolonForVariableDeclaration(
+      node: TSESTree.VariableDeclaration,
+    ) {
+      const parent = node.parent!
+
+      if (
+        (parent.type !== "ForStatement" || parent.init !== node) &&
+        (!/^For(?:In|Of)Statement/u.test(parent.type) ||
+          (parent as TSESTree.ForInStatement).left !== node)
+      )
+        checkForSemicolon(node)
+    }
+
+    return {
+      VariableDeclaration: checkForSemicolonForVariableDeclaration,
+      ExpressionStatement: checkForSemicolon,
+      ReturnStatement: checkForSemicolon,
+      ThrowStatement: checkForSemicolon,
+      DoWhileStatement: checkForSemicolon,
+      DebuggerStatement: checkForSemicolon,
+      BreakStatement: checkForSemicolon,
+      ContinueStatement: checkForSemicolon,
+      ImportDeclaration: checkForSemicolon,
+      ExportAllDeclaration: checkForSemicolon,
+      ExportNamedDeclaration(node) {
+        if (!node.declaration) checkForSemicolon(node)
+      },
+      ExportDefaultDeclaration(node) {
+        if (!/(?:Class|Function)Declaration/u.test(node.declaration.type))
+          checkForSemicolon(node)
+      },
+      PropertyDefinition: checkForSemicolon,
     }
   },
 })

@@ -11,6 +11,9 @@ import {
 } from "@eslint-community/eslint-utils"
 import { getSourceCode } from "./compat"
 
+const anyFunctionPattern =
+  /^(?:Function(?:Declaration|Expression)|ArrowFunctionExpression)$/u
+
 /**
  * Get the attribute key name from given attribute node
  */
@@ -377,6 +380,101 @@ function getName(
   }
   if (nameNode.type === "JSXMemberExpression") {
     return `${getName(nameNode.object)}.${nameNode.property.name}`
+  }
+  return null
+}
+
+/**
+ * Determines whether two adjacent tokens are on the same line.
+ * @param left The left token object.
+ * @param right The right token object.
+ * @returns Whether or not the tokens are on the same line.
+ * @public
+ */
+export function isTokenOnSameLine(
+  left: AST.Token | TSESTree.Node | null,
+  right: AST.Token | TSESTree.Node | null,
+): boolean {
+  return left?.loc?.end.line === right?.loc?.start.line
+}
+
+/**
+ * Gets next location when the result is not out of bound, otherwise returns null.
+ *
+ * Assumptions:
+ *
+ * - The given location represents a valid location in the given source code.
+ * - Columns are 0-based.
+ * - Lines are 1-based.
+ * - Column immediately after the last character in a line (not incl. linebreaks) is considered to be a valid location.
+ * - If the source code ends with a linebreak, `sourceCode.lines` array will have an extra element (empty string) at the end.
+ *   The start (column 0) of that extra line is considered to be a valid location.
+ *
+ * Examples of successive locations (line, column):
+ *
+ * code: foo
+ * locations: (1, 0) -> (1, 1) -> (1, 2) -> (1, 3) -> null
+ *
+ * code: foo<LF>
+ * locations: (1, 0) -> (1, 1) -> (1, 2) -> (1, 3) -> (2, 0) -> null
+ *
+ * code: foo<CR><LF>
+ * locations: (1, 0) -> (1, 1) -> (1, 2) -> (1, 3) -> (2, 0) -> null
+ *
+ * code: a<LF>b
+ * locations: (1, 0) -> (1, 1) -> (2, 0) -> (2, 1) -> null
+ *
+ * code: a<LF>b<LF>
+ * locations: (1, 0) -> (1, 1) -> (2, 0) -> (2, 1) -> (3, 0) -> null
+ *
+ * code: a<CR><LF>b<CR><LF>
+ * locations: (1, 0) -> (1, 1) -> (2, 0) -> (2, 1) -> (3, 0) -> null
+ *
+ * code: a<LF><LF>
+ * locations: (1, 0) -> (1, 1) -> (2, 0) -> (3, 0) -> null
+ *
+ * code: <LF>
+ * locations: (1, 0) -> (2, 0) -> null
+ *
+ * code:
+ * locations: (1, 0) -> null
+ * @param sourceCode The sourceCode
+ * @param location The location
+ * @returns Next location
+ */
+export function getNextLocation(
+  sourceCode: { lines: string[] },
+  { column, line }: { column: number; line: number },
+): { column: number; line: number } | null {
+  if (column < sourceCode.lines[line - 1].length) {
+    return {
+      column: column + 1,
+      line,
+    }
+  }
+
+  if (line < sourceCode.lines.length) {
+    return {
+      column: 0,
+      line: line + 1,
+    }
+  }
+
+  return null
+}
+
+/**
+ * Finds a function node from ancestors of a node.
+ * @param node A start node to find.
+ * @returns A found function node.
+ */
+export function getUpperFunction(node: TSESTree.Node): TSESTree.Node | null {
+  for (
+    let currentNode: TSESTree.Node | undefined = node;
+    currentNode;
+    currentNode = currentNode.parent
+  ) {
+    if (anyFunctionPattern.test(currentNode.type)) return currentNode
   }
   return null
 }
