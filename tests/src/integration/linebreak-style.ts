@@ -1,5 +1,5 @@
 import { RuleTester, Linter } from "eslint"
-import { processor } from "../../../src/processor"
+import { astroProcessor } from "../../../src/processor"
 
 describe("Integration test for linebreak-style", () => {
   const ruleNoUnusedVars = new Linter().getRules().get("linebreak-style")!
@@ -19,7 +19,7 @@ describe("Integration test for linebreak-style", () => {
         // @ts-expect-error -- fine name with processor
         filename: {
           filename: "foo.astro",
-          ...processor,
+          ...astroProcessor,
         },
         code: `
         <script define:vars={{ foo: 42, bar: 42 }}>
@@ -31,7 +31,7 @@ describe("Integration test for linebreak-style", () => {
         // @ts-expect-error -- fine name with processor
         filename: {
           filename: "foo.astro",
-          ...processor,
+          ...astroProcessor,
         },
         code: `
 <script define:vars={{ bar: 42 }}>
@@ -48,7 +48,7 @@ describe("Integration test for linebreak-style", () => {
         // @ts-expect-error -- fine name with processor
         filename: {
           filename: "foo.astro",
-          ...processor,
+          ...astroProcessor,
         },
         code: `{/*eslint linebreak-style:0*/}
         <script define:vars={{ bar: 42 }}>
@@ -66,7 +66,7 @@ describe("Integration test for linebreak-style", () => {
         // @ts-expect-error -- fine name with processor
         filename: {
           filename: "foo.astro",
-          ...processor,
+          ...astroProcessor,
         },
         code: `{/*eslint linebreak-style:0*/}
 <script define:vars={{ bar: 42 }}>\r

@@ -30,14 +30,14 @@ At least it works fine with a [withastro/docs](https://github.com/withastro/docs
 - Linting Astro components using ESLint.
 - Find problems with Astro components.
 - Apply a consistent code style to Astro components.
-- Linting targets include [Frontmatter], [HTML Template], [Dynamic JSX Expressions], [Client-Side Scripts], [Directives], and more.
+- Linting targets include [Frontmatter], [HTML Template], [JSX-like Expressions], [Client-Side Scripts], [Directives], and more.
 - Check code in real time with the ESLint editor integrations.
 
-[frontmatter]: https://docs.astro.build/ja/core-concepts/astro-components/#the-component-script
-[html template]: https://docs.astro.build/ja/core-concepts/astro-components/#the-component-template
-[dynamic jsx expressions]: https://docs.astro.build/ja/core-concepts/astro-components/#dynamic-jsx-expressions
-[client-side scripts]: https://docs.astro.build/ja/core-concepts/astro-components/#client-side-scripts
-[directives]: https://docs.astro.build/ja/reference/directives-reference/
+[frontmatter]: https://docs.astro.build/en/core-concepts/astro-components/#the-component-script
+[html template]: https://docs.astro.build/en/core-concepts/astro-components/#the-component-template
+[JSX-like Expressions]: https://docs.astro.build/en/core-concepts/astro-syntax/#jsx-like-expressions
+[client-side scripts]: https://docs.astro.build/en/guides/client-side-scripts/
+[directives]: https://docs.astro.build/en/reference/directives-reference/
 
 ## 📖 Usage
 

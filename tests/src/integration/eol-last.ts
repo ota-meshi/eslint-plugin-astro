@@ -1,5 +1,5 @@
 import { RuleTester, Linter } from "eslint"
-import { processor } from "../../../src/processor"
+import { astroProcessor } from "../../../src/processor"
 
 describe("Integration test for eol-last", () => {
   const eolLast = new Linter().getRules().get("eol-last")!
@@ -16,7 +16,7 @@ describe("Integration test for eol-last", () => {
         // @ts-expect-error -- fine name with processor
         filename: {
           filename: "foo.astro",
-          ...processor,
+          ...astroProcessor,
         },
         code: `
         <script define:vars={{ foo: 42 }}>
@@ -27,7 +27,7 @@ describe("Integration test for eol-last", () => {
         // @ts-expect-error -- fine name with processor
         filename: {
           filename: "foo.astro",
-          ...processor,
+          ...astroProcessor,
         },
         code: `
         <script define:vars={{ foo: 42 }}>
@@ -39,7 +39,7 @@ describe("Integration test for eol-last", () => {
         // @ts-expect-error -- fine name with processor
         filename: {
           filename: "foo.astro",
-          ...processor,
+          ...astroProcessor,
         },
         code: `
         <script define:vars={{ foo: 42 }}>
@@ -52,7 +52,7 @@ describe("Integration test for eol-last", () => {
         // @ts-expect-error -- fine name with processor
         filename: {
           filename: "foo.astro",
-          ...processor,
+          ...astroProcessor,
         },
         code: `
         <script define:vars={{ foo: 42 }}>

@@ -126,6 +126,52 @@ module.exports = {
         "prettier/prettier": "off",
       },
     },
+    {
+      // Define the configuration for `<script>` tag when using `client-side-ts` processor.
+      // Script in `<script>` is assigned a virtual file name with the `.js` extension.
+      files: ["**/*.astro/*.ts", "*.astro/*.ts"],
+      env: {
+        browser: true,
+        es2020: true,
+      },
+      parser: "@typescript-eslint/parser",
+      parserOptions: {
+        sourceType: "module",
+        project: null,
+      },
+      rules: {
+        // override/add rules settings here, such as:
+        // "no-unused-vars": "error"
+
+        // If you are using "prettier/prettier" rule,
+        // you don't need to format inside <script> as it will be formatted as a `.astro` file.
+        "prettier/prettier": "off",
+      },
+    },
+    // ...
+  ],
+}
+```
+
+If you are writing client-side scripts in TypeScript and want to use `@typescript-eslint/parser` as the TypeScript parser, you will need to use `client-side-ts` processor and configure it as follows.
+
+```js
+module.exports = {
+  // ...
+  extends: [
+    // ...
+    "plugin:astro/recommended",
+  ],
+  // ...
+  overrides: [
+    {
+      files: ["*.astro"],
+      // ...
+      processor: "astro/client-side-ts", // <- Uses the "client-side-ts" processor.
+      rules: {
+        // ...
+      },
+    },
     // ...
   ],
 }
@@ -188,5 +234,3 @@ Example **.vscode/settings.json**:
 ### Parsing the `.astro` file fails
 
 You should check the [parser configuration](#parser-configuration).
-
-[eslint-plugin-astro3]: https://github.com/astrojs/eslint-plugin-astro3
