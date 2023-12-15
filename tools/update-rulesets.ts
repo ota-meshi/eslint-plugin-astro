@@ -67,6 +67,27 @@ export = {
         "prettier/prettier": "off",
       },
     },
+    {
+      // Define the configuration for \`<script>\` tag when using \`client-side-ts\` processor.
+      // Script in \`<script>\` is assigned a virtual file name with the \`.ts\` extension.
+      files: ["**/*.astro/*.ts", "*.astro/*.ts"],
+      env: {
+        browser: true,
+        es2020: true,
+      },
+      parser: hasTypescriptEslintParser
+        ? "@typescript-eslint/parser"
+        : undefined,
+      parserOptions: {
+        sourceType: "module",
+        project: null,
+      },
+      rules: {
+        // If you are using "prettier/prettier" rule,
+        // you don't need to format inside <script> as it will be formatted as a \`.astro\` file.
+        "prettier/prettier": "off",
+      },
+    },
   ],
 }
 `,

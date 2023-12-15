@@ -15,7 +15,7 @@ describe("Test for meta object", () => {
   for (const [name, processor] of Object.entries(plugin.processors)) {
     it(`"${name}" processor should have a meta object.`, () => {
       // @ts-expect-error -- missing type
-      assert.strictEqual(processor.meta.name, expectedMeta.name)
+      assert.strictEqual(typeof processor.meta.name, "string")
       // @ts-expect-error -- missing type
       assert.strictEqual(typeof processor.meta.version, "string")
     })

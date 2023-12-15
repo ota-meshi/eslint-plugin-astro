@@ -6,8 +6,8 @@ export let hasTypescriptEslintParser = false
 try {
   const cwd = process.cwd()
   const relativeTo = path.join(cwd, "__placeholder__.js")
-  createRequire(relativeTo)("@typescript-eslint/parser")
-  hasTypescriptEslintParser = true
+  if (createRequire(relativeTo)("@typescript-eslint/parser"))
+    hasTypescriptEslintParser = true
 } catch {
   // noop
 }

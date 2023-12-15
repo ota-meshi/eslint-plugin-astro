@@ -3,8 +3,8 @@ import { rules as pluginRules } from "../../../../../src/utils/rules"
 import { Linter } from "eslint"
 import * as astroEslintParser from "astro-eslint-parser"
 // eslint-disable-next-line n/no-missing-import -- Demo
-import { processor } from "../../../../../src/processor/index"
-export const { preprocess, postprocess } = processor
+import { astroProcessor } from "../../../../../src/processor/index"
+export const { preprocess, postprocess } = astroProcessor
 const linter = new Linter()
 
 export const categories = [

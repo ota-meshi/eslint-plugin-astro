@@ -244,10 +244,10 @@ export class ClientScript {
       })
   }
 
-  public getProcessorFile(): Linter.ProcessorFile {
+  public getProcessorFile(ext: string): Linter.ProcessorFile {
     return {
       text: this.block.text,
-      filename: `${this.id}.js`,
+      filename: `${this.id}${ext}`,
     }
   }
 

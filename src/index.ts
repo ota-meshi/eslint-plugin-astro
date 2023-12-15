@@ -1,6 +1,6 @@
 import type { RuleModule } from "./types"
 import { rules as ruleList } from "./utils/rules"
-import { processor } from "./processor"
+import * as processors from "./processor"
 import { environments } from "./environments"
 import base from "./configs/base"
 import recommended from "./configs/recommended"
@@ -38,8 +38,9 @@ export = {
   configs,
   rules,
   processors: {
-    ".astro": processor,
-    astro: processor,
+    ".astro": processors.astroProcessor,
+    astro: processors.astroProcessor,
+    "client-side-ts": processors.clientSideTsProcessor,
   },
   environments,
 }

@@ -1,5 +1,5 @@
 import { RuleTester, Linter } from "eslint"
-import { processor } from "../../../src/processor"
+import { astroProcessor } from "../../../src/processor"
 
 describe("Integration test for no-unused-vars", () => {
   const ruleNoUnusedVars = new Linter().getRules().get("no-unused-vars")!
@@ -16,7 +16,7 @@ describe("Integration test for no-unused-vars", () => {
         // @ts-expect-error -- fine name with processor
         filename: {
           filename: "foo.astro",
-          ...processor,
+          ...astroProcessor,
         },
         code: `
         <script define:vars={{ foo: 42 }}>
@@ -30,7 +30,7 @@ describe("Integration test for no-unused-vars", () => {
         // @ts-expect-error -- fine name with processor
         filename: {
           filename: "foo.astro",
-          ...processor,
+          ...astroProcessor,
         },
         code: `
         <script define:vars={{ foo: 42, bar: 42 }}>
