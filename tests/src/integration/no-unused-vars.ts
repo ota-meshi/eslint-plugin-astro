@@ -1,9 +1,9 @@
 import { RuleTester } from "eslint"
 import { astroProcessor } from "../../../src/processor"
-import { builtinRules } from "eslint/use-at-your-own-risk"
+import { getCoreRule } from "./get-core-rule"
 
 describe("Integration test for no-unused-vars", () => {
-  const ruleNoUnusedVars = builtinRules.get("no-unused-vars")!
+  const ruleNoUnusedVars = getCoreRule("no-unused-vars")!
   const tester = new RuleTester({
     parser: require.resolve("./auto-parser"),
     parserOptions: {
