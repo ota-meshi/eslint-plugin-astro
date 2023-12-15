@@ -1,5 +1,13 @@
 # eslint-plugin-astro
 
+## 0.31.0
+
+### Minor Changes
+
+- [#294](https://github.com/ota-meshi/eslint-plugin-astro/pull/294) [`5b4cf50`](https://github.com/ota-meshi/eslint-plugin-astro/commit/5b4cf50893cd557eff2f1e29920d97fc25f0450d) Thanks [@ota-meshi](https://github.com/ota-meshi)! - Improve compatibility with ESLint v9
+
+- [#292](https://github.com/ota-meshi/eslint-plugin-astro/pull/292) [`3429da5`](https://github.com/ota-meshi/eslint-plugin-astro/commit/3429da50471f23d043374fa9cde549f66d1c7e9e) Thanks [@ota-meshi](https://github.com/ota-meshi)! - feat: add `astro/client-side-ts` processor
+
 ## 0.30.0
 
 ### Minor Changes
