@@ -30,20 +30,20 @@ let code = `/*
  * This file has been automatically generated,
  * in order to update its content execute "npm run update"
  */
-import type { TSESTree, AST_NODE_TYPES } from "@typescript-eslint/types";
+import type { TSESTree, AST_NODE_TYPES } from "@typescript-eslint/types"
 import type { AST } from "astro-eslint-parser"
-import type * as ESTree from "estree"
 
 export type ASTNode =
   | AST.AstroNode
   | AST.JSXNode
-  | Exclude<ESTree.Node, { type: AST.JSXNode["type"] }>
   | Exclude<
       TSESTree.Node,
-      { type: ESTree.Node["type"] } | { type: AST.JSXNode["type"] }
+      { type: AST.JSXNode["type"] } | { type: AST.AstroNode["type"] }
     >
 export type ASTNodeWithParent =
-  | (Exclude<ASTNode, ESTree.Program> & { parent: ASTNodeWithParent })
+  | (Omit<Exclude<ASTNode, TSESTree.Program>, "parent"> & {
+      parent: ASTNodeWithParent
+    })
   | AST.AstroProgram
 
 export type ASTNodeListener = {
@@ -58,27 +58,6 @@ for (const nodeType of tsEsNodeNames) {
 `
 }
 for (const nodeType of astroNodeNames) {
-  let argType = `AST.${nodeType}`
-  if (nodeType === "Program") {
-    argType = `AST.AstroProgram`
-  }
-  code += `  ${nodeType}?: (node: ${argType} & ASTNodeWithParent) => void
-  "${nodeType}:exit"?: (node: ${argType} & ASTNodeWithParent) => void
-`
-}
-code += `
-}`
-
-code += `
-export type ESNodeListener = {
-`
-for (const nodeType of esNodeNames) {
-  const argType = `ESTree.${nodeType}`
-  code += `  ${nodeType}?: (node: ${argType} & ASTNodeWithParent) => void
-  "${nodeType}:exit"?: (node: ${argType} & ASTNodeWithParent) => void
-`
-}
-for (const nodeType of esAstroNodeNames) {
   let argType = `AST.${nodeType}`
   if (nodeType === "Program") {
     argType = `AST.AstroProgram`

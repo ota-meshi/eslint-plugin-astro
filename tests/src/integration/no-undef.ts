@@ -1,8 +1,9 @@
-import { RuleTester, Linter } from "eslint"
+import { RuleTester } from "eslint"
 import { astroProcessor } from "../../../src/processor"
+import { getCoreRule } from "./get-core-rule"
 
 describe("Integration test for no-undef", () => {
-  const ruleNoUnusedVars = new Linter().getRules().get("no-undef")!
+  const ruleNoUnusedVars = getCoreRule("no-undef")!
   const tester = new RuleTester({
     parser: require.resolve("./auto-parser"),
     parserOptions: {

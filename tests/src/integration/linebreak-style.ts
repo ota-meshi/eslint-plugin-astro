@@ -1,8 +1,9 @@
-import { RuleTester, Linter } from "eslint"
+import { RuleTester } from "eslint"
 import { astroProcessor } from "../../../src/processor"
+import { getCoreRule } from "./get-core-rule"
 
 describe("Integration test for linebreak-style", () => {
-  const ruleNoUnusedVars = new Linter().getRules().get("linebreak-style")!
+  const ruleNoUnusedVars = getCoreRule("linebreak-style")!
   const tester = new RuleTester({
     parser: require.resolve("./auto-parser"),
     parserOptions: {

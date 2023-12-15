@@ -238,7 +238,9 @@ export interface SourceCode {
   getFirstToken(node: NodeOrToken): AST.Token
   getFirstToken(
     node: NodeOrToken,
-    options?: Parameters<ESLintSourceCode["getFirstToken"]>[1],
+    options?:
+      | Parameters<ESLintSourceCode["getFirstToken"]>[1]
+      | { skip?: number },
   ): AST.Token | AST.Comment | null
 
   getFirstTokens(
@@ -249,7 +251,7 @@ export interface SourceCode {
   getLastToken(node: NodeOrToken): AST.Token
   getLastToken(
     node: NodeOrToken,
-    options?: Parameters<ESLintSourceCode["getLastToken"]>[1],
+    options?: Parameters<ESLintSourceCode["getLastToken"]>[1] | number,
   ): AST.Token | AST.Comment | null
 
   getLastTokens(

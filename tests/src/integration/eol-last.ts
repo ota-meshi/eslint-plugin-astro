@@ -1,8 +1,9 @@
-import { RuleTester, Linter } from "eslint"
+import { RuleTester } from "eslint"
 import { astroProcessor } from "../../../src/processor"
+import { getCoreRule } from "./get-core-rule"
 
 describe("Integration test for eol-last", () => {
-  const eolLast = new Linter().getRules().get("eol-last")!
+  const eolLast = getCoreRule("eol-last")!
   const tester = new RuleTester({
     parser: require.resolve("./auto-parser"),
     parserOptions: {
