@@ -119,6 +119,9 @@ module.exports = {
       parserOptions: {
         sourceType: "module",
       },
+      rules: {
+        "prettier/prettier": "off",
+      },
     },
     {
       files: ["*.svelte"],

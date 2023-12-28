@@ -23,9 +23,7 @@ const baseUrl = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/`
 />
 
 <!-- Scrollable a11y code helper -->
-<script src={`${baseUrl}make-scrollable-code-focusable.js`} is:inline>
-  // FIXME: Avoid conflict format
-</script>
+<script src={`${baseUrl}make-scrollable-code-focusable.js`} is:inline></script>
 
 <!-- This is intentionally inlined to avoid FOUC -->
 <script is:inline>
