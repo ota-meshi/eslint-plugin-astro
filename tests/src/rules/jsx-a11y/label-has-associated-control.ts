@@ -1,4 +1,4 @@
-import { RuleTester } from "eslint"
+import { RuleTester } from "../../../utils/eslint-compat"
 import { rules } from "../../../../src/utils/rules"
 import { loadTestCases } from "../../../utils/utils"
 
@@ -7,7 +7,7 @@ const rule = rules.find(
 )!
 
 const tester = new RuleTester({
-  parserOptions: {
+  languageOptions: {
     ecmaVersion: 2020,
     sourceType: "module",
   },

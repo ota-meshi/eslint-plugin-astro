@@ -1,17 +1,18 @@
-import { RuleTester } from "eslint"
+import { RuleTester } from "../../utils/eslint-compat"
 import { astroProcessor } from "../../../src/processor"
 import { getCoreRule } from "./get-core-rule"
 
 describe("Integration test for no-undef", () => {
   const ruleNoUnusedVars = getCoreRule("no-undef")!
   const tester = new RuleTester({
-    parser: require.resolve("./auto-parser"),
-    parserOptions: {
+    languageOptions: {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports -- ignore
+      parser: require("./auto-parser"),
       ecmaVersion: 2020,
       sourceType: "module",
-    },
-    globals: {
-      console: false,
+      globals: {
+        console: false,
+      },
     },
   })
   tester.run("no-undef", ruleNoUnusedVars, {

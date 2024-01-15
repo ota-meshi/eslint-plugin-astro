@@ -1,17 +1,20 @@
-import { RuleTester } from "eslint"
+import { RuleTester } from "../../utils/eslint-compat"
+import { Linter } from "eslint"
 import { astroProcessor } from "../../../src/processor"
 import { getCoreRule } from "./get-core-rule"
+import semver from "semver"
 
 describe("Integration test for linebreak-style", () => {
   const ruleNoUnusedVars = getCoreRule("linebreak-style")!
   const tester = new RuleTester({
-    parser: require.resolve("./auto-parser"),
-    parserOptions: {
+    languageOptions: {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports -- ignore
+      parser: require("./auto-parser"),
       ecmaVersion: 2020,
       sourceType: "module",
-    },
-    globals: {
-      console: false,
+      globals: {
+        console: false,
+      },
     },
   })
   tester.run("linebreak-style", ruleNoUnusedVars, {
@@ -51,12 +54,16 @@ describe("Integration test for linebreak-style", () => {
           filename: "foo.astro",
           ...astroProcessor,
         },
-        code: `{/*eslint linebreak-style:0*/}
+        code: `{/*eslint ${
+          semver.gte(Linter.version, "9.0.0-0") ? "rule-to-test/" : ""
+        }linebreak-style:0*/}
         <script define:vars={{ bar: 42 }}>
           console.log(foo)\r
         </script>
         `,
-        output: `{/*eslint linebreak-style:0*/}
+        output: `{/*eslint ${
+          semver.gte(Linter.version, "9.0.0-0") ? "rule-to-test/" : ""
+        }linebreak-style:0*/}
         <script define:vars={{ bar: 42 }}>
           console.log(foo)
         </script>
@@ -69,7 +76,9 @@ describe("Integration test for linebreak-style", () => {
           filename: "foo.astro",
           ...astroProcessor,
         },
-        code: `{/*eslint linebreak-style:0*/}
+        code: `{/*eslint ${
+          semver.gte(Linter.version, "9.0.0-0") ? "rule-to-test/" : ""
+        }linebreak-style:0*/}
 <script define:vars={{ bar: 42 }}>\r
 \r
 \r
@@ -77,7 +86,9 @@ describe("Integration test for linebreak-style", () => {
   console.log(foo)\r
 </script>
         `,
-        output: `{/*eslint linebreak-style:0*/}
+        output: `{/*eslint ${
+          semver.gte(Linter.version, "9.0.0-0") ? "rule-to-test/" : ""
+        }linebreak-style:0*/}
 <script define:vars={{ bar: 42 }}>\r
 
 \r

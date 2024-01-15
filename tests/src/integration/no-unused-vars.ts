@@ -1,12 +1,13 @@
-import { RuleTester } from "eslint"
+import { RuleTester } from "../../utils/eslint-compat"
 import { astroProcessor } from "../../../src/processor"
 import { getCoreRule } from "./get-core-rule"
 
 describe("Integration test for no-unused-vars", () => {
   const ruleNoUnusedVars = getCoreRule("no-unused-vars")!
   const tester = new RuleTester({
-    parser: require.resolve("./auto-parser"),
-    parserOptions: {
+    languageOptions: {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports -- ignore
+      parser: require("./auto-parser"),
       ecmaVersion: 2020,
       sourceType: "module",
     },

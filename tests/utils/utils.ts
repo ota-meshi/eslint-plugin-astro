@@ -1,11 +1,13 @@
 import fs from "fs"
 import path from "path"
 import type { RuleTester } from "eslint"
-import { Linter } from "eslint"
+import { getLinter as getCompatLinter } from "eslint-compat-utils/linter"
 import * as astroESLintParser from "astro-eslint-parser"
 // eslint-disable-next-line @typescript-eslint/no-require-imports -- tests
 import plugin = require("../../src/index")
 import { applyFixes } from "./source-code-fixer"
+// eslint-disable-next-line @typescript-eslint/naming-convention -- class name
+const Linter = getCompatLinter()
 
 /**
  * Prevents leading spaces in a multiline template literal from appearing in the resulting string
@@ -162,7 +164,7 @@ function writeFixtures(
   inputFile: string,
   { force }: { force?: boolean } = {},
 ) {
-  const linter = getLinter(ruleName)
+  const linter = new Linter()
   const errorFile = inputFile.replace(/input\.astro$/u, "errors.json")
   const outputFile = inputFile.replace(/input\.astro$/u, "output.astro")
 
@@ -171,19 +173,25 @@ function writeFixtures(
   const result = linter.verify(
     config.code,
     {
-      rules: {
-        [ruleName]: ["error", ...(config.options || [])],
+      files: [`**/*${path.extname(config.filename)}`],
+      plugins: {
+        "my-eslint-plugin": plugin,
       },
-      parser: "astro-eslint-parser",
-      parserOptions: {
+      rules: {
+        [`my-eslint-plugin/${ruleName}`]: ["error", ...(config.options || [])],
+      },
+      languageOptions: {
+        parser: astroESLintParser,
         ecmaVersion: "latest",
         sourceType: "module",
-        parser: "@typescript-eslint/parser",
+        parserOptions: {
+          parser: "@typescript-eslint/parser",
+        },
+        globals: {
+          Astro: false,
+        },
       },
-      globals: {
-        Astro: false,
-      },
-    },
+    } as any,
     config.filename,
   )
   if (force || !fs.existsSync(errorFile)) {
@@ -197,7 +205,7 @@ function writeFixtures(
         })),
         null,
         2,
-      )}\n`,
+      )}\n`.replace(/my-eslint-plugin\//gu, ""),
       "utf8",
     )
   }
@@ -209,15 +217,6 @@ function writeFixtures(
       fs.writeFileSync(outputFile, output, "utf8")
     }
   }
-}
-
-function getLinter(ruleName: string) {
-  const linter = new Linter()
-  // @ts-expect-error for test
-  linter.defineParser("astro-eslint-parser", astroESLintParser)
-  linter.defineRule(ruleName, plugin.rules[ruleName] as any)
-
-  return linter
 }
 
 function getConfig(ruleName: string, inputFile: string) {
@@ -233,14 +232,14 @@ function getConfig(ruleName: string, inputFile: string) {
   }
   if (config && typeof config === "object") {
     return Object.assign(
-      { parser: require.resolve("astro-eslint-parser") },
+      { languageOptions: { parser: astroESLintParser } },
       config,
       { code, filename },
     )
   }
   // default
   return Object.assign(
-    { parser: require.resolve("astro-eslint-parser") },
+    { languageOptions: { parser: astroESLintParser } },
     { code, filename },
   )
 }

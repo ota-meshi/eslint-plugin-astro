@@ -1,17 +1,18 @@
-import { RuleTester, Linter } from "eslint"
+import { Linter } from "eslint"
 import rule from "../../../src/rules/no-deprecated-astro-fetchcontent"
 import { loadTestCases } from "../../utils/utils"
 import semver from "semver"
+import { RuleTester } from "../../utils/eslint-compat"
 
 const eslintVersion = new Linter().version
 if (semver.gte(eslintVersion, "8.0.0")) {
   const tester = new RuleTester({
-    parserOptions: {
+    languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",
-    },
-    globals: {
-      Astro: false,
+      globals: {
+        Astro: false,
+      },
     },
   })
 
