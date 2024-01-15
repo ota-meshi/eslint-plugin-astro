@@ -1,9 +1,9 @@
-import { RuleTester } from "eslint"
 import rule from "../../../src/rules/valid-compile"
+import { RuleTester } from "../../utils/eslint-compat"
 import { loadTestCases } from "../../utils/utils"
 
 const tester = new RuleTester({
-  parserOptions: {
+  languageOptions: {
     ecmaVersion: 2020,
     sourceType: "module",
   },

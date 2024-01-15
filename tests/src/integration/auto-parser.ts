@@ -9,3 +9,7 @@ export function parseForESLint(code: string, options: ParserOptions): any {
   }
   return parseJs(code, options)
 }
+
+export const meta = {
+  name: __filename,
+}

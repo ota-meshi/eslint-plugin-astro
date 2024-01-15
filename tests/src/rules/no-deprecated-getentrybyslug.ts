@@ -1,9 +1,9 @@
-import { RuleTester } from "eslint"
+import { RuleTester } from "../../utils/eslint-compat"
 import rule from "../../../src/rules/no-deprecated-getentrybyslug"
 import { loadTestCases } from "../../utils/utils"
 
 const tester = new RuleTester({
-  parserOptions: {
+  languageOptions: {
     ecmaVersion: 2020,
     sourceType: "module",
   },
