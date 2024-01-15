@@ -19,7 +19,7 @@ function getUnsupported() {
   }
 }
 
-export function convertFlatConfig(originalConfig: any) {
+export function convertFlatConfig(originalConfig: any): any {
   const compat = new FlatCompat()
   return compat.config(originalConfig).map((config: any) => {
     if (!config.plugins?.astro) {
