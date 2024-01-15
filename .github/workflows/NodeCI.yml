@@ -49,6 +49,20 @@ jobs:
         run: npm install --legacy-peer-deps
       - name: Test
         run: npm test
+  test-for-eslint-v9:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+      - name: Install eslint v9
+        run: |+
+          npm i -D eslint@^9.0.0-0 --legacy-peer-deps
+          npx rimraf node_modules
+      - name: Install Packages
+        run: npm install --legacy-peer-deps
+      - name: Test
+        run: npm test
   test-for-eslint-v7:
     runs-on: ubuntu-latest
     strategy:
