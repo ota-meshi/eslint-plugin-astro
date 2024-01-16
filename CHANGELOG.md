@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 0.31.2
+
+### Patch Changes
+
+- [#304](https://github.com/ota-meshi/eslint-plugin-astro/pull/304) [`eec7e97`](https://github.com/ota-meshi/eslint-plugin-astro/commit/eec7e971758601e8f66b60bce74ca774ad662531) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency eslint-compat-utils to ^0.3.0
+
 ## 0.31.1
 
 ### Patch Changes
