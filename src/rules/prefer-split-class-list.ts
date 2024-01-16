@@ -362,7 +362,7 @@ export default createRule("prefer-split-class-list", {
             includeComments: false,
             filter: isOpeningParenToken,
           })!
-          const closeToken = sourceCode.getLastToken(callNode)!
+          const closeToken = sourceCode.getLastToken(callNode)
           yield fixer.removeRange([callNode.range[0], openToken.range[1]])
           yield fixer.remove(closeToken)
         },
