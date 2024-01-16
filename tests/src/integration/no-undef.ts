@@ -18,11 +18,9 @@ describe("Integration test for no-undef", () => {
   tester.run("no-undef", ruleNoUnusedVars, {
     valid: [
       {
-        // @ts-expect-error -- fine name with processor
-        filename: {
-          filename: "foo.astro",
-          ...astroProcessor,
-        },
+        filename: "foo.astro",
+        // @ts-expect-error -- missing V9 type
+        processor: astroProcessor,
         code: `
         <script define:vars={{ foo: 42, bar: 42 }}>
           console.log(foo)
@@ -32,11 +30,9 @@ describe("Integration test for no-undef", () => {
     ],
     invalid: [
       {
-        // @ts-expect-error -- fine name with processor
-        filename: {
-          filename: "foo.astro",
-          ...astroProcessor,
-        },
+        filename: "foo.astro",
+        // @ts-expect-error -- missing V9 type
+        processor: astroProcessor,
         code: `
         <script define:vars={{ bar: 42 }}>
           console.log(foo)
@@ -51,11 +47,9 @@ describe("Integration test for no-undef", () => {
         ],
       },
       {
-        // @ts-expect-error -- fine name with processor
-        filename: {
-          filename: "foo.astro",
-          ...astroProcessor,
-        },
+        filename: "foo.astro",
+        // @ts-expect-error -- missing V9 type
+        processor: astroProcessor,
         code: `
 <script define:vars={{ bar: 42 }}>
 
@@ -73,11 +67,9 @@ describe("Integration test for no-undef", () => {
         ],
       },
       {
-        // @ts-expect-error -- fine name with processor
-        filename: {
-          filename: "foo.astro",
-          ...astroProcessor,
-        },
+        filename: "foo.astro",
+        // @ts-expect-error -- missing V9 type
+        processor: astroProcessor,
         code: `
 <script define:vars={{ bar: 42 }}>
 
