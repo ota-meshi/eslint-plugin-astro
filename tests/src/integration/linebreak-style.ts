@@ -1,8 +1,6 @@
-import { RuleTester } from "../../utils/eslint-compat"
-import { Linter } from "eslint"
+import { RuleTester, testRuleIdPrefix } from "../../utils/eslint-compat"
 import { astroProcessor } from "../../../src/processor"
 import { getCoreRule } from "./get-core-rule"
-import semver from "semver"
 
 describe("Integration test for linebreak-style", () => {
   const ruleNoUnusedVars = getCoreRule("linebreak-style")!
@@ -20,11 +18,9 @@ describe("Integration test for linebreak-style", () => {
   tester.run("linebreak-style", ruleNoUnusedVars, {
     valid: [
       {
-        // @ts-expect-error -- fine name with processor
-        filename: {
-          filename: "foo.astro",
-          ...astroProcessor,
-        },
+        filename: "foo.astro",
+        // @ts-expect-error -- missing V9 type
+        processor: astroProcessor,
         code: `
         <script define:vars={{ foo: 42, bar: 42 }}>
           console.log(foo)
@@ -32,11 +28,9 @@ describe("Integration test for linebreak-style", () => {
         `,
       },
       {
-        // @ts-expect-error -- fine name with processor
-        filename: {
-          filename: "foo.astro",
-          ...astroProcessor,
-        },
+        filename: "foo.astro",
+        // @ts-expect-error -- missing V9 type
+        processor: astroProcessor,
         code: `
 <script define:vars={{ bar: 42 }}>
 
@@ -49,21 +43,15 @@ describe("Integration test for linebreak-style", () => {
     ],
     invalid: [
       {
-        // @ts-expect-error -- fine name with processor
-        filename: {
-          filename: "foo.astro",
-          ...astroProcessor,
-        },
-        code: `{/*eslint ${
-          semver.gte(Linter.version, "9.0.0-0") ? "rule-to-test/" : ""
-        }linebreak-style:0*/}
+        filename: "foo.astro",
+        // @ts-expect-error -- missing V9 type
+        processor: astroProcessor,
+        code: `{/*eslint ${testRuleIdPrefix}linebreak-style:0*/}
         <script define:vars={{ bar: 42 }}>
           console.log(foo)\r
         </script>
         `,
-        output: `{/*eslint ${
-          semver.gte(Linter.version, "9.0.0-0") ? "rule-to-test/" : ""
-        }linebreak-style:0*/}
+        output: `{/*eslint ${testRuleIdPrefix}linebreak-style:0*/}
         <script define:vars={{ bar: 42 }}>
           console.log(foo)
         </script>
@@ -71,14 +59,10 @@ describe("Integration test for linebreak-style", () => {
         errors: 1,
       },
       {
-        // @ts-expect-error -- fine name with processor
-        filename: {
-          filename: "foo.astro",
-          ...astroProcessor,
-        },
-        code: `{/*eslint ${
-          semver.gte(Linter.version, "9.0.0-0") ? "rule-to-test/" : ""
-        }linebreak-style:0*/}
+        filename: "foo.astro",
+        // @ts-expect-error -- missing V9 type
+        processor: astroProcessor,
+        code: `{/*eslint ${testRuleIdPrefix}linebreak-style:0*/}
 <script define:vars={{ bar: 42 }}>\r
 \r
 \r
@@ -86,9 +70,7 @@ describe("Integration test for linebreak-style", () => {
   console.log(foo)\r
 </script>
         `,
-        output: `{/*eslint ${
-          semver.gte(Linter.version, "9.0.0-0") ? "rule-to-test/" : ""
-        }linebreak-style:0*/}
+        output: `{/*eslint ${testRuleIdPrefix}linebreak-style:0*/}
 <script define:vars={{ bar: 42 }}>\r
 
 \r

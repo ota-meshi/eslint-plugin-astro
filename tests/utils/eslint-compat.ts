@@ -1,5 +1,5 @@
 import { ESLint as OriginalESLint } from "eslint"
-import { getRuleTester } from "eslint-compat-utils/rule-tester"
+import { getRuleIdPrefix, getRuleTester } from "eslint-compat-utils/rule-tester"
 // @ts-expect-error -- missing type
 import { FlatCompat } from "@eslint/eslintrc"
 import astroPlugin from "../../src/index"
@@ -9,6 +9,7 @@ export const LegacyESLint: typeof OriginalESLint =
   getUnsupported().LegacyESLint || OriginalESLint
 // eslint-disable-next-line @typescript-eslint/naming-convention -- class name
 export const RuleTester = getRuleTester()
+export const testRuleIdPrefix = getRuleIdPrefix()
 
 function getUnsupported() {
   try {

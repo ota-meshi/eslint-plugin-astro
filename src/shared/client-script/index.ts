@@ -259,7 +259,12 @@ export class ClientScript {
   }
 
   private isIgnoreMessage(message: Linter.LintMessage) {
-    if (message.ruleId === "eol-last" && message.messageId === "unexpected") {
+    if (
+      (message.ruleId === "eol-last" ||
+        // for test case
+        message.ruleId === "rule-to-test/eol-last") &&
+      message.messageId === "unexpected"
+    ) {
       // Ignore this report as it is not possible to remove the EOF of a block.
       return true
     }

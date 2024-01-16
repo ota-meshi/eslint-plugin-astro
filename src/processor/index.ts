@@ -26,7 +26,7 @@ export const clientSideTsProcessor: Linter.Processor = {
 function preprocess(
   code: string,
   filename: string,
-  vartualFileExt: string,
+  virtualFileExt: string,
 ): ReturnType<NonNullable<Linter.Processor["preprocess"]>> {
   if (filename) {
     const shared = beginShared(filename)
@@ -53,7 +53,7 @@ function preprocess(
     })
     return [
       code,
-      ...shared.clientScripts.map((cs) => cs.getProcessorFile(vartualFileExt)),
+      ...shared.clientScripts.map((cs) => cs.getProcessorFile(virtualFileExt)),
     ]
   }
 

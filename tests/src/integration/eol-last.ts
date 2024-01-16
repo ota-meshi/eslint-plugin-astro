@@ -1,8 +1,6 @@
-import { ESLint } from "eslint"
 import { RuleTester } from "../../utils/eslint-compat"
 import { astroProcessor } from "../../../src/processor"
 import { getCoreRule } from "./get-core-rule"
-import semver from "semver"
 
 describe("Integration test for eol-last", () => {
   const eolLast = getCoreRule("eol-last")!
@@ -17,36 +15,26 @@ describe("Integration test for eol-last", () => {
   tester.run("eol-last", eolLast, {
     valid: [
       {
-        filename: {
-          filename: "foo.astro",
-          ...astroProcessor,
-        } as any,
+        filename: "foo.astro",
+        processor: astroProcessor,
         code: `
         <script define:vars={{ foo: 42 }}>
           console.log(foo)
         </script>\n`,
       } as any,
 
-      ...(semver.lt(ESLint.version, "9.0.0-0")
-        ? [
-            {
-              filename: {
-                filename: "foo.astro",
-                ...astroProcessor,
-              },
-              code: `
+      {
+        filename: "foo.astro",
+        processor: astroProcessor,
+        code: `
         <script define:vars={{ foo: 42 }}>
           console.log(foo)
         </script>`,
-              options: ["never"],
-            },
-          ]
-        : []),
+        options: ["never"],
+      },
       {
-        filename: {
-          filename: "foo.astro",
-          ...astroProcessor,
-        },
+        filename: "foo.astro",
+        processor: astroProcessor,
         code: `
         <script define:vars={{ foo: 42 }}>
           console.log(foo)</script>`,
@@ -55,11 +43,9 @@ describe("Integration test for eol-last", () => {
     ],
     invalid: [
       {
-        // @ts-expect-error -- fine name with processor
-        filename: {
-          filename: "foo.astro",
-          ...astroProcessor,
-        },
+        filename: "foo.astro",
+        // @ts-expect-error -- missing V9 type
+        processor: astroProcessor,
         code: `
         <script define:vars={{ foo: 42 }}>
           console.log(foo)</script>\n`,
