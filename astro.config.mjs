@@ -6,6 +6,7 @@ import replaceLink from "./docs-build/remark-replace-link.mjs"
 import "./docs-build/setup-docs.mjs"
 import path from "path"
 import { URL } from "url"
+import { version as monacoVersion } from "monaco-editor/package.json"
 
 const dirname = path.dirname(new URL(import.meta.url).pathname)
 
@@ -44,6 +45,9 @@ export default defineConfig({
     ],
   },
   vite: {
+    define: {
+      MONACO_EDITOR_VERSION: JSON.stringify(monacoVersion),
+    },
     server: {
       fs: { strict: false },
     },

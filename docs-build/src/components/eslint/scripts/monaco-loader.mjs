@@ -1,3 +1,4 @@
+/* global MONACO_EDITOR_VERSION -- defined */
 async function setupMonaco() {
   if (typeof window !== "undefined") {
     const monacoScript =
@@ -19,8 +20,12 @@ async function setupMonaco() {
 function appendMonacoEditorScript() {
   return new Promise((resolve) => {
     const script = document.createElement("script")
-    script.src =
-      "https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs/loader.min.js"
+
+    if (typeof MONACO_EDITOR_VERSION !== "undefined") {
+      script.src = `https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/${MONACO_EDITOR_VERSION}/min/vs/loader.min.js`
+    } else {
+      script.src = "https://unpkg.com/monaco-editor@latest/min/vs/loader.js"
+    }
     script.onload = () => {
       script.onload = null
 
