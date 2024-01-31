@@ -17,6 +17,7 @@
   export let markers = []
   export let rightMarkers = []
   export let provideCodeActions = null
+  export let monacoOptions = {}
 
   export let waiting = null
   let rootElement,
@@ -114,11 +115,14 @@
       renderValidationDecorations: "on",
       renderWhitespace: "boundary",
       scrollBeyondLastLine: false,
+      scrollbar: { alwaysConsumeMouseWheel: false },
+      ...monacoOptions,
     }
 
     if (diffEditor) {
       editor = monaco.editor.createDiffEditor(rootElement, {
         originalEditable: true,
+        useInlineViewWhenSpaceIsLimited: false,
         ...options,
       })
       const original = monaco.editor.createModel(code, language)

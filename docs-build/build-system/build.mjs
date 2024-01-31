@@ -1,8 +1,10 @@
-"use strict"
+import esbuild from "esbuild"
+import path from "path"
+import fs from "fs"
+import { createRequire } from "module"
 
-const esbuild = require("esbuild")
-const path = require("path")
-const fs = require("fs")
+const require = createRequire(import.meta.url)
+const __dirname = path.dirname(new URL(import.meta.url).pathname)
 // const babelCore = require("@babel/core")
 // const t = require("@babel/types")
 

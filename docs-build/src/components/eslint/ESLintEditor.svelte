@@ -12,6 +12,7 @@
   export let filePath = "Example.astro"
   export let fix = true
   export let showDiff = true
+  export let monacoOptions = {}
 
   let fixedValue = code
   let leftMarkers = []
@@ -242,6 +243,7 @@
     markers={leftMarkers}
     {rightMarkers}
     {provideCodeActions}
+    {monacoOptions}
   />
   <div class="eslint-editor__tools">
     {#if showApplyFix}

@@ -145,6 +145,7 @@ let b: number = 1;
         {linter}
         bind:code
         {filePath}
+        monacoOptions={{ scrollbar: { alwaysConsumeMouseWheel: true } }}
         config={{
           parser: "astro-auto-eslint-parser",
           parserOptions: {
