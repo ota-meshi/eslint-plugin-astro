@@ -238,6 +238,60 @@ See [the rule list](https://ota-meshi.github.io/eslint-plugin-astro/rules/) to g
 
 See [https://github.com/ota-meshi/astro-eslint-parser#readme](https://github.com/ota-meshi/astro-eslint-parser#readme).
 
+
+### Resolving Error in JSX: Unsafe return of an `any` typed value
+
+Astro supports JSX from multiple frameworks such as **React**, **Preact**, and **Solid.js** by defining JSX Elements as `HTMLElement | any;`. When a framework with a JSX type definition is not present in your project this **any** can cause the ESLint error `@typescript-eslint/no-unsafe-return`.
+
+This can be resolved by overriding the astroHTML.JSX.Element definition with a `*.d.ts` file such as `jsx.d.ts` in your project root directory:
+
+
+```typescript
+import "astro/astro-jsx";
+
+declare global {
+  namespace aJSX {
+    // type Element = astroHTML.JSX.Element // We want to use this, but it is defined as any.
+    type Element = HTMLElement;
+  }
+}
+```
+
+Add this `*.d.ts` to your `tsconfig.eslint.json`:
+
+```json
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    // ...
+    "jsx.d.ts"
+  ]
+}
+
+```
+
+Ensure that any necessary parserOptions in your `.eslintrc.**` have a project key also pointing to this config:
+
+```json
+{
+  // ...
+  "overrides": [
+    {
+      "files": ["*.astro"],
+      "parser": "astro-eslint-parser",
+      "parserOptions": {
+        "parser": "@typescript-eslint/parser",
+        "extraFileExtensions": [".astro"],
+        // add this line
+        "project": "./tsconfig.eslint.json"
+      },
+      // ...
+    }
+    // ...
+  ]}
+
+```
+
 ### Running ESLint from the command line
 
 If you want to run `eslint` from the command line, make sure you include the `.astro` extension using [the `--ext` option](https://eslint.org/docs/user-guide/configuring#specifying-file-extensions-to-lint) or a glob pattern, because ESLint targets only `.js` files by default.
