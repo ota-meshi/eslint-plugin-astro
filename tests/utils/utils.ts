@@ -110,7 +110,7 @@ export function loadTestCases(
           writeFixtures(ruleName, inputFile)
           output = fs.readFileSync(outputFile, "utf8")
         }
-        config.output = output
+        config.output = output === config.code ? null : output
       }
 
       return config

@@ -238,13 +238,11 @@ See [the rule list](https://ota-meshi.github.io/eslint-plugin-astro/rules/) to g
 
 See [https://github.com/ota-meshi/astro-eslint-parser#readme](https://github.com/ota-meshi/astro-eslint-parser#readme).
 
-
 ### Resolving Error in JSX: Unsafe return of an `any` typed value
 
 Astro supports JSX from multiple frameworks such as **React**, **Preact**, and **Solid.js** by defining JSX Elements as `HTMLElement | any;`. When a framework with a JSX type definition is not present in your project this **any** can cause the ESLint error `@typescript-eslint/no-unsafe-return`.
 
 This can be resolved by overriding the astroHTML.JSX.Element definition with a `*.d.ts` file such as `jsx.d.ts` in your project root directory:
-
 
 ```typescript
 import "astro/astro-jsx";
