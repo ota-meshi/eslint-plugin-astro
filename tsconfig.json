@@ -21,11 +21,11 @@
     "esModuleInterop": true,
     "outDir": "lib",
     "paths": {
-      "@eslint-community/*": ["typings/@eslint-community/*"],
+      "@eslint-community/*": ["typings/@eslint-community/*"]
     },
 
     "skipLibCheck": true,
-    "resolveJsonModule": true,
+    "resolveJsonModule": true
   },
   "include": [
     "src/**/*",
@@ -35,7 +35,7 @@
     "docs-build/src/**/*.ts",
     "docs-build/src/**/*.astro",
     "docs/**/*.astro",
-    "typings/**/*",
+    "typings/**/*"
   ],
-  "exclude": ["lib/**/*", "tests/fixtures/**/*"],
+  "exclude": ["lib/**/*", "tests/fixtures/**/*"]
 }
