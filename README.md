@@ -250,7 +250,7 @@ This can be resolved by overriding the astroHTML.JSX.Element definition with a `
 import "astro/astro-jsx";
 
 declare global {
-  namespace aJSX {
+  namespace JSX {
     // type Element = astroHTML.JSX.Element // We want to use this, but it is defined as any.
     type Element = HTMLElement;
   }
