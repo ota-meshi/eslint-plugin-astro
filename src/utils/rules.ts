@@ -2,6 +2,7 @@
 // This file has been automatically generated,
 // in order to update its content execute "npm run update"
 import type { RuleModule } from "../types"
+import missingClientDirectiveValue from "../rules/missing-client-directive-value"
 import noConflictSetDirectives from "../rules/no-conflict-set-directives"
 import noDeprecatedAstroCanonicalurl from "../rules/no-deprecated-astro-canonicalurl"
 import noDeprecatedAstroFetchcontent from "../rules/no-deprecated-astro-fetchcontent"
@@ -19,6 +20,7 @@ import validCompile from "../rules/valid-compile"
 import { buildA11yRules } from "../a11y"
 
 export const rules = [
+  missingClientDirectiveValue,
   noConflictSetDirectives,
   noDeprecatedAstroCanonicalurl,
   noDeprecatedAstroFetchcontent,
