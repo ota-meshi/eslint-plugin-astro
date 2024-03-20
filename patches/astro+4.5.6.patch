@@ -1,0 +1,16 @@
+diff --git a/node_modules/astro/dist/jsx/babel.js b/node_modules/astro/dist/jsx/babel.js
+index 507eb4d..e643353 100644
+--- a/node_modules/astro/dist/jsx/babel.js
++++ b/node_modules/astro/dist/jsx/babel.js
+@@ -127,6 +127,11 @@ function astroJSX() {
+               pageOptions: {}
+             };
+           }
++          const runtime = path.node.body.find(body => t.isImportDeclaration(body) && body.source.value === "astro/jsx-runtime");
++          if (runtime) {
++            return
++          }
++
+           path.node.body.splice(
+             0,
+             0,
