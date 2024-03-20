@@ -69,7 +69,7 @@ describe("`recommended` config", () => {
       ],
     )
   })
-  it("`flat/standard` config with *.js should work. ", async () => {
+  it("`flat/recommended` config with *.js should work. ", async () => {
     const linter = new FlatESLint({
       // @ts-expect-error -- typing bug
       overrideConfigFile: true,

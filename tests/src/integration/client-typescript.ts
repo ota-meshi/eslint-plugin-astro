@@ -53,7 +53,7 @@ describe("Integration test for client-side ts", () => {
           overrideConfig: [
             ...astroPlugin.configs["flat/base"],
             {
-              files: ["*.ts"],
+              files: ["*.ts", "**/*.ts"],
               languageOptions: {
                 parser: tsESLintParser,
               },
