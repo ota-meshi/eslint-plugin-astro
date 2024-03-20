@@ -5,6 +5,9 @@ import { environments } from "./environments"
 import base from "./configs/base"
 import recommended from "./configs/recommended"
 import all from "./configs/all"
+import flatBase from "./configs/flat/base"
+import flatRecommended from "./configs/flat/recommended"
+import flatAll from "./configs/flat/all"
 import { buildA11yConfigs } from "./a11y"
 import * as meta from "./meta"
 
@@ -12,7 +15,9 @@ const configs = {
   base,
   recommended,
   all,
-  ...buildA11yConfigs(),
+  "flat/base": flatBase,
+  "flat/recommended": flatRecommended,
+  "flat/all": flatAll,
 }
 
 const a11yConfigs = buildA11yConfigs()

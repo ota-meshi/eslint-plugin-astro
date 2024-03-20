@@ -191,5 +191,11 @@ module.exports = {
         "no-console": "off",
       },
     },
+    {
+      files: ["*.md/**", "**/*.md/**"],
+      rules: {
+        "n/no-missing-import": "off",
+      },
+    },
   ],
 }

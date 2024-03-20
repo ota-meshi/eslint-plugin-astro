@@ -5,7 +5,6 @@ import astroPlugin from "../../../src/index"
 import assert from "assert"
 import Module from "module"
 import semver from "semver"
-import { convertFlatConfig } from "../../utils/eslint-compat"
 
 describe("Integration test for a11y config", () => {
   // @ts-expect-error -- ignore
@@ -37,9 +36,8 @@ describe("Integration test for a11y config", () => {
         })
       : new ESLint({
           overrideConfigFile: true as any,
-          overrideConfig: convertFlatConfig({
-            extends: ["plugin:astro/jsx-a11y-strict"],
-          }),
+          // @ts-expect-error -- typing bug
+          overrideConfig: astroPlugin.configs["flat/jsx-a11y-strict"],
         })
 
     const result = await eslint.lintText(
@@ -87,9 +85,8 @@ const src = 'icon.png'
         })
       : new ESLint({
           overrideConfigFile: true as any,
-          overrideConfig: convertFlatConfig({
-            extends: ["plugin:astro/jsx-a11y-recommended"],
-          }),
+          // @ts-expect-error -- typing bug
+          overrideConfig: astroPlugin.configs["flat/jsx-a11y-recommended"],
         })
 
     const result = await eslint.lintText(
