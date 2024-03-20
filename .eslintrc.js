@@ -193,6 +193,9 @@ module.exports = {
     },
     {
       files: ["*.md/**", "**/*.md/**"],
+      parserOptions: {
+        sourceType: "module",
+      },
       rules: {
         "n/no-missing-import": "off",
       },
