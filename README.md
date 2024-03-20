@@ -80,7 +80,41 @@ npm install --save-dev eslint-plugin-jsx-a11y
 
 ### Configuration
 
-Use `.eslintrc.*` file to configure rules. See also: [https://eslint.org/docs/user-guide/configuring](https://eslint.org/docs/user-guide/configuring).
+#### New \(ESLint\>=v9\) Config \(Flat Config\)
+
+Use `eslint.config.js` file to configure rules. See also: [https://eslint.org/docs/latest/use/configure/configuration-files-new](https://eslint.org/docs/latest/use/configure/configuration-files-new).
+
+Example **eslint.config.js**:
+
+```js
+import eslintPluginAstro from 'eslint-plugin-astro';
+export default [
+  // add more generic rule sets here, such as:
+  // js.configs.recommended,
+  ...eslintPluginAstro.configs['flat/recommended'],
+  {
+    rules: {
+      // override/add rules settings here, such as:
+      // "astro/no-set-html-directive": "error"
+    }
+  }
+];
+```
+
+This plugin provides configs:
+
+- `*.configs['flat/base']` ... Minimal configuration to enable correct Astro component linting.
+- `*.configs['flat/recommended']` ... Above, plus rules to prevent errors or unintended behavior.
+- `*.configs['flat/all']` ... Configuration enables all astro rules. It's meant for testing, not for production use because it changes with every minor and major version of the plugin. Use it at your own risk.
+- Extension of sharable configuration provided by [eslint-plugin-jsx-a11y]. You need to install [eslint-plugin-jsx-a11y] to use it.
+  - `*.configs['flat/jsx-a11y-recommended']` ... Similar to the [`"plugin:jsx-a11y/recommended"` configuration](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y#rule-strictness-in-different-modes), but with the rules extended for Astro components enabled.
+  - `*.configs['flat/jsx-a11y-strict']` ... Similar to the [`"plugin:jsx-a11y/strict"` configuration](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y#rule-strictness-in-different-modes), but with the rules extended for Astro components enabled.
+
+See [the rule list](https://ota-meshi.github.io/eslint-plugin-astro/rules/) to get the `rules` that this plugin provides.
+
+#### Legacy Config \(ESLint\<v9\)
+
+Use `.eslintrc.*` file to configure rules. See also: [https://eslint.org/docs/latest/use/configure](https://eslint.org/docs/latest/use/configure).
 
 Example **.eslintrc.js**. When using the shareable configuration provided by the plugin:
 

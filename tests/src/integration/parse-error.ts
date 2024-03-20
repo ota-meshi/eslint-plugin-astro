@@ -3,7 +3,6 @@ import astroPlugin from "../../../src/index"
 import assert from "assert"
 import Module from "module"
 import semver from "semver"
-import { convertFlatConfig } from "../../utils/eslint-compat"
 
 describe("Integration test for parse error", () => {
   // @ts-expect-error -- ignore
@@ -34,9 +33,8 @@ describe("Integration test for parse error", () => {
         })
       : new ESLint({
           overrideConfigFile: true as any,
-          overrideConfig: convertFlatConfig({
-            extends: ["plugin:astro/base"],
-          }),
+          // @ts-expect-error -- typing bug
+          overrideConfig: astroPlugin.configs["flat/base"],
         })
 
     const result = await eslint.lintText(
