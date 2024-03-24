@@ -1,5 +1,5 @@
 import { RuleTester } from "../../utils/eslint-compat"
-import rule from "../../../src/rules/missing-client-directive-value"
+import rule from "../../../src/rules/missing-client-only-directive-value"
 import { loadTestCases } from "../../utils/utils"
 
 const tester = new RuleTester({
@@ -10,7 +10,7 @@ const tester = new RuleTester({
 })
 
 tester.run(
-  "missing-client-directive-value",
+  "missing-client-only-directive-value",
   rule as any,
-  loadTestCases("missing-client-directive-value"),
+  loadTestCases("missing-client-only-directive-value"),
 )

@@ -3,11 +3,11 @@ import { createRule } from "../utils"
 import { getAttributeName, getStaticAttributeValue } from "../utils/ast-utils"
 import { getSourceCode } from "../utils/compat"
 
-export default createRule("missing-client-directive-value", {
+export default createRule("missing-client-only-directive-value", {
   meta: {
     docs: {
       description:
-        "the client directive is missing the correct component's framework value",
+        "the client:only directive is missing the correct component's framework value",
       category: "Possible Errors",
       recommended: true,
     },

@@ -2,4 +2,4 @@
 "eslint-plugin-astro": minor
 ---
 
-feat add `astro/missing-directive-value` rule
+feat add `astro/missing-client-only-directive-value` rule
