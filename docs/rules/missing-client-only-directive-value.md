@@ -1,13 +1,13 @@
 ---
 title: "astro/missing-client-only-directive-value"
 description: "the client:only directive is missing the correct component's framework value"
+since: "v0.33.0"
 ---
 
 # astro/missing-client-only-directive-value
 
 > the client:only directive is missing the correct component's framework value
 
-- ❗ <badge text="This rule has not been released yet." vertical="middle" type="error"> **_This rule has not been released yet._** </badge>
 - ⚙ This rule is included in `"plugin:astro/recommended"`.
 
 ## 📖 Rule Details
@@ -41,6 +41,10 @@ Nothing.
 ## 📚 Further Reading
 
 - [Astro Documentation | Template Directives Reference > client:only](https://docs.astro.build/en/reference/directives-reference/#clientonly)
+
+## 🚀 Version
+
+This rule was introduced in eslint-plugin-astro v0.33.0
 
 ## 🔍 Implementation
 
