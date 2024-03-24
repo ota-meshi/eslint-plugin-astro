@@ -1,0 +1,9 @@
+---
+import SomeSvelteComponent from "../SomeSvelteComponent.svelte"
+let string = "svelte"
+---
+
+<!-- prettier-ignore-start -->
+<SomeSvelteComponent client:only={string} />
+<SomeSvelteComponent client:idle />
+<!-- prettier-ignore-end -->

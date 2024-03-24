@@ -13,6 +13,7 @@ These rules relate to possible syntax or logic errors in Astro component code:
 
 | Rule ID | Description |    |
 |:--------|:------------|:---|
+| [astro/missing-client-only-directive-value](./rules/missing-client-only-directive-value.md) | the client:only directive is missing the correct component's framework value | ⭐ |
 | [astro/no-conflict-set-directives](./rules/no-conflict-set-directives.md) | disallow conflicting set directives and child contents | ⭐ |
 | [astro/no-deprecated-astro-canonicalurl](./rules/no-deprecated-astro-canonicalurl.md) | disallow using deprecated `Astro.canonicalURL` | ⭐ |
 | [astro/no-deprecated-astro-fetchcontent](./rules/no-deprecated-astro-fetchcontent.md) | disallow using deprecated `Astro.fetchContent()` | ⭐🔧 |

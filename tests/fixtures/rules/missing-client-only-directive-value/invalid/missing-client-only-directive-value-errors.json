@@ -1,0 +1,7 @@
+[
+  {
+    "message": "`client:only` directive is missing a value",
+    "line": 5,
+    "column": 22
+  }
+]
