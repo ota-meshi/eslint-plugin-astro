@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 0.33.0
+
+### Minor Changes
+
+- [#322](https://github.com/ota-meshi/eslint-plugin-astro/pull/322) [`d55a51e`](https://github.com/ota-meshi/eslint-plugin-astro/commit/d55a51eb6903f30a90d81f0a9731520e45a7de83) Thanks [@oanaOM](https://github.com/oanaOM)! - feat add `astro/missing-client-only-directive-value` rule
+
 ## 0.32.0
 
 ### Minor Changes
