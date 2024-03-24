@@ -28,13 +28,10 @@ export default createRule("missing-client-only-directive-value", {
       attr: AST.JSXAttribute | AST.AstroTemplateLiteralAttribute,
     ) {
       const directiveName = getAttributeName(attr)
-      const directiveValue = getStaticAttributeValue(attr)
-
       if (directiveName !== "client:only") return
 
-      if (directiveValue !== null) {
-        return
-      }
+      const directiveValue = getStaticAttributeValue(attr, context)
+      if (directiveValue !== null) return
 
       context.report({
         node: attr.name,
