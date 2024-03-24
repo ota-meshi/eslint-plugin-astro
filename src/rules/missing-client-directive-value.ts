@@ -1,6 +1,6 @@
 import type { AST } from "astro-eslint-parser"
 import { createRule } from "../utils"
-import { getStaticAttributeValue } from "../utils/ast-utils"
+import { getAttributeName, getStaticAttributeValue } from "../utils/ast-utils"
 import { getSourceCode } from "../utils/compat"
 
 export default createRule("missing-client-directive-value", {
@@ -27,7 +27,12 @@ export default createRule("missing-client-directive-value", {
     function verifyDirectiveValue(
       attr: AST.JSXAttribute | AST.AstroTemplateLiteralAttribute,
     ) {
-      if (getStaticAttributeValue(attr) !== null) {
+      const directiveName = getAttributeName(attr)
+      const directiveValue = getStaticAttributeValue(attr)
+
+      if (directiveName !== "client:only") return
+
+      if (directiveValue !== null) {
         return
       }
 

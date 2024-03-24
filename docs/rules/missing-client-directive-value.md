@@ -1,7 +1,6 @@
 ---
 title: "astro/missing-client-directive-value"
 description: "the client directive is missing the correct component's framework value"
-since: "v0.31.4"
 ---
 
 # astro/missing-client-directive-value
@@ -35,14 +34,7 @@ This rule reports not setting a value for the `client:only` directive.
 
 ## 🔧 Options
 
-```
-<SomeReactComponent client:only="react" />
-<SomePreactComponent client:only="preact" />
-<SomeSvelteComponent client:only="svelte" />
-<SomeVueComponent client:only="vue" />
-<SomeSolidComponent client:only="solid-js" />
-<SomeLitComponent client:only="lit" />
-```
+Nothing.
 
 
 ## 📚 Further Reading
