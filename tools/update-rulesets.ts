@@ -103,7 +103,7 @@ void formatAndSave(
 import globals from "globals"
 import type { ESLint } from "eslint"
 import * as parser from "astro-eslint-parser"
-import { tsESLintParser } from "../has-typescript-eslint-parser"
+import { tsESLintParser, hasTypescriptEslintParser } from "../has-typescript-eslint-parser"
 import { environments } from "../../environments/index"
 export default [
   {
@@ -139,6 +139,7 @@ export default [
         })
         .join(",\n        ")}
     },
+		processor: hasTypescriptEslintParser ? 'astro/client-side-ts' : 'astro/astro'
   },
   {
     // Define the configuration for \`<script>\` tag.
