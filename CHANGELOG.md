@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 0.33.1
+
+### Patch Changes
+
+- [#334](https://github.com/ota-meshi/eslint-plugin-astro/pull/334) [`a84fe26`](https://github.com/ota-meshi/eslint-plugin-astro/commit/a84fe26a3aa0f5d84a7d2d9630f9025c4c8a60f2) Thanks [@ota-meshi](https://github.com/ota-meshi)! - fix: client-side scripts not being able to linting in flat configs
+
 ## 0.33.0
 
 ### Minor Changes
