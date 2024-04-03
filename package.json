@@ -15,7 +15,8 @@
     "build:meta": "npm run ts -- ./tools/update-meta.ts",
     "build:ts": "tsc --project ./tsconfig.build.json",
     "clean": "rimraf lib .nyc_output dist coverage",
-    "test": "npm run mocha -- \"tests/src/**/*.ts\" --reporter dot --timeout 60000",
+    "test": "npm run mocha -- \"tests/src/**/*.ts\" --reporter dot --timeout 60000 && npm run test:type",
+    "test:type": "tsc",
     "cover": "nyc --reporter=lcov npm run test",
     "debug": "npm run mocha -- \"tests/src/**/*.ts\" --reporter dot --timeout 60000",
     "lint": "eslint .",
@@ -105,6 +106,7 @@
     "eslint-plugin-regexp": "^2.0.0",
     "eslint-plugin-svelte": "^2.0.0",
     "eslint-plugin-yml": "^1.0.0",
+    "expect-type": "^0.19.0",
     "js-yaml": "^4.1.0",
     "less": "^4.1.2",
     "mocha": "^10.0.0",
@@ -120,7 +122,8 @@
     "sass": "^1.52.2",
     "stylus": "^0.63.0",
     "svelte": "^4.0.0",
-    "typescript": "~5.4.0"
+    "typescript": "~5.4.0",
+    "typescript-eslint": "^7.5.0"
   },
   "publishConfig": {
     "access": "public"

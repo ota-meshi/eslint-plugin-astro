@@ -31,6 +31,7 @@
     "src/**/*",
     "tests/src/**/*",
     "tests/utils/**/*",
+    "tests/typing.test.ts",
     "tools/**/*",
     "docs-build/src/**/*.ts",
     "docs-build/src/**/*.astro",
