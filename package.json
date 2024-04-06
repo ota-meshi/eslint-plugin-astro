@@ -99,7 +99,7 @@
     "eslint-plugin-json-schema-validator": "^5.0.0",
     "eslint-plugin-jsonc": "^2.2.1",
     "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-markdown": "^3.0.0",
+    "eslint-plugin-markdown": "^4.0.0",
     "eslint-plugin-n": "^16.0.0",
     "eslint-plugin-node-dependencies": "^0.11.0",
     "eslint-plugin-prettier": "^5.0.0",
