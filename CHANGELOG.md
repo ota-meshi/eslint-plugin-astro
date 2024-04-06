@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 0.34.0
+
+### Minor Changes
+
+- [#343](https://github.com/ota-meshi/eslint-plugin-astro/pull/343) [`3dcd714`](https://github.com/ota-meshi/eslint-plugin-astro/commit/3dcd7149d57e49e8b2732236c304d2d40f2e5559) Thanks [@nix6839](https://github.com/nix6839)! - feat: compatibility flat configs type
+
 ## 0.33.1
 
 ### Patch Changes
