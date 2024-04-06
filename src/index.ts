@@ -10,14 +10,15 @@ import flatRecommended from "./configs/flat/recommended"
 import flatAll from "./configs/flat/all"
 import { buildA11yConfigs } from "./a11y"
 import * as meta from "./meta"
+import type { Linter } from "eslint"
 
 const configs = {
-  base,
-  recommended,
-  all,
-  "flat/base": flatBase,
-  "flat/recommended": flatRecommended,
-  "flat/all": flatAll,
+  base: base as unknown as Linter.Config,
+  recommended: recommended as Linter.Config,
+  all: all as Linter.Config,
+  "flat/base": flatBase as Linter.FlatConfig[],
+  "flat/recommended": flatRecommended as Linter.FlatConfig[],
+  "flat/all": flatAll as Linter.FlatConfig[],
 }
 
 const a11yConfigs = buildA11yConfigs()
