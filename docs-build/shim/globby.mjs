@@ -1,4 +1,7 @@
 /* eslint require-jsdoc:0 -- shim */
 
-export {}
-export default {}
+export default { sync }
+
+export function sync(s) {
+  return [s]
+}

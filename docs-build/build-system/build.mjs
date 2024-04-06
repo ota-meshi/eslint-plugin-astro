@@ -20,7 +20,12 @@ build(
 build(
   require.resolve("./src/astro-eslint-parser.mjs"),
   path.join(__dirname, "../shim/astro-eslint-parser.mjs"),
-  ["fs", "module", { name: "@typescript-eslint/parser", kind: "cjs" }],
+  [
+    "fs",
+    "module",
+    "globby",
+    { name: "@typescript-eslint/parser", kind: "cjs" },
+  ],
 )
 build(
   require.resolve("./src/eslint-plugin-jsx-a11y.mjs"),
