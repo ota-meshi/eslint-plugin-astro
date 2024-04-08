@@ -8,6 +8,7 @@ module.exports = {
     ecmaVersion: "latest",
     project: require.resolve("./tsconfig.json"),
   },
+  plugins: ["jsdoc"],
   extends: [
     "plugin:@ota-meshi/recommended",
     "plugin:@ota-meshi/+node",
@@ -22,7 +23,8 @@ module.exports = {
   ],
   rules: {
     "astro/semi": "off",
-    "require-jsdoc": "error",
+    "require-jsdoc": "off",
+    "jsdoc/require-jsdoc": "error",
     "no-warning-comments": "warn",
     "no-lonely-if": "off",
     "new-cap": "off",
@@ -187,7 +189,7 @@ module.exports = {
         project: require.resolve("./tsconfig.json"),
       },
       rules: {
-        "require-jsdoc": "off",
+        "jsdoc/require-jsdoc": "off",
         "no-console": "off",
       },
     },

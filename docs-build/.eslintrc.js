@@ -10,7 +10,7 @@ module.exports = {
     globalThis: false,
   },
   rules: {
-    "require-jsdoc": "off",
+    "jsdoc/require-jsdoc": "off",
     "no-process-env": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/unbound-method": "off",
