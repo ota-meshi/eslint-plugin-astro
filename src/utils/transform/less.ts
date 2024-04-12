@@ -1,11 +1,11 @@
 import type { AST } from "astro-eslint-parser"
-import type less from "less"
 import type { TransformResult } from "./types"
 import { getContentRange, loadModule } from "./utils"
 import type { RuleContext } from "../../types"
 import { getFilename, getSourceCode } from "../compat"
 
-type Less = typeof less
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports --- Ignore inline type
+type Less = typeof import("less")
 /**
  * Transpile with less
  */

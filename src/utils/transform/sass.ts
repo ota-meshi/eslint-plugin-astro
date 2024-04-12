@@ -1,11 +1,11 @@
 import type { AST } from "astro-eslint-parser"
-import type sass from "sass"
 import type { TransformResult } from "./types"
 import { getContentRange, loadModule } from "./utils"
 import type { RuleContext } from "../../types"
 import { getSourceCode } from "../compat"
 
-type Sass = typeof sass
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports --- Ignore inline type
+type Sass = typeof import("sass")
 /**
  * Transpile with sass
  */

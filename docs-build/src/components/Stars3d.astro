@@ -6,7 +6,7 @@ const vars: Record<string, string> = {
 const layers = Array.from({ length: 10 }, (_, i) => i + 1)
 
 function buildPoints(count: number, size: number) {
-  let points = []
+  const points = []
   for (let index = 0; index < count; index++) {
     const x = Math.floor(Math.random() * size)
     const y = Math.floor(Math.random() * size)

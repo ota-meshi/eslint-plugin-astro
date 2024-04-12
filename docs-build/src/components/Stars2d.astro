@@ -21,12 +21,12 @@ const layers = [
 ]
 
 const vars: Record<string, string> = {}
-for (let { no, starsBoxShadow } of layers) {
+for (const { no, starsBoxShadow } of layers) {
   vars[`stars-box-shadow${no}`] = starsBoxShadow
 }
 
 function buildBoxShadow(count: number) {
-  let shadows = []
+  const shadows = []
   for (let index = 0; index < count; index++) {
     const x = Math.floor(Math.random() * 2000 - 1000)
     const y = Math.floor(Math.random() * 2000 - 1000)

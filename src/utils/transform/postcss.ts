@@ -1,11 +1,12 @@
 import type { AST } from "astro-eslint-parser"
 import postcss from "postcss"
-import type postcssLoadConfig from "postcss-load-config"
 import type { RuleContext } from "../../types"
 import { getContentRange, loadModule } from "./utils"
 import type { TransformResult } from "./types"
 import { getCwd, getFilename, getSourceCode } from "../compat"
-type PostcssLoadConfig = typeof postcssLoadConfig
+
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports --- Ignore inline type
+type PostcssLoadConfig = typeof import("postcss-load-config")
 /**
  * Transform with postcss
  */

@@ -1,6 +1,5 @@
 import fs from "fs"
 import path from "path"
-import { URL } from "url"
 import "./build-system/build.mjs"
 import { load, dump } from "js-yaml"
 

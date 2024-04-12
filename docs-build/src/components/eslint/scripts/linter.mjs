@@ -1,11 +1,8 @@
-// eslint-disable-next-line n/no-missing-import -- Demo
 import { rules as pluginRules } from "../../../../../src/utils/rules"
 import { Linter } from "eslint"
 import * as astroEslintParser from "astro-eslint-parser"
-// eslint-disable-next-line n/no-missing-import -- Demo
 import { astroProcessor } from "../../../../../src/processor/index"
 export const { preprocess, postprocess } = astroProcessor
-const linter = new Linter()
 
 export const categories = [
   {
@@ -84,7 +81,7 @@ for (const rule of pluginRules) {
   // }
 }
 
-for (const [ruleId, rule] of linter.getRules()) {
+for (const [ruleId, rule] of new Linter().getRules()) {
   if (rule.meta.deprecated) {
     continue
   }
