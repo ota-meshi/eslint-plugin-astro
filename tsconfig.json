@@ -35,6 +35,7 @@
     "tools/**/*",
     "docs-build/src/**/*.ts",
     "docs-build/src/**/*.astro",
+    "docs-build/src/**/*.svelte",
     "docs/**/*.astro",
     "typings/**/*"
   ],

@@ -4,7 +4,7 @@ const path = `docs/${Astro.props.path}`
 const url = `https://api.github.com/repos/withastro/astro/commits?path=${path}`
 const commitsURL = `https://github.com/withastro/astro/commits/main/${path}`
 
-async function getCommits(url) {
+async function getCommits(url: string) {
   try {
     const token = import.meta.env.SNOWPACK_PUBLIC_GITHUB_TOKEN
     if (!token) {
@@ -33,7 +33,7 @@ async function getCommits(url) {
     }
 
     return data
-  } catch (e) {
+  } catch (e: any) {
     console.warn(`[error]  /src/components/AvatarList.astro 
     ${e?.message ?? e}`)
     return []
@@ -44,10 +44,10 @@ function removeDups(arr) {
   if (!arr) {
     return []
   }
-  let map = new Map()
+  const map = new Map()
 
-  for (let item of arr) {
-    let author = item.author
+  for (const item of arr) {
+    const author = item.author
     // Deduplicate based on author.id
     map.set(author.id, { login: author.login, id: author.id })
   }

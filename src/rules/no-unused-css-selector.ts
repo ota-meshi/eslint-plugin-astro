@@ -969,16 +969,14 @@ function* extractClassListFromExpression(
     for (const prop of node.properties) {
       if (prop.type === AST_NODE_TYPES.SpreadElement) {
         yield* extractClassListFromExpression(prop.argument, context)
-      } else {
-        if (!prop.computed) {
-          if (prop.key.type === AST_NODE_TYPES.Literal) {
-            yield String(prop.key.value)
-          } else {
-            yield prop.key.name
-          }
+      } else if (!prop.computed) {
+        if (prop.key.type === AST_NODE_TYPES.Literal) {
+          yield String(prop.key.value)
         } else {
-          yield* extractClassListFromExpression(prop.key, context)
+          yield prop.key.name
         }
+      } else {
+        yield* extractClassListFromExpression(prop.key, context)
       }
     }
     return

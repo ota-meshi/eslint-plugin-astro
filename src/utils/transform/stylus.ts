@@ -1,12 +1,12 @@
 import type { AST } from "astro-eslint-parser"
-import type stylus from "stylus"
 import type { RawSourceMap } from "source-map-js"
 import type { TransformResult } from "./types"
 import { getContentRange, loadModule } from "./utils"
 import type { RuleContext } from "../../types"
 import { getFilename, getSourceCode } from "../compat"
 
-type Stylus = typeof stylus
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports --- Ignore inline type
+type Stylus = typeof import("stylus")
 /**
  * Transpile with stylus
  */
@@ -29,8 +29,8 @@ export function transform(
     const style = stylus(code, {
       filename,
     }).set("sourcemap", {})
-    style.render((_error, code) => {
-      output = code
+    style.render((_error, outputCode) => {
+      output = outputCode
     })
     if (output == null) {
       return null

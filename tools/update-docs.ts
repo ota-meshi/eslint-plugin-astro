@@ -96,17 +96,15 @@ class DocFile {
       } else {
         notes.push("- ⚠️ This rule was **deprecated**.")
       }
-    } else {
-      if (recommended) {
-        if (recommended === "base") {
-          notes.push(
-            '- ⚙ This rule is included in `"plugin:astro/base"` and `"plugin:astro/recommended"`.',
-          )
-        } else {
-          notes.push(
-            '- ⚙ This rule is included in `"plugin:astro/recommended"`.',
-          )
-        }
+    } else if (recommended) {
+      if (recommended === "base") {
+        notes.push(
+          '- ⚙ This rule is included in `"plugin:astro/base"` and `"plugin:astro/recommended"`.',
+        )
+      } else {
+        notes.push(
+          '- ⚙ This rule is included in `"plugin:astro/recommended"`.',
+        )
       }
     }
     if (fixable) {

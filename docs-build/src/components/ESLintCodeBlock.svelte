@@ -24,7 +24,7 @@
   export let rules = {}
   export let fix = false
   let time = ""
-  let optionsForAstro = {
+  const optionsForAstro = {
     preprocess,
     postprocess,
   }
@@ -36,7 +36,7 @@
 
   let slotRoot
   onMount(() => {
-    let lines = []
+    const lines = []
     for (const line of slotRoot.querySelectorAll("code > .line")) {
       lines.push(line.textContent)
     }

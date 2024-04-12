@@ -341,12 +341,10 @@ export default createRule("prefer-object-class-list", {
                 key: JSON.stringify(trimmedClassName),
                 value: exprToString(expr),
               })
+            } else if (!classProps.props.length) {
+              beforeSpaces += className
             } else {
-              if (!classProps.props.length) {
-                beforeSpaces += className
-              } else {
-                afterSpaces += className
-              }
+              afterSpaces += className
             }
           }
 
@@ -386,12 +384,10 @@ export default createRule("prefer-object-class-list", {
             canTransform = false
             break
           }
-        } else {
-          if (state.beforeIsWord() && state.afterIsWord()) {
-            // The previous and next may be connected.
-            canTransform = false
-            break
-          }
+        } else if (state.beforeIsWord() && state.afterIsWord()) {
+          // The previous and next may be connected.
+          canTransform = false
+          break
         }
       }
       if (!canTransform) {

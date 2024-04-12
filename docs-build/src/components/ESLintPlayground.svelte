@@ -54,7 +54,7 @@ let b: number = 1;
   let rules = state.rules || Object.assign({}, DEFAULT_RULES_CONFIG)
   let messages = []
   let time = ""
-  let optionsForAstro = {
+  const optionsForAstro = {
     preprocess,
     postprocess,
   }
@@ -132,10 +132,10 @@ let b: number = 1;
 
 <div class="playground-root">
   <div class="playground-tools">
-    <label style="margin-left: 16px"
+    <label style:margin-left="16px"
       >FileName<input bind:value={filePath} /></label
     >
-    <span style="margin-left: auto; margin-right: 16px">{time}</span>
+    <span style:margin-left="auto" style:margin-right="16px">{time}</span>
   </div>
   <div class="playground-content">
     <RulesSettings bind:rules />

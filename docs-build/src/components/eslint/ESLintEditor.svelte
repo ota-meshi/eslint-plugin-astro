@@ -18,7 +18,7 @@
   let leftMarkers = []
   let rightMarkers = []
 
-  let messageMap = new Map()
+  const messageMap = new Map()
   let editor
 
   let lastId = 0
@@ -57,7 +57,7 @@
     /* eslint-enable no-param-reassign -- ignore */
 
     const start = Date.now()
-    // eslint-disable-next-line no-undef -- Workaround X(
+
     if (typeof require === "undefined" && typeof window !== "undefined") {
       window.require = function () {
         throw new Error()

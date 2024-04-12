@@ -5,7 +5,6 @@ import gfm from "remark-gfm"
 import replaceLink from "./docs-build/remark-replace-link.mjs"
 import "./docs-build/setup-docs.mjs"
 import path from "path"
-import { URL } from "url"
 import { version as monacoVersion } from "monaco-editor/package.json"
 
 const dirname = path.dirname(new URL(import.meta.url).pathname)
