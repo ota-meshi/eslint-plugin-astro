@@ -74,7 +74,7 @@
     "@changesets/cli": "^2.24.2",
     "@eslint/eslintrc": "^3.0.0",
     "@eslint/js": "^9.0.0",
-    "@ota-meshi/eslint-plugin": "^0.15.0",
+    "@ota-meshi/eslint-plugin": "^0.16.0",
     "@types/eslint": "^8.4.2",
     "@types/eslint-scope": "^3.7.3",
     "@types/eslint-utils": "^3.0.1",
