@@ -8,11 +8,10 @@
   } from "./eslint/scripts/state/index.mjs"
   import {
     DEFAULT_RULES_CONFIG,
+    createLinterConfig,
     getRule,
-    createLinter,
-    preprocess,
-    postprocess,
-  } from "./eslint/scripts/linter.mjs"
+  } from "./eslint/scripts/linter.mts"
+  import { Linter } from "eslint"
 
   let tsParser = undefined
   const linter = loadMonacoEditor().then(async () => {
@@ -23,7 +22,7 @@
       window.require.define("eslint-plugin-jsx-a11y", pluginJsxA11y)
     }
 
-    return createLinter()
+    return new Linter()
   })
 
   const DEFAULT_CODE =
@@ -54,10 +53,6 @@ let b: number = 1;
   let rules = state.rules || Object.assign({}, DEFAULT_RULES_CONFIG)
   let messages = []
   let time = ""
-  const optionsForAstro = {
-    preprocess,
-    postprocess,
-  }
   let filePath = state.filePath || DEFAULT_FILE_PATH
   let editor
 
@@ -146,33 +141,12 @@ let b: number = 1;
         bind:code
         {filePath}
         monacoOptions={{ scrollbar: { alwaysConsumeMouseWheel: true } }}
-        config={{
-          parser: "astro-auto-eslint-parser",
-          parserOptions: {
-            ecmaVersion: "latest",
-            sourceType: "module",
-            parser: tsParser,
+        config={createLinterConfig().then((configs) => [
+          ...configs,
+          {
+            rules,
           },
-          rules,
-          env: {
-            browser: true,
-            es2021: true,
-          },
-          globals: {
-            // Astro object
-            Astro: false,
-            // JSX Fragment
-            Fragment: false,
-
-            // Markdown properties
-            Layout: false,
-            frontmatter: false,
-            metadata: false,
-            rawContent: false,
-            compiledContent: false,
-          },
-        }}
-        options={filePath?.endsWith(".md") ? {} : optionsForAstro}
+        ])}
         on:result={onLintedResult}
       />
       <div class="messages">

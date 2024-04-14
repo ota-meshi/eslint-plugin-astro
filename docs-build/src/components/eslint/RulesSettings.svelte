@@ -1,5 +1,5 @@
 <script>
-  import { categories } from "./scripts/linter.mjs"
+  import { categories } from "./scripts/linter.mts"
 
   export let rules = {}
 

@@ -9,15 +9,6 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname)
 // const t = require("@babel/types")
 
 build(
-  require.resolve("./src/eslint.mjs"),
-  path.join(__dirname, "../shim/eslint.mjs"),
-  ["assert", "util"],
-)
-build(
-  require.resolve("../../node_modules/assert"),
-  path.join(__dirname, "../shim/assert.mjs"),
-)
-build(
   require.resolve("./src/astro-eslint-parser.mjs"),
   path.join(__dirname, "../shim/astro-eslint-parser.mjs"),
   [

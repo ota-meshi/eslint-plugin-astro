@@ -2,11 +2,8 @@
   import { onMount } from "svelte"
   import ESLintEditor from "./eslint/ESLintEditor.svelte"
   import { loadMonacoEditor } from "./eslint/scripts/monaco-loader.mjs"
-  import {
-    createLinter,
-    preprocess,
-    postprocess,
-  } from "./eslint/scripts/linter.mjs"
+  import { Linter } from "eslint"
+  import { createLinterConfig } from "./eslint/scripts/linter.mts"
 
   let tsParser = undefined
   const linter = loadMonacoEditor().then(async () => {
@@ -17,17 +14,13 @@
       window.require.define("eslint-plugin-jsx-a11y", pluginJsxA11y)
     }
 
-    return createLinter()
+    return new Linter()
   })
 
   let code = ""
   export let rules = {}
   export let fix = false
   let time = ""
-  const optionsForAstro = {
-    preprocess,
-    postprocess,
-  }
   let showDiff = fix
 
   function onLintedResult(evt) {
@@ -56,24 +49,13 @@
   <ESLintEditor
     {linter}
     bind:code
-    filePath="exxample.astro"
-    config={{
-      parser: "astro-auto-eslint-parser",
-      parserOptions: {
-        ecmaVersion: "latest",
-        sourceType: "module",
-        parser: tsParser,
+    filePath="example.astro"
+    config={createLinterConfig().then((configs) => [
+      ...configs,
+      {
+        rules,
       },
-      rules,
-      env: {
-        browser: true,
-        es2021: true,
-      },
-      globals: {
-        Astro: false,
-      },
-    }}
-    options={optionsForAstro}
+    ])}
     on:result={onLintedResult}
     showDiff={showDiff && fix}
   />
