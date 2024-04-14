@@ -106,7 +106,8 @@
       language,
       automaticLayout: true,
       fontSize: 14,
-      // tabSize: 2,
+      fontFamily:
+        'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
       minimap: {
         enabled: false,
       },

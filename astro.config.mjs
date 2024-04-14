@@ -2,6 +2,7 @@ import { defineConfig } from "astro/config"
 import svelte from "@astrojs/svelte"
 import mdx from "@astrojs/mdx"
 import gfm from "remark-gfm"
+import eslint4b from "vite-plugin-eslint4b"
 import replaceLink from "./docs-build/remark-replace-link.mjs"
 import "./docs-build/setup-docs.mjs"
 import path from "path"
@@ -52,8 +53,6 @@ export default defineConfig({
     },
     resolve: {
       alias: {
-        eslint: path.join(dirname, "./docs-build/shim/eslint.mjs"),
-        assert: path.join(dirname, "./docs-build/shim/assert.mjs"),
         "astro-eslint-parser": path.join(
           dirname,
           "./docs-build/shim/astro-eslint-parser.mjs",
@@ -63,9 +62,7 @@ export default defineConfig({
           "./docs-build/shim/eslint-plugin-jsx-a11y.mjs",
         ),
         // node
-        fs: path.join(dirname, "./docs-build/shim/fs.mjs"),
         url: path.join(dirname, "./docs-build/shim/url.mjs"),
-        path: path.join(dirname, "./docs-build/shim/path.mjs"),
         module: path.join(dirname, "./docs-build/shim/module.mjs"),
         globby: path.join(dirname, "./docs-build/shim/globby.mjs"),
         // override tsconfig (it had no effect...)
@@ -76,6 +73,7 @@ export default defineConfig({
       },
     },
     plugins: [
+      eslint4b(),
       {
         name: "force-alias",
         enforce: "pre",

@@ -125,7 +125,8 @@
     "stylus": "^0.63.0",
     "svelte": "^4.0.0",
     "typescript": "~5.4.0",
-    "typescript-eslint": "^7.5.0"
+    "typescript-eslint": "^7.5.0",
+    "vite-plugin-eslint4b": "^0.4.0"
   },
   "publishConfig": {
     "access": "public"

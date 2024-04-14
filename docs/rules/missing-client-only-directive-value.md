@@ -21,7 +21,6 @@ This rule reports not setting a value for the `client:only` directive.
 ```astro
 ---
 /* eslint astro/missing-client-only-directive-value: "error" */
-
 ---
 
 {/* ✓ GOOD */}
@@ -36,7 +35,6 @@ This rule reports not setting a value for the `client:only` directive.
 ## 🔧 Options
 
 Nothing.
-
 
 ## 📚 Further Reading
 
