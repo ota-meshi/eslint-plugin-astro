@@ -16,7 +16,7 @@
     "build:ts": "tsc --project ./tsconfig.build.json",
     "clean": "rimraf lib .nyc_output dist coverage",
     "test": "npm run mocha -- \"tests/src/**/*.ts\" --reporter dot --timeout 60000 && npm run test:type",
-    "test:type": "tsc",
+    "test:type": "tsc --noEmit",
     "cover": "nyc --reporter=lcov npm run test",
     "debug": "npm run mocha -- \"tests/src/**/*.ts\" --reporter dot --timeout 60000",
     "lint": "eslint .",
