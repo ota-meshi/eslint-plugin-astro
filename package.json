@@ -64,7 +64,7 @@
     "postcss-selector-parser": "^6.0.10"
   },
   "peerDependencies": {
-    "eslint": ">=7.0.0"
+    "eslint": ">=8.57.0"
   },
   "devDependencies": {
     "@astrojs/compiler": "^2.0.0",
