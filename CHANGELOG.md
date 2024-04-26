@@ -1,5 +1,17 @@
 # eslint-plugin-astro
 
+## 1.0.0
+
+### Major Changes
+
+- [#357](https://github.com/ota-meshi/eslint-plugin-astro/pull/357) [`4afd799`](https://github.com/ota-meshi/eslint-plugin-astro/commit/4afd799195c75867db4724fa8535bb3a1139515c) Thanks [@ota-meshi](https://github.com/ota-meshi)! - feat!: drop support for ESLint<v8.57.0
+
+- [#355](https://github.com/ota-meshi/eslint-plugin-astro/pull/355) [`4c73905`](https://github.com/ota-meshi/eslint-plugin-astro/commit/4c739057144c3d670dbd37a04337f65b5058e6c9) Thanks [@ota-meshi](https://github.com/ota-meshi)! - feat!: Drop support for Node.js<v18.18
+
+- [#358](https://github.com/ota-meshi/eslint-plugin-astro/pull/358) [`3626074`](https://github.com/ota-meshi/eslint-plugin-astro/commit/36260748c263a1b57dd60ad2a9bbfea51458e544) Thanks [@ota-meshi](https://github.com/ota-meshi)! - feat!: use astro-eslint-parser v1
+
+- [#360](https://github.com/ota-meshi/eslint-plugin-astro/pull/360) [`80dfa09`](https://github.com/ota-meshi/eslint-plugin-astro/commit/80dfa090ed2c959383d0bbb5f220873a9833c943) Thanks [@ota-meshi](https://github.com/ota-meshi)! - feat!: use bundler
+
 ## 0.34.0
 
 ### Minor Changes
