@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 1.0.3
+
+### Patch Changes
+
+- [#368](https://github.com/ota-meshi/eslint-plugin-astro/pull/368) [`d3cb2ef`](https://github.com/ota-meshi/eslint-plugin-astro/commit/d3cb2ef1ecad35a121a83e6b7ecc0bf85a00b414) Thanks [@ota-meshi](https://github.com/ota-meshi)! - fix: crash in ESM
+
 ## 1.0.2
 
 ### Patch Changes
