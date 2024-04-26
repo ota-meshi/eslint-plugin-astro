@@ -2,7 +2,7 @@
   "name": "eslint-plugin-astro",
   "version": "1.0.0",
   "description": "ESLint plugin for Astro component",
-  "main": "lib/index.cjs",
+  "main": "lib/index.js",
   "module": "lib/index.mjs",
   "files": [
     "lib"
