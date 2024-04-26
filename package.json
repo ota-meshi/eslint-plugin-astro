@@ -103,7 +103,7 @@
     "esbuild-register": "^3.3.3",
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-astro": "^0.34.0",
+    "eslint-plugin-astro": "^1.0.2",
     "eslint-plugin-eslint-plugin": "^6.0.0",
     "eslint-plugin-jsdoc": "^48.2.3",
     "eslint-plugin-json-schema-validator": "^5.0.0",
