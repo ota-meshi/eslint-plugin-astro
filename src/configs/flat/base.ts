@@ -9,12 +9,13 @@ import {
   hasTypescriptEslintParser,
 } from "../has-typescript-eslint-parser"
 import { environments } from "../../environments/index"
+let plugin: unknown
 export default [
   {
     plugins: {
       get astro(): ESLint.Plugin {
         // eslint-disable-next-line @typescript-eslint/no-require-imports -- ignore
-        return require("../../plugin-without-config")
+        return (plugin ??= require("../../plugin-without-config"))
       },
     },
   },

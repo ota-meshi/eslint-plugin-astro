@@ -23,7 +23,7 @@ jobs:
         run: npm install -f
 
       - name: Build
-        run: npm run build
+        run: npm run build:tsup
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
