@@ -1,4 +1,4 @@
-import base from "./configs/base"
+import { buildLegacyBase } from "./configs/base"
 import recommended from "./configs/recommended"
 import all from "./configs/all"
 import flatBase from "./configs/flat/base"
@@ -75,7 +75,7 @@ type CJSConfigs = {
  */
 export function buildCjsConfigs(): CJSConfigs {
   const cjsConfigs: CJSConfigs = {
-    base: base as never,
+    base: buildLegacyBase(),
     recommended: recommended as Linter.Config,
     all: all as Linter.Config,
     "jsx-a11y-strict": null as never as Linter.Config,

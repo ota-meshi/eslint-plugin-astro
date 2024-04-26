@@ -2,7 +2,7 @@
 
 const myPlugin = require("@ota-meshi/eslint-plugin")
 const tseslint = require("typescript-eslint")
-const allConfig = require("eslint-plugin-astro").configs.all
+const allConfig = require("./node_modules/eslint-plugin-astro").configs.all
 module.exports = [
   {
     ignores: [
