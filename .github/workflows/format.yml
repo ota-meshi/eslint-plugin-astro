@@ -13,7 +13,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v4
       - name: Install deps
-        run: npm install
+        run: npm install -f
       - name: Format
         run: npm run eslint-fix
       - name: Commit

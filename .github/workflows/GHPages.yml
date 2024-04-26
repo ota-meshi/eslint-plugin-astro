@@ -28,7 +28,7 @@ jobs:
       - uses: actions/setup-node@v4
       - name: Install And Build
         run: |+
-          npm install --legacy-peer-deps
+          npm install -f
           npm run update
           npm run build
           export NODE_OPTIONS="--max-old-space-size=8192"
