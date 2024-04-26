@@ -1,5 +1,4 @@
 import { ClientScript } from "./client-script"
-// @ts-expect-error -- bug?
 import type { ElementNode } from "@astrojs/compiler/types"
 import type { ParseTemplateResult } from "astro-eslint-parser"
 

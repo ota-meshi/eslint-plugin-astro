@@ -47,7 +47,24 @@ import eslintPluginAstro from 'eslint-plugin-astro';
 export default [
   // add more generic rule sets here, such as:
   // js.configs.recommended,
-  ...eslintPluginAstro.configs['flat/recommended'],
+  ...eslintPluginAstro.configs.recommended,
+  {
+    rules: {
+      // override/add rules settings here, such as:
+      // "astro/no-set-html-directive": "error"
+    }
+  }
+];
+```
+
+Example **eslint.config.cjs**:
+
+```js
+const eslintPluginAstro = require('eslint-plugin-astro');
+module.exports = [
+  // add more generic rule sets here, such as:
+  // js.configs.recommended,
+  ...eslintPluginAstro.configs['flat/recommended'], // In CommonJS, the `flat/` prefix is required.
   {
     rules: {
       // override/add rules settings here, such as:
@@ -59,12 +76,12 @@ export default [
 
 This plugin provides configs:
 
-- `*.configs['flat/base']` ... Minimal configuration to enable correct Astro component linting.
-- `*.configs['flat/recommended']` ... Above, plus rules to prevent errors or unintended behavior.
-- `*.configs['flat/all']` ... Configuration enables all astro rules. It's meant for testing, not for production use because it changes with every minor and major version of the plugin. Use it at your own risk.
+- `*.configs['base']` ... Minimal configuration to enable correct Astro component linting.
+- `*.configs['recommended']` ... Above, plus rules to prevent errors or unintended behavior.
+- `*.configs['all']` ... Configuration enables all astro rules. It's meant for testing, not for production use because it changes with every minor and major version of the plugin. Use it at your own risk.
 - Extension of sharable configuration provided by [eslint-plugin-jsx-a11y]. You need to install [eslint-plugin-jsx-a11y] to use it.
-  - `*.configs['flat/jsx-a11y-recommended']` ... Similar to the [`"plugin:jsx-a11y/recommended"` configuration](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y#rule-strictness-in-different-modes), but with the rules extended for Astro components enabled.
-  - `*.configs['flat/jsx-a11y-strict']` ... Similar to the [`"plugin:jsx-a11y/strict"` configuration](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y#rule-strictness-in-different-modes), but with the rules extended for Astro components enabled.
+  - `*.configs['jsx-a11y-recommended']` ... Similar to the [`"plugin:jsx-a11y/recommended"` configuration](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y#rule-strictness-in-different-modes), but with the rules extended for Astro components enabled.
+  - `*.configs['jsx-a11y-strict']` ... Similar to the [`"plugin:jsx-a11y/strict"` configuration](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y#rule-strictness-in-different-modes), but with the rules extended for Astro components enabled.
 
 See [the rule list](./rules.md) to get the `rules` that this plugin provides.
 

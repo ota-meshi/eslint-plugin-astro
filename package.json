@@ -2,7 +2,8 @@
   "name": "eslint-plugin-astro",
   "version": "0.34.0",
   "description": "ESLint plugin for Astro component",
-  "main": "lib/index.js",
+  "main": "lib/index.cjs",
+  "module": "lib/index.mjs",
   "files": [
     "lib"
   ],
@@ -11,9 +12,9 @@
   },
   "scripts": {
     "prebuild": "npm run -s clean",
-    "build": "npm run build:meta && npm run build:ts",
+    "build": "npm run build:meta && npm run build:tsup",
     "build:meta": "npm run ts -- ./tools/update-meta.ts",
-    "build:ts": "tsc --project ./tsconfig.build.json",
+    "build:tsup": "tsup",
     "clean": "rimraf lib .nyc_output dist coverage",
     "test": "npm run mocha -- \"tests/src/**/*.ts\" --reporter dot --timeout 60000 && npm run test:type",
     "test:type": "tsc --noEmit",
@@ -124,6 +125,7 @@
     "sass": "^1.52.2",
     "stylus": "^0.63.0",
     "svelte": "^4.0.0",
+    "tsup": "^8.0.2",
     "typescript": "~5.4.0",
     "typescript-eslint": "^7.5.0",
     "vite-plugin-eslint4b": "^0.4.0"

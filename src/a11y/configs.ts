@@ -1,19 +1,15 @@
 import { getPluginJsxA11y } from "./load"
-import path from "path"
 import { a11yConfigKeys } from "./keys"
 import flatBase from "../configs/flat/base"
+import type { Linter } from "eslint"
 
 /** Build a11y configs */
-export function buildConfigs(): Record<string, unknown> {
-  const basePath = require.resolve("../configs/base")
-  const baseExtend =
-    path.extname(`${basePath}`) === ".ts" ? "plugin:astro/base" : basePath
-
-  const configs: Record<string, unknown> = {}
+export function buildFlatConfigs(): Record<string, Linter.FlatConfig[]> {
+  const configs: Record<string, Linter.FlatConfig[]> = {}
 
   for (const configName of a11yConfigKeys) {
     // flat config
-    Object.defineProperty(configs, `flat/jsx-a11y-${configName}`, {
+    Object.defineProperty(configs, `jsx-a11y-${configName}`, {
       enumerable: true,
       get() {
         const base = getPluginJsxA11y()
@@ -34,6 +30,17 @@ export function buildConfigs(): Record<string, unknown> {
         ]
       },
     })
+  }
+  return configs
+}
+
+/** Build a11y configs */
+export function buildLegacyConfigs(): Record<string, Linter.Config> {
+  const baseExtend = "plugin:astro/base"
+
+  const configs: Record<string, Linter.Config> = {}
+
+  for (const configName of a11yConfigKeys) {
     // legacy config
     Object.defineProperty(configs, `jsx-a11y-${configName}`, {
       enumerable: true,

@@ -3,8 +3,7 @@ import path from "path"
 import type { RuleTester } from "eslint"
 import { getLinter as getCompatLinter } from "eslint-compat-utils/linter"
 import * as astroESLintParser from "astro-eslint-parser"
-// eslint-disable-next-line @typescript-eslint/no-require-imports -- tests
-import plugin = require("../../src/index")
+import * as plugin from "../../src/plugin-without-config"
 import { applyFixes } from "./source-code-fixer"
 // eslint-disable-next-line @typescript-eslint/naming-convention -- class name
 const Linter = getCompatLinter()
@@ -85,7 +84,7 @@ export function loadTestCases(
     .filter(filter)
     .map((inputFile) => getConfig(ruleName, inputFile))
 
-  const fixable = plugin.rules[ruleName].meta.fixable != null
+  const fixable = plugin.rules[ruleName].meta!.fixable != null
 
   const invalid = listupInput(invalidFixtureRoot)
     .filter((file) => !path.basename(file).startsWith("_"))
@@ -213,7 +212,7 @@ function writeFixtures(
   if (force || !fs.existsSync(outputFile)) {
     const output = applyFixes(config.code, result).output
 
-    if (plugin.rules[ruleName].meta.fixable != null) {
+    if (plugin.rules[ruleName].meta!.fixable != null) {
       fs.writeFileSync(outputFile, output, "utf8")
     }
   }

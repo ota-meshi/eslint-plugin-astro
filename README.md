@@ -91,7 +91,24 @@ import eslintPluginAstro from 'eslint-plugin-astro';
 export default [
   // add more generic rule sets here, such as:
   // js.configs.recommended,
-  ...eslintPluginAstro.configs['flat/recommended'],
+  ...eslintPluginAstro.configs.recommended,
+  {
+    rules: {
+      // override/add rules settings here, such as:
+      // "astro/no-set-html-directive": "error"
+    }
+  }
+];
+```
+
+Example **eslint.config.cjs**:
+
+```js
+const eslintPluginAstro = require('eslint-plugin-astro');
+module.exports = [
+  // add more generic rule sets here, such as:
+  // js.configs.recommended,
+  ...eslintPluginAstro.configs['flat/recommended'], // In CommonJS, the `flat/` prefix is required.
   {
     rules: {
       // override/add rules settings here, such as:
@@ -103,12 +120,12 @@ export default [
 
 This plugin provides configs:
 
-- `*.configs['flat/base']` ... Minimal configuration to enable correct Astro component linting.
-- `*.configs['flat/recommended']` ... Above, plus rules to prevent errors or unintended behavior.
-- `*.configs['flat/all']` ... Configuration enables all astro rules. It's meant for testing, not for production use because it changes with every minor and major version of the plugin. Use it at your own risk.
+- `*.configs['base']` ... Minimal configuration to enable correct Astro component linting.
+- `*.configs['recommended']` ... Above, plus rules to prevent errors or unintended behavior.
+- `*.configs['all']` ... Configuration enables all astro rules. It's meant for testing, not for production use because it changes with every minor and major version of the plugin. Use it at your own risk.
 - Extension of sharable configuration provided by [eslint-plugin-jsx-a11y]. You need to install [eslint-plugin-jsx-a11y] to use it.
-  - `*.configs['flat/jsx-a11y-recommended']` ... Similar to the [`"plugin:jsx-a11y/recommended"` configuration](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y#rule-strictness-in-different-modes), but with the rules extended for Astro components enabled.
-  - `*.configs['flat/jsx-a11y-strict']` ... Similar to the [`"plugin:jsx-a11y/strict"` configuration](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y#rule-strictness-in-different-modes), but with the rules extended for Astro components enabled.
+  - `*.configs['jsx-a11y-recommended']` ... Similar to the [`"plugin:jsx-a11y/recommended"` configuration](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y#rule-strictness-in-different-modes), but with the rules extended for Astro components enabled.
+  - `*.configs['jsx-a11y-strict']` ... Similar to the [`"plugin:jsx-a11y/strict"` configuration](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y#rule-strictness-in-different-modes), but with the rules extended for Astro components enabled.
 
 See [the rule list](https://ota-meshi.github.io/eslint-plugin-astro/rules/) to get the `rules` that this plugin provides.
 
@@ -375,95 +392,95 @@ The rules with the following star ⭐ are included in the `plugin:astro/recommen
 
 These rules relate to possible syntax or logic errors in Astro component code:
 
-| Rule ID                                                                                                                                 | Description                                                                  |      |
-| :-------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------- | :--- |
-| [astro/missing-client-only-directive-value](https://ota-meshi.github.io/eslint-plugin-astro/rules/missing-client-only-directive-value/) | the client:only directive is missing the correct component's framework value | ⭐    |
-| [astro/no-conflict-set-directives](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-conflict-set-directives/)                   | disallow conflicting set directives and child contents                       | ⭐    |
-| [astro/no-deprecated-astro-canonicalurl](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-deprecated-astro-canonicalurl/)       | disallow using deprecated `Astro.canonicalURL`                               | ⭐    |
-| [astro/no-deprecated-astro-fetchcontent](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-deprecated-astro-fetchcontent/)       | disallow using deprecated `Astro.fetchContent()`                             | ⭐🔧   |
-| [astro/no-deprecated-astro-resolve](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-deprecated-astro-resolve/)                 | disallow using deprecated `Astro.resolve()`                                  | ⭐    |
-| [astro/no-deprecated-getentrybyslug](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-deprecated-getentrybyslug/)               | disallow using deprecated `getEntryBySlug()`                                 | ⭐    |
-| [astro/no-unused-define-vars-in-style](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-unused-define-vars-in-style/)           | disallow unused `define:vars={...}` in `style` tag                           | ⭐    |
-| [astro/valid-compile](https://ota-meshi.github.io/eslint-plugin-astro/rules/valid-compile/)                                             | disallow warnings when compiling.                                            | ⭐    |
+| Rule ID | Description |    |
+|:--------|:------------|:---|
+| [astro/missing-client-only-directive-value](https://ota-meshi.github.io/eslint-plugin-astro/rules/missing-client-only-directive-value/) | the client:only directive is missing the correct component's framework value | ⭐ |
+| [astro/no-conflict-set-directives](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-conflict-set-directives/) | disallow conflicting set directives and child contents | ⭐ |
+| [astro/no-deprecated-astro-canonicalurl](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-deprecated-astro-canonicalurl/) | disallow using deprecated `Astro.canonicalURL` | ⭐ |
+| [astro/no-deprecated-astro-fetchcontent](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-deprecated-astro-fetchcontent/) | disallow using deprecated `Astro.fetchContent()` | ⭐🔧 |
+| [astro/no-deprecated-astro-resolve](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-deprecated-astro-resolve/) | disallow using deprecated `Astro.resolve()` | ⭐ |
+| [astro/no-deprecated-getentrybyslug](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-deprecated-getentrybyslug/) | disallow using deprecated `getEntryBySlug()` | ⭐ |
+| [astro/no-unused-define-vars-in-style](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-unused-define-vars-in-style/) | disallow unused `define:vars={...}` in `style` tag | ⭐ |
+| [astro/valid-compile](https://ota-meshi.github.io/eslint-plugin-astro/rules/valid-compile/) | disallow warnings when compiling. | ⭐ |
 
 ## Security Vulnerability
 
 These rules relate to security vulnerabilities in Astro component code:
 
-| Rule ID                                                                                                     | Description                                      |      |
-| :---------------------------------------------------------------------------------------------------------- | :----------------------------------------------- | :--- |
-| [astro/no-set-html-directive](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-set-html-directive/) | disallow use of `set:html` to prevent XSS attack |      |
+| Rule ID | Description |    |
+|:--------|:------------|:---|
+| [astro/no-set-html-directive](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-set-html-directive/) | disallow use of `set:html` to prevent XSS attack |  |
 
 ## Best Practices
 
 These rules relate to better ways of doing things to help you avoid problems:
 
-| Rule ID                                                                                                       | Description                                                      |      |
-| :------------------------------------------------------------------------------------------------------------ | :--------------------------------------------------------------- | :--- |
-| [astro/no-set-text-directive](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-set-text-directive/)   | disallow use of `set:text`                                       | 🔧    |
-| [astro/no-unused-css-selector](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-unused-css-selector/) | disallow selectors defined in `style` tag that don't use in HTML |      |
+| Rule ID | Description |    |
+|:--------|:------------|:---|
+| [astro/no-set-text-directive](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-set-text-directive/) | disallow use of `set:text` | 🔧 |
+| [astro/no-unused-css-selector](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-unused-css-selector/) | disallow selectors defined in `style` tag that don't use in HTML |  |
 
 ## Stylistic Issues
 
 These rules relate to style guidelines, and are therefore quite subjective:
 
-| Rule ID                                                                                                                 | Description                                                         |      |
-| :---------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------ | :--- |
-| [astro/prefer-class-list-directive](https://ota-meshi.github.io/eslint-plugin-astro/rules/prefer-class-list-directive/) | require `class:list` directives instead of `class` with expressions | 🔧    |
-| [astro/prefer-object-class-list](https://ota-meshi.github.io/eslint-plugin-astro/rules/prefer-object-class-list/)       | require use object instead of ternary expression in `class:list`    | 🔧    |
-| [astro/prefer-split-class-list](https://ota-meshi.github.io/eslint-plugin-astro/rules/prefer-split-class-list/)         | require use split array elements in `class:list`                    | 🔧    |
+| Rule ID | Description |    |
+|:--------|:------------|:---|
+| [astro/prefer-class-list-directive](https://ota-meshi.github.io/eslint-plugin-astro/rules/prefer-class-list-directive/) | require `class:list` directives instead of `class` with expressions | 🔧 |
+| [astro/prefer-object-class-list](https://ota-meshi.github.io/eslint-plugin-astro/rules/prefer-object-class-list/) | require use object instead of ternary expression in `class:list` | 🔧 |
+| [astro/prefer-split-class-list](https://ota-meshi.github.io/eslint-plugin-astro/rules/prefer-split-class-list/) | require use split array elements in `class:list` | 🔧 |
 
 ## A11Y Extension Rules
 
 These rules extend the rules provided by [eslint-plugin-jsx-a11y] to work well in Astro component:  
 (You need to install [eslint-plugin-jsx-a11y] to use the rules.)
 
-| Rule ID                                                                                                                                                                       | Description                                                                             |      |
-| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------- | :--- |
-| [astro/jsx-a11y/alt-text](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/alt-text/)                                                                           | apply `jsx-a11y/alt-text` rule to Astro components                                      |      |
-| [astro/jsx-a11y/anchor-ambiguous-text](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/anchor-ambiguous-text/)                                                 | apply `jsx-a11y/anchor-ambiguous-text` rule to Astro components                         |      |
-| [astro/jsx-a11y/anchor-has-content](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/anchor-has-content/)                                                       | apply `jsx-a11y/anchor-has-content` rule to Astro components                            |      |
-| [astro/jsx-a11y/anchor-is-valid](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/anchor-is-valid/)                                                             | apply `jsx-a11y/anchor-is-valid` rule to Astro components                               |      |
-| [astro/jsx-a11y/aria-activedescendant-has-tabindex](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/aria-activedescendant-has-tabindex/)                       | apply `jsx-a11y/aria-activedescendant-has-tabindex` rule to Astro components            |      |
-| [astro/jsx-a11y/aria-props](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/aria-props/)                                                                       | apply `jsx-a11y/aria-props` rule to Astro components                                    |      |
-| [astro/jsx-a11y/aria-proptypes](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/aria-proptypes/)                                                               | apply `jsx-a11y/aria-proptypes` rule to Astro components                                |      |
-| [astro/jsx-a11y/aria-role](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/aria-role/)                                                                         | apply `jsx-a11y/aria-role` rule to Astro components                                     |      |
-| [astro/jsx-a11y/aria-unsupported-elements](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/aria-unsupported-elements/)                                         | apply `jsx-a11y/aria-unsupported-elements` rule to Astro components                     |      |
-| [astro/jsx-a11y/autocomplete-valid](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/autocomplete-valid/)                                                       | apply `jsx-a11y/autocomplete-valid` rule to Astro components                            |      |
-| [astro/jsx-a11y/click-events-have-key-events](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/click-events-have-key-events/)                                   | apply `jsx-a11y/click-events-have-key-events` rule to Astro components                  |      |
-| [astro/jsx-a11y/control-has-associated-label](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/control-has-associated-label/)                                   | apply `jsx-a11y/control-has-associated-label` rule to Astro components                  |      |
-| [astro/jsx-a11y/heading-has-content](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/heading-has-content/)                                                     | apply `jsx-a11y/heading-has-content` rule to Astro components                           |      |
-| [astro/jsx-a11y/html-has-lang](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/html-has-lang/)                                                                 | apply `jsx-a11y/html-has-lang` rule to Astro components                                 |      |
-| [astro/jsx-a11y/iframe-has-title](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/iframe-has-title/)                                                           | apply `jsx-a11y/iframe-has-title` rule to Astro components                              |      |
-| [astro/jsx-a11y/img-redundant-alt](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/img-redundant-alt/)                                                         | apply `jsx-a11y/img-redundant-alt` rule to Astro components                             |      |
-| [astro/jsx-a11y/interactive-supports-focus](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/interactive-supports-focus/)                                       | apply `jsx-a11y/interactive-supports-focus` rule to Astro components                    |      |
-| [astro/jsx-a11y/label-has-associated-control](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/label-has-associated-control/)                                   | apply `jsx-a11y/label-has-associated-control` rule to Astro components                  |      |
-| [astro/jsx-a11y/lang](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/lang/)                                                                                   | apply `jsx-a11y/lang` rule to Astro components                                          |      |
-| [astro/jsx-a11y/media-has-caption](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/media-has-caption/)                                                         | apply `jsx-a11y/media-has-caption` rule to Astro components                             |      |
-| [astro/jsx-a11y/mouse-events-have-key-events](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/mouse-events-have-key-events/)                                   | apply `jsx-a11y/mouse-events-have-key-events` rule to Astro components                  |      |
-| [astro/jsx-a11y/no-access-key](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/no-access-key/)                                                                 | apply `jsx-a11y/no-access-key` rule to Astro components                                 |      |
-| [astro/jsx-a11y/no-aria-hidden-on-focusable](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/no-aria-hidden-on-focusable/)                                     | apply `jsx-a11y/no-aria-hidden-on-focusable` rule to Astro components                   |      |
-| [astro/jsx-a11y/no-autofocus](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/no-autofocus/)                                                                   | apply `jsx-a11y/no-autofocus` rule to Astro components                                  |      |
-| [astro/jsx-a11y/no-distracting-elements](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/no-distracting-elements/)                                             | apply `jsx-a11y/no-distracting-elements` rule to Astro components                       |      |
-| [astro/jsx-a11y/no-interactive-element-to-noninteractive-role](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/no-interactive-element-to-noninteractive-role/) | apply `jsx-a11y/no-interactive-element-to-noninteractive-role` rule to Astro components |      |
-| [astro/jsx-a11y/no-noninteractive-element-interactions](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/no-noninteractive-element-interactions/)               | apply `jsx-a11y/no-noninteractive-element-interactions` rule to Astro components        |      |
-| [astro/jsx-a11y/no-noninteractive-element-to-interactive-role](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/no-noninteractive-element-to-interactive-role/) | apply `jsx-a11y/no-noninteractive-element-to-interactive-role` rule to Astro components |      |
-| [astro/jsx-a11y/no-noninteractive-tabindex](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/no-noninteractive-tabindex/)                                       | apply `jsx-a11y/no-noninteractive-tabindex` rule to Astro components                    |      |
-| [astro/jsx-a11y/no-redundant-roles](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/no-redundant-roles/)                                                       | apply `jsx-a11y/no-redundant-roles` rule to Astro components                            |      |
-| [astro/jsx-a11y/no-static-element-interactions](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/no-static-element-interactions/)                               | apply `jsx-a11y/no-static-element-interactions` rule to Astro components                |      |
-| [astro/jsx-a11y/prefer-tag-over-role](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/prefer-tag-over-role/)                                                   | apply `jsx-a11y/prefer-tag-over-role` rule to Astro components                          |      |
-| [astro/jsx-a11y/role-has-required-aria-props](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/role-has-required-aria-props/)                                   | apply `jsx-a11y/role-has-required-aria-props` rule to Astro components                  |      |
-| [astro/jsx-a11y/role-supports-aria-props](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/role-supports-aria-props/)                                           | apply `jsx-a11y/role-supports-aria-props` rule to Astro components                      |      |
-| [astro/jsx-a11y/scope](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/scope/)                                                                                 | apply `jsx-a11y/scope` rule to Astro components                                         |      |
-| [astro/jsx-a11y/tabindex-no-positive](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/tabindex-no-positive/)                                                   | apply `jsx-a11y/tabindex-no-positive` rule to Astro components                          |      |
+| Rule ID | Description |    |
+|:--------|:------------|:---|
+| [astro/jsx-a11y/alt-text](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/alt-text/) | apply `jsx-a11y/alt-text` rule to Astro components |  |
+| [astro/jsx-a11y/anchor-ambiguous-text](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/anchor-ambiguous-text/) | apply `jsx-a11y/anchor-ambiguous-text` rule to Astro components |  |
+| [astro/jsx-a11y/anchor-has-content](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/anchor-has-content/) | apply `jsx-a11y/anchor-has-content` rule to Astro components |  |
+| [astro/jsx-a11y/anchor-is-valid](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/anchor-is-valid/) | apply `jsx-a11y/anchor-is-valid` rule to Astro components |  |
+| [astro/jsx-a11y/aria-activedescendant-has-tabindex](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/aria-activedescendant-has-tabindex/) | apply `jsx-a11y/aria-activedescendant-has-tabindex` rule to Astro components |  |
+| [astro/jsx-a11y/aria-props](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/aria-props/) | apply `jsx-a11y/aria-props` rule to Astro components |  |
+| [astro/jsx-a11y/aria-proptypes](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/aria-proptypes/) | apply `jsx-a11y/aria-proptypes` rule to Astro components |  |
+| [astro/jsx-a11y/aria-role](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/aria-role/) | apply `jsx-a11y/aria-role` rule to Astro components |  |
+| [astro/jsx-a11y/aria-unsupported-elements](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/aria-unsupported-elements/) | apply `jsx-a11y/aria-unsupported-elements` rule to Astro components |  |
+| [astro/jsx-a11y/autocomplete-valid](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/autocomplete-valid/) | apply `jsx-a11y/autocomplete-valid` rule to Astro components |  |
+| [astro/jsx-a11y/click-events-have-key-events](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/click-events-have-key-events/) | apply `jsx-a11y/click-events-have-key-events` rule to Astro components |  |
+| [astro/jsx-a11y/control-has-associated-label](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/control-has-associated-label/) | apply `jsx-a11y/control-has-associated-label` rule to Astro components |  |
+| [astro/jsx-a11y/heading-has-content](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/heading-has-content/) | apply `jsx-a11y/heading-has-content` rule to Astro components |  |
+| [astro/jsx-a11y/html-has-lang](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/html-has-lang/) | apply `jsx-a11y/html-has-lang` rule to Astro components |  |
+| [astro/jsx-a11y/iframe-has-title](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/iframe-has-title/) | apply `jsx-a11y/iframe-has-title` rule to Astro components |  |
+| [astro/jsx-a11y/img-redundant-alt](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/img-redundant-alt/) | apply `jsx-a11y/img-redundant-alt` rule to Astro components |  |
+| [astro/jsx-a11y/interactive-supports-focus](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/interactive-supports-focus/) | apply `jsx-a11y/interactive-supports-focus` rule to Astro components |  |
+| [astro/jsx-a11y/label-has-associated-control](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/label-has-associated-control/) | apply `jsx-a11y/label-has-associated-control` rule to Astro components |  |
+| [astro/jsx-a11y/lang](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/lang/) | apply `jsx-a11y/lang` rule to Astro components |  |
+| [astro/jsx-a11y/media-has-caption](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/media-has-caption/) | apply `jsx-a11y/media-has-caption` rule to Astro components |  |
+| [astro/jsx-a11y/mouse-events-have-key-events](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/mouse-events-have-key-events/) | apply `jsx-a11y/mouse-events-have-key-events` rule to Astro components |  |
+| [astro/jsx-a11y/no-access-key](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/no-access-key/) | apply `jsx-a11y/no-access-key` rule to Astro components |  |
+| [astro/jsx-a11y/no-aria-hidden-on-focusable](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/no-aria-hidden-on-focusable/) | apply `jsx-a11y/no-aria-hidden-on-focusable` rule to Astro components |  |
+| [astro/jsx-a11y/no-autofocus](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/no-autofocus/) | apply `jsx-a11y/no-autofocus` rule to Astro components |  |
+| [astro/jsx-a11y/no-distracting-elements](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/no-distracting-elements/) | apply `jsx-a11y/no-distracting-elements` rule to Astro components |  |
+| [astro/jsx-a11y/no-interactive-element-to-noninteractive-role](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/no-interactive-element-to-noninteractive-role/) | apply `jsx-a11y/no-interactive-element-to-noninteractive-role` rule to Astro components |  |
+| [astro/jsx-a11y/no-noninteractive-element-interactions](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/no-noninteractive-element-interactions/) | apply `jsx-a11y/no-noninteractive-element-interactions` rule to Astro components |  |
+| [astro/jsx-a11y/no-noninteractive-element-to-interactive-role](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/no-noninteractive-element-to-interactive-role/) | apply `jsx-a11y/no-noninteractive-element-to-interactive-role` rule to Astro components |  |
+| [astro/jsx-a11y/no-noninteractive-tabindex](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/no-noninteractive-tabindex/) | apply `jsx-a11y/no-noninteractive-tabindex` rule to Astro components |  |
+| [astro/jsx-a11y/no-redundant-roles](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/no-redundant-roles/) | apply `jsx-a11y/no-redundant-roles` rule to Astro components |  |
+| [astro/jsx-a11y/no-static-element-interactions](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/no-static-element-interactions/) | apply `jsx-a11y/no-static-element-interactions` rule to Astro components |  |
+| [astro/jsx-a11y/prefer-tag-over-role](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/prefer-tag-over-role/) | apply `jsx-a11y/prefer-tag-over-role` rule to Astro components |  |
+| [astro/jsx-a11y/role-has-required-aria-props](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/role-has-required-aria-props/) | apply `jsx-a11y/role-has-required-aria-props` rule to Astro components |  |
+| [astro/jsx-a11y/role-supports-aria-props](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/role-supports-aria-props/) | apply `jsx-a11y/role-supports-aria-props` rule to Astro components |  |
+| [astro/jsx-a11y/scope](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/scope/) | apply `jsx-a11y/scope` rule to Astro components |  |
+| [astro/jsx-a11y/tabindex-no-positive](https://ota-meshi.github.io/eslint-plugin-astro/rules/jsx-a11y/tabindex-no-positive/) | apply `jsx-a11y/tabindex-no-positive` rule to Astro components |  |
 
 ## Extension Rules
 
 These rules extend the rules provided by ESLint itself to work well in Astro component:
 
-| Rule ID                                                                   | Description                                   |      |
-| :------------------------------------------------------------------------ | :-------------------------------------------- | :--- |
-| [astro/semi](https://ota-meshi.github.io/eslint-plugin-astro/rules/semi/) | Require or disallow semicolons instead of ASI | 🔧    |
+| Rule ID | Description |    |
+|:--------|:------------|:---|
+| [astro/semi](https://ota-meshi.github.io/eslint-plugin-astro/rules/semi/) | Require or disallow semicolons instead of ASI | 🔧 |
 
 <!--RULES_TABLE_END-->
 <!--RULES_SECTION_END-->

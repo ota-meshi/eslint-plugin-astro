@@ -1,5 +1,5 @@
 import assert from "assert"
-import plugin from "../../../src/index"
+import plugin from "../../../src/index.cts"
 import { LegacyESLint, FlatESLint } from "../../utils/eslint-compat"
 
 const code = `---
@@ -16,7 +16,7 @@ describe("`recommended` config", () => {
   it("legacy `recommended` config should work. ", async () => {
     const linter = new LegacyESLint({
       plugins: {
-        toml: plugin as never,
+        astro: plugin as never,
       },
       baseConfig: {
         parserOptions: {
