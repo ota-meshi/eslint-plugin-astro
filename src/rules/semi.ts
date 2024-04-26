@@ -381,7 +381,7 @@ export default createRule("semi", {
     function checkForSemicolonForVariableDeclaration(
       node: TSESTree.VariableDeclaration,
     ) {
-      const parent = node.parent!
+      const parent = node.parent
 
       if (
         (parent.type !== "ForStatement" || parent.init !== node) &&

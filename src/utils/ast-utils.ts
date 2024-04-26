@@ -296,7 +296,7 @@ function getParentSyntaxParen(
     | TSESTree.PrivateIdentifier,
   sourceCode: SourceCode,
 ) {
-  const parent = node.parent!
+  const parent = node.parent
 
   switch (parent.type) {
     case "CallExpression":
