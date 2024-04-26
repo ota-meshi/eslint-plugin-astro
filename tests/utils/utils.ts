@@ -3,7 +3,7 @@ import path from "path"
 import type { RuleTester } from "eslint"
 import { getLinter as getCompatLinter } from "eslint-compat-utils/linter"
 import * as astroESLintParser from "astro-eslint-parser"
-import * as plugin from "../../src/plugin-base"
+import * as plugin from "../../src/plugin-without-config"
 import { applyFixes } from "./source-code-fixer"
 // eslint-disable-next-line @typescript-eslint/naming-convention -- class name
 const Linter = getCompatLinter()
