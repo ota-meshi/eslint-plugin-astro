@@ -1,11 +1,8 @@
 // IMPORTANT!
 // This file has been automatically generated,
 // in order to update its content execute "npm run update"
-import path from "path"
-const base = require.resolve("./base")
-const baseExtend =
-  path.extname(`${base}`) === ".ts" ? "plugin:astro/base" : base
-export = {
+const baseExtend = "plugin:astro/base"
+export default {
   extends: [baseExtend],
   rules: {
     // eslint-plugin-astro rules

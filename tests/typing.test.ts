@@ -1,7 +1,7 @@
 import type { Linter } from "eslint"
 import { expectTypeOf } from "expect-type"
 import tseslint from "typescript-eslint"
-import plugin from "../src/index"
+import * as plugin from "../src/index.mts"
 
 expectTypeOf([...plugin.configs["flat/base"]]).toMatchTypeOf<
   Linter.FlatConfig[]

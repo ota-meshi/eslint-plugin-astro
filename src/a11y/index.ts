@@ -1,5 +1,6 @@
+import type { Linter } from "eslint"
 import type { RuleModule } from "../types"
-import { buildConfigs } from "./configs"
+import { buildFlatConfigs, buildLegacyConfigs } from "./configs"
 import { buildRules } from "./rules"
 
 /** Build a11y rules */
@@ -8,6 +9,11 @@ export function buildA11yRules(): RuleModule[] {
 }
 
 /** Build a11y configs */
-export function buildA11yConfigs(): Record<string, unknown> {
-  return buildConfigs()
+export function buildA11yFlatConfigs(): Record<string, Linter.FlatConfig[]> {
+  return buildFlatConfigs()
+}
+
+/** Build a11y configs */
+export function buildA11yLegacyConfigs(): Record<string, Linter.Config> {
+  return buildLegacyConfigs()
 }

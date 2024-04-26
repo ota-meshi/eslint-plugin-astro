@@ -8,7 +8,7 @@ for (const rule of rules.filter(
   all[rule.meta.docs.ruleId] = "error"
 }
 
-export = {
+export default {
   extends: recommended.extends,
   rules: {
     ...all,

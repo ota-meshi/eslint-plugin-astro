@@ -1,5 +1,5 @@
 import { ESLint } from "eslint"
-import astroPlugin from "../../../src/index"
+import astroPlugin from "../../../src/index.cts"
 import assert from "assert"
 import Module from "module"
 import semver from "semver"

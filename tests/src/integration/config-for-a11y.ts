@@ -1,7 +1,7 @@
 import { ESLint } from "eslint"
 // @ts-expect-error -- ignore
 import jsxA11yPlugin from "eslint-plugin-jsx-a11y"
-import astroPlugin from "../../../src/index"
+import astroPlugin from "../../../src/index.cts"
 import assert from "assert"
 import Module from "module"
 import semver from "semver"

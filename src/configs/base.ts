@@ -3,7 +3,7 @@
 // in order to update its content execute "npm run update"
 import { hasTypescriptEslintParser } from "./has-typescript-eslint-parser"
 
-export = {
+export default {
   plugins: ["astro"],
   overrides: [
     {
