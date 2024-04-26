@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 1.0.2
+
+### Patch Changes
+
+- [#366](https://github.com/ota-meshi/eslint-plugin-astro/pull/366) [`31f64dd`](https://github.com/ota-meshi/eslint-plugin-astro/commit/31f64dd09387cd79f7f6bedf7e61aee31d250280) Thanks [@ota-meshi](https://github.com/ota-meshi)! - fix: add exports to package.json
+
 ## 1.0.1
 
 ### Patch Changes
