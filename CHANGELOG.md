@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 1.0.1
+
+### Patch Changes
+
+- [#361](https://github.com/ota-meshi/eslint-plugin-astro/pull/361) [`6737baa`](https://github.com/ota-meshi/eslint-plugin-astro/commit/6737baa504e05137bfd5b49e41d19d621491e00f) Thanks [@ota-meshi](https://github.com/ota-meshi)! - fix: main entry
+
 ## 1.0.0
 
 ### Major Changes
