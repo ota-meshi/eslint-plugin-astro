@@ -61,6 +61,15 @@ jobs:
         run: npm install -f
       - name: Test
         run: npm test
+  test-integration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - name: Install Packages
+        run: npm install -f
+      - name: Test
+        run: npm run test:integration
   test-and-coverage:
     runs-on: ubuntu-latest
     steps:

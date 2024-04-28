@@ -1,5 +1,5 @@
 import assert from "assert"
-import * as plugin from "../../src/plugin-without-config"
+import { plugin } from "../../src/plugin"
 import { version } from "../../package.json"
 const expectedMeta = {
   name: "eslint-plugin-astro",

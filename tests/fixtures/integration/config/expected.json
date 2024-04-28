@@ -1,0 +1,26 @@
+[
+  {
+    "filePath": "src/index.astro",
+    "messages": [
+      {
+        "ruleId": "no-unused-vars",
+        "severity": 2,
+        "message": "'foo' is assigned a value but never used.",
+        "line": 2,
+        "column": 7,
+        "nodeType": "Identifier",
+        "messageId": "unusedVar",
+        "endLine": 2,
+        "endColumn": 10
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "---\nconst foo = {}\n---\n\n<a></a>\n",
+    "usedDeprecatedRules": []
+  }
+]
