@@ -11,7 +11,7 @@ for (const dirent of fs.readdirSync(TEST_FIXTURES_ROOT, {
   if (!dirent.isDirectory()) continue
   const TEST_CWD = path.join(TEST_FIXTURES_ROOT, dirent.name)
 
-  describe("Integration for " + dirent.name, () => {
+  describe(`Integration for ${dirent.name}`, () => {
     let originalCwd: string
 
     before(() => {
@@ -28,15 +28,19 @@ for (const dirent of fs.readdirSync(TEST_FIXTURES_ROOT, {
       const expectedFile = path.join(TEST_CWD, "expected.json")
       const actualFile = path.join(TEST_CWD, "actual.json")
       const env = {
+        // eslint-disable-next-line no-process-env -- test
         ...process.env,
-        ...(fs.existsSync(envFile) ? require(envFile) : {}),
+        ...(fs.existsSync(envFile)
+          ? // eslint-disable-next-line @typescript-eslint/no-require-imports -- test
+            require(envFile)
+          : {}),
       }
       try {
         const res = cp.execSync(`npx eslint src --format json`, {
           env,
           cwd: TEST_CWD,
         })
-        fs.writeFileSync(actualFile, "no error:" + res)
+        fs.writeFileSync(actualFile, `no error:${res}`)
         assert.fail("Expect error")
       } catch (e: any) {
         const output = `${e.stdout}`
@@ -51,7 +55,9 @@ for (const dirent of fs.readdirSync(TEST_FIXTURES_ROOT, {
           }))
           fs.writeFileSync(actualFile, JSON.stringify(result, null, 2))
 
-          const expected = require(expectedFile)
+          const expected =
+            // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires -- test
+            require(expectedFile)
           assert.deepStrictEqual(result, expected)
         } catch (e) {
           console.error(e)

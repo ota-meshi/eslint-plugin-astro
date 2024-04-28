@@ -33,6 +33,7 @@
   "include": [
     "src/**/*",
     "tests/src/**/*",
+    "tests/integration/**/*",
     "tests/utils/**/*",
     "tests/typing.test.ts",
     "tools/**/*",
