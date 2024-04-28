@@ -69,7 +69,7 @@ jobs:
       - name: Install Packages
         run: npm install -f
       - name: Test
-        run: npm test:integration
+        run: npm run test:integration
   test-and-coverage:
     runs-on: ubuntu-latest
     steps:
