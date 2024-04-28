@@ -1,4 +1,4 @@
-import { buildCjsConfigs } from "./plugin-config-builder"
-import { meta, rules, processors, environments } from "./plugin-without-config"
+import { buildCjsConfigs } from "./cjs-config-builder"
+import { plugin } from "./plugin"
 const configs = buildCjsConfigs()
-export = { meta, configs, rules, processors, environments }
+export = Object.assign(plugin, { configs })

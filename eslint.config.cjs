@@ -29,6 +29,7 @@ module.exports = [
       "tests/fixtures/rules/valid-compile/valid/babel/",
       "tests/fixtures/rules/valid-compile/valid/ts/",
       "tests/fixtures/rules/prefer-style-directive/",
+      "tests/fixtures/integration/**/actual.json",
       "build/",
     ],
   },

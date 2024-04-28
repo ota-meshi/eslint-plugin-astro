@@ -1,0 +1,13 @@
+{
+  "name": "eslint-plugin-astro-integration-test-for-legacy-config",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "eslint . --format json"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^9.1.1",
+    "eslint-plugin-astro": "file:../../../.."
+  }
+}

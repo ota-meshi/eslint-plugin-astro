@@ -117,7 +117,7 @@ export default [
     plugins: {
       get astro(): ESLint.Plugin {
         // eslint-disable-next-line @typescript-eslint/no-require-imports -- ignore
-        return (plugin ??= require("../../plugin-without-config"))
+        return (plugin ??= require("../../plugin").plugin)
       },
     },
   },

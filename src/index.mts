@@ -1,5 +1,5 @@
-import { buildEsmConfigs } from "./plugin-config-builder"
-import { meta, rules, processors, environments } from "./plugin-without-config"
-const configs = buildEsmConfigs()
-export default { meta, configs, rules, processors, environments }
-export { meta, configs, rules, processors, environments }
+import { buildEsmConfigs } from "./esm-config-builder"
+import { plugin } from "./plugin"
+export const configs = buildEsmConfigs()
+export default Object.assign(plugin, { configs })
+export const { meta, rules, processors, environments } = plugin
