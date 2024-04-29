@@ -1,5 +1,15 @@
 # eslint-plugin-astro
 
+## 1.1.0
+
+### Minor Changes
+
+- [#372](https://github.com/ota-meshi/eslint-plugin-astro/pull/372) [`9102e3d`](https://github.com/ota-meshi/eslint-plugin-astro/commit/9102e3d9bc9cd8b6bd6060a6ea943034f846da53) Thanks [@ota-meshi](https://github.com/ota-meshi)! - feat: add `astro/no-exports-from-components` rule
+
+### Patch Changes
+
+- [#336](https://github.com/ota-meshi/eslint-plugin-astro/pull/336) [`7695e7d`](https://github.com/ota-meshi/eslint-plugin-astro/commit/7695e7d9e08cc270a2033b68283a76a5733b8a6d) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency globals to v15
+
 ## 1.0.3
 
 ### Patch Changes

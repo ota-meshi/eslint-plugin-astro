@@ -1,13 +1,12 @@
 ---
 title: "astro/no-exports-from-components"
 description: "disallow value export"
+since: "v1.1.0"
 ---
 
 # astro/no-exports-from-components
 
 > disallow value export
-
-- ❗ <badge text="This rule has not been released yet." vertical="middle" type="error"> **_This rule has not been released yet._** </badge>
 
 ## 📖 Rule Details
 
@@ -33,6 +32,10 @@ export const x = 42
 ## 🔧 Options
 
 Nothing.
+
+## 🚀 Version
+
+This rule was introduced in eslint-plugin-astro v1.1.0
 
 ## 🔍 Implementation
 
