@@ -1,0 +1,15 @@
+---
+import type { A } from "./foo.js"
+import type { B, B2 } from "./foo.js"
+type C = {
+  // ...
+}
+interface D {
+  a(): void
+}
+
+enum E {}
+
+export type { A, B, B2 }
+export { type C, type D, type E }
+---

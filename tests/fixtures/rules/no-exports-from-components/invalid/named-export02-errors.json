@@ -1,0 +1,32 @@
+[
+  {
+    "message": "Exporting values from components is not allowed.",
+    "line": 13,
+    "column": 10
+  },
+  {
+    "message": "Exporting values from components is not allowed.",
+    "line": 13,
+    "column": 13
+  },
+  {
+    "message": "Exporting values from components is not allowed.",
+    "line": 13,
+    "column": 16
+  },
+  {
+    "message": "Exporting values from components is not allowed.",
+    "line": 14,
+    "column": 10
+  },
+  {
+    "message": "Exporting values from components is not allowed.",
+    "line": 14,
+    "column": 13
+  },
+  {
+    "message": "Exporting values from components is not allowed.",
+    "line": 14,
+    "column": 16
+  }
+]

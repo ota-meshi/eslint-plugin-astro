@@ -231,8 +231,14 @@ function getConfig(ruleName: string, inputFile: string) {
   }
   if (config && typeof config === "object") {
     return Object.assign(
-      { languageOptions: { parser: astroESLintParser } },
+      {},
       config,
+      {
+        languageOptions: {
+          parser: astroESLintParser,
+          ...config?.languageOptions,
+        },
+      },
       { code, filename },
     )
   }
