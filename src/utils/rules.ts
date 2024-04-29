@@ -8,6 +8,7 @@ import noDeprecatedAstroCanonicalurl from "../rules/no-deprecated-astro-canonica
 import noDeprecatedAstroFetchcontent from "../rules/no-deprecated-astro-fetchcontent"
 import noDeprecatedAstroResolve from "../rules/no-deprecated-astro-resolve"
 import noDeprecatedGetentrybyslug from "../rules/no-deprecated-getentrybyslug"
+import noExportsFromComponents from "../rules/no-exports-from-components"
 import noSetHtmlDirective from "../rules/no-set-html-directive"
 import noSetTextDirective from "../rules/no-set-text-directive"
 import noUnusedCssSelector from "../rules/no-unused-css-selector"
@@ -26,6 +27,7 @@ export const rules = [
   noDeprecatedAstroFetchcontent,
   noDeprecatedAstroResolve,
   noDeprecatedGetentrybyslug,
+  noExportsFromComponents,
   noSetHtmlDirective,
   noSetTextDirective,
   noUnusedCssSelector,
