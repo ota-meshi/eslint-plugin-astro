@@ -1,7 +1,7 @@
 import { rules as ruleList } from "./utils/rules"
 import * as processorsDefines from "./processor"
 import type { Rule } from "eslint"
-import * as meta from "./meta"
+import { name, version } from "./meta"
 import { environments } from "./environments"
 
 const rules = ruleList.reduce(
@@ -17,7 +17,7 @@ const processors = {
   "client-side-ts": processorsDefines.clientSideTsProcessor,
 }
 export const plugin = {
-  meta,
+  meta: { name, version },
   environments,
   rules,
   processors,

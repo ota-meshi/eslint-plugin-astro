@@ -65,5 +65,9 @@ for (const dirent of fs.readdirSync(TEST_FIXTURES_ROOT, {
         }
       }
     })
+
+    it("should NOT fail when running tsc", () => {
+      cp.execSync(`npx tsc`, { cwd: TEST_CWD })
+    })
   })
 }
