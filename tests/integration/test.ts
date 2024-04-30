@@ -41,7 +41,6 @@ for (const dirent of fs.readdirSync(TEST_FIXTURES_ROOT, {
           cwd: TEST_CWD,
         })
         fs.writeFileSync(actualFile, `no error:${res}`)
-        assert.fail("Expect error")
       } catch (e: any) {
         const output = `${e.stdout}`
         try {
@@ -63,7 +62,9 @@ for (const dirent of fs.readdirSync(TEST_FIXTURES_ROOT, {
           console.error(e)
           throw e
         }
+        return
       }
+      assert.fail("Expect error")
     })
   })
 }
