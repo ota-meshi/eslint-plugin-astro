@@ -67,19 +67,7 @@ for (const dirent of fs.readdirSync(TEST_FIXTURES_ROOT, {
     })
 
     it("should NOT fail when running tsc", () => {
-      try {
-        cp.execSync(`npx tsc`, { cwd: TEST_CWD })
-
-        assert.fail("Expect error")
-      } catch (e: any) {
-        const result = `${e.stdout}`
-        try {
-          assert.equal(result, "undefined")
-        } catch (e) {
-          console.error(e)
-          throw e
-        }
-      }
+      cp.execSync(`npx tsc`, { cwd: TEST_CWD })
     })
   })
 }
