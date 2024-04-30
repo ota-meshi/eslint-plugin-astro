@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 1.1.1
+
+### Patch Changes
+
+- [#374](https://github.com/ota-meshi/eslint-plugin-astro/pull/374) [`1de0fed`](https://github.com/ota-meshi/eslint-plugin-astro/commit/1de0fed049559d401a7b8d867d4f17257dbcd522) Thanks [@jimmy-guzman](https://github.com/jimmy-guzman)! - fix: 🐛 correctly export `meta` for ESM types
+
 ## 1.1.0
 
 ### Minor Changes
