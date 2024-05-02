@@ -67,7 +67,7 @@
     "@eslint-community/eslint-utils": "^4.2.0",
     "@jridgewell/sourcemap-codec": "^1.4.14",
     "@typescript-eslint/types": "^7.7.1",
-    "astro-eslint-parser": "^1.0.1",
+    "astro-eslint-parser": "^1.0.2",
     "eslint-compat-utils": "^0.5.0",
     "globals": "^15.0.0",
     "postcss": "^8.4.14",
