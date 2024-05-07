@@ -101,7 +101,7 @@
     "assert": "^2.0.0",
     "astro": "^4.5.0",
     "env-cmd": "^10.1.0",
-    "esbuild": "^0.20.0",
+    "esbuild": "^0.21.0",
     "esbuild-register": "^3.3.3",
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^9.0.0",
