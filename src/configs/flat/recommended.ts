@@ -5,7 +5,7 @@ import base from "./base"
 export default [
   ...base,
   {
-    name: "eslint-plugin-astro/recommended",
+    name: "astro/recommended",
     rules: {
       // eslint-plugin-astro rules
       "astro/missing-client-only-directive-value": "error",

@@ -114,7 +114,7 @@ import { environments } from "../../environments/index"
 let plugin: unknown
 export default [
   {
-    name: 'eslint-plugin-astro/base/plugin',
+    name: 'astro/base/plugin',
     plugins: {
       get astro(): ESLint.Plugin {
         // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires -- ignore
@@ -123,7 +123,7 @@ export default [
     },
   },
   {
-    name: 'eslint-plugin-astro/base',
+    name: 'astro/base',
     files: ["*.astro", "**/*.astro"],
     languageOptions: {
       globals: {
@@ -153,7 +153,7 @@ export default [
   {
     // Define the configuration for \`<script>\` tag.
     // Script in \`<script>\` is assigned a virtual file name with the \`.js\` extension.
-    name: 'eslint-plugin-astro/base/javascript',
+    name: 'astro/base/javascript',
     files: ["**/*.astro/*.js", "*.astro/*.js"],
     languageOptions: {
       globals: {
@@ -170,7 +170,7 @@ export default [
   {
     // Define the configuration for \`<script>\` tag when using \`client-side-ts\` processor.
     // Script in \`<script>\` is assigned a virtual file name with the \`.ts\` extension.
-    name: 'eslint-plugin-astro/base/typescript',
+    name: 'astro/base/typescript',
     files: ["**/*.astro/*.ts", "*.astro/*.ts"],
     languageOptions: {
       globals: {
@@ -229,7 +229,7 @@ import base from './base';
 export default [
   ...base,
   {
-    name: 'eslint-plugin-astro/recommended',
+    name: 'astro/recommended',
     rules: {
       // eslint-plugin-astro rules
       ${recommendedRules
