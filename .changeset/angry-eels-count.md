@@ -1,5 +1,5 @@
 ---
-"eslint-plugin-astro": patch
+"eslint-plugin-astro": minor
 ---
 
 feat: add name of config object
