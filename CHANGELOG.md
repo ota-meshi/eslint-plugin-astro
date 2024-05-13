@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 1.2.0
+
+### Minor Changes
+
+- [#386](https://github.com/ota-meshi/eslint-plugin-astro/pull/386) [`876ce07`](https://github.com/ota-meshi/eslint-plugin-astro/commit/876ce074da411095916cdb291ef2ccf27a996e23) Thanks [@odanado](https://github.com/odanado)! - feat: add name of config object
+
 ## 1.1.2
 
 ### Patch Changes
