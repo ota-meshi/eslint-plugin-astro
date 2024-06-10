@@ -123,7 +123,7 @@
     "less": "^4.1.2",
     "mocha": "^10.0.0",
     "monaco-editor": "^0.49.0",
-    "nyc": "^15.1.0",
+    "nyc": "^17.0.0",
     "pako": "^2.0.4",
     "postcss-nested": "^6.0.0",
     "prettier": "^3.0.0",
