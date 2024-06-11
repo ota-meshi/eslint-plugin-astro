@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 1.2.1
+
+### Patch Changes
+
+- [#395](https://github.com/ota-meshi/eslint-plugin-astro/pull/395) [`5174590`](https://github.com/ota-meshi/eslint-plugin-astro/commit/5174590ac079ef98171a98b8000a75bcedfe783a) Thanks [@ota-meshi](https://github.com/ota-meshi)! - Update `astro/no-exports-from-components` rule to allow exceptions
+
 ## 1.2.0
 
 ### Minor Changes
