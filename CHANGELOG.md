@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 1.2.2
+
+### Patch Changes
+
+- [#397](https://github.com/ota-meshi/eslint-plugin-astro/pull/397) [`58b3f19`](https://github.com/ota-meshi/eslint-plugin-astro/commit/58b3f194d804ed850c91c76e45bb567c68b472f1) Thanks [@ota-meshi](https://github.com/ota-meshi)! - fix: no-exports-from-components rule, which allowed `getStaticPath` instead of `getStaticPaths`
+
 ## 1.2.1
 
 ### Patch Changes
