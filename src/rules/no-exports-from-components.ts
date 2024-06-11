@@ -2,6 +2,8 @@ import type { TSESTree } from "@typescript-eslint/types"
 import { createRule } from "../utils"
 import { getSourceCode } from "../utils/compat"
 
+const ALLOWED_EXPORTS = new Set(["getStaticPath", "prerender"])
+
 export default createRule("no-exports-from-components", {
   meta: {
     docs: {
@@ -34,6 +36,20 @@ export default createRule("no-exports-from-components", {
       if (node.type.startsWith("TS") && !node.type.endsWith("Expression")) {
         return
       }
+      if (
+        (node.type === "FunctionDeclaration" &&
+          node.id &&
+          ALLOWED_EXPORTS.has(node.id.name)) ||
+        (node.type === "VariableDeclaration" &&
+          node.declarations.every(
+            (decl) =>
+              decl.id.type === "Identifier" &&
+              ALLOWED_EXPORTS.has(decl.id.name),
+          ))
+      ) {
+        // Allow specific named exports
+        return
+      }
       context.report({
         node,
         messageId: "disallowExport",
@@ -56,10 +72,10 @@ export default createRule("no-exports-from-components", {
         if (node.exportKind === "type") return
         verifyDeclaration(node.declaration)
         for (const spec of node.specifiers) {
-          if (spec.exportKind === "type") return
-          if (["getStaticPath", "prerender"].includes(spec.exported.name)) {
+          if (spec.exportKind === "type") continue
+          if (ALLOWED_EXPORTS.has(spec.exported.name)) {
             // Allow specific named exports
-            return
+            continue
           }
           context.report({
             node: spec,
