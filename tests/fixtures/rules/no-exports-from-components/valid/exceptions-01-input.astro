@@ -1,7 +1,7 @@
 ---
 // This file is used to test the exceptions for the `no-exports-from-components` rule.
 // The following exports are allowed as exceptions.
-export const getStaticPath = (): { param: unknown }[] => {
+export const getStaticPaths = (): { param: unknown }[] => {
   // logic here
   return [{ param: "value" }]
 }
