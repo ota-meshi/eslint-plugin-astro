@@ -57,6 +57,10 @@ export default createRule("no-exports-from-components", {
         verifyDeclaration(node.declaration)
         for (const spec of node.specifiers) {
           if (spec.exportKind === "type") return
+          if (["getStaticPath", "prerender"].includes(spec.exported.name)) {
+            // Allow specific named exports
+            return
+          }
           context.report({
             node: spec,
             messageId: "disallowExport",
