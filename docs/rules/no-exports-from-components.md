@@ -13,6 +13,10 @@ since: "v1.1.0"
 This rule reports value exports from Astro components.
 The use of typed exports are still allowed.
 
+However, there are exceptions for specific named exports that are allowed:
+- `getStaticPath`: This function can be exported for dynamic routing purposes.
+- `prerender`: This constant can be exported to opt-in to pre-rendering in server mode.
+
 <ESLintCodeBlock>
 
 <!--eslint-skip-->
@@ -22,6 +26,10 @@ The use of typed exports are still allowed.
 /* eslint astro/no-exports-from-components: "error" */
 /* ✓ GOOD */
 export type A = number | boolean
+export const getStaticPath = () => {
+  // logic here
+}
+export const prerender = true;
 /* ✗ BAD */
 export const x = 42
 ---

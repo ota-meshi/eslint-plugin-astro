@@ -1,0 +1,9 @@
+---
+// This file is used to test the exception for the `getStaticPath` function in the `no-exports-from-components` rule.
+export async function getStaticPath(): Promise<{ param: unknown }[]> {
+  // logic here
+  return []
+}
+---
+
+<div>Hello World</div>

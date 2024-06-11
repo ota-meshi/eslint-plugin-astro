@@ -1,0 +1,13 @@
+---
+// This file is used to test the exceptions for the `no-exports-from-components` rule.
+// The following exports are allowed as exceptions.
+const getStaticPath = (): { param: unknown }[] => {
+  // logic here
+  return []
+}
+const prerender = true
+
+export { getStaticPath, prerender }
+---
+
+<div>Hello World</div>
