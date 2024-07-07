@@ -16,6 +16,7 @@ The use of typed exports are still allowed.
 However, there are exceptions for specific named exports that are allowed:
 
 - `getStaticPaths`: This function can be exported for dynamic routing purposes.
+- `partial`: This constant can be exported to dynamically update a section of a page.
 - `prerender`: This constant can be exported to opt-in to pre-rendering in server mode.
 
 <ESLintCodeBlock>
