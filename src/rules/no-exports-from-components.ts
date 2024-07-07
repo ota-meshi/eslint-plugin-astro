@@ -2,7 +2,7 @@ import type { TSESTree } from "@typescript-eslint/types"
 import { createRule } from "../utils"
 import { getSourceCode } from "../utils/compat"
 
-const ALLOWED_EXPORTS = new Set(["getStaticPaths", "prerender"])
+const ALLOWED_EXPORTS = new Set(["getStaticPaths", "partial", "prerender"])
 
 export default createRule("no-exports-from-components", {
   meta: {
