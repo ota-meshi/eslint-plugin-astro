@@ -53,7 +53,7 @@ const sidebarSections = SIDEBAR.en.reduce((col, item, i) => {
 
 <script is:inline>
   window.addEventListener("DOMContentLoaded", (_event) => {
-    let target = document.querySelector('[aria-current="page"]')
+    const target = document.querySelector('[aria-current="page"]')
     if (target && target.offsetTop > window.innerHeight - 100) {
       document.querySelector(".nav-groups").scrollTop = target.offsetTop
     }

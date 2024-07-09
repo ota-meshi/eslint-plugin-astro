@@ -65,7 +65,7 @@ export default createRule("no-exports-from-components", {
         })
       },
       ExportDefaultDeclaration(node) {
-        if (node.exportKind === "type") return
+        if ((node.exportKind as "value" | "type") === "type") return
         verifyDeclaration(node.declaration)
       },
       ExportNamedDeclaration(node) {

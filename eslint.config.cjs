@@ -136,6 +136,18 @@ module.exports = [
       "@typescript-eslint/no-explicit-any": "off",
     },
   },
+  ...tseslint.config({
+    files: ["**/*.astro/*.ts"],
+    extends: [tseslint.configs.disableTypeChecked],
+    languageOptions: {
+      parserOptions: {
+        project: null,
+      },
+    },
+    rules: {
+      "prettier/prettier": "off",
+    },
+  }),
   ...tseslint.config(
     {
       files: ["tests/fixtures/rules/**"],
