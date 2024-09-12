@@ -3,6 +3,7 @@ import type { Linter, Rule } from "eslint"
 import { builtinRules } from "eslint/use-at-your-own-risk"
 import * as astroEslintParser from "astro-eslint-parser"
 import * as processors from "../../../../../src/processor/index.js"
+import type { RuleModule } from "../../../../../src/types.js"
 import globals from "globals"
 
 export const categories: {
@@ -72,12 +73,19 @@ export const categories: {
 ]
 export const DEFAULT_RULES_CONFIG: Record<string, string> = {}
 
-const rules = []
+interface DocsRuleLike {
+  ruleId: string
+  rule: RuleModule | Rule.RuleModule
+  classes: string
+  url: string | undefined
+}
+
+const rules: DocsRuleLike[] = []
 for (const rule of pluginRules) {
   if (rule.meta.deprecated) {
     continue
   }
-  const data = {
+  const data: DocsRuleLike = {
     ruleId: rule.meta.docs.ruleId,
     rule,
     classes: "svelte-rule",
@@ -96,7 +104,7 @@ for (const [ruleId, rule] of builtinRules) {
   if (rule.meta!.deprecated) {
     continue
   }
-  const data = {
+  const data: DocsRuleLike = {
     ruleId,
     rule,
     classes: "core-rule",
@@ -132,7 +140,7 @@ export function rulesMap(): Map<string, Rule.RuleModule> {
   ])
 }
 
-export async function createLinterConfig(): Promise<Linter.FlatConfig[]> {
+export async function createLinterConfig(): Promise<Linter.Config[]> {
   const tsParser = await import("@typescript-eslint/parser")
 
   await (astroEslintParser as any).setup()
@@ -141,6 +149,7 @@ export async function createLinterConfig(): Promise<Linter.FlatConfig[]> {
       files: ["**"],
       plugins: {
         astro: {
+          // @ts-expect-error -- typing bug
           rules: Object.fromEntries(
             pluginRules.map((rule) => [rule.meta.docs.ruleName, rule]),
           ) as Record<string, Rule.RuleModule>,

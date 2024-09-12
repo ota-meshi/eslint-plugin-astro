@@ -19,6 +19,7 @@ describe("`recommended` config", () => {
         astro: plugin as never,
       },
       baseConfig: {
+        // @ts-expect-error -- typing bug
         parserOptions: {
           ecmaVersion: 2020,
         },
@@ -46,9 +47,7 @@ describe("`recommended` config", () => {
   })
   it("`flat/recommended` config should work. ", async () => {
     const linter = new FlatESLint({
-      // @ts-expect-error -- typing bug
       overrideConfigFile: true,
-      // @ts-expect-error -- typing bug
       overrideConfig: [...plugin.configs["flat/recommended"]],
     })
     const result = await linter.lintText(code, { filePath: "test.astro" })
@@ -71,9 +70,7 @@ describe("`recommended` config", () => {
   })
   it("`flat/recommended` config with *.js should work. ", async () => {
     const linter = new FlatESLint({
-      // @ts-expect-error -- typing bug
       overrideConfigFile: true,
-      // @ts-expect-error -- typing bug
       overrideConfig: [...plugin.configs["flat/recommended"]],
     })
 

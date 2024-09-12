@@ -31,12 +31,12 @@ describe("Integration test for a11y config", () => {
           },
           useEslintrc: false,
           overrideConfig: {
+            // @ts-expect-error -- typing bug
             extends: ["plugin:astro/jsx-a11y-strict"],
           },
         })
       : new ESLint({
           overrideConfigFile: true as any,
-          // @ts-expect-error -- typing bug
           overrideConfig: astroPlugin.configs["flat/jsx-a11y-strict"],
         })
 
@@ -80,12 +80,12 @@ const src = 'icon.png'
           },
           useEslintrc: false,
           overrideConfig: {
+            // @ts-expect-error -- typing bug
             extends: ["plugin:astro/jsx-a11y-recommended"],
           },
         })
       : new ESLint({
           overrideConfigFile: true as any,
-          // @ts-expect-error -- typing bug
           overrideConfig: astroPlugin.configs["flat/jsx-a11y-recommended"],
         })
 

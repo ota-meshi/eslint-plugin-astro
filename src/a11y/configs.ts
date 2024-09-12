@@ -4,8 +4,8 @@ import flatBase from "../configs/flat/base"
 import type { Linter } from "eslint"
 
 /** Build a11y configs */
-export function buildFlatConfigs(): Record<string, Linter.FlatConfig[]> {
-  const configs: Record<string, Linter.FlatConfig[]> = {}
+export function buildFlatConfigs(): Record<string, Linter.Config[]> {
+  const configs: Record<string, Linter.Config[]> = {}
 
   for (const configName of a11yConfigKeys) {
     // flat config

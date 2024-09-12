@@ -28,12 +28,12 @@ describe("Integration test for parse error", () => {
           },
           useEslintrc: false,
           overrideConfig: {
+            // @ts-expect-error -- typing bug
             extends: ["plugin:astro/base"],
           },
         })
       : new ESLint({
           overrideConfigFile: true as any,
-          // @ts-expect-error -- typing bug
           overrideConfig: astroPlugin.configs["flat/base"],
         })
 
