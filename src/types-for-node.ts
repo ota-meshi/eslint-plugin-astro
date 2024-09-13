@@ -448,6 +448,8 @@ export type ASTNodeListener = {
   "TSEmptyBodyFunctionExpression:exit"?: (
     node: TSESTree.TSEmptyBodyFunctionExpression & ASTNodeWithParent,
   ) => void
+  TSEnumBody?: (node: TSESTree.TSEnumBody & ASTNodeWithParent) => void
+  "TSEnumBody:exit"?: (node: TSESTree.TSEnumBody & ASTNodeWithParent) => void
   TSEnumDeclaration?: (
     node: TSESTree.TSEnumDeclaration & ASTNodeWithParent,
   ) => void
@@ -478,12 +480,6 @@ export type ASTNodeListener = {
   "TSFunctionType:exit"?: (
     node: TSESTree.TSFunctionType & ASTNodeWithParent,
   ) => void
-  TSInstantiationExpression?: (
-    node: TSESTree.TSInstantiationExpression & ASTNodeWithParent,
-  ) => void
-  "TSInstantiationExpression:exit"?: (
-    node: TSESTree.TSInstantiationExpression & ASTNodeWithParent,
-  ) => void
   TSImportEqualsDeclaration?: (
     node: TSESTree.TSImportEqualsDeclaration & ASTNodeWithParent,
   ) => void
@@ -508,6 +504,12 @@ export type ASTNodeListener = {
   ) => void
   TSInferType?: (node: TSESTree.TSInferType & ASTNodeWithParent) => void
   "TSInferType:exit"?: (node: TSESTree.TSInferType & ASTNodeWithParent) => void
+  TSInstantiationExpression?: (
+    node: TSESTree.TSInstantiationExpression & ASTNodeWithParent,
+  ) => void
+  "TSInstantiationExpression:exit"?: (
+    node: TSESTree.TSInstantiationExpression & ASTNodeWithParent,
+  ) => void
   TSInterfaceBody?: (node: TSESTree.TSInterfaceBody & ASTNodeWithParent) => void
   "TSInterfaceBody:exit"?: (
     node: TSESTree.TSInterfaceBody & ASTNodeWithParent,
@@ -932,6 +934,8 @@ export type TSNodeListener = {
   "TSEmptyBodyFunctionExpression:exit"?: (
     node: TSESTree.TSEmptyBodyFunctionExpression & ASTNodeWithParent,
   ) => void
+  TSEnumBody?: (node: TSESTree.TSEnumBody & ASTNodeWithParent) => void
+  "TSEnumBody:exit"?: (node: TSESTree.TSEnumBody & ASTNodeWithParent) => void
   TSEnumDeclaration?: (
     node: TSESTree.TSEnumDeclaration & ASTNodeWithParent,
   ) => void
@@ -962,12 +966,6 @@ export type TSNodeListener = {
   "TSFunctionType:exit"?: (
     node: TSESTree.TSFunctionType & ASTNodeWithParent,
   ) => void
-  TSInstantiationExpression?: (
-    node: TSESTree.TSInstantiationExpression & ASTNodeWithParent,
-  ) => void
-  "TSInstantiationExpression:exit"?: (
-    node: TSESTree.TSInstantiationExpression & ASTNodeWithParent,
-  ) => void
   TSImportEqualsDeclaration?: (
     node: TSESTree.TSImportEqualsDeclaration & ASTNodeWithParent,
   ) => void
@@ -992,6 +990,12 @@ export type TSNodeListener = {
   ) => void
   TSInferType?: (node: TSESTree.TSInferType & ASTNodeWithParent) => void
   "TSInferType:exit"?: (node: TSESTree.TSInferType & ASTNodeWithParent) => void
+  TSInstantiationExpression?: (
+    node: TSESTree.TSInstantiationExpression & ASTNodeWithParent,
+  ) => void
+  "TSInstantiationExpression:exit"?: (
+    node: TSESTree.TSInstantiationExpression & ASTNodeWithParent,
+  ) => void
   TSInterfaceBody?: (node: TSESTree.TSInterfaceBody & ASTNodeWithParent) => void
   "TSInterfaceBody:exit"?: (
     node: TSESTree.TSInterfaceBody & ASTNodeWithParent,

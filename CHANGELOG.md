@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 1.2.4
+
+### Patch Changes
+
+- [#418](https://github.com/ota-meshi/eslint-plugin-astro/pull/418) [`b03d0d5`](https://github.com/ota-meshi/eslint-plugin-astro/commit/b03d0d5ef86e7ef572570712e3ae18581b5e7fc0) Thanks [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)! - feat: support typescript-eslint@8
+
 ## 1.2.3
 
 ### Patch Changes
