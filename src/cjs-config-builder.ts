@@ -8,16 +8,16 @@ import { buildA11yFlatConfigs, buildA11yLegacyConfigs } from "./a11y"
 import type { Linter } from "eslint"
 
 type CJSConfigs = {
-  base: Linter.Config
-  recommended: Linter.Config
-  all: Linter.Config
-  "jsx-a11y-strict": Linter.Config
-  "jsx-a11y-recommended": Linter.Config
-  "flat/base": Linter.FlatConfig[]
-  "flat/recommended": Linter.FlatConfig[]
-  "flat/all": Linter.FlatConfig[]
-  "flat/jsx-a11y-strict": Linter.FlatConfig[]
-  "flat/jsx-a11y-recommended": Linter.FlatConfig[]
+  base: Linter.LegacyConfig
+  recommended: Linter.LegacyConfig
+  all: Linter.LegacyConfig
+  "jsx-a11y-strict": Linter.LegacyConfig
+  "jsx-a11y-recommended": Linter.LegacyConfig
+  "flat/base": Linter.Config[]
+  "flat/recommended": Linter.Config[]
+  "flat/all": Linter.Config[]
+  "flat/jsx-a11y-strict": Linter.Config[]
+  "flat/jsx-a11y-recommended": Linter.Config[]
 }
 
 /**
@@ -26,15 +26,15 @@ type CJSConfigs = {
 export function buildCjsConfigs(): CJSConfigs {
   const cjsConfigs: CJSConfigs = {
     base: buildLegacyBase(),
-    recommended: recommended as Linter.Config,
-    all: all as Linter.Config,
-    "jsx-a11y-strict": null as never as Linter.Config,
-    "jsx-a11y-recommended": null as never as Linter.Config,
-    "flat/base": flatBase as Linter.FlatConfig[],
-    "flat/recommended": flatRecommended as Linter.FlatConfig[],
-    "flat/all": flatAll as Linter.FlatConfig[],
-    "flat/jsx-a11y-strict": null as never as Linter.FlatConfig[],
-    "flat/jsx-a11y-recommended": null as never as Linter.FlatConfig[],
+    recommended: recommended as Linter.LegacyConfig,
+    all: all as Linter.LegacyConfig,
+    "jsx-a11y-strict": null as never as Linter.LegacyConfig,
+    "jsx-a11y-recommended": null as never as Linter.LegacyConfig,
+    "flat/base": flatBase as Linter.Config[],
+    "flat/recommended": flatRecommended as Linter.Config[],
+    "flat/all": flatAll as Linter.Config[],
+    "flat/jsx-a11y-strict": null as never as Linter.Config[],
+    "flat/jsx-a11y-recommended": null as never as Linter.Config[],
   }
 
   const a11yFlatConfigs = buildA11yFlatConfigs()

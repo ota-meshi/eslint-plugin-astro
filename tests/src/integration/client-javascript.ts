@@ -28,6 +28,7 @@ describe("Integration test for client-side script", () => {
           },
           useEslintrc: false,
           overrideConfig: {
+            // @ts-expect-error -- typing bug
             extends: ["plugin:astro/base"],
             rules: {
               "no-restricted-syntax": ["error", "Identifier[name='id']"],
@@ -36,7 +37,6 @@ describe("Integration test for client-side script", () => {
         })
       : new ESLint({
           overrideConfigFile: true as any,
-          // @ts-expect-error -- typing bug
           overrideConfig: [
             ...astroPlugin.configs["flat/base"],
             {

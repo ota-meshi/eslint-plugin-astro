@@ -9,7 +9,7 @@ export function buildA11yRules(): RuleModule[] {
 }
 
 /** Build a11y configs */
-export function buildA11yFlatConfigs(): Record<string, Linter.FlatConfig[]> {
+export function buildA11yFlatConfigs(): Record<string, Linter.Config[]> {
   return buildFlatConfigs()
 }
 

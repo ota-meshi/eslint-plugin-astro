@@ -29,6 +29,7 @@ describe("Integration test for client-side ts", () => {
           },
           useEslintrc: false,
           overrideConfig: {
+            // @ts-expect-error -- typing bug
             extends: ["plugin:astro/base"],
             parser: "@typescript-eslint/parser",
             rules: {
@@ -49,11 +50,12 @@ describe("Integration test for client-side ts", () => {
         })
       : new ESLint({
           overrideConfigFile: true as any,
-          // @ts-expect-error -- typing bug
           overrideConfig: [
+            // @ts-expect-error -- typing bug
             ...astroPlugin.configs["flat/base"],
             {
               files: ["*.ts", "**/*.ts"],
+              // @ts-expect-error -- typing bug
               languageOptions: {
                 parser: tsESLintParser,
               },

@@ -62,7 +62,7 @@ export default createRule("no-unused-css-selector", {
       let root
       try {
         root = postcss.parse(css.css)
-      } catch (_e) {
+      } catch {
         return
       }
       const ignoreNodes = new Set<PostcssNode>()

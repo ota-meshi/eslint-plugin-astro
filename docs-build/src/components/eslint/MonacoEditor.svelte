@@ -54,7 +54,7 @@
     }
   }
   $: {
-    // eslint-disable-next-line no-unused-expressions -- reactive
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions -- reactive
     language
     disposeCodeActionProvider()
     if (provideCodeActions) {
@@ -78,7 +78,7 @@
     }
   }
   $: {
-    // eslint-disable-next-line no-unused-expressions -- reactive
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions -- reactive
     language
     // Set the language to the current editors.
     for (const editor of [getLeftEditor?.(), getRightEditor?.()]) {
