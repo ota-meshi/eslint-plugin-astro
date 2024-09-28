@@ -1,0 +1,12 @@
+[
+  {
+    "message": "Expected \"bb\" to come before \"c\".",
+    "line": 5,
+    "column": 6
+  },
+  {
+    "message": "Expected \"aaa\" to come before \"bb\".",
+    "line": 5,
+    "column": 12
+  }
+]
