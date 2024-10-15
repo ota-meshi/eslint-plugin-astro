@@ -7,7 +7,7 @@ import { hasTypescriptEslintParser } from "./has-typescript-eslint-parser"
 /**
  * Build legacy base config
  */
-export function buildLegacyBase(): Linter.Config {
+export function buildLegacyBase(): Linter.LegacyConfig {
   return {
     plugins: ["astro"],
     overrides: [

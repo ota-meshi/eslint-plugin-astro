@@ -1,6 +1,7 @@
 import type { AST } from "astro-eslint-parser"
 
 import { createRule } from "../utils"
+import { getSourceCode } from "../utils/compat"
 
 export default createRule("sort-attributes", {
   meta: {
@@ -28,7 +29,8 @@ export default createRule("sort-attributes", {
     type: "suggestion",
   },
   create(context) {
-    if (!context.parserServices.isAstro) {
+    const sourceCode = getSourceCode(context)
+    if (!sourceCode.parserServices.isAstro) {
       return {}
     }
 
@@ -41,16 +43,17 @@ export default createRule("sort-attributes", {
           return
         }
 
-        const sourceCode = context.getSourceCode()
-
-        const pairwise = <T>(
+        /**
+         *
+         */
+        function pairwise<T>(
           nodes: T[],
           callback: (left: T, right: T, iteration: number) => void,
-        ) => {
+        ) {
           if (nodes.length > 1) {
             for (let i = 1; i < nodes.length; i++) {
-              let left = nodes.at(i - 1)
-              let right = nodes.at(i)
+              const left = nodes.at(i - 1)
+              const right = nodes.at(i)
 
               if (left && right) {
                 callback(left, right, i - 1)
@@ -70,22 +73,18 @@ export default createRule("sort-attributes", {
           size: number
         }
 
-        const compare = (left: SortingNode, right: SortingNode) => {
-          const compareFunc = (a: SortingNode, b: SortingNode) => {
-            if (context.options[0]?.type === "line-length") {
-              return a.size - b.size
-            }
-            const formatName = (name: string) =>
-              context.options[0]?.ignoreCase === false
-                ? name
-                : name.toLowerCase()
-            return formatName(a.name).localeCompare(formatName(b.name))
-          }
+        const compareFunc =
+          context.options[0]?.type === "line-length"
+            ? (a: SortingNode, b: SortingNode) => a.size - b.size
+            : (a: SortingNode, b: SortingNode) =>
+                formatName(a.name).localeCompare(formatName(b.name))
 
-          const orderCoefficient = context.options[0]?.order === "desc" ? -1 : 1
-
-          return compareFunc(left, right) * orderCoefficient
-        }
+        const compare =
+          context.options[0]?.order === "desc"
+            ? (left: SortingNode, right: SortingNode) =>
+                compareFunc(right, left)
+            : (left: SortingNode, right: SortingNode) =>
+                compareFunc(left, right)
 
         const parts = attributes.reduce(
           (accumulator: SortingNode[][], attribute) => {
@@ -110,7 +109,7 @@ export default createRule("sort-attributes", {
           [[]],
         )
 
-        for (let nodes of parts) {
+        for (const nodes of parts) {
           pairwise(nodes, (left, right) => {
             if (compare(left, right) > 0) {
               context.report({
@@ -130,6 +129,15 @@ export default createRule("sort-attributes", {
               })
             }
           })
+        }
+
+        /**
+         * Format the name based on the ignoreCase option.
+         */
+        function formatName(name: string) {
+          return context.options[0]?.ignoreCase === false
+            ? name
+            : name.toLowerCase()
         }
       },
     }
