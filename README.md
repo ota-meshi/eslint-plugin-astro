@@ -430,6 +430,7 @@ These rules relate to style guidelines, and are therefore quite subjective:
 | [astro/prefer-class-list-directive](https://ota-meshi.github.io/eslint-plugin-astro/rules/prefer-class-list-directive/) | require `class:list` directives instead of `class` with expressions | 🔧 |
 | [astro/prefer-object-class-list](https://ota-meshi.github.io/eslint-plugin-astro/rules/prefer-object-class-list/) | require use object instead of ternary expression in `class:list` | 🔧 |
 | [astro/prefer-split-class-list](https://ota-meshi.github.io/eslint-plugin-astro/rules/prefer-split-class-list/) | require use split array elements in `class:list` | 🔧 |
+| [astro/sort-attributes](https://ota-meshi.github.io/eslint-plugin-astro/rules/sort-attributes/) | enforce sorting of attributes | 🔧 |
 
 ## A11Y Extension Rules
 
