@@ -118,7 +118,7 @@
     "eslint-plugin-regexp": "^2.5.0",
     "eslint-plugin-svelte": "^2.36.0",
     "eslint-plugin-yml": "^1.0.0",
-    "expect-type": "^0.20.0",
+    "expect-type": "^1.0.0",
     "js-yaml": "^4.1.0",
     "less": "^4.1.2",
     "mocha": "^10.0.0",
