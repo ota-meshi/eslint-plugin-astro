@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 1.3.0
+
+### Minor Changes
+
+- [#423](https://github.com/ota-meshi/eslint-plugin-astro/pull/423) [`d8d0c73`](https://github.com/ota-meshi/eslint-plugin-astro/commit/d8d0c73ee1f7400812b1524a814acaff918f4979) Thanks [@azat-io](https://github.com/azat-io)! - feat: add sort-attributes rule
+
 ## 1.2.4
 
 ### Patch Changes
