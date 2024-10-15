@@ -212,5 +212,11 @@ module.exports = [
         eqeqeq: "off",
       },
     },
+    {
+      files: ["**/*.md/*.js", "**/*.md/*.ts"],
+      rules: {
+        "@typescript-eslint/no-namespace": "off",
+      },
+    },
   ),
 ]
