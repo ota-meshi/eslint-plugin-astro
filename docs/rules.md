@@ -49,6 +49,7 @@ These rules relate to style guidelines, and are therefore quite subjective:
 | [astro/prefer-class-list-directive](./rules/prefer-class-list-directive.md) | require `class:list` directives instead of `class` with expressions | 🔧 |
 | [astro/prefer-object-class-list](./rules/prefer-object-class-list.md) | require use object instead of ternary expression in `class:list` | 🔧 |
 | [astro/prefer-split-class-list](./rules/prefer-split-class-list.md) | require use split array elements in `class:list` | 🔧 |
+| [astro/sort-attributes](./rules/sort-attributes.md) | enforce sorting of attributes | 🔧 |
 
 ## A11Y Extension Rules
 
