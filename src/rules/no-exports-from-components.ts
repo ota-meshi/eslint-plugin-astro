@@ -72,7 +72,8 @@ export default createRule("no-exports-from-components", {
         if (node.exportKind === "type") return
         verifyDeclaration(node.declaration)
         for (const spec of node.specifiers) {
-          if (spec.exportKind === "type") continue
+          if (spec.exportKind === "type" || spec.exported.type !== "Identifier")
+            continue
           if (ALLOWED_EXPORTS.has(spec.exported.name)) {
             // Allow specific named exports
             continue

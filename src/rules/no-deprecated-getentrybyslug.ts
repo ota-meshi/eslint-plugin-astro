@@ -24,6 +24,7 @@ export default createRule("no-deprecated-getentrybyslug", {
     return {
       ImportSpecifier(node: TSESTree.ImportSpecifier) {
         if (
+          node.imported.type === "Identifier" &&
           node.imported.name === "getEntryBySlug" &&
           node.parent?.type === "ImportDeclaration" &&
           node.parent.source.value === "astro:content"
