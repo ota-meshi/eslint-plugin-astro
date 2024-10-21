@@ -1,5 +1,5 @@
 import path from "path"
-import renderRulesTableContent from "./render-rules"
+import renderRulesTableContent from "./render-rules-table"
 import { formatAndSave } from "./lib/utils"
 
 // -----------------------------------------------------------------------------
