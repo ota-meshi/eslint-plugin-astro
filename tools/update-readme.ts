@@ -1,6 +1,6 @@
 import { resolve } from "path"
 import fs from "fs"
-import renderRulesTableContent from "./render-rules"
+import renderRulesTableContent from "./render-rules-table"
 import { formatAndSave } from "./lib/utils"
 
 const insertText = `\n${renderRulesTableContent(
