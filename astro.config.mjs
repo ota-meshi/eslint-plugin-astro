@@ -65,10 +65,15 @@ export default defineConfig({
         url: path.join(dirname, "./docs-build/shim/url.mjs"),
         module: path.join(dirname, "./docs-build/shim/module.mjs"),
         globby: path.join(dirname, "./docs-build/shim/globby.mjs"),
+        "fast-glob": path.join(dirname, "./docs-build/shim/empty.mjs"),
         // override tsconfig (it had no effect...)
         "@eslint-community/eslint-utils": path.join(
           dirname,
           "./node_modules/@eslint-community/eslint-utils",
+        ),
+        "node:path": path.join(
+          dirname,
+          "./node_modules/vite-plugin-eslint4b/shim/path-shim.mjs",
         ),
       },
     },
