@@ -1,5 +1,5 @@
 import { RuleTester } from "../../../utils/eslint-compat"
-import { rules } from "../../../../src/utils/rules"
+import { rules } from "../../../../src/rules"
 import { loadTestCases } from "../../../utils/utils"
 
 const rule = rules.find(

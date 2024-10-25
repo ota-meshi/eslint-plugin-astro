@@ -1,4 +1,4 @@
-import "./update-rules"
+import "./update-rules-index"
 import "./update-rulesets"
 import "./update-docs"
 import "./update-readme"
