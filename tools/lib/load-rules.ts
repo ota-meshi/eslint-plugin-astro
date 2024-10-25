@@ -1,27 +1,21 @@
 import path from "path"
 import fs from "fs"
+import { createRequire } from "module"
+import type { RuleModule } from "../../src/types"
+
+const url = import.meta.url
+const require = createRequire(url)
 
 /**
- * Get the all rules
- * @returns {Array} The all rules
+ * Import all rules from `src/rules` and return them as an array.
+ * @returns {RuleModule[]}
  */
-function readRules() {
-  const rulesLibRoot = path.resolve(__dirname, "../../src/rules")
-  const rules = []
-  for (const name of fs
-    .readdirSync(rulesLibRoot)
-    .filter((n) => n.endsWith(".ts"))) {
-    const ruleName = name.replace(/\.ts$/u, "")
-    const ruleId = `astro/${ruleName}`
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports -- ignore
-    const rule = require(path.join(rulesLibRoot, name)).default
-
-    rule.meta.docs.ruleName = ruleName
-    rule.meta.docs.ruleId = ruleId
-
-    rules.push(rule)
-  }
-  return rules
+function readRules(): RuleModule[] {
+  const rulesPath = path.resolve(__dirname, "../../src/rules")
+  return fs
+    .readdirSync(rulesPath)
+    .filter((n) => n.endsWith(".ts"))
+    .map((fileName) => require(path.join(rulesPath, fileName)).default)
 }
 
 export const rules = readRules()
