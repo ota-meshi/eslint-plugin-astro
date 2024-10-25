@@ -1,4 +1,4 @@
-import { rules as ruleList } from "./utils/rules"
+import { rules as ruleList } from "./rules"
 import * as processorsDefines from "./processor"
 import type { Rule } from "eslint"
 import { name, version } from "./meta"

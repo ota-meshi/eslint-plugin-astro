@@ -1,4 +1,4 @@
-import { rules as pluginRules } from "../../../../../src/utils/rules.js"
+import { rules as pluginRules } from "../../../../../src/rules"
 import type { Linter, Rule } from "eslint"
 import { builtinRules } from "eslint/use-at-your-own-risk"
 import * as astroEslintParser from "astro-eslint-parser"

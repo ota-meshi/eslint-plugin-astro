@@ -1,4 +1,4 @@
-import { rules } from "../../src/utils/rules"
+import { rules } from "../../src/rules"
 
 const categories = [
   "Possible Errors",
