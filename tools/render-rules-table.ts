@@ -1,7 +1,7 @@
 // eslint-disable-next-line @eslint-community/eslint-comments/disable-enable-pair -- ignore
 /* eslint-disable func-style -- Arrow functions are better when returning string */
 import type { RuleCategory, RuleModule } from "../src/types"
-import { rules } from "../src/utils/rules"
+import { rules } from "../src/rules"
 
 const categories: RuleCategory[] = [
   "Possible Errors",

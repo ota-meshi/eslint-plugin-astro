@@ -14,8 +14,13 @@ function readRules(): RuleModule[] {
   const rulesPath = path.resolve(__dirname, "../../src/rules")
   return fs
     .readdirSync(rulesPath)
-    .filter((n) => n.endsWith(".ts"))
+    .filter((n) => n.endsWith(".ts") && n !== "index.ts")
     .map((fileName) => require(path.join(rulesPath, fileName)).default)
 }
 
+/**
+ * This array is designed primarily for generator scripts in the "tools/" folder.
+ * It does not include extended rules (such as `a11y` rules).
+ * For a complete set of rules, consider using the generated file `rules/index.ts` instead.
+ */
 export const rules = readRules()

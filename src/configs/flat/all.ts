@@ -1,5 +1,5 @@
 import recommended from "./recommended"
-import { rules } from "../../utils/rules"
+import { rules } from "../../rules"
 
 const all: Record<string, string> = {}
 for (const rule of rules.filter(
