@@ -4,16 +4,7 @@ import { rules } from "../src/rules"
 import type { RuleModule } from "../src/types"
 import { getNewVersion } from "./lib/changesets-util"
 import { formatAndSave } from "./lib/utils"
-
-//eslint-disable-next-line jsdoc/require-jsdoc -- tools
-function formatItems(items: string[]) {
-  if (items.length <= 2) {
-    return items.join(" and ")
-  }
-  return `all of ${items.slice(0, -1).join(", ")} and ${
-    items[items.length - 1]
-  }`
-}
+import { buildNotesFromRule, renderRuleHeader } from "./lib/doc-renderer"
 
 //eslint-disable-next-line jsdoc/require-jsdoc -- tools
 function yamlValue(val: unknown) {
@@ -60,9 +51,7 @@ class DocFile {
     this.filePath = path.join(ROOT, `${rule.meta.docs.ruleName}.md`)
     this.content = fs.existsSync(this.filePath)
       ? fs.readFileSync(this.filePath, "utf8")
-      : `
-
-`
+      : "\n\n"
     this.since = pickSince(this.content)
   }
 
@@ -71,74 +60,15 @@ class DocFile {
   }
 
   public updateHeader() {
-    const {
-      meta: {
-        fixable,
-        hasSuggestions,
-        deprecated,
-        replacedBy,
-        docs: { ruleId, description, recommended },
-      },
-    } = this.rule
-    const title = `# ${ruleId}\n\n> ${description}`
-    const notes = []
-
-    if (deprecated) {
-      if (replacedBy) {
-        const replacedRules = replacedBy.map(
-          (name) => `[astro/${name}](${name}.md) rule`,
-        )
-        notes.push(
-          `- ⚠️ This rule was **deprecated** and replaced by ${formatItems(
-            replacedRules,
-          )}.`,
-        )
-      } else {
-        notes.push("- ⚠️ This rule was **deprecated**.")
-      }
-    } else if (recommended) {
-      if (recommended === "base") {
-        notes.push(
-          '- ⚙ This rule is included in `"plugin:astro/base"` and `"plugin:astro/recommended"`.',
-        )
-      } else {
-        notes.push(
-          '- ⚙ This rule is included in `"plugin:astro/recommended"`.',
-        )
-      }
-    }
-    if (fixable) {
-      notes.push(
-        "- 🔧 The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.",
-      )
-    }
-    if (hasSuggestions) {
-      notes.push(
-        "- 💡 Some problems reported by this rule are manually fixable by editor [suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).",
-      )
-    }
-    if (!this.since) {
-      notes.unshift(
-        `- ❗ <badge text="This rule has not been released yet." vertical="middle" type="error"> **_This rule has not been released yet._** </badge>`,
-      )
-    }
-
-    // Add an empty line after notes.
-    if (notes.length >= 1) {
-      notes.push("", "")
-    }
-
+    const ruleDocs = this.rule.meta.docs
+    const { ruleId, description } = ruleDocs
+    const isNewRule = !this.since
+    const notes = buildNotesFromRule(this.rule, isNewRule)
     const headerPattern = /(?:^|\n)#.+\n+[^\n]*\n+(?:- .+\n+)*\n*/u
-
-    const header = `\n${title}\n\n${notes.join("\n")}`
-    if (headerPattern.test(this.content)) {
-      this.content = this.content.replace(
-        headerPattern,
-        header.replace(/\$/g, "$$$$"),
-      )
-    } else {
-      this.content = `${header}${this.content.trim()}\n`
-    }
+    const header = renderRuleHeader({ ruleId, description, notes })
+    this.content = headerPattern.test(this.content)
+      ? this.content.replace(headerPattern, header)
+      : `${header}${this.content.trim()}\n`
 
     return this
   }

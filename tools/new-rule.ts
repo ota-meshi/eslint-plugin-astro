@@ -1,6 +1,7 @@
 import path from "path"
 import fs from "fs"
 import cp from "child_process"
+import { renderRuleHeader } from "./lib/doc-renderer"
 const logger = console
 
 // main
@@ -77,9 +78,7 @@ tester.run("${ruleId}", rule as any, loadTestCases("${ruleId}"))
   )
   fs.writeFileSync(
     docFile,
-    `#  (astro/${ruleId})
-
-> description
+    `${renderRuleHeader({ ruleId: `astro/${ruleId}`, description: "description", notes: [] })}
 
 ## 📖 Rule Details
 
