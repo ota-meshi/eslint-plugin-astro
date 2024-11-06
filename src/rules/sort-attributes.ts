@@ -123,6 +123,7 @@ export default createRule("sort-attributes", {
                   return fixer.replaceTextRange(
                     [left.node.range[0], right.node.range[1]],
                     sourceCode.text.slice(...right.node.range) +
+                      " ".repeat(right.node.range[0] - left.node.range[1]) +
                       sourceCode.text.slice(...left.node.range),
                   )
                 },
