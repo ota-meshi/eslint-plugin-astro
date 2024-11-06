@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 1.3.1
+
+### Patch Changes
+
+- [#445](https://github.com/ota-meshi/eslint-plugin-astro/pull/445) [`1133962`](https://github.com/ota-meshi/eslint-plugin-astro/commit/11339627950f183fdf29b772477386b290445d6e) Thanks [@stefanprobst](https://github.com/stefanprobst)! - fix: preserve whitespace between attributes in sort-attributes rule
+
 ## 1.3.0
 
 ### Minor Changes
