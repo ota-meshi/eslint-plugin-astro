@@ -1,4 +1,6 @@
-import type { RuleModule } from "src/types"
+// eslint-disable-next-line @eslint-community/eslint-comments/disable-enable-pair -- ignore
+/* eslint-disable func-style -- Arrow functions are better when returning string */
+import type { RuleModule, RuleMetaData } from "src/types"
 
 type RuleDocHeader = {
   ruleId: string
@@ -94,4 +96,38 @@ export function buildNotesFromRule(rule: RuleModule, isNew: boolean): string[] {
     )
   }
   return notes
+}
+
+export const renderVerion = (since: string): string => `## 🚀 Version
+
+This rule was introduced in eslint-plugin-astro ${since}`
+
+export const renderImplementation = (
+  ruleName: string,
+): string => `## 🔍 Implementation
+
+- [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/${ruleName}.ts)
+- [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/${ruleName}.ts)
+- [Test fixture sources](https://github.com/ota-meshi/eslint-plugin-astro/tree/main/tests/fixtures/rules/${ruleName})
+`
+
+const buildExtensionNoteString = (plugin: string, url: string): string => `
+<sup>Taken with ❤️ [from ${plugin}](${url})</sup>
+`
+
+/**
+ * Render extension note
+ */
+export function renderExtensionNote(
+  extensionRule: RuleMetaData["docs"]["extensionRule"],
+): string {
+  if (!extensionRule) {
+    return ""
+  }
+  const isEslintExtension = typeof extensionRule === "string"
+  const plugin = isEslintExtension ? "ESLint core" : extensionRule.plugin
+  const url = isEslintExtension
+    ? `https://eslint.org/docs/rules/${extensionRule}`
+    : extensionRule.url
+  return buildExtensionNoteString(plugin, url)
 }

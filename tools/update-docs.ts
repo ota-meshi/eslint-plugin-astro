@@ -4,7 +4,13 @@ import { rules } from "../src/rules"
 import type { RuleModule } from "../src/types"
 import { getNewVersion } from "./lib/changesets-util"
 import { formatAndSave } from "./lib/utils"
-import { buildNotesFromRule, renderRuleHeader } from "./lib/doc-renderer"
+import {
+  buildNotesFromRule,
+  renderExtensionNote,
+  renderImplementation,
+  renderRuleHeader,
+  renderVerion,
+} from "./lib/doc-renderer"
 
 //eslint-disable-next-line jsdoc/require-jsdoc -- tools
 function yamlValue(val: unknown) {
@@ -76,38 +82,14 @@ class DocFile {
   public async updateFooter() {
     const { ruleName, extensionRule } = this.rule.meta.docs
     const footerPattern = /## (?:(?:🔍)? ?Implementation|🚀 Version).+$/s
-    const footer = `${
-      this.since
-        ? `## 🚀 Version
-
-This rule was introduced in eslint-plugin-astro ${await this.since}
-
-`
-        : ""
-    }## 🔍 Implementation
-
-- [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/${ruleName}.ts)
-- [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/${ruleName}.ts)
-- [Test fixture sources](https://github.com/ota-meshi/eslint-plugin-astro/tree/main/tests/fixtures/rules/${ruleName})
-${
-  extensionRule
-    ? typeof extensionRule === "string"
-      ? `
-<sup>Taken with ❤️ [from ESLint core](https://eslint.org/docs/rules/${extensionRule})</sup>
-`
-      : `
-<sup>Taken with ❤️ [from ${extensionRule.plugin}](${extensionRule.url})</sup>
-`
-    : ""
-}`
-    if (footerPattern.test(this.content)) {
-      this.content = this.content.replace(
-        footerPattern,
-        footer.replace(/\$/g, "$$$$"),
-      )
-    } else {
-      this.content = `${this.content.trim()}\n\n${footer}`
-    }
+    const since = await this.since
+    const version = since ? renderVerion(since) : ""
+    const implementation = renderImplementation(ruleName)
+    const extensionNote = renderExtensionNote(extensionRule)
+    const footer = `${version}\n\n${implementation}${extensionNote}`
+    this.content = footerPattern.test(this.content)
+      ? this.content.replace(footerPattern, footer)
+      : `${this.content.trim()}\n\n${footer}`
 
     return this
   }
@@ -160,14 +142,9 @@ ${
 
     const fileIntroPattern = /^---\n(?:.*\n)+?---\n*/gu
 
-    if (fileIntroPattern.test(this.content)) {
-      this.content = this.content.replace(
-        fileIntroPattern,
-        computed.replace(/\$/g, "$$$$"),
-      )
-    } else {
-      this.content = `${computed}${this.content.trim()}\n`
-    }
+    this.content = fileIntroPattern.test(this.content)
+      ? this.content.replace(fileIntroPattern, computed)
+      : `${computed}${this.content.trim()}\n`
 
     return this
   }
