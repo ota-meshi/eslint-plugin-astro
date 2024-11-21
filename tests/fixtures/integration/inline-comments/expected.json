@@ -20,7 +20,7 @@
     "warningCount": 0,
     "fixableErrorCount": 0,
     "fixableWarningCount": 0,
-    "source": "---\nconst foo = {}\n---\n\n<a></a>\n",
+    "source": "---\nconst foo = {}\n---\n\n{/* global should be a safe word */}\n<a></a>\n",
     "usedDeprecatedRules": []
   }
 ]
