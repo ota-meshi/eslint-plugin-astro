@@ -330,6 +330,22 @@ Example **.vscode/settings.json**:
 }
 ```
 
+### Zed
+
+Zed has built-in support for ESLint. However, you need to configure ESLint to work with Astro files.
+
+Example **.zed/settings.json**:
+
+```json
+{
+  "languages": {
+    "Astro": {
+      "language_servers": ["eslint", "..."]
+    }
+  }
+}
+```
+
 <!--USAGE_GUIDE_END-->
 
 ## ❓ FAQ
