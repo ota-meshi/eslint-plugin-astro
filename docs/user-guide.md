@@ -299,12 +299,11 @@ Ensure that any necessary parserOptions in your `.eslintrc.**` have a project ke
 
 ### Running ESLint from the command line
 
-If you want to run `eslint` from the command line, make sure you include the `.astro` extension using [the `--ext` option](https://eslint.org/docs/user-guide/configuring#specifying-file-extensions-to-lint) or a glob pattern, because ESLint targets only `.js` files by default.
+If you want to run `eslint` from the command line, make sure you include the `.astro` extension using a glob pattern, because ESLint targets only `.js` files by default.
 
-Examples:
+Example:
 
 ```bash
-eslint --ext .js,.astro src
 eslint "src/**/*.{js,astro}"
 ```
 
