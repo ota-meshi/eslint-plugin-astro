@@ -26,6 +26,7 @@ Default:
 
 ```astro
 ---
+/* eslint astro/sort-attributes: "error" */
 ---
 
 {/* ✓ GOOD */}
