@@ -104,7 +104,7 @@
     "esbuild": "^0.24.0",
     "esbuild-register": "^3.3.3",
     "eslint": "^9.0.0",
-    "eslint-config-prettier": "^9.0.0",
+    "eslint-config-prettier": "^10.0.0",
     "eslint-plugin-astro": "^1.2.3",
     "eslint-plugin-eslint-plugin": "^6.0.0",
     "eslint-plugin-jsdoc": "^50.0.0",
