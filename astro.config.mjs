@@ -64,8 +64,7 @@ export default defineConfig({
         // node
         url: path.join(dirname, "./docs-build/shim/url.mjs"),
         module: path.join(dirname, "./docs-build/shim/module.mjs"),
-        globby: path.join(dirname, "./docs-build/shim/globby.mjs"),
-        "fast-glob": path.join(dirname, "./docs-build/shim/empty.mjs"),
+        "fast-glob": path.join(dirname, "./docs-build/shim/fast-glob.mjs"),
         // override tsconfig (it had no effect...)
         "@eslint-community/eslint-utils": path.join(
           dirname,
