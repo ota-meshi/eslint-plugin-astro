@@ -284,10 +284,10 @@
     <div
       class="eslint-editor-monaco-root eslint-editor-monaco-root--wait"
       in:loadingTypewriter
-    />
+    ></div>
   {/if}
 {:then}
-  <div bind:this={rootElement} class="eslint-editor-monaco-root" />
+  <div bind:this={rootElement} class="eslint-editor-monaco-root"></div>
 {/await}
 
 <style>

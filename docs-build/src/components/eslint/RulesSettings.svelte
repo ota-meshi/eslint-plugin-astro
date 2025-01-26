@@ -108,6 +108,7 @@
         <li class="category {category.classes}">
           <button
             class="category-button"
+            aria-label="category"
             class:category-button--close={categoryState[category.title].close}
             on:click={() => {
               categoryState = Object.fromEntries(
@@ -164,7 +165,11 @@
                     />
                     {rule.ruleId}
                   </label>
-                  <a href={rule.url} target="_blank" rel="noopener noreferrer"
+                  <a
+                    href={rule.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="open rule in new tab"
                     ><svg
                       xmlns="http://www.w3.org/2000/svg"
                       aria-hidden="true"
