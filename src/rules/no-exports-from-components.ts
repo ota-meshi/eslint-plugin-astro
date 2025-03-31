@@ -9,8 +9,7 @@ export default createRule("no-exports-from-components", {
     docs: {
       description: "disallow value export",
       category: "Possible Errors",
-      // TODO: Switch to recommended: true, in next major version
-      recommended: false,
+      recommended: true,
     },
     schema: [],
     messages: {
@@ -50,19 +49,13 @@ export default createRule("no-exports-from-components", {
         // Allow specific named exports
         return
       }
-      context.report({
-        node,
-        messageId: "disallowExport",
-      })
+      context.report({ node, messageId: "disallowExport" })
     }
 
     return {
       ExportAllDeclaration(node) {
         if (node.exportKind === "type") return
-        context.report({
-          node,
-          messageId: "disallowExport",
-        })
+        context.report({ node, messageId: "disallowExport" })
       },
       ExportDefaultDeclaration(node) {
         if ((node.exportKind as "value" | "type") === "type") return
@@ -78,10 +71,7 @@ export default createRule("no-exports-from-components", {
             // Allow specific named exports
             continue
           }
-          context.report({
-            node: spec,
-            messageId: "disallowExport",
-          })
+          context.report({ node: spec, messageId: "disallowExport" })
         }
       },
     }
