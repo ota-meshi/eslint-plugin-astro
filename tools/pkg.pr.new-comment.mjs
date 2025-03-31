@@ -1,14 +1,20 @@
 /**
  * Used in `/.github/workflows/pkg.pr.new.yml`
  */
+/**
+ * @param {object} params
+ * @param {import('@actions/github/lib/utils').GitHub} params.github
+ * @param {import('@actions/github/lib/context').Context} params.context
+ * @param {object} params.output
+ * @param {string} params.output.sha
+ * @param {string} params.output.number
+ * @param {Array<{name: string, url: string}>} params.output.packages
+ */
 export default async function ({ github, context, output }) {
   // eslint-disable-next-line no-console -- For debugging on github actions.
   console.log("pkg-pr-new publish output:", JSON.stringify(output))
 
-  const sha =
-    context.eventName === "pull_request"
-      ? context.payload.pull_request.head.sha
-      : context.payload.after
+  const sha = output.sha
   const commitUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${sha}`
 
   const pullRequestNumber = await getPullRequestNumber()
@@ -21,10 +27,7 @@ export default async function ({ github, context, output }) {
     const repoPath = `/${context.repo.owner}/${context.repo.repo}/`
     normalizedUrl = normalizedUrl.replace(repoPath, "/")
 
-    return {
-      name: p.name,
-      url: normalizedUrl,
-    }
+    return { name: p.name, url: normalizedUrl }
   })
 
   const botCommentIdentifier = "<!-- posted by pkg.pr.new-comment.mjs -->"
@@ -32,6 +35,7 @@ export default async function ({ github, context, output }) {
   const onlineUrl = new URL(
     "https://eslint-online-playground.netlify.app/#eslint-plugin-astro",
   )
+  /** @type {Record<string,string>} */
   const overrideDeps = {}
   for (const p of packages) {
     overrideDeps[p.name] = p.url
@@ -71,37 +75,24 @@ ${packages.map((p) => `- ${p.name}: ${p.url}`).join("\n")}
   /**
    * Get the pull request number from the context.
    */
-  async function getPullRequestNumber() {
-    if (context.eventName === "pull_request") {
-      if (context.issue.number) {
-        return context.issue.number
-      }
-    } else if (context.eventName === "push") {
-      const pullRequests = await github.rest.pulls.list({
-        owner: context.repo.owner,
-        repo: context.repo.repo,
-        state: "open",
-        head: `${context.repo.owner}:${context.ref.replace("refs/heads/", "")}`,
-      })
-
-      if (pullRequests.data.length > 0) {
-        return pullRequests.data[0].number
-      }
-    }
-    return null
+  function getPullRequestNumber() {
+    return output.number
   }
 
   /**
    * Find the bot comment in the pull request.
+   * @param {string} issueNumber The pull request number.
    */
   async function findBotComment(issueNumber) {
     if (!issueNumber) return null
+    // @ts-expect-error -- The ID defined in the GitHub API.
     const comments = await github.rest.issues.listComments({
       owner: context.repo.owner,
       repo: context.repo.repo,
       // eslint-disable-next-line camelcase -- The ID defined in the GitHub API.
       issue_number: issueNumber,
     })
+    // @ts-expect-error
     return comments.data.find((comment) =>
       comment.body.includes(botCommentIdentifier),
     )
@@ -109,10 +100,12 @@ ${packages.map((p) => `- ${p.name}: ${p.url}`).join("\n")}
 
   /**
    * Create or update the bot comment in the pull request.
+   * @param {string} issueNumber The pull request number.
    */
   async function createOrUpdateComment(issueNumber) {
     const existingComment = await findBotComment(issueNumber)
     if (existingComment) {
+      // @ts-expect-error -- The ID defined in the GitHub API.
       await github.rest.issues.updateComment({
         owner: context.repo.owner,
         repo: context.repo.repo,
@@ -121,6 +114,7 @@ ${packages.map((p) => `- ${p.name}: ${p.url}`).join("\n")}
         body,
       })
     } else {
+      // @ts-expect-error -- The ID defined in the GitHub API.
       await github.rest.issues.createComment({
         // eslint-disable-next-line camelcase -- The ID defined in the GitHub API.
         issue_number: issueNumber,
