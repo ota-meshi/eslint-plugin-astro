@@ -64,17 +64,28 @@
   },
   "homepage": "https://ota-meshi.github.io/eslint-plugin-astro/",
   "dependencies": {
-    "@eslint-community/eslint-utils": "^4.2.0",
-    "@jridgewell/sourcemap-codec": "^1.4.14",
-    "@typescript-eslint/types": "^7.7.1 || ^8",
-    "astro-eslint-parser": "^1.0.2",
-    "eslint-compat-utils": "^0.6.0",
+    "@eslint-community/eslint-utils": "^4.5.1",
+    "@jridgewell/sourcemap-codec": "^1.5.0",
+    "@typescript-eslint/types": "^8.28.0",
+    "astro-eslint-parser": "^1.2.2",
+    "eslint-compat-utils": "^0.6.4",
+    "espree": "^10.3.0",
     "globals": "^16.0.0",
-    "postcss": "^8.4.14",
-    "postcss-selector-parser": "^7.0.0"
+    "postcss": "^8.5.3",
+    "postcss-selector-parser": "^7.1.0"
   },
   "peerDependencies": {
-    "eslint": ">=8.57.0"
+    "@typescript-eslint/parser": ">=8.28.0",
+    "eslint": ">=8.57.0",
+    "eslint-plugin-jsx-a11y": ">=6.10.2"
+  },
+  "peerDependenciesMeta": {
+    "@typescript-eslint/parser": {
+      "optional": true
+    },
+    "eslint-plugin-jsx-a11y": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@actions/github": "^6.0.0",
@@ -97,8 +108,8 @@
     "@types/react": "^19.0.0",
     "@types/semver": "^7.3.9",
     "@types/stylus": "^0.48.38",
-    "@typescript-eslint/eslint-plugin": "^8.5.0",
-    "@typescript-eslint/parser": "^8.5.0",
+    "@typescript-eslint/eslint-plugin": "^8.28.0",
+    "@typescript-eslint/parser": "^8.28.0",
     "assert": "^2.0.0",
     "astro": "^5.0.0",
     "env-cmd": "^10.1.0",
@@ -111,7 +122,7 @@
     "eslint-plugin-jsdoc": "^50.0.0",
     "eslint-plugin-json-schema-validator": "^5.0.0",
     "eslint-plugin-jsonc": "^2.15.1",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-markdown": "^5.1.0",
     "eslint-plugin-n": "^17.2.0",
     "eslint-plugin-node-dependencies": "^0.12.0",
@@ -137,7 +148,7 @@
     "svelte": "^5.0.0",
     "tsup": "^8.0.2",
     "typescript": "~5.8.0",
-    "typescript-eslint": "^8.5.0",
+    "typescript-eslint": "^8.28.0",
     "vite-plugin-eslint4b": "^0.5.0"
   },
   "publishConfig": {
