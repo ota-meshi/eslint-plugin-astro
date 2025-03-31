@@ -8,7 +8,7 @@
     <li class="header-link depth-2">
       <a href="#overview">Overview</a>
     </li>
-    {#each headings as header}
+    {#each headings as header (header.slug)}
       {#if header.depth > 1 && header.depth < 4}
         <li class={`header-link depth-${header.depth}`}>
           <a href={`#${header.slug}`}>{header.text}</a>

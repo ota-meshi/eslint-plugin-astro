@@ -27,7 +27,7 @@
 </script>
 
 <div class="theme-toggle">
-  {#each themes as t, i}
+  {#each themes as t, i (t)}
     {@const checked = t === theme}
     <label class:checked>
       {#if i === 0}

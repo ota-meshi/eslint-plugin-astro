@@ -53,28 +53,31 @@
       setRightMarkers(rightMarkers)
     }
   }
+  function setCodeActionsProvider(monaco) {
+    codeActionProviderDisposable = monaco.languages.registerCodeActionProvider(
+      language,
+      {
+        provideCodeActions(model, range, context) {
+          const editor = getLeftEditor?.()
+          if (editor?.getModel().url !== model.url) {
+            return {
+              actions: [],
+              dispose() {
+                /* nop */
+              },
+            }
+          }
+          return provideCodeActions(model, range, context)
+        },
+      },
+    )
+  }
   $: {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions -- reactive
     language
     disposeCodeActionProvider()
     if (provideCodeActions) {
-      loadingMonaco.then((monaco) => {
-        codeActionProviderDisposable =
-          monaco.languages.registerCodeActionProvider(language, {
-            provideCodeActions(model, range, context) {
-              const editor = getLeftEditor?.()
-              if (editor?.getModel().url !== model.url) {
-                return {
-                  actions: [],
-                  dispose() {
-                    /* nop */
-                  },
-                }
-              }
-              return provideCodeActions(model, range, context)
-            },
-          })
-      })
+      loadingMonaco.then(setCodeActionsProvider)
     }
   }
   $: {
