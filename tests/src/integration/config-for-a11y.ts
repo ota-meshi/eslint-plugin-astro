@@ -26,7 +26,7 @@ describe("Integration test for a11y config", () => {
     const eslint = semver.lt(ESLint.version, "9.0.0-0")
       ? new ESLint({
           plugins: {
-            "jsx-a11y": jsxA11yPlugin,
+            "astro/jsx-a11y": jsxA11yPlugin,
             astro: astroPlugin as any,
           },
           useEslintrc: false,
@@ -75,7 +75,7 @@ const src = 'icon.png'
     const eslint = semver.lt(ESLint.version, "9.0.0-0")
       ? new ESLint({
           plugins: {
-            "jsx-a11y": jsxA11yPlugin,
+            "astro/jsx-a11y": jsxA11yPlugin,
             astro: astroPlugin as any,
           },
           useEslintrc: false,
