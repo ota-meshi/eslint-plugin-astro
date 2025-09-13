@@ -24,7 +24,7 @@ export function buildFlatConfigs(): Record<string, Linter.Config[]> {
         return [
           ...flatBase,
           {
-            plugins: { "jsx-a11y": base },
+            plugins: { "astro/jsx-a11y": base },
             rules: newRules,
           },
         ]
