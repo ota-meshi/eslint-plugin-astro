@@ -1,0 +1,7 @@
+[
+  {
+    "message": "Unsafe inline <script> detected. Move code to an external file (use src) or a safer pattern.",
+    "line": 5,
+    "column": 2
+  }
+]

@@ -10,6 +10,7 @@ import noDeprecatedGetentrybyslug from "./no-deprecated-getentrybyslug"
 import noExportsFromComponents from "./no-exports-from-components"
 import noSetHtmlDirective from "./no-set-html-directive"
 import noSetTextDirective from "./no-set-text-directive"
+import noUnsafeInlineScripts from "./no-unsafe-inline-scripts"
 import noUnusedCssSelector from "./no-unused-css-selector"
 import noUnusedDefineVarsInStyle from "./no-unused-define-vars-in-style"
 import preferClassListDirective from "./prefer-class-list-directive"
@@ -30,6 +31,7 @@ export const originalRules = [
   noExportsFromComponents,
   noSetHtmlDirective,
   noSetTextDirective,
+  noUnsafeInlineScripts,
   noUnusedCssSelector,
   noUnusedDefineVarsInStyle,
   preferClassListDirective,
