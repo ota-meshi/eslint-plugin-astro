@@ -30,6 +30,7 @@ These rules relate to security vulnerabilities in Astro component code:
 | Rule ID | Description |    |
 |:--------|:------------|:---|
 | [astro/no-set-html-directive](./rules/no-set-html-directive.md) | disallow use of `set:html` to prevent XSS attack |  |
+| [astro/no-unsafe-inline-scripts](./rules/no-unsafe-inline-scripts.md) | disallow inline `<script>` without `src` to encourage CSP-safe patterns |  |
 
 ## Best Practices
 

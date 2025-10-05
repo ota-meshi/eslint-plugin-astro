@@ -426,6 +426,7 @@ These rules relate to security vulnerabilities in Astro component code:
 | Rule ID | Description |    |
 |:--------|:------------|:---|
 | [astro/no-set-html-directive](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-set-html-directive/) | disallow use of `set:html` to prevent XSS attack |  |
+| [astro/no-unsafe-inline-scripts](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-unsafe-inline-scripts/) | disallow inline `<script>` without `src` to encourage CSP-safe patterns |  |
 
 ## Best Practices
 
