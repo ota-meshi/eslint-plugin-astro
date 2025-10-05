@@ -1,12 +1,13 @@
 ---
 title: "astro/no-unsafe-inline-scripts"
 description: "disallow inline `<script>` without `src` to encourage CSP-safe patterns"
-since: "vNEXT"
 ---
 
 # astro/no-unsafe-inline-scripts
 
 > disallow inline `<script>` without `src` to encourage CSP-safe patterns
+
+- ❗ <badge text="This rule has not been released yet." vertical="middle" type="error"> **_This rule has not been released yet._** </badge>
 
 ## 📖 Rule Details
 
@@ -76,6 +77,8 @@ If your project allows inline scripts (e.g., CSP with nonces), you may disable t
 - [OWASP: Cross Site Scripting (XSS) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html) <!-- Official OWASP reference -->
 - [Astro Docs: Client-Side Scripts](https://docs.astro.build/en/guides/client-side-scripts/) <!-- Official Astro docs -->
 - [CSP Guide: `unsafe-inline` explanation](https://content-security-policy.com/unsafe-inline/) <!-- CSP reference -->
+
+
 
 
 
