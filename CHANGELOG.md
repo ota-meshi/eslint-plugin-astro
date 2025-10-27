@@ -1,5 +1,17 @@
 # eslint-plugin-astro
 
+## 1.4.0
+
+### Minor Changes
+
+- [#497](https://github.com/ota-meshi/eslint-plugin-astro/pull/497) [`a109899`](https://github.com/ota-meshi/eslint-plugin-astro/commit/a1098991f39138623a565293a926f2f29fccd5bd) Thanks [@jp-knj](https://github.com/jp-knj)! - feat: add `astro/no-unsafe-inline-scripts` rule that disallow unsafe inline scripts
+
+- [#469](https://github.com/ota-meshi/eslint-plugin-astro/pull/469) [`15053d9`](https://github.com/ota-meshi/eslint-plugin-astro/commit/15053d999a86acbd825f3028260e3d9182c64e56) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency globals to v16
+
+### Patch Changes
+
+- [#499](https://github.com/ota-meshi/eslint-plugin-astro/pull/499) [`bb6a323`](https://github.com/ota-meshi/eslint-plugin-astro/commit/bb6a3233a946eff4c0f1e56f17c63895a7e8e1de) Thanks [@ota-meshi](https://github.com/ota-meshi)! - chore: use trusted publishing
+
 ## 1.3.1
 
 ### Patch Changes

@@ -1,13 +1,12 @@
 ---
 title: "astro/no-unsafe-inline-scripts"
 description: "disallow inline `<script>` without `src` to encourage CSP-safe patterns"
+since: "v1.4.0"
 ---
 
 # astro/no-unsafe-inline-scripts
 
 > disallow inline `<script>` without `src` to encourage CSP-safe patterns
-
-- ❗ <badge text="This rule has not been released yet." vertical="middle" type="error"> **_This rule has not been released yet._** </badge>
 
 ## 📖 Rule Details
 
@@ -81,6 +80,10 @@ If your project allows inline scripts (e.g., CSP with nonces), you may disable t
 
 
 
+
+## 🚀 Version
+
+This rule was introduced in eslint-plugin-astro v1.4.0
 
 ## 🔍 Implementation
 
