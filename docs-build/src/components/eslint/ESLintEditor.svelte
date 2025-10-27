@@ -1,4 +1,5 @@
 <script>
+  import { SvelteMap } from "svelte/reactivity"
   import MonacoEditor from "./MonacoEditor.svelte"
   import { rulesMap } from "./scripts/linter.mts"
   import { loadMonacoEditor } from "./scripts/monaco-loader.mjs"
@@ -19,7 +20,7 @@
   let leftMarkers = []
   let rightMarkers = []
 
-  const messageMap = new Map()
+  const messageMap = new SvelteMap()
   let editor
 
   let lastId = 0
