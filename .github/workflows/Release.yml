@@ -5,33 +5,40 @@ on:
     branches:
       - main
 
+permissions: {}
+
+# Allow one concurrent deployment
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   release:
+    # prevents this action from running on forks
+    if: github.repository == 'ota-meshi/eslint-plugin-markdown-preferences'
+    permissions:
+      contents: write # to create release (changesets/action)
+      id-token: write # OpenID Connect token needed for provenance
+      pull-requests: write # to create pull request (changesets/action)
     name: Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v4
-        with:
-          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
-          fetch-depth: 0
-
+        uses: actions/checkout@v5
       - name: Setup Node.js
-        uses: actions/setup-node@v4
-
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
       - name: Install Dependencies
-        run: npm install -f
+        run: npm install
+      - name: Build
+        run: npm run build
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
-          # this expects you to have a npm script called version that runs some logic and then calls `changeset version`.
-          version: npm run version:ci
-          # This expects you to have a script called release which does a build for your packages and calls changeset publish
-          publish: npm run release
-          commit: "chore: release eslint-plugin-astro"
-          title: "chore: release eslint-plugin-astro"
+          version: npm run changeset:version
+          publish: npm run changeset:publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
