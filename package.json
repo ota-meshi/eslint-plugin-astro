@@ -114,7 +114,7 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-markdown": "^5.1.0",
     "eslint-plugin-n": "^17.2.0",
-    "eslint-plugin-node-dependencies": "^0.12.0",
+    "eslint-plugin-node-dependencies": "^1.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-regexp": "^2.5.0",
     "eslint-plugin-svelte": "^3.0.0",
