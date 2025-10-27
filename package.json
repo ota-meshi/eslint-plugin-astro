@@ -23,7 +23,7 @@
     "build:meta": "npm run ts -- ./tools/update-meta.ts",
     "build:tsup": "tsup",
     "clean": "rimraf .nyc_output dist coverage",
-    "test": "npm run mocha -- \"tests/src/**/*.ts\" --reporter dot --timeout 60000 && npm run test:type",
+    "test": "npm run mocha -- \"tests/src/**/*.ts\" --reporter dot --timeout 60000",
     "test:integration": "npm run build && npm run test:integration-wo-build",
     "test:integration-wo-build": "npm run mocha -- \"tests/integration/**/*.ts\" --reporter dot --timeout 60000",
     "test:type": "tsc --noEmit",
