@@ -51,11 +51,9 @@ describe("Integration test for client-side ts", () => {
       : new ESLint({
           overrideConfigFile: true as any,
           overrideConfig: [
-            // @ts-expect-error -- typing bug
             ...astroPlugin.configs["flat/base"],
             {
               files: ["*.ts", "**/*.ts"],
-              // @ts-expect-error -- typing bug
               languageOptions: {
                 parser: tsESLintParser,
               },
