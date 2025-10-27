@@ -19,7 +19,6 @@ describe("`recommended` config", () => {
         astro: plugin as never,
       },
       baseConfig: {
-        // @ts-expect-error -- typing bug
         parserOptions: {
           ecmaVersion: 2020,
         },
