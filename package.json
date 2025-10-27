@@ -123,7 +123,7 @@
     "js-yaml": "^4.1.0",
     "less": "^4.1.2",
     "mocha": "^11.0.0",
-    "monaco-editor": "^0.52.0",
+    "monaco-editor": "^0.54.0",
     "nyc": "^17.0.0",
     "pako": "^2.0.4",
     "postcss-nested": "^7.0.0",
