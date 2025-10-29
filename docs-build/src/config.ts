@@ -13,7 +13,7 @@ const categories = [
 export const SITE = {
   title: "eslint-plugin-astro",
   description: "ESLint plugin for Astro component.",
-  keywords: ["ESLint", "Astro", "astrojs"],
+  keywords: ["ESLint", "Astro", "astrojs"] as const,
   defaultLanguage: "en_US",
 }
 

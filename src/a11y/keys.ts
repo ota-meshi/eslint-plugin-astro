@@ -4,7 +4,7 @@
 import { getPluginJsxA11y } from "./load"
 
 const plugin = getPluginJsxA11y()
-export const a11yRuleKeys = plugin?.rules
+export const a11yRuleKeys: string[] = plugin?.rules
   ? Object.keys(plugin.rules).filter(
       (s) => !plugin?.rules?.[s]?.meta?.deprecated,
     )
@@ -46,6 +46,6 @@ export const a11yRuleKeys = plugin?.rules
       "scope",
       "tabindex-no-positive",
     ] as const)
-export const a11yConfigKeys = plugin?.configs
+export const a11yConfigKeys: string[] = plugin?.configs
   ? Object.keys(plugin.configs)
   : (["recommended", "strict"] as const)

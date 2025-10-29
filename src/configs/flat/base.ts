@@ -2,7 +2,7 @@
 // This file has been automatically generated,
 // in order to update its content execute "npm run update"
 import globals from "globals"
-import type { ESLint } from "eslint"
+import type { ESLint, Linter } from "eslint"
 import * as parser from "astro-eslint-parser"
 import {
   tsESLintParser,
@@ -82,4 +82,4 @@ export default [
       "prettier/prettier": "off",
     },
   },
-]
+] as Linter.Config[]

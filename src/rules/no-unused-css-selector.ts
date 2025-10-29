@@ -5,7 +5,7 @@ import { getStaticValue } from "@eslint-community/eslint-utils"
 import type { Node as PostcssNode } from "postcss"
 import postcss from "postcss"
 import parser from "postcss-selector-parser"
-import type { RuleContext } from "../types"
+import type { RuleContext, RuleModule } from "../types"
 import { createRule } from "../utils"
 import {
   findAttribute,
@@ -29,6 +29,7 @@ type RootJSXElementTreeNode = {
   childElements: JSXElementTreeNode[]
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
 export default createRule("no-unused-css-selector", {
   meta: {
     docs: {
@@ -166,7 +167,7 @@ export default createRule("no-unused-css-selector", {
       },
     }
   },
-})
+}) as RuleModule
 
 type JSXElementSelector = {
   error?: unknown

@@ -1,6 +1,6 @@
 import { rules as ruleList } from "./rules"
 import * as processorsDefines from "./processor"
-import type { Rule } from "eslint"
+import type { Linter, Rule } from "eslint"
 import { name, version } from "./meta"
 import { environments } from "./environments"
 
@@ -16,7 +16,24 @@ const processors = {
   astro: processorsDefines.astroProcessor,
   "client-side-ts": processorsDefines.clientSideTsProcessor,
 }
-export const plugin = {
+export type AstroPlugin = {
+  meta: { name: string; version: string }
+  environments: {
+    astro: {
+      globals: {
+        Astro: boolean
+        Fragment: boolean
+      }
+    }
+  }
+  rules: { [key: string]: Rule.RuleModule }
+  processors: {
+    ".astro": Linter.Processor
+    astro: Linter.Processor
+    "client-side-ts": Linter.Processor
+  }
+}
+export const plugin: AstroPlugin = {
   meta: { name, version },
   environments,
   rules,

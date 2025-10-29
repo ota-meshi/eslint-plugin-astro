@@ -1,6 +1,7 @@
 // IMPORTANT!
 // This file has been automatically generated,
 // in order to update its content execute "npm run update"
+import type { Linter } from "eslint"
 const baseExtend = "plugin:astro/base"
 export default {
   extends: [baseExtend],
@@ -15,4 +16,4 @@ export default {
     "astro/no-unused-define-vars-in-style": "error",
     "astro/valid-compile": "error",
   },
-}
+} as Linter.LegacyConfig
