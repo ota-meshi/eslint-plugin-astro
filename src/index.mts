@@ -1,8 +1,9 @@
 import type { ESMConfigs } from "./esm-config-builder"
 import { buildEsmConfigs } from "./esm-config-builder"
 import type { AstroPlugin } from "./plugin"
-import { plugin } from "./plugin"
+import { getPlugin } from "./plugin"
 export const configs: ESMConfigs = buildEsmConfigs()
+const plugin = getPlugin()
 export default Object.assign(plugin, { configs }) as AstroPlugin & {
   configs: ESMConfigs
 }

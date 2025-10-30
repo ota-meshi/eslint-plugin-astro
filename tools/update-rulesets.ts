@@ -111,14 +111,13 @@ import type { ESLint, Linter } from "eslint"
 import * as parser from "astro-eslint-parser"
 import { tsESLintParser, hasTypescriptEslintParser } from "../has-typescript-eslint-parser"
 import { environments } from "../../environments/index"
-let plugin: unknown
+import { getPlugin } from "../../plugin"
 export default [
   {
     name: 'astro/base/plugin',
     plugins: {
       get astro(): ESLint.Plugin {
-        // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires -- ignore
-        return (plugin ??= require("../../plugin").plugin)
+        return getPlugin()
       },
     },
   },
