@@ -25,11 +25,12 @@ const content = `/*
  */
 ${ruleNames.map(mapRuleNameToImport).join("\n")}
 import { buildA11yRules } from "../a11y"
+import { RuleModule } from "../types"
 
-export const originalRules = [
+export const originalRules: RuleModule[] = [
   ${ruleNames.map(camelCase).join(",")},
 ]
-export const rules = [...originalRules, ...buildA11yRules()]
+export const rules: RuleModule[] = [...originalRules, ...buildA11yRules()]
 `
 
 const filePath = path.resolve(__dirname, "../src/rules/index.ts")

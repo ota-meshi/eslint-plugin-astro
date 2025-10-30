@@ -7,7 +7,7 @@ import flatAll from "./configs/flat/all"
 import { buildA11yFlatConfigs, buildA11yLegacyConfigs } from "./a11y"
 import type { Linter } from "eslint"
 
-type CJSConfigs = {
+export type CJSConfigs = {
   base: Linter.LegacyConfig
   recommended: Linter.LegacyConfig
   all: Linter.LegacyConfig
@@ -26,13 +26,13 @@ type CJSConfigs = {
 export function buildCjsConfigs(): CJSConfigs {
   const cjsConfigs: CJSConfigs = {
     base: buildLegacyBase(),
-    recommended: recommended as Linter.LegacyConfig,
-    all: all as Linter.LegacyConfig,
+    recommended,
+    all,
     "jsx-a11y-strict": null as never as Linter.LegacyConfig,
     "jsx-a11y-recommended": null as never as Linter.LegacyConfig,
-    "flat/base": flatBase as Linter.Config[],
-    "flat/recommended": flatRecommended as Linter.Config[],
-    "flat/all": flatAll as Linter.Config[],
+    "flat/base": flatBase,
+    "flat/recommended": flatRecommended,
+    "flat/all": flatAll,
     "flat/jsx-a11y-strict": null as never as Linter.Config[],
     "flat/jsx-a11y-recommended": null as never as Linter.Config[],
   }

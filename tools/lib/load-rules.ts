@@ -23,4 +23,4 @@ function readRules(): RuleModule[] {
  * It does not include extended rules (such as `a11y` rules).
  * For a complete set of rules, consider using the generated file `rules/index.ts` instead.
  */
-export const rules = readRules()
+export const rules: RuleModule[] = readRules()

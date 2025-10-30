@@ -7,9 +7,10 @@ import {
   isSemicolonToken,
 } from "@eslint-community/eslint-utils"
 import { getNextLocation, isTokenOnSameLine } from "../utils/ast-utils"
-import type { RuleFixer } from "../types"
+import type { RuleFixer, RuleModule } from "../types"
 import FixTracker from "../utils/fix-tracker"
 
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
 export default createRule("semi", {
   meta: {
     docs: {
@@ -419,4 +420,4 @@ export default createRule("semi", {
       TSEmptyBodyFunctionExpression: checkForSemicolon,
     }
   },
-})
+}) as RuleModule

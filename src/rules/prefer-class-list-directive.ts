@@ -2,7 +2,9 @@ import type { AST } from "astro-eslint-parser"
 import { createRule } from "../utils"
 import { getAttributeName } from "../utils/ast-utils"
 import { getSourceCode } from "../utils/compat"
+import type { RuleModule } from "../types"
 
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
 export default createRule("prefer-class-list-directive", {
   meta: {
     docs: {
@@ -59,4 +61,4 @@ export default createRule("prefer-class-list-directive", {
       AstroTemplateLiteralAttribute: verifyAttr,
     }
   },
-})
+}) as RuleModule

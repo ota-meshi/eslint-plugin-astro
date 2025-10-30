@@ -1,7 +1,9 @@
 import { createRule } from "../utils"
 import type { TSESTree } from "@typescript-eslint/types"
 import { getSourceCode } from "../utils/compat"
+import type { RuleModule } from "../types"
 
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
 export default createRule("no-deprecated-getentrybyslug", {
   meta: {
     docs: {
@@ -37,4 +39,4 @@ export default createRule("no-deprecated-getentrybyslug", {
       },
     }
   },
-})
+}) as RuleModule

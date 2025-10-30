@@ -1,5 +1,6 @@
 import recommended from "./recommended"
 import { rules } from "../../rules"
+import type { Linter } from "eslint"
 
 const all: Record<string, string> = {}
 for (const rule of rules.filter(
@@ -16,4 +17,4 @@ export default [
       ...recommended[recommended.length - 1].rules,
     },
   },
-]
+] as Linter.Config[]

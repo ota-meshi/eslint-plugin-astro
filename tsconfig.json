@@ -4,8 +4,8 @@
     "module": "preserve",
     "moduleResolution": "Bundler",
     "lib": ["es2020", "dom"],
-    "allowJs": true,
-    "checkJs": true,
+    // "allowJs": false,
+    // "checkJs": false,
     "declaration": true,
     "strict": true,
     "noImplicitAny": true,
@@ -28,7 +28,9 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "allowImportingTsExtensions": true,
-    "noEmit": true
+    "noEmit": true,
+
+    "isolatedDeclarations": true
   },
   "include": [
     "src/**/*",
@@ -42,7 +44,7 @@
     "docs-build/src/**/*.svelte",
     "docs/**/*.astro",
     "typings/**/*",
-    "tsup.config.ts"
+    "tsdown.config.ts"
   ],
   "exclude": ["lib/**/*", "tests/fixtures/**/*"]
 }
