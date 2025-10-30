@@ -32,5 +32,6 @@
     "source.fixAll": "explicit",
     "source.fixAll.stylelint": "explicit"
   },
-  "svelte.plugin.typescript.diagnostics.enable": false
+  "svelte.plugin.typescript.diagnostics.enable": false,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
