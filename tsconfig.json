@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es2020",
+    "target": "es2022",
     "module": "preserve",
     "moduleResolution": "Bundler",
-    "lib": ["es2020", "dom"],
+    "lib": ["es2022", "dom"],
     // "allowJs": false,
     // "checkJs": false,
     "declaration": true,
