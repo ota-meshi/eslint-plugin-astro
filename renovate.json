@@ -6,7 +6,15 @@
   ],
   "packageRules": [
     {
+      "updateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
+    },
+    {
       "depTypeList": ["devDependencies"],
+      "automerge": true
+    },
+    {
+      "matchManagers": ["github-actions", "devcontainer"],
       "automerge": true
     }
   ]
