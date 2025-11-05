@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 1.5.0
+
+### Minor Changes
+
+- [#509](https://github.com/ota-meshi/eslint-plugin-astro/pull/509) [`ffee791`](https://github.com/ota-meshi/eslint-plugin-astro/commit/ffee7910d467ac567ed566f6984ec81eef0cf9a3) Thanks [@ota-meshi](https://github.com/ota-meshi)! - chore: use tsdown and isolatedDeclarations
+
 ## 1.4.0
 
 ### Minor Changes
