@@ -18,7 +18,9 @@ import { parseStringTokens } from "../utils/string-literal-parser"
 import type { Rule } from "eslint"
 import { getPropertyName } from "@eslint-community/eslint-utils"
 import { getSourceCode } from "../utils/compat"
+import type { RuleModule } from "../types"
 
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
 export default createRule("prefer-split-class-list", {
   meta: {
     docs: {
@@ -386,7 +388,7 @@ export default createRule("prefer-split-class-list", {
       AstroTemplateLiteralAttribute: verifyAttr,
     }
   },
-})
+}) as RuleModule
 
 /** Checks whether given node evaluate type is string */
 function isStringType(

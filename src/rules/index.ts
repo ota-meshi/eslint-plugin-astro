@@ -20,8 +20,9 @@ import semi from "./semi"
 import sortAttributes from "./sort-attributes"
 import validCompile from "./valid-compile"
 import { buildA11yRules } from "../a11y"
+import type { RuleModule } from "../types"
 
-export const originalRules = [
+export const originalRules: RuleModule[] = [
   missingClientOnlyDirectiveValue,
   noConflictSetDirectives,
   noDeprecatedAstroCanonicalurl,
@@ -41,4 +42,4 @@ export const originalRules = [
   sortAttributes,
   validCompile,
 ]
-export const rules = [...originalRules, ...buildA11yRules()]
+export const rules: RuleModule[] = [...originalRules, ...buildA11yRules()]

@@ -38,6 +38,7 @@ const logger = console
 import { createRule } from "../utils"
 import { getSourceCode } from "../utils/compat"
 
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
 export default createRule("${ruleId}", {
   meta: {
     docs: {

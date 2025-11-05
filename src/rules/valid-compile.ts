@@ -1,6 +1,8 @@
+import type { RuleModule } from "../types"
 import { createRule } from "../utils"
 import { getSourceCode } from "../utils/compat"
 
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
 export default createRule("valid-compile", {
   meta: {
     docs: {
@@ -35,4 +37,4 @@ export default createRule("valid-compile", {
       },
     }
   },
-})
+}) as RuleModule

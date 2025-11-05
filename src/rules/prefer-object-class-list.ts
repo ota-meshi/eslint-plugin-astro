@@ -16,7 +16,9 @@ import {
   needParentheses,
 } from "../utils/ast-utils"
 import { getSourceCode } from "../utils/compat"
+import type { RuleModule } from "../types"
 
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
 export default createRule("prefer-object-class-list", {
   meta: {
     docs: {
@@ -835,4 +837,4 @@ export default createRule("prefer-object-class-list", {
       AstroTemplateLiteralAttribute: verifyAttr,
     }
   },
-})
+}) as RuleModule

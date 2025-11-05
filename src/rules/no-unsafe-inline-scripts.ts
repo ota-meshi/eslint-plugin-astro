@@ -1,5 +1,5 @@
 import type { AST } from "astro-eslint-parser"
-import type { RuleContext } from "../types"
+import type { RuleContext, RuleModule } from "../types"
 import { createRule } from "../utils"
 import {
   findAttribute,
@@ -25,6 +25,7 @@ type Options = [
   },
 ]
 
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
 export default createRule("no-unsafe-inline-scripts", {
   meta: {
     docs: {
@@ -105,7 +106,7 @@ export default createRule("no-unsafe-inline-scripts", {
       },
     }
   },
-})
+}) as RuleModule
 
 /**
  * Normalize a MIME type string by trimming, lowercasing, and dropping parameters.

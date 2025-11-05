@@ -1,9 +1,11 @@
 import type { TSESTree } from "@typescript-eslint/types"
 import { createRule } from "../utils"
 import { getSourceCode } from "../utils/compat"
+import type { RuleModule } from "../types"
 
 const ALLOWED_EXPORTS = new Set(["getStaticPaths", "partial", "prerender"])
 
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
 export default createRule("no-exports-from-components", {
   meta: {
     docs: {
@@ -86,4 +88,4 @@ export default createRule("no-exports-from-components", {
       },
     }
   },
-})
+}) as RuleModule

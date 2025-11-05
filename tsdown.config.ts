@@ -1,7 +1,7 @@
-import type { Options } from "tsup"
-import { defineConfig } from "tsup"
+import type { UserConfig } from "tsdown"
+import { defineConfig } from "tsdown"
 
-const base: Options = {
+const base: UserConfig = {
   clean: true,
   dts: true,
   outDir: "lib",
@@ -9,15 +9,18 @@ const base: Options = {
   external: ["@typescript-eslint/parser", "eslint-plugin-jsx-a11y", "espree"],
 }
 
-export default defineConfig([
+const config: UserConfig[] = defineConfig([
   {
     ...base,
     entry: ["src/index.mts"],
     format: ["esm"],
+    fixedExtension: false,
   },
   {
     ...base,
     entry: ["src/index.cts"],
     format: ["cjs"],
+    fixedExtension: false,
   },
 ])
+export default config

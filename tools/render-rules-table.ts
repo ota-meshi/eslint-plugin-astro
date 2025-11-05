@@ -124,7 +124,7 @@ const noRulesTableContent = `
 
 //eslint-disable-next-line jsdoc/require-jsdoc -- ignore
 export default function renderRulesTableContent(
-  buildRulePath = buildDefaultRulePath,
+  buildRulePath: (ruleName: string) => string = buildDefaultRulePath,
 ): string {
   let rulesTableContent = categoryRules
     .filter((cat) => cat.rules.length)
