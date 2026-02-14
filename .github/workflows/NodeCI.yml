@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [20.x, 22.x, 24.x]
     steps:
       - uses: actions/checkout@v6
       - name: Use Node.js ${{ matrix.node-version }}
@@ -54,19 +54,19 @@ jobs:
         run: npm test
       - name: Type Test
         run: npm run test:type
-  test-for-eslint-v10:
+  test-for-eslint-v9:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20.x, 22.x, 24.x]
+        node-version: [18.x, 20.x, 22.x]
     steps:
       - uses: actions/checkout@v6
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install eslint v10
-        run: npm pkg set devDependencies.eslint=^10
+      - name: Install eslint v9
+        run: npm pkg set devDependencies.eslint=^9
       - name: Install Packages
         run: npm install -f
       - name: Test

@@ -19,7 +19,6 @@ describe("Integration test for linebreak-style", () => {
     valid: [
       {
         filename: "foo.astro",
-        // @ts-expect-error -- missing V9 type
         processor: astroProcessor,
         code: `
         <script define:vars={{ foo: 42, bar: 42 }}>
@@ -29,7 +28,6 @@ describe("Integration test for linebreak-style", () => {
       },
       {
         filename: "foo.astro",
-        // @ts-expect-error -- missing V9 type
         processor: astroProcessor,
         code: `
 <script define:vars={{ bar: 42 }}>
@@ -44,7 +42,6 @@ describe("Integration test for linebreak-style", () => {
     invalid: [
       {
         filename: "foo.astro",
-        // @ts-expect-error -- missing V9 type
         processor: astroProcessor,
         code: `{/*eslint ${testRuleIdPrefix}linebreak-style:0*/}
         <script define:vars={{ bar: 42 }}>
@@ -60,7 +57,6 @@ describe("Integration test for linebreak-style", () => {
       },
       {
         filename: "foo.astro",
-        // @ts-expect-error -- missing V9 type
         processor: astroProcessor,
         code: `{/*eslint ${testRuleIdPrefix}linebreak-style:0*/}
 <script define:vars={{ bar: 42 }}>\r

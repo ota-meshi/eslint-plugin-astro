@@ -19,7 +19,6 @@ describe("Integration test for no-undef", () => {
     valid: [
       {
         filename: "foo.astro",
-        // @ts-expect-error -- missing V9 type
         processor: astroProcessor,
         code: `
         <script define:vars={{ foo: 42, bar: 42 }}>
@@ -31,7 +30,6 @@ describe("Integration test for no-undef", () => {
     invalid: [
       {
         filename: "foo.astro",
-        // @ts-expect-error -- missing V9 type
         processor: astroProcessor,
         code: `
         <script define:vars={{ bar: 42 }}>
@@ -48,7 +46,6 @@ describe("Integration test for no-undef", () => {
       },
       {
         filename: "foo.astro",
-        // @ts-expect-error -- missing V9 type
         processor: astroProcessor,
         code: `
 <script define:vars={{ bar: 42 }}>
@@ -68,7 +65,6 @@ describe("Integration test for no-undef", () => {
       },
       {
         filename: "foo.astro",
-        // @ts-expect-error -- missing V9 type
         processor: astroProcessor,
         code: `
 <script define:vars={{ bar: 42 }}>

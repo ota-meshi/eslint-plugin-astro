@@ -16,7 +16,6 @@ describe("Integration test for no-unused-vars", () => {
     valid: [
       {
         filename: "foo.astro",
-        // @ts-expect-error -- missing V9 type
         processor: astroProcessor,
         code: `
         <script define:vars={{ foo: 42 }}>
@@ -28,7 +27,6 @@ describe("Integration test for no-unused-vars", () => {
     invalid: [
       {
         filename: "foo.astro",
-        // @ts-expect-error -- missing V9 type
         processor: astroProcessor,
         code: `
         <script define:vars={{ foo: 42, bar: 42 }}>
