@@ -1,6 +1,8 @@
 import assert from "assert"
 import plugin from "../../../src/index.cts"
 import { LegacyESLint, FlatESLint } from "../../utils/eslint-compat"
+import { ESLint } from "eslint"
+import semver from "semver"
 
 const code = `---
 const foo = 42
@@ -13,7 +15,10 @@ const foo = 42
 </style>
 `
 describe("`recommended` config", () => {
-  it("legacy `recommended` config should work. ", async () => {
+  const itSkipWhenESLintV10 = semver.satisfies(ESLint.version, ">=10")
+    ? it.skip
+    : it
+  itSkipWhenESLintV10("legacy `recommended` config should work. ", async () => {
     const linter = new LegacyESLint({
       plugins: {
         astro: plugin as never,
