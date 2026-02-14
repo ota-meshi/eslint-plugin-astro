@@ -44,7 +44,6 @@ describe("Integration test for eol-last", () => {
     invalid: [
       {
         filename: "foo.astro",
-        // @ts-expect-error -- missing V9 type
         processor: astroProcessor,
         code: `
         <script define:vars={{ foo: 42 }}>
