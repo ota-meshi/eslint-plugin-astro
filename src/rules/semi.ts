@@ -72,7 +72,7 @@ export default createRule("semi", {
   },
   create(context) {
     const sourceCode = getSourceCode(context)
-    if (!sourceCode.parserServices.isAstro) {
+    if (!sourceCode.parserServices?.isAstro) {
       return {}
     }
     const OPT_OUT_PATTERN = /^[(+\-/[`]/u // One of [(/+-`

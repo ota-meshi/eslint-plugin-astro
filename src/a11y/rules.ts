@@ -96,7 +96,7 @@ function defineWrapperListener(
   context: RuleContext,
 ): RuleListener {
   const sourceCode = getSourceCode(context)
-  if (!sourceCode.parserServices.isAstro) {
+  if (!sourceCode.parserServices?.isAstro) {
     return {}
   }
   const listener = coreRule.create(context)
@@ -114,7 +114,7 @@ function defineWrapperListener(
       node: never,
       ...args: never[]
     ) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any, no-invalid-this -- ignore
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- ignore
       ;(original as any).call(this, getProxyNode(node), ...args)
     }
 

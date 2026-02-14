@@ -46,7 +46,7 @@ export default createRule("no-unused-css-selector", {
   },
   create(context) {
     const sourceCode = getSourceCode(context)
-    if (!sourceCode.parserServices.isAstro) {
+    if (!sourceCode.parserServices?.isAstro) {
       return {}
     }
     const styles: AST.JSXElement[] = []
