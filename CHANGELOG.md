@@ -1,5 +1,15 @@
 # eslint-plugin-astro
 
+## 1.6.0
+
+### Minor Changes
+
+- [#531](https://github.com/ota-meshi/eslint-plugin-astro/pull/531) [`ce02cf2`](https://github.com/ota-meshi/eslint-plugin-astro/commit/ce02cf2f008997b5a71e1ed480deb8362e3f8624) Thanks [@ota-meshi](https://github.com/ota-meshi)! - feat: improve compatibility with eslint v10
+
+### Patch Changes
+
+- [#529](https://github.com/ota-meshi/eslint-plugin-astro/pull/529) [`8f172be`](https://github.com/ota-meshi/eslint-plugin-astro/commit/8f172bef026e31f5fd48c6b2bc9b4a2382fc86c2) Thanks [@ota-meshi](https://github.com/ota-meshi)! - fix: error when used with `@eslint/json`
+
 ## 1.5.0
 
 ### Minor Changes
