@@ -82,13 +82,13 @@ export default createRule("semi", {
     const never = context.options[0] === "never"
     const exceptOneLine = Boolean(
       options &&
-        "omitLastInOneLineBlock" in options &&
-        options.omitLastInOneLineBlock,
+      "omitLastInOneLineBlock" in options &&
+      options.omitLastInOneLineBlock,
     )
     const exceptOneLineClassBody = Boolean(
       options &&
-        "omitLastInOneLineClassBody" in options &&
-        options.omitLastInOneLineClassBody,
+      "omitLastInOneLineClassBody" in options &&
+      options.omitLastInOneLineClassBody,
     )
     const beforeStatementContinuationChars =
       (options &&

@@ -5,10 +5,10 @@ import assert from "assert"
 import { ESLint } from "eslint"
 import semver from "semver"
 
-const describeSkipWhenESLintV0 = semver.satisfies(ESLint.version, "<10")
-  ? it.skip
-  : it
-describeSkipWhenESLintV0("compat with @eslint/json", () => {
+const describeSkipWhenESLintV8 = semver.satisfies(ESLint.version, "<9")
+  ? describe.skip
+  : describe
+describeSkipWhenESLintV8("compat with @eslint/json", () => {
   describe("should not throw error from astro rules when used with @eslint/json", () => {
     for (const rule of rules) {
       it(rule.meta.docs.ruleName, () => {
