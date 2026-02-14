@@ -1,15 +1,15 @@
-import path from "path"
-import fs from "fs"
-import { rules } from "../src/rules"
-import type { RuleModule } from "../src/types"
-import { formatAndSave } from "./lib/utils"
+import path from "node:path"
+import fs from "node:fs"
+import { rules } from "../src/rules/index.ts"
+import type { RuleModule } from "../src/types.ts"
+import { formatAndSave } from "./lib/utils.ts"
 import {
   buildNotesFromRule,
   renderExtensionNote,
   renderImplementation,
   renderRuleHeader,
   renderVerion,
-} from "./lib/doc-renderer"
+} from "./lib/doc-renderer.ts"
 
 //eslint-disable-next-line jsdoc/require-jsdoc -- tools
 function yamlValue(val: unknown) {

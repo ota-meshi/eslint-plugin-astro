@@ -1,7 +1,7 @@
-import flatBase from "./configs/flat/base"
-import flatRecommended from "./configs/flat/recommended"
-import flatAll from "./configs/flat/all"
-import { buildA11yFlatConfigs } from "./a11y"
+import flatBase from "./configs/flat/base.ts"
+import flatRecommended from "./configs/flat/recommended.ts"
+import flatAll from "./configs/flat/all.ts"
+import { buildA11yFlatConfigs } from "./a11y/index.ts"
 import type { Linter } from "eslint"
 
 export type ESMConfigs = {

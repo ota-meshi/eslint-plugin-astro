@@ -1,9 +1,9 @@
 import type { AST } from "astro-eslint-parser"
 import type { RawSourceMap } from "source-map-js"
-import type { TransformResult } from "./types"
-import { getContentRange, loadModule } from "./utils"
-import type { RuleContext } from "../../types"
-import { getFilename, getSourceCode } from "../compat"
+import type { TransformResult } from "./types.ts"
+import { getContentRange, loadModule } from "./utils.ts"
+import type { RuleContext } from "../../types.ts"
+import { getFilename, getSourceCode } from "../compat.ts"
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports --- Ignore inline type
 type Stylus = typeof import("stylus")

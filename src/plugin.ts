@@ -1,8 +1,8 @@
-import { rules as ruleList } from "./rules"
-import * as processorsDefines from "./processor"
+import { rules as ruleList } from "./rules/index.ts"
+import * as processorsDefines from "./processor/index.ts"
 import type { Linter, Rule } from "eslint"
-import { name, version } from "./meta"
-import { environments } from "./environments"
+import { name, version } from "./meta.ts"
+import { environments } from "./environments/index.ts"
 
 export type AstroPlugin = {
   meta: { name: string; version: string }

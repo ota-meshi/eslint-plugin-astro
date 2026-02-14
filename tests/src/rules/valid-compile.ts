@@ -1,6 +1,6 @@
-import rule from "../../../src/rules/valid-compile"
-import { RuleTester } from "../../utils/eslint-compat"
-import { loadTestCases } from "../../utils/utils"
+import rule from "../../../src/rules/valid-compile.ts"
+import { RuleTester } from "../../utils/eslint-compat.ts"
+import { loadTestCases } from "../../utils/utils.ts"
 
 const tester = new RuleTester({
   languageOptions: {

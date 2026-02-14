@@ -11,7 +11,7 @@ import type {
   ASTNode,
   ASTNodeWithParent,
   ASTNodeListener,
-} from "./types-for-node"
+} from "./types-for-node.ts"
 import type { ParseResult } from "@astrojs/compiler"
 
 export type { ASTNode, ASTNodeWithParent, ASTNodeListener }

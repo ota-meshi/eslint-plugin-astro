@@ -1,6 +1,6 @@
-import { getPluginJsxA11y } from "./load"
-import { a11yConfigKeys } from "./keys"
-import flatBase from "../configs/flat/base"
+import { getPluginJsxA11y } from "./load.ts"
+import { a11yConfigKeys } from "./keys.ts"
+import flatBase from "../configs/flat/base.ts"
 import type { Linter } from "eslint"
 
 /** Build a11y configs */

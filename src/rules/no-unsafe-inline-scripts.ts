@@ -1,13 +1,13 @@
 import type { AST } from "astro-eslint-parser"
-import type { RuleContext, RuleModule } from "../types"
-import { createRule } from "../utils"
+import type { RuleContext, RuleModule } from "../types.ts"
+import { createRule } from "../utils/index.ts"
 import {
   findAttribute,
   getAttributeName,
   getElementName,
   getStaticAttributeStringValue,
-} from "../utils/ast-utils"
-import { getSourceCode } from "../utils/compat"
+} from "../utils/ast-utils.ts"
+import { getSourceCode } from "../utils/compat.ts"
 
 type ScriptAttribute =
   | AST.JSXAttribute

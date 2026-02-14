@@ -1,5 +1,5 @@
-import type { RuleContext, RuleListener } from "../types"
-import { requireUserLocal } from "../utils/resolve-parser/require-user"
+import type { RuleContext, RuleListener } from "../types.ts"
+import { requireUserLocal } from "../utils/resolve-parser/require-user.ts"
 
 export type PluginRuleModule = {
   meta?: {

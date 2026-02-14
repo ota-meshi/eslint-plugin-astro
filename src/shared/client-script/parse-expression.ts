@@ -1,6 +1,6 @@
 import { traverseNodes } from "astro-eslint-parser"
 import type { TSESTree } from "@typescript-eslint/types"
-import { resolveParser } from "../../utils/resolve-parser"
+import { resolveParser } from "../../utils/resolve-parser/index.ts"
 
 /**
  * Parse expression

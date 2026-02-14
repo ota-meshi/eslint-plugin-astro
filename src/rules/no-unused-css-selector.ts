@@ -5,17 +5,17 @@ import { getStaticValue } from "@eslint-community/eslint-utils"
 import type { Node as PostcssNode } from "postcss"
 import postcss from "postcss"
 import parser from "postcss-selector-parser"
-import type { RuleContext, RuleModule } from "../types"
-import { createRule } from "../utils"
+import type { RuleContext, RuleModule } from "../types.ts"
+import { createRule } from "../utils/index.ts"
 import {
   findAttribute,
   getElementName,
   getSpreadAttributes,
   getStaticAttributeStringValue,
-} from "../utils/ast-utils"
-import type { StyleContentCSS } from "../utils/transform"
-import { getStyleContentCSS } from "../utils/transform"
-import { getSourceCode } from "../utils/compat"
+} from "../utils/ast-utils.ts"
+import type { StyleContentCSS } from "../utils/transform/index.ts"
+import { getStyleContentCSS } from "../utils/transform/index.ts"
+import { getSourceCode } from "../utils/compat.ts"
 
 type JSXElementTreeNode = {
   parent: JSXElementTreeNode | RootJSXElementTreeNode

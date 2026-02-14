@@ -1,4 +1,4 @@
-import type { RuleModule, PartialRuleModule } from "../types"
+import type { RuleModule, PartialRuleModule } from "../types.ts"
 
 /**
  * Define the rule.

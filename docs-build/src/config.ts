@@ -1,4 +1,4 @@
-import { rules } from "../../src/rules"
+import { rules } from "../../src/rules/index.ts"
 
 const categories = [
   "Possible Errors",

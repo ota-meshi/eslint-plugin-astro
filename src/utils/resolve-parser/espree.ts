@@ -1,7 +1,7 @@
 import type { ParserOptions, TSESTree } from "@typescript-eslint/types"
-import { createRequire } from "module"
-import path from "path"
-import { requireUserLocal } from "./require-user"
+import { createRequire } from "node:module"
+import path from "node:path"
+import { requireUserLocal } from "./require-user.ts"
 
 type Espree = {
   parse(code: string, options?: ParserOptions | null): TSESTree.Program
@@ -33,7 +33,7 @@ export function getEspree(): Espree {
     espreeCache = requireUserLocal("espree")
   }
   if (!espreeCache) {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports -- ignore
+    // eslint-disable-next-line @typescript-eslint/no-require-imports, n/no-extraneous-require -- ignore
     espreeCache = require("espree")
   }
 

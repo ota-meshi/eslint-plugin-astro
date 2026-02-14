@@ -4,7 +4,7 @@ import {
   getPhysicalFilename as getPhysicalFilenameBase,
   getCwd as getCwdBase,
 } from "eslint-compat-utils"
-import type { RuleContext, SourceCode } from "../types"
+import type { RuleContext, SourceCode } from "../types.ts"
 
 // export function getSourceCode(context: RuleContext): SourceCode;
 // export function getSourceCode(context: Rule.RuleContext): ESLintSourceCode;

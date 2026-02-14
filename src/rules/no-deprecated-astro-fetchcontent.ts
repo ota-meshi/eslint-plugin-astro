@@ -1,7 +1,7 @@
 import { READ, ReferenceTracker } from "@eslint-community/eslint-utils"
-import { createRule } from "../utils"
-import { getSourceCode } from "../utils/compat"
-import type { RuleModule } from "../types"
+import { createRule } from "../utils/index.ts"
+import { getSourceCode } from "../utils/compat.ts"
+import type { RuleModule } from "../types.ts"
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
 export default createRule("no-deprecated-astro-fetchcontent", {

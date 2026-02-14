@@ -1,6 +1,6 @@
-import assert from "assert"
+import assert from "node:assert"
 import plugin from "../../../src/index.cts"
-import { LegacyESLint, FlatESLint } from "../../utils/eslint-compat"
+import { LegacyESLint, FlatESLint } from "../../utils/eslint-compat.ts"
 import { ESLint } from "eslint"
 import semver from "semver"
 

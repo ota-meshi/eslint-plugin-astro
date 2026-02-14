@@ -1,7 +1,7 @@
 // IMPORTANT!
 // This file has been automatically generated,
 // in order to update its content execute "npm run update"
-import { getPluginJsxA11y } from "./load"
+import { getPluginJsxA11y } from "./load.ts"
 
 const plugin = getPluginJsxA11y()
 export const a11yRuleKeys: string[] = plugin?.rules

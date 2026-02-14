@@ -1,7 +1,7 @@
 import type { AST } from "astro-eslint-parser"
 import type { TSESTree } from "@typescript-eslint/types"
 import { AST_NODE_TYPES } from "@typescript-eslint/types"
-import type { RuleContext, SourceCode } from "../types"
+import type { RuleContext, SourceCode } from "../types.ts"
 import type { StaticValue } from "@eslint-community/eslint-utils"
 import {
   isParenthesized,
@@ -9,7 +9,7 @@ import {
   isClosingParenToken,
   getStaticValue,
 } from "@eslint-community/eslint-utils"
-import { getSourceCode } from "./compat"
+import { getSourceCode } from "./compat.ts"
 
 const anyFunctionPattern =
   /^(?:Function(?:Declaration|Expression)|ArrowFunctionExpression)$/u

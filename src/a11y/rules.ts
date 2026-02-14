@@ -1,11 +1,11 @@
-import type { RuleContext, RuleListener, RuleModule } from "../types"
-import type { PluginRuleModule } from "./load"
-import { getPluginJsxA11y } from "./load"
-import type { ASTNode } from "../types-for-node"
-import { createRule } from "../utils"
-import { a11yRuleKeys } from "./keys"
-import { getAttributeName } from "../utils/ast-utils"
-import { getSourceCode } from "../utils/compat"
+import type { RuleContext, RuleListener, RuleModule } from "../types.ts"
+import type { PluginRuleModule } from "./load.ts"
+import { getPluginJsxA11y } from "./load.ts"
+import type { ASTNode } from "../types-for-node.ts"
+import { createRule } from "../utils/index.ts"
+import { a11yRuleKeys } from "./keys.ts"
+import { getAttributeName } from "../utils/ast-utils.ts"
+import { getSourceCode } from "../utils/compat.ts"
 
 const TYPE_MAP: Partial<Record<ASTNode["type"], ASTNode["type"]>> = {
   AstroRawText: "JSXText",

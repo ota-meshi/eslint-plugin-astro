@@ -1,7 +1,7 @@
-import { resolve } from "path"
-import fs from "fs"
-import renderRulesTableContent from "./render-rules-table"
-import { formatAndSave } from "./lib/utils"
+import { resolve } from "node:path"
+import fs from "node:fs"
+import renderRulesTableContent from "./render-rules-table.ts"
+import { formatAndSave } from "./lib/utils.ts"
 
 const insertText = `\n${renderRulesTableContent(
   (name) => `https://ota-meshi.github.io/eslint-plugin-astro/rules/${name}/`,

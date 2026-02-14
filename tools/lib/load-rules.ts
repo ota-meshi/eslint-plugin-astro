@@ -1,7 +1,7 @@
-import path from "path"
-import fs from "fs"
-import { createRequire } from "module"
-import type { RuleModule } from "../../src/types"
+import path from "node:path"
+import fs from "node:fs"
+import { createRequire } from "node:module"
+import type { RuleModule } from "../../src/types.ts"
 
 const url = import.meta.url
 const require = createRequire(url)

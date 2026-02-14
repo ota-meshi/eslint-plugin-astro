@@ -1,10 +1,10 @@
-import { buildLegacyBase } from "./configs/base"
-import recommended from "./configs/recommended"
-import all from "./configs/all"
-import flatBase from "./configs/flat/base"
-import flatRecommended from "./configs/flat/recommended"
-import flatAll from "./configs/flat/all"
-import { buildA11yFlatConfigs, buildA11yLegacyConfigs } from "./a11y"
+import { buildLegacyBase } from "./configs/base.ts"
+import recommended from "./configs/recommended.ts"
+import all from "./configs/all.ts"
+import flatBase from "./configs/flat/base.ts"
+import flatRecommended from "./configs/flat/recommended.ts"
+import flatAll from "./configs/flat/all.ts"
+import { buildA11yFlatConfigs, buildA11yLegacyConfigs } from "./a11y/index.ts"
 import type { Linter } from "eslint"
 
 export type CJSConfigs = {

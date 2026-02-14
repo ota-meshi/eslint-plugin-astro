@@ -1,14 +1,14 @@
 import type { AST } from "astro-eslint-parser"
 import type { TSESTree } from "@typescript-eslint/types"
-import { createRule } from "../utils"
-import { getSourceCode } from "../utils/compat"
+import { createRule } from "../utils/index.ts"
+import { getSourceCode } from "../utils/compat.ts"
 import {
   isClosingBraceToken,
   isSemicolonToken,
 } from "@eslint-community/eslint-utils"
-import { getNextLocation, isTokenOnSameLine } from "../utils/ast-utils"
-import type { RuleFixer, RuleModule } from "../types"
-import FixTracker from "../utils/fix-tracker"
+import { getNextLocation, isTokenOnSameLine } from "../utils/ast-utils.ts"
+import type { RuleFixer, RuleModule } from "../types.ts"
+import FixTracker from "../utils/fix-tracker.ts"
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
 export default createRule("semi", {

@@ -1,5 +1,5 @@
-import assert from "assert"
-import { getPlugin } from "../../src/plugin"
+import assert from "node:assert"
+import { getPlugin } from "../../src/plugin.ts"
 import { version } from "../../package.json"
 const plugin = getPlugin()
 const expectedMeta = {

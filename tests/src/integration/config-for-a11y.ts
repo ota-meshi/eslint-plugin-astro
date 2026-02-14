@@ -2,8 +2,8 @@ import { ESLint } from "eslint"
 // @ts-expect-error -- ignore
 import jsxA11yPlugin from "eslint-plugin-jsx-a11y"
 import astroPlugin from "../../../src/index.cts"
-import assert from "assert"
-import Module from "module"
+import assert from "node:assert"
+import Module from "node:module"
 import semver from "semver"
 
 describe("Integration test for a11y config", () => {

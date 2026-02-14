@@ -1,6 +1,6 @@
 import type { parseForESLint } from "@typescript-eslint/parser"
-import { getEspree } from "./espree"
-import { requireUserLocal } from "./require-user"
+import { getEspree } from "./espree.ts"
+import { requireUserLocal } from "./require-user.ts"
 
 /** Resolve parser */
 export function resolveParser(): { parseForESLint: typeof parseForESLint } {

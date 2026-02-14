@@ -1,7 +1,7 @@
 import type { Linter } from "eslint"
-import type { RuleModule } from "../types"
-import { buildFlatConfigs, buildLegacyConfigs } from "./configs"
-import { buildRules } from "./rules"
+import type { RuleModule } from "../types.ts"
+import { buildFlatConfigs, buildLegacyConfigs } from "./configs.ts"
+import { buildRules } from "./rules.ts"
 
 /** Build a11y rules */
 export function buildA11yRules(): RuleModule[] {
