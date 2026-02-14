@@ -32,6 +32,7 @@ module.exports = [
       "tests/fixtures/integration/**/actual.json",
       "tests/fixtures/integration/*/src/",
       "build/",
+      ".astro/",
     ],
   },
   ...myPlugin.config({
