@@ -117,7 +117,7 @@
     "eslint-plugin-n": "^17.2.0",
     "eslint-plugin-node-dependencies": "^1.0.0",
     "eslint-plugin-prettier": "^5.0.0",
-    "eslint-plugin-regexp": "^2.5.0",
+    "eslint-plugin-regexp": "^3.0.0",
     "eslint-plugin-svelte": "^3.0.0",
     "eslint-plugin-yml": "^1.0.0",
     "expect-type": "^1.0.0",
