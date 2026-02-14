@@ -21,7 +21,7 @@ export default createRule("no-deprecated-astro-fetchcontent", {
   },
   create(context) {
     const sourceCode = getSourceCode(context)
-    if (!sourceCode.parserServices.isAstro) {
+    if (!sourceCode.parserServices?.isAstro) {
       return {}
     }
 

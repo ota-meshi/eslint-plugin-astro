@@ -46,7 +46,7 @@ export default createRule("prefer-split-class-list", {
   },
   create(context) {
     const sourceCode = getSourceCode(context)
-    if (!sourceCode.parserServices.isAstro) {
+    if (!sourceCode.parserServices?.isAstro) {
       return {}
     }
 

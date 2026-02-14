@@ -22,7 +22,7 @@ export default createRule("no-exports-from-components", {
   },
   create(context) {
     const sourceCode = getSourceCode(context)
-    if (!sourceCode.parserServices.isAstro) {
+    if (!sourceCode.parserServices?.isAstro) {
       return {}
     }
 

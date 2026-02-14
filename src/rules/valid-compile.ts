@@ -16,10 +16,14 @@ export default createRule("valid-compile", {
   },
   create(context) {
     const sourceCode = getSourceCode(context)
-    if (!sourceCode.parserServices.isAstro) {
+    if (!sourceCode.parserServices?.isAstro) {
       return {}
     }
-    const diagnostics = sourceCode.parserServices.getAstroResult().diagnostics
+    const diagnostics =
+      sourceCode.parserServices?.getAstroResult?.().diagnostics
+    if (!diagnostics) {
+      return {}
+    }
 
     return {
       Program() {

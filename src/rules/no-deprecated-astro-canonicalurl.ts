@@ -20,7 +20,7 @@ export default createRule("no-deprecated-astro-canonicalurl", {
   },
   create(context) {
     const sourceCode = getSourceCode(context)
-    if (!sourceCode.parserServices.isAstro) {
+    if (!sourceCode.parserServices?.isAstro) {
       return {}
     }
 
