@@ -66,9 +66,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install eslint v10
-        run: |+
-          npm i -D eslint@10 -f
-          npx rimraf node_modules
+        run: npm pkg set devDependencies.eslint=^10
       - name: Install Packages
         run: npm install -f
       - name: Test
@@ -80,9 +78,7 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v6
       - name: Install eslint v8.57.0
-        run: |+
-          npm i -D eslint@^8.57.0 -f
-          npx rimraf node_modules
+        run: npm pkg set devDependencies.eslint=^8.57.0
       - name: Install Packages
         run: npm install -f
       - name: Test
