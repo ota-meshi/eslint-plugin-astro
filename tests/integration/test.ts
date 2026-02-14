@@ -1,7 +1,7 @@
-import cp from "child_process"
-import assert from "assert"
-import fs from "fs"
-import path from "path"
+import cp from "node:child_process"
+import assert from "node:assert"
+import fs from "node:fs"
+import path from "node:path"
 
 const TEST_FIXTURES_ROOT = path.join(__dirname, "../fixtures/integration")
 

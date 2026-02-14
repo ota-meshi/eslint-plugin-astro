@@ -1,7 +1,7 @@
 import { ESLint } from "eslint"
 import astroPlugin from "../../../src/index.cts"
-import assert from "assert"
-import Module from "module"
+import assert from "node:assert"
+import Module from "node:module"
 import semver from "semver"
 
 describe("Integration test for parse error", () => {

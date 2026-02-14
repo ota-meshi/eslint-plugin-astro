@@ -1,6 +1,6 @@
-import { RuleTester, testRuleIdPrefix } from "../../utils/eslint-compat"
-import { astroProcessor } from "../../../src/processor"
-import { getCoreRule } from "./get-core-rule"
+import { RuleTester, testRuleIdPrefix } from "../../utils/eslint-compat.ts"
+import { astroProcessor } from "../../../src/processor/index.ts"
+import { getCoreRule } from "./get-core-rule.ts"
 
 describe("Integration test for linebreak-style", () => {
   const ruleNoUnusedVars = getCoreRule("linebreak-style")!

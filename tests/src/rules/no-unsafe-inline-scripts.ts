@@ -1,6 +1,6 @@
-import { RuleTester } from "../../utils/eslint-compat"
-import { getPlugin } from "../../../src/plugin"
-import { loadTestCases, unIndent } from "../../utils/utils"
+import { RuleTester } from "../../utils/eslint-compat.ts"
+import { getPlugin } from "../../../src/plugin.ts"
+import { loadTestCases, unIndent } from "../../utils/utils.ts"
 import * as astroESLintParser from "astro-eslint-parser"
 const plugin = getPlugin()
 

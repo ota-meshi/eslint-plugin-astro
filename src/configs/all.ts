@@ -1,5 +1,5 @@
-import recommended from "./recommended"
-import { rules } from "../rules"
+import recommended from "./recommended.ts"
+import { rules } from "../rules/index.ts"
 import type { Linter } from "eslint"
 
 const all: Record<string, string> = {}

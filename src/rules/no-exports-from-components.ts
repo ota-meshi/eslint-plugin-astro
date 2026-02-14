@@ -1,7 +1,7 @@
 import type { TSESTree } from "@typescript-eslint/types"
-import { createRule } from "../utils"
-import { getSourceCode } from "../utils/compat"
-import type { RuleModule } from "../types"
+import { createRule } from "../utils/index.ts"
+import { getSourceCode } from "../utils/compat.ts"
+import type { RuleModule } from "../types.ts"
 
 const ALLOWED_EXPORTS = new Set(["getStaticPaths", "partial", "prerender"])
 

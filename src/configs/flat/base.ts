@@ -7,9 +7,9 @@ import * as parser from "astro-eslint-parser"
 import {
   tsESLintParser,
   hasTypescriptEslintParser,
-} from "../has-typescript-eslint-parser"
-import { environments } from "../../environments/index"
-import { getPlugin } from "../../plugin"
+} from "../has-typescript-eslint-parser.ts"
+import { environments } from "../../environments/index.ts"
+import { getPlugin } from "../../plugin.ts"
 export default [
   {
     name: "astro/base/plugin",

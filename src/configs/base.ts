@@ -2,7 +2,7 @@
 // This file has been automatically generated,
 // in order to update its content execute "npm run update"
 import type { Linter } from "eslint"
-import { hasTypescriptEslintParser } from "./has-typescript-eslint-parser"
+import { hasTypescriptEslintParser } from "./has-typescript-eslint-parser.ts"
 
 /**
  * Build legacy base config

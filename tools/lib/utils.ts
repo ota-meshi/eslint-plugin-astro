@@ -1,5 +1,5 @@
 import { ESLint } from "eslint"
-import fs from "fs"
+import fs from "node:fs"
 const eslint = new ESLint({ fix: true })
 
 /** Run eslint fix */

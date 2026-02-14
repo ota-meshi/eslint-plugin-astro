@@ -1,4 +1,4 @@
-import { ClientScript } from "./client-script"
+import { ClientScript } from "./client-script/index.ts"
 import type { ElementNode } from "@astrojs/compiler/types"
 import type { ParseTemplateResult } from "astro-eslint-parser"
 

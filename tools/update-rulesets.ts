@@ -1,6 +1,6 @@
-import path from "path"
-import { rules } from "./lib/load-rules"
-import { formatAndSave } from "./lib/utils"
+import path from "node:path"
+import { rules } from "./lib/load-rules.ts"
+import { formatAndSave } from "./lib/utils.ts"
 
 const baseRules = rules.filter(
   (rule) => rule.meta.docs.recommended === "base" && !rule.meta.deprecated,

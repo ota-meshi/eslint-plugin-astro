@@ -1,8 +1,8 @@
 import type { AST } from "astro-eslint-parser"
-import Module from "module"
-import path from "path"
-import type { RuleContext } from "../../types"
-import { getCwd, getSourceCode } from "../compat"
+import Module from "node:module"
+import path from "node:path"
+import type { RuleContext } from "../../types.ts"
+import { getCwd, getSourceCode } from "../compat.ts"
 const cache = new WeakMap<AST.AstroProgram, Record<string, unknown>>()
 /**
  * Load module

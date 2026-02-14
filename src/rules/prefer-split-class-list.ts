@@ -1,7 +1,7 @@
 import type { AST } from "astro-eslint-parser"
 import { AST_NODE_TYPES } from "@typescript-eslint/types"
 import type { TSESTree } from "@typescript-eslint/types"
-import { createRule } from "../utils"
+import { createRule } from "../utils/index.ts"
 import type { TrackedReferences } from "@eslint-community/eslint-utils"
 import {
   isOpeningParenToken,
@@ -12,13 +12,13 @@ import {
   getAttributeName,
   isStringCallExpression,
   isStringLiteral,
-} from "../utils/ast-utils"
-import type { Token } from "../utils/string-literal-parser"
-import { parseStringTokens } from "../utils/string-literal-parser"
+} from "../utils/ast-utils.ts"
+import type { Token } from "../utils/string-literal-parser/index.ts"
+import { parseStringTokens } from "../utils/string-literal-parser/index.ts"
 import type { Rule } from "eslint"
 import { getPropertyName } from "@eslint-community/eslint-utils"
-import { getSourceCode } from "../utils/compat"
-import type { RuleModule } from "../types"
+import { getSourceCode } from "../utils/compat.ts"
+import type { RuleModule } from "../types.ts"
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
 export default createRule("prefer-split-class-list", {

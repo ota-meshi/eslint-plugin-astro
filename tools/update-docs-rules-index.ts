@@ -1,6 +1,6 @@
-import path from "path"
-import renderRulesTableContent from "./render-rules-table"
-import { formatAndSave } from "./lib/utils"
+import path from "node:path"
+import renderRulesTableContent from "./render-rules-table.ts"
+import { formatAndSave } from "./lib/utils.ts"
 
 // -----------------------------------------------------------------------------
 const readmeFilePath = path.resolve(__dirname, "../docs/rules.md")

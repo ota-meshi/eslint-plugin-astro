@@ -1,7 +1,7 @@
 import json from "@eslint/json"
 import { Linter } from "eslint"
 import { rules } from "../../../src/rules/index.ts"
-import assert from "assert"
+import assert from "node:assert"
 import { ESLint } from "eslint"
 import semver from "semver"
 

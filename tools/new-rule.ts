@@ -1,7 +1,7 @@
-import path from "path"
-import fs from "fs"
-import cp from "child_process"
-import { renderRuleHeader } from "./lib/doc-renderer"
+import path from "node:path"
+import fs from "node:fs"
+import cp from "node:child_process"
+import { renderRuleHeader } from "./lib/doc-renderer.ts"
 const logger = console
 
 // main

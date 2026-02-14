@@ -107,6 +107,18 @@ module.exports = [
     },
   },
   {
+    files: ["**/*.{js,ts,mjc,mts,cjs,cts}"],
+    rules: {
+      "n/prefer-node-protocol": "error",
+      "n/file-extension-in-import": ["error", "always"],
+    },
+    settings: {
+      n: {
+        typescriptExtensionMap: [],
+      },
+    },
+  },
+  {
     files: ["**/*.astro", "*.astro"],
     rules: {
       "astro/prefer-split-class-list": [

@@ -1,7 +1,7 @@
 import { AST_NODE_TYPES } from "@typescript-eslint/types"
 import { parseForESLint } from "astro-eslint-parser"
-import path from "path"
-import { formatAndSave } from "./lib/utils"
+import path from "node:path"
+import { formatAndSave } from "./lib/utils.ts"
 
 // import { fileURLToPath } from "url"
 // const filename = fileURLToPath(import.meta.url)

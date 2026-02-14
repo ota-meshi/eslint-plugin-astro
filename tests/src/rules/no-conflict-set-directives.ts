@@ -1,6 +1,6 @@
-import { RuleTester } from "../../utils/eslint-compat"
-import rule from "../../../src/rules/no-conflict-set-directives"
-import { loadTestCases } from "../../utils/utils"
+import { RuleTester } from "../../utils/eslint-compat.ts"
+import rule from "../../../src/rules/no-conflict-set-directives.ts"
+import { loadTestCases } from "../../utils/utils.ts"
 
 const tester = new RuleTester({
   languageOptions: {

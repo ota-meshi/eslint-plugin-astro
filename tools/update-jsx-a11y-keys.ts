@@ -1,7 +1,7 @@
-import path from "path"
+import path from "node:path"
 // @ts-expect-error -- ignore
 import { rules, configs } from "eslint-plugin-jsx-a11y"
-import { formatAndSave } from "./lib/utils"
+import { formatAndSave } from "./lib/utils.ts"
 
 const content = `/*
  * IMPORTANT!

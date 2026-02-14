@@ -1,10 +1,10 @@
-import fs from "fs"
-import path from "path"
+import fs from "node:fs"
+import path from "node:path"
 import type { RuleTester } from "eslint"
 import { getLinter as getCompatLinter } from "eslint-compat-utils/linter"
 import * as astroESLintParser from "astro-eslint-parser"
-import { getPlugin } from "../../src/plugin"
-import { applyFixes } from "./source-code-fixer"
+import { getPlugin } from "../../src/plugin.ts"
+import { applyFixes } from "./source-code-fixer.ts"
 
 const plugin = getPlugin()
 // eslint-disable-next-line @typescript-eslint/naming-convention -- class name
