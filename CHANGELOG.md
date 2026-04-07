@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 1.7.0
+
+### Minor Changes
+
+- [#550](https://github.com/ota-meshi/eslint-plugin-astro/pull/550) [`40fef30`](https://github.com/ota-meshi/eslint-plugin-astro/commit/40fef30d6c118e6fbb19684a2801c5ee7cec91aa) Thanks [@jp-knj](https://github.com/jp-knj)! - add `astro/no-prerender-export-outside-pages` rule that disallow `prerender` export outside of pages/ directory
+
 ## 1.6.0
 
 ### Minor Changes
