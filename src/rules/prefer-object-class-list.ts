@@ -220,7 +220,7 @@ export default createRule("prefer-object-class-list", {
         | TSESTree.PrivateIdentifier,
     ): string[] | null {
       if (node.type === "TemplateElement") {
-        return [node.value.cooked]
+        return node.value.cooked != null ? [node.value.cooked] : null
       }
       if (node.type === "ConditionalExpression") {
         const values = parseConditionalExpression(node)
@@ -584,8 +584,8 @@ export default createRule("prefer-object-class-list", {
               *fixExpression(data) {
                 const fixer = data.fixer
                 if (
-                  beforeQuasi.value.cooked.trim() ||
-                  afterQuasi.value.cooked.trim() ||
+                  beforeQuasi.value.cooked?.trim() ||
+                  afterQuasi.value.cooked?.trim() ||
                   // has other expression
                   node.expressions.length > 1
                 ) {
