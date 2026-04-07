@@ -20,6 +20,7 @@ These rules relate to possible syntax or logic errors in Astro component code:
 | [astro/no-deprecated-astro-resolve](./rules/no-deprecated-astro-resolve.md) | disallow using deprecated `Astro.resolve()` | ⭐ |
 | [astro/no-deprecated-getentrybyslug](./rules/no-deprecated-getentrybyslug.md) | disallow using deprecated `getEntryBySlug()` | ⭐ |
 | [astro/no-exports-from-components](./rules/no-exports-from-components.md) | disallow value export |  |
+| [astro/no-prerender-export-outside-pages](./rules/no-prerender-export-outside-pages.md) | disallow `prerender` export outside of pages/ directory |  |
 | [astro/no-unused-define-vars-in-style](./rules/no-unused-define-vars-in-style.md) | disallow unused `define:vars={...}` in `style` tag | ⭐ |
 | [astro/valid-compile](./rules/valid-compile.md) | disallow warnings when compiling. | ⭐ |
 

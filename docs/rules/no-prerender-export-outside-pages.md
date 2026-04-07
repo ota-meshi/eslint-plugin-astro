@@ -1,6 +1,7 @@
 ---
 title: "astro/no-prerender-export-outside-pages"
 description: "disallow `prerender` export outside of pages/ directory"
+since: "v1.7.0"
 ---
 
 # astro/no-prerender-export-outside-pages
@@ -43,6 +44,10 @@ If your project doesn't use hybrid rendering or if all files under `src/pages/` 
 
 - [Astro Docs: On-demand Rendering](https://docs.astro.build/en/guides/on-demand-rendering/)
 - [Astro Docs: `prerender` export](https://docs.astro.build/en/reference/routing-reference/#prerender)
+
+## 🚀 Version
+
+This rule was introduced in eslint-plugin-astro v1.7.0
 
 ## 🔍 Implementation
 

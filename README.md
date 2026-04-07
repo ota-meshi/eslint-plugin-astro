@@ -416,6 +416,7 @@ These rules relate to possible syntax or logic errors in Astro component code:
 | [astro/no-deprecated-astro-resolve](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-deprecated-astro-resolve/) | disallow using deprecated `Astro.resolve()` | ⭐ |
 | [astro/no-deprecated-getentrybyslug](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-deprecated-getentrybyslug/) | disallow using deprecated `getEntryBySlug()` | ⭐ |
 | [astro/no-exports-from-components](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-exports-from-components/) | disallow value export |  |
+| [astro/no-prerender-export-outside-pages](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-prerender-export-outside-pages/) | disallow `prerender` export outside of pages/ directory |  |
 | [astro/no-unused-define-vars-in-style](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-unused-define-vars-in-style/) | disallow unused `define:vars={...}` in `style` tag | ⭐ |
 | [astro/valid-compile](https://ota-meshi.github.io/eslint-plugin-astro/rules/valid-compile/) | disallow warnings when compiling. | ⭐ |
 
