@@ -410,6 +410,7 @@ These rules relate to possible syntax or logic errors in Astro component code:
 | Rule ID | Description |    |
 |:--------|:------------|:---|
 | [astro/missing-client-only-directive-value](https://ota-meshi.github.io/eslint-plugin-astro/rules/missing-client-only-directive-value/) | the client:only directive is missing the correct component's framework value | ⭐ |
+| [astro/no-client-directive-on-astro-component](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-client-directive-on-astro-component/) | disallow using `client:` directives on Astro components since they are server-only | ⭐ |
 | [astro/no-conflict-set-directives](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-conflict-set-directives/) | disallow conflicting set directives and child contents | ⭐ |
 | [astro/no-deprecated-astro-canonicalurl](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-deprecated-astro-canonicalurl/) | disallow using deprecated `Astro.canonicalURL` | ⭐ |
 | [astro/no-deprecated-astro-fetchcontent](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-deprecated-astro-fetchcontent/) | disallow using deprecated `Astro.fetchContent()` | ⭐🔧 |
