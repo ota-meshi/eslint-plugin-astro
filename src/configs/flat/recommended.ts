@@ -10,6 +10,7 @@ export default [
     rules: {
       // eslint-plugin-astro rules
       "astro/missing-client-only-directive-value": "error",
+      "astro/no-client-directive-on-astro-component": "error",
       "astro/no-conflict-set-directives": "error",
       "astro/no-deprecated-astro-canonicalurl": "error",
       "astro/no-deprecated-astro-fetchcontent": "error",

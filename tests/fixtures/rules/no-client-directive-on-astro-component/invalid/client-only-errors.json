@@ -1,0 +1,7 @@
+[
+  {
+    "message": "Cannot use `client:only` on an Astro component. Astro components are server-only and cannot be hydrated on the client.",
+    "line": 5,
+    "column": 17
+  }
+]
