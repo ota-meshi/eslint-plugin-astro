@@ -14,6 +14,7 @@ import noSetTextDirective from "./no-set-text-directive.ts"
 import noUnsafeInlineScripts from "./no-unsafe-inline-scripts.ts"
 import noUnusedCssSelector from "./no-unused-css-selector.ts"
 import noUnusedDefineVarsInStyle from "./no-unused-define-vars-in-style.ts"
+import preferAstroZodImport from "./prefer-astro-zod-import.ts"
 import preferClassListDirective from "./prefer-class-list-directive.ts"
 import preferObjectClassList from "./prefer-object-class-list.ts"
 import preferSplitClassList from "./prefer-split-class-list.ts"
@@ -37,6 +38,7 @@ export const originalRules: RuleModule[] = [
   noUnsafeInlineScripts,
   noUnusedCssSelector,
   noUnusedDefineVarsInStyle,
+  preferAstroZodImport,
   preferClassListDirective,
   preferObjectClassList,
   preferSplitClassList,

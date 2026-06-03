@@ -437,6 +437,7 @@ These rules relate to better ways of doing things to help you avoid problems:
 |:--------|:------------|:---|
 | [astro/no-set-text-directive](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-set-text-directive/) | disallow use of `set:text` | 🔧 |
 | [astro/no-unused-css-selector](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-unused-css-selector/) | disallow selectors defined in `style` tag that don't use in HTML |  |
+| [astro/prefer-astro-zod-import](https://ota-meshi.github.io/eslint-plugin-astro/rules/prefer-astro-zod-import/) | enforce importing Zod from `astro/zod` to stay in sync with the version bundled with Astro | 🔧 |
 
 ## Stylistic Issues
 
