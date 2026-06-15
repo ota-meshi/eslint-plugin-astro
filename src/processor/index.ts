@@ -58,7 +58,7 @@ function preprocess(
           node.openingElement.name.type === "JSXIdentifier" &&
           node.openingElement.name.name === "script" &&
           node.children.length &&
-          node.openingElement.attributes.some(
+          !node.openingElement.attributes.some(
             (attr) =>
               attr.type === "JSXAttribute" &&
               attr.name.type === "JSXIdentifier" &&
