@@ -5,6 +5,7 @@ import { beginShared, terminateShared } from "../shared/index.ts"
 import * as meta from "../meta.ts"
 import {
   isAstroFrontmatter,
+  isAstroScriptNode,
   isJSXClosingElement,
   isJSXElement,
   isJSXOpeningElement,
@@ -48,7 +49,8 @@ function preprocess(
       if (
         isAstroFrontmatter(node) ||
         isJSXOpeningElement(node) ||
-        isJSXClosingElement(node)
+        isJSXClosingElement(node) ||
+        isAstroScriptNode(node)
       ) {
         ctx.skipChildren()
         return
