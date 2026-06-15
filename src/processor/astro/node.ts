@@ -1,5 +1,6 @@
 import type {
   AstroFrontmatterNode,
+  AstroScriptNode,
   JSXClosingElementNode,
   JSXElementNode,
   JSXOpeningElementNode,
@@ -25,9 +26,14 @@ export function isJSXClosingElement(
   return node.type === "JSXClosingElement"
 }
 
-/** Check whether the given node is a walkable template node. */
+/** Check whether the given node is a Astro frontmatter node. */
 export function isAstroFrontmatter(
   node: UnknownNode,
 ): node is AstroFrontmatterNode {
   return node.type === "AstroFrontmatter"
+}
+
+/** Check whether the given node is a Astro script node. */
+export function isAstroScriptNode(node: UnknownNode): node is AstroScriptNode {
+  return node.type === "AstroScript"
 }

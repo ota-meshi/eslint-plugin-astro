@@ -29,6 +29,11 @@ export type UnknownNode = LocatedNode & {
   type: unknown
 }
 
+export type ProgramNode = LocatedNode & {
+  type: "Program"
+  body: UnknownNode[]
+}
+
 export type AstroRootNode = LocatedNode & {
   type: "AstroRoot"
   frontmatter?: AstroFrontmatterNode
@@ -37,8 +42,14 @@ export type AstroRootNode = LocatedNode & {
 
 export type AstroFrontmatterNode = LocatedNode & {
   type: "AstroFrontmatter"
-  program: UnknownNode
+  program: ProgramNode
 }
+
+export type AstroScriptNode = LocatedNode & {
+  type: "AstroScript"
+  program: ProgramNode
+}
+
 export type JSXElementNode = LocatedNode & {
   type: "JSXElement"
   openingElement: JSXOpeningElementNode
