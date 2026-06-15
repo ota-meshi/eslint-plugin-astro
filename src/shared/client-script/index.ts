@@ -8,6 +8,7 @@ import type {
   JSXElementNode,
   JSXExpressionContainerNode,
 } from "../../processor/astro/types.ts"
+import { isAstroScriptNode } from "../../processor/astro/node.ts"
 
 const RE_LEADING_SPACES = /^[\t ]+/u
 let seq = 0
@@ -63,9 +64,14 @@ export class ClientScript {
   }
 
   private initBlock() {
-    const textNode = this.script.children[0]
-    const startOffset = textNode.start
-    const endOffset = textNode.end
+    const textRangeData = isAstroScriptNode(this.script.children[0])
+      ? this.script.children[0].program
+      : {
+          start: this.script.openingElement.end,
+          end: this.script.closingElement!.start,
+        }
+    const startOffset = textRangeData.start
+    const endOffset = textRangeData.end
     const startLoc = this.parsed.getLocFromIndex(startOffset)
 
     const lines = this.code.slice(startOffset, endOffset).split(/(?<=\n)/u)
