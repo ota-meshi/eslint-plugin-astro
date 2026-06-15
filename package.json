@@ -72,7 +72,7 @@
     "@eslint-community/eslint-utils": "^4.5.1",
     "@jridgewell/sourcemap-codec": "^1.5.0",
     "@typescript-eslint/types": "^8.61.0",
-    "astro-eslint-parser": "^2.0.0",
+    "astro-eslint-parser": "https://pkg.pr.new/astro-eslint-parser@fac2921",
     "espree": "^11.0.0",
     "globals": "^17.0.0",
     "parse5": "^8.0.0",

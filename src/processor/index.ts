@@ -3,6 +3,12 @@ import { parseTemplate } from "astro-eslint-parser"
 import type { Linter } from "eslint"
 import { beginShared, terminateShared } from "../shared/index.ts"
 import * as meta from "../meta.ts"
+import {
+  isAstroFrontmatter,
+  isJSXClosingElement,
+  isJSXElement,
+  isJSXOpeningElement,
+} from "./astro/node.ts"
 
 export const astroProcessor: Linter.Processor = {
   preprocess(code: string, filename: string) {
@@ -38,17 +44,31 @@ function preprocess(
       return [code]
     }
 
-    parsed.walk(parsed.result.ast, (node) => {
+    parsed.walk(parsed.result.ast, (node, _, ctx) => {
       if (
-        node.type === "element" &&
-        node.name === "script" &&
-        node.children.length &&
-        !node.attributes.some(
-          ({ name, value }) =>
-            name === "type" && /json$|importmap/i.test(value),
-        )
+        isAstroFrontmatter(node) ||
+        isJSXOpeningElement(node) ||
+        isJSXClosingElement(node)
       ) {
-        shared.addClientScript(code, node, parsed)
+        ctx.skipChildren()
+        return
+      }
+      if (isJSXElement(node)) {
+        if (
+          node.openingElement.name.type === "JSXIdentifier" &&
+          node.openingElement.name.name === "script" &&
+          node.children.length &&
+          node.openingElement.attributes.some(
+            (attr) =>
+              attr.type === "JSXAttribute" &&
+              attr.name.type === "JSXIdentifier" &&
+              attr.name.name === "type" &&
+              attr.value?.type === "Literal" &&
+              /json$|importmap/i.test(String(attr.value.value)),
+          )
+        ) {
+          shared.addClientScript(code, node, parsed)
+        }
       }
     })
     return [
