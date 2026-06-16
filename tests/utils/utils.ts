@@ -1,5 +1,6 @@
 import fs from "node:fs"
 import path from "node:path"
+import { fileURLToPath } from "node:url"
 import type { RuleTester } from "eslint"
 import { getLinter as getCompatLinter } from "eslint-compat-utils/linter"
 import * as astroESLintParser from "astro-eslint-parser"
@@ -7,6 +8,7 @@ import { getPlugin } from "../../src/plugin.ts"
 import { applyFixes } from "./source-code-fixer.ts"
 
 const plugin = getPlugin()
+const dirname = path.dirname(fileURLToPath(import.meta.url))
 // eslint-disable-next-line @typescript-eslint/naming-convention -- class name
 const Linter = getCompatLinter()
 
@@ -71,11 +73,11 @@ export function loadTestCases(
   invalid: RuleTester.InvalidTestCase[]
 } {
   const validFixtureRoot = path.resolve(
-    __dirname,
+    dirname,
     `../fixtures/rules/${ruleName}/valid/`,
   )
   const invalidFixtureRoot = path.resolve(
-    __dirname,
+    dirname,
     `../fixtures/rules/${ruleName}/invalid/`,
   )
 

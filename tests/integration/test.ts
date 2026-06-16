@@ -2,14 +2,17 @@ import cp from "node:child_process"
 import assert from "node:assert"
 import fs from "node:fs"
 import path from "node:path"
+import { fileURLToPath } from "node:url"
 
-const TEST_FIXTURES_ROOT = path.join(__dirname, "../fixtures/integration")
+const dirname = path.dirname(fileURLToPath(import.meta.url))
+const TEST_FIXTURES_ROOT = path.join(dirname, "../fixtures/integration")
 
 for (const dirent of fs.readdirSync(TEST_FIXTURES_ROOT, {
   withFileTypes: true,
 })) {
   if (!dirent.isDirectory()) continue
   const TEST_CWD = path.join(TEST_FIXTURES_ROOT, dirent.name)
+  if (!fs.existsSync(path.join(TEST_CWD, "package.json"))) continue
 
   describe(`Integration for ${dirent.name}`, () => {
     let originalCwd: string
@@ -31,8 +34,7 @@ for (const dirent of fs.readdirSync(TEST_FIXTURES_ROOT, {
         // eslint-disable-next-line no-process-env -- test
         ...process.env,
         ...(fs.existsSync(envFile)
-          ? // eslint-disable-next-line @typescript-eslint/no-require-imports -- test
-            require(envFile)
+          ? (JSON.parse(fs.readFileSync(envFile, "utf8")) as NodeJS.ProcessEnv)
           : {}),
       }
       try {
@@ -54,9 +56,7 @@ for (const dirent of fs.readdirSync(TEST_FIXTURES_ROOT, {
           }))
           fs.writeFileSync(actualFile, JSON.stringify(result, null, 2))
 
-          const expected =
-            // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires -- test
-            require(expectedFile)
+          const expected = JSON.parse(fs.readFileSync(expectedFile, "utf8"))
           assert.deepStrictEqual(result, expected)
         } catch (e) {
           console.error(e)

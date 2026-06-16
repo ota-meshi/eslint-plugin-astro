@@ -1,5 +1,6 @@
 import path from "node:path"
 import fs from "node:fs"
+import { fileURLToPath } from "node:url"
 import { rules } from "../src/rules/index.ts"
 import type { RuleModule } from "../src/types.ts"
 import { formatAndSave } from "./lib/utils.ts"
@@ -11,6 +12,8 @@ import {
   renderVerion,
 } from "./lib/doc-renderer.ts"
 
+const dirname = path.dirname(fileURLToPath(import.meta.url))
+
 //eslint-disable-next-line jsdoc/require-jsdoc -- tools
 function yamlValue(val: unknown) {
   if (typeof val === "string") {
@@ -19,7 +22,8 @@ function yamlValue(val: unknown) {
   return val
 }
 
-const ROOT = path.resolve(__dirname, "../docs/rules")
+const ROOT = path.resolve(dirname, "../docs/rules")
+const packageJsonPath = path.resolve(dirname, "../package.json")
 
 //eslint-disable-next-line jsdoc/require-jsdoc -- tools
 function pickSince(content: string): string | null | Promise<string> {
@@ -32,8 +36,10 @@ function pickSince(content: string): string | null | Promise<string> {
   }
   // eslint-disable-next-line no-process-env -- ignore
   if (process.env.IN_VERSION_SCRIPT) {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports -- ignore
-    return `v${require("../package.json").version}`
+    const pkg = JSON.parse(fs.readFileSync(packageJsonPath, "utf8")) as {
+      version: string
+    }
+    return `v${pkg.version}`
   }
   return null
 }

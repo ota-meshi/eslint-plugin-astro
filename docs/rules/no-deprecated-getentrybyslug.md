@@ -8,7 +8,7 @@ since: "v0.28.0"
 
 > disallow using deprecated `getEntryBySlug()`
 
-- ⚙ This rule is included in `"plugin:astro/recommended"`.
+- ⚙ This rule is included in the `recommended` config.
 
 ## 📖 Rule Details
 

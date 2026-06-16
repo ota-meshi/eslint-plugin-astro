@@ -33,35 +33,3 @@ export function buildFlatConfigs(): Record<string, Linter.Config[]> {
   }
   return configs
 }
-
-/** Build a11y configs */
-export function buildLegacyConfigs(): Record<string, Linter.Config> {
-  const baseExtend = "plugin:astro/base"
-
-  const configs: Record<string, Linter.Config> = {}
-
-  for (const configName of a11yConfigKeys) {
-    // legacy config
-    Object.defineProperty(configs, `jsx-a11y-${configName}`, {
-      enumerable: true,
-      get() {
-        const base = getPluginJsxA11y()
-        const baseConfig = base?.configs?.[configName] ?? {}
-
-        const baseRules = baseConfig.rules ?? {}
-        const newRules: Record<string, string | unknown[]> = {}
-        for (const ruleName of Object.keys(baseRules)) {
-          newRules[`astro/${ruleName}`] = baseRules[ruleName]
-        }
-
-        return {
-          ...baseConfig,
-          plugins: ["jsx-a11y"],
-          extends: [baseExtend],
-          rules: newRules,
-        }
-      },
-    })
-  }
-  return configs
-}

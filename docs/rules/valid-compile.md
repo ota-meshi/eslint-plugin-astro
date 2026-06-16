@@ -8,7 +8,7 @@ since: "v0.21.0"
 
 > disallow warnings when compiling.
 
-- ⚙ This rule is included in `"plugin:astro/recommended"`.
+- ⚙ This rule is included in the `recommended` config.
 
 ## 📖 Rule Details
 

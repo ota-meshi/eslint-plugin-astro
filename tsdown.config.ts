@@ -6,21 +6,18 @@ const base: UserConfig = {
   dts: true,
   outDir: "lib",
   treeshake: true,
-  external: ["@typescript-eslint/parser", "eslint-plugin-jsx-a11y", "espree"],
+  deps: {
+    neverBundle: [
+      "@typescript-eslint/parser",
+      "eslint-plugin-jsx-a11y",
+      "espree",
+    ],
+  },
 }
 
-const config: UserConfig[] = defineConfig([
-  {
-    ...base,
-    entry: ["src/index.mts"],
-    format: ["esm"],
-    fixedExtension: false,
-  },
-  {
-    ...base,
-    entry: ["src/index.cts"],
-    format: ["cjs"],
-    fixedExtension: false,
-  },
-])
+const config: UserConfig = defineConfig({
+  ...base,
+  entry: ["src/index.mts"],
+  format: ["esm"],
+})
 export default config
