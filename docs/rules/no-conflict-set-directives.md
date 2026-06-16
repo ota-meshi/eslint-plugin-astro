@@ -8,7 +8,7 @@ since: "v0.7.0"
 
 > disallow conflicting set directives and child contents
 
-- ⚙ This rule is included in `"plugin:astro/recommended"`.
+- ⚙ This rule is included in the `recommended` config.
 
 ## 📖 Rule Details
 

@@ -1,4 +1,4 @@
-import type { RuleModule, PartialRuleModule } from "../types"
+import type { RuleModule, PartialRuleModule } from "../types.ts"
 
 /**
  * Define the rule.
@@ -20,6 +20,6 @@ export function createRule(
         ruleName,
       },
     },
-    create: rule.create as never,
+    create: rule.create,
   }
 }

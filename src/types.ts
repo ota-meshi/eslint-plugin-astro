@@ -11,7 +11,8 @@ import type {
   ASTNode,
   ASTNodeWithParent,
   ASTNodeListener,
-} from "./types-for-node"
+} from "./types-for-node.ts"
+import type { ParseResult } from "@astrojs/compiler"
 
 export type { ASTNode, ASTNodeWithParent, ASTNodeListener }
 export interface RuleListener extends ASTNodeListener {
@@ -200,7 +201,10 @@ export interface SourceCode {
   ast: AST.AstroProgram
   lines: string[]
   hasBOM: boolean
-  parserServices: ESLintSourceCode.ParserServices
+  parserServices?: {
+    isAstro?: boolean
+    getAstroResult?: () => ParseResult
+  }
   scopeManager: Scope.ScopeManager
   visitorKeys: ESLintSourceCode.VisitorKeys
 

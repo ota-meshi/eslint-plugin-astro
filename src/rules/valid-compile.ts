@@ -1,6 +1,8 @@
-import { createRule } from "../utils"
-import { getSourceCode } from "../utils/compat"
+import type { RuleModule } from "../types.ts"
+import { createRule } from "../utils/index.ts"
+import { getSourceCode } from "../utils/compat.ts"
 
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
 export default createRule("valid-compile", {
   meta: {
     docs: {
@@ -14,10 +16,14 @@ export default createRule("valid-compile", {
   },
   create(context) {
     const sourceCode = getSourceCode(context)
-    if (!sourceCode.parserServices.isAstro) {
+    if (!sourceCode.parserServices?.isAstro) {
       return {}
     }
-    const diagnostics = sourceCode.parserServices.getAstroResult().diagnostics
+    const diagnostics =
+      sourceCode.parserServices?.getAstroResult?.().diagnostics
+    if (!diagnostics) {
+      return {}
+    }
 
     return {
       Program() {
@@ -35,4 +41,4 @@ export default createRule("valid-compile", {
       },
     }
   },
-})
+}) as RuleModule

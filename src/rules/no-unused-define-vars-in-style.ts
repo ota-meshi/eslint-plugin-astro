@@ -2,11 +2,13 @@ import type { TSESTree } from "@typescript-eslint/types"
 import { AST_NODE_TYPES } from "@typescript-eslint/types"
 import type { AST } from "astro-eslint-parser"
 import { getPropertyName } from "@eslint-community/eslint-utils"
-import { createRule } from "../utils"
-import { getAttributeName } from "../utils/ast-utils"
-import { iterateCSSVars } from "../utils/style"
-import { getSourceCode } from "../utils/compat"
+import { createRule } from "../utils/index.ts"
+import { getAttributeName } from "../utils/ast-utils.ts"
+import { iterateCSSVars } from "../utils/style/index.ts"
+import { getSourceCode } from "../utils/compat.ts"
+import type { RuleModule } from "../types.ts"
 
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
 export default createRule("no-unused-define-vars-in-style", {
   meta: {
     docs: {
@@ -22,7 +24,7 @@ export default createRule("no-unused-define-vars-in-style", {
   },
   create(context) {
     const sourceCode = getSourceCode(context)
-    if (!sourceCode.parserServices.isAstro) {
+    if (!sourceCode.parserServices?.isAstro) {
       return {}
     }
 
@@ -110,4 +112,4 @@ export default createRule("no-unused-define-vars-in-style", {
       },
     }
   },
-})
+}) as RuleModule

@@ -1,8 +1,8 @@
 import { Linter } from "eslint"
-import rule from "../../../src/rules/no-deprecated-astro-fetchcontent"
-import { loadTestCases } from "../../utils/utils"
+import rule from "../../../src/rules/no-deprecated-astro-fetchcontent.ts"
+import { loadTestCases } from "../../utils/utils.ts"
 import semver from "semver"
-import { RuleTester } from "../../utils/eslint-compat"
+import { RuleTester } from "../../utils/eslint-compat.ts"
 
 const eslintVersion = new Linter().version
 if (semver.gte(eslintVersion, "8.0.0")) {

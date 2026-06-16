@@ -1,10 +1,10 @@
-import flatBase from "./configs/flat/base"
-import flatRecommended from "./configs/flat/recommended"
-import flatAll from "./configs/flat/all"
-import { buildA11yFlatConfigs } from "./a11y"
+import flatBase from "./configs/flat/base.ts"
+import flatRecommended from "./configs/flat/recommended.ts"
+import flatAll from "./configs/flat/all.ts"
+import { buildA11yFlatConfigs } from "./a11y/index.ts"
 import type { Linter } from "eslint"
 
-type ESMConfigs = {
+export type ESMConfigs = {
   base: Linter.Config[]
   recommended: Linter.Config[]
   all: Linter.Config[]
@@ -22,15 +22,15 @@ type ESMConfigs = {
  */
 export function buildEsmConfigs(): ESMConfigs {
   const esmConfigs: ESMConfigs = {
-    base: flatBase as Linter.Config[],
-    recommended: flatRecommended as Linter.Config[],
-    all: flatAll as Linter.Config[],
+    base: flatBase,
+    recommended: flatRecommended,
+    all: flatAll,
     "jsx-a11y-strict": null as never,
     "jsx-a11y-recommended": null as never,
     // For backward compatibility
-    "flat/base": flatBase as Linter.Config[],
-    "flat/recommended": flatRecommended as Linter.Config[],
-    "flat/all": flatAll as Linter.Config[],
+    "flat/base": flatBase,
+    "flat/recommended": flatRecommended,
+    "flat/all": flatAll,
     "flat/jsx-a11y-strict": null as never,
     "flat/jsx-a11y-recommended": null as never,
   }

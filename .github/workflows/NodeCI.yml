@@ -6,12 +6,17 @@ on:
   pull_request:
     branches: [main]
 
+# Allow one concurrent deployment
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
       - name: Install Packages
         run: npm install -f
       - name: build
@@ -23,8 +28,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+        uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
       - name: Install And Build
         run: |+
           npm install -f
@@ -36,13 +41,32 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [20.x, 22.x, 24.x]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Install Packages
+        run: npm install -f
+      - name: Test
+        run: npm test
+      - name: Type Test
+        run: npm run test:type
+  test-for-eslint-v9:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+    steps:
+      - uses: actions/checkout@v6
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install eslint v9
+        run: npm pkg set devDependencies.eslint=^9
       - name: Install Packages
         run: npm install -f
       - name: Test
@@ -50,13 +74,11 @@ jobs:
   test-for-eslint-v8:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
       - name: Install eslint v8.57.0
-        run: |+
-          npm i -D eslint@^8.57.0 -f
-          npx rimraf node_modules
+        run: npm pkg set devDependencies.eslint=^8.57.0
       - name: Install Packages
         run: npm install -f
       - name: Test
@@ -64,8 +86,8 @@ jobs:
   test-integration:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
       - name: Install Packages
         run: npm install -f
       - name: Test
@@ -73,8 +95,8 @@ jobs:
   test-and-coverage:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
       - name: Install Packages
         run: npm install -f
       - name: Test

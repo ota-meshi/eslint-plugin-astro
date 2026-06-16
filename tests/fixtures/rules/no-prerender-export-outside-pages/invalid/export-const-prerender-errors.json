@@ -1,0 +1,7 @@
+[
+  {
+    "message": "'prerender' export is only valid inside a pages/ directory.",
+    "line": 2,
+    "column": 8
+  }
+]

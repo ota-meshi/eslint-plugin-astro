@@ -1,0 +1,10 @@
+---
+const label = "Click"
+---
+
+<button id="btn">{label}</button>
+<script define:vars={{ label }}>
+  document.getElementById('btn')
+    .addEventListener('click', () => console.log('clicked'))
+</script>
+

@@ -1,6 +1,9 @@
 import type { parseForESLint } from "@typescript-eslint/parser"
-import { getEspree } from "./espree"
-import { requireUserLocal } from "./require-user"
+import { createRequire } from "node:module"
+import { getEspree } from "./espree.ts"
+import { requireUserLocal } from "./require-user.ts"
+
+const requireLocal = createRequire(import.meta.url)
 
 /** Resolve parser */
 export function resolveParser(): { parseForESLint: typeof parseForESLint } {
@@ -18,8 +21,7 @@ export function resolveParser(): { parseForESLint: typeof parseForESLint } {
   }
 
   try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires -- ignore
-    return toParserForESLint(require("@typescript-eslint/parser"))!
+    return toParserForESLint(requireLocal("@typescript-eslint/parser"))!
   } catch {
     // ignore
   }

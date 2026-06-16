@@ -1,5 +1,5 @@
-import type { CSSToken, CSSTokenizeOption } from "./tokenizer"
-import { CSSTokenType, CSSTokenizer } from "./tokenizer"
+import type { CSSToken, CSSTokenizeOption } from "./tokenizer.ts"
+import { CSSTokenType, CSSTokenizer } from "./tokenizer.ts"
 
 class CSSTokenScanner {
   private readonly reconsuming: CSSToken[] = []

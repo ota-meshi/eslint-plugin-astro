@@ -3,7 +3,7 @@ import type { ParseTemplateResult } from "astro-eslint-parser"
 import type { Linter } from "eslint"
 import type { TSESTree } from "@typescript-eslint/types"
 import { AST_NODE_TYPES } from "@typescript-eslint/types"
-import { parseExpression } from "./parse-expression"
+import { parseExpression } from "./parse-expression.ts"
 
 const RE_LEADING_SPACES = /^[\t ]+/u
 let seq = 0

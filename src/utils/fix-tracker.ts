@@ -4,8 +4,8 @@
  */
 
 import type { AST, Rule } from "eslint"
-import { getUpperFunction } from "./ast-utils"
-import type { RuleFixer, SourceCode } from "../types"
+import { getUpperFunction } from "./ast-utils.ts"
+import type { RuleFixer, SourceCode } from "../types.ts"
 import type { TSESTree } from "@typescript-eslint/types"
 
 /**

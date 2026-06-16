@@ -1,6 +1,6 @@
-import assert from "assert"
-import plugin from "../../../src/index.cts"
-import { LegacyESLint, FlatESLint } from "../../utils/eslint-compat"
+import assert from "node:assert"
+import plugin from "../../../src/index.mts"
+import { FlatESLint } from "../../utils/eslint-compat.ts"
 
 const code = `---
 const foo = 42
@@ -13,19 +13,10 @@ const foo = 42
 </style>
 `
 describe("`recommended` config", () => {
-  it("legacy `recommended` config should work. ", async () => {
-    const linter = new LegacyESLint({
-      plugins: {
-        astro: plugin as never,
-      },
-      baseConfig: {
-        // @ts-expect-error -- typing bug
-        parserOptions: {
-          ecmaVersion: 2020,
-        },
-        extends: ["plugin:astro/recommended"],
-      },
-      useEslintrc: false,
+  it("`recommended` config should work. ", async () => {
+    const linter = new FlatESLint({
+      overrideConfigFile: true,
+      overrideConfig: [...plugin.configs.recommended],
     })
     const result = await linter.lintText(code, { filePath: "test.astro" })
     const messages = result[0].messages
@@ -45,33 +36,10 @@ describe("`recommended` config", () => {
       ],
     )
   })
-  it("`flat/recommended` config should work. ", async () => {
+  it("`recommended` config with *.js should work. ", async () => {
     const linter = new FlatESLint({
       overrideConfigFile: true,
-      overrideConfig: [...plugin.configs["flat/recommended"]],
-    })
-    const result = await linter.lintText(code, { filePath: "test.astro" })
-    const messages = result[0].messages
-
-    assert.deepStrictEqual(
-      messages.map((m) => ({
-        ruleId: m.ruleId,
-        line: m.line,
-        message: m.message,
-      })),
-      [
-        {
-          line: 4,
-          message: "'foregroundColor' is defined but never used.",
-          ruleId: "astro/no-unused-define-vars-in-style",
-        },
-      ],
-    )
-  })
-  it("`flat/recommended` config with *.js should work. ", async () => {
-    const linter = new FlatESLint({
-      overrideConfigFile: true,
-      overrideConfig: [...plugin.configs["flat/recommended"]],
+      overrideConfig: [...plugin.configs.recommended],
     })
 
     const result = await linter.lintText(";", { filePath: "test.js" })

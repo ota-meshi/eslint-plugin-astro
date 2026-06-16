@@ -5,17 +5,17 @@ import { getStaticValue } from "@eslint-community/eslint-utils"
 import type { Node as PostcssNode } from "postcss"
 import postcss from "postcss"
 import parser from "postcss-selector-parser"
-import type { RuleContext } from "../types"
-import { createRule } from "../utils"
+import type { RuleContext, RuleModule } from "../types.ts"
+import { createRule } from "../utils/index.ts"
 import {
   findAttribute,
   getElementName,
   getSpreadAttributes,
   getStaticAttributeStringValue,
-} from "../utils/ast-utils"
-import type { StyleContentCSS } from "../utils/transform"
-import { getStyleContentCSS } from "../utils/transform"
-import { getSourceCode } from "../utils/compat"
+} from "../utils/ast-utils.ts"
+import type { StyleContentCSS } from "../utils/transform/index.ts"
+import { getStyleContentCSS } from "../utils/transform/index.ts"
+import { getSourceCode } from "../utils/compat.ts"
 
 type JSXElementTreeNode = {
   parent: JSXElementTreeNode | RootJSXElementTreeNode
@@ -29,6 +29,7 @@ type RootJSXElementTreeNode = {
   childElements: JSXElementTreeNode[]
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
 export default createRule("no-unused-css-selector", {
   meta: {
     docs: {
@@ -45,7 +46,7 @@ export default createRule("no-unused-css-selector", {
   },
   create(context) {
     const sourceCode = getSourceCode(context)
-    if (!sourceCode.parserServices.isAstro) {
+    if (!sourceCode.parserServices?.isAstro) {
       return {}
     }
     const styles: AST.JSXElement[] = []
@@ -166,7 +167,7 @@ export default createRule("no-unused-css-selector", {
       },
     }
   },
-})
+}) as RuleModule
 
 type JSXElementSelector = {
   error?: unknown

@@ -1,15 +1,16 @@
 import type { AST } from "astro-eslint-parser"
 import type { TSESTree } from "@typescript-eslint/types"
-import { createRule } from "../utils"
-import { getSourceCode } from "../utils/compat"
+import { createRule } from "../utils/index.ts"
+import { getSourceCode } from "../utils/compat.ts"
 import {
   isClosingBraceToken,
   isSemicolonToken,
 } from "@eslint-community/eslint-utils"
-import { getNextLocation, isTokenOnSameLine } from "../utils/ast-utils"
-import type { RuleFixer } from "../types"
-import FixTracker from "../utils/fix-tracker"
+import { getNextLocation, isTokenOnSameLine } from "../utils/ast-utils.ts"
+import type { RuleFixer, RuleModule } from "../types.ts"
+import FixTracker from "../utils/fix-tracker.ts"
 
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
 export default createRule("semi", {
   meta: {
     docs: {
@@ -71,7 +72,7 @@ export default createRule("semi", {
   },
   create(context) {
     const sourceCode = getSourceCode(context)
-    if (!sourceCode.parserServices.isAstro) {
+    if (!sourceCode.parserServices?.isAstro) {
       return {}
     }
     const OPT_OUT_PATTERN = /^[(+\-/[`]/u // One of [(/+-`
@@ -81,13 +82,13 @@ export default createRule("semi", {
     const never = context.options[0] === "never"
     const exceptOneLine = Boolean(
       options &&
-        "omitLastInOneLineBlock" in options &&
-        options.omitLastInOneLineBlock,
+      "omitLastInOneLineBlock" in options &&
+      options.omitLastInOneLineBlock,
     )
     const exceptOneLineClassBody = Boolean(
       options &&
-        "omitLastInOneLineClassBody" in options &&
-        options.omitLastInOneLineClassBody,
+      "omitLastInOneLineClassBody" in options &&
+      options.omitLastInOneLineClassBody,
     )
     const beforeStatementContinuationChars =
       (options &&
@@ -419,4 +420,4 @@ export default createRule("semi", {
       TSEmptyBodyFunctionExpression: checkForSemicolon,
     }
   },
-})
+}) as RuleModule

@@ -1,9 +1,9 @@
-"use strict"
+import myPlugin from "@ota-meshi/eslint-plugin"
+import tseslint from "typescript-eslint"
+import astroPlugin from "./lib/index.mjs"
 
-const myPlugin = require("@ota-meshi/eslint-plugin")
-const tseslint = require("typescript-eslint")
-const allConfig = require("./node_modules/eslint-plugin-astro").configs.all
-module.exports = [
+const allRules = astroPlugin.configs.all.at(-1).rules
+export default [
   {
     ignores: [
       ".nyc_output/",
@@ -32,6 +32,7 @@ module.exports = [
       "tests/fixtures/integration/**/actual.json",
       "tests/fixtures/integration/*/src/",
       "build/",
+      ".astro/",
     ],
   },
   ...myPlugin.config({
@@ -43,9 +44,10 @@ module.exports = [
     yaml: true,
     md: true,
     prettier: true,
-    astro: true,
+    astro: false,
     svelte: true,
   }),
+  ...astroPlugin.configs.recommended,
   {
     rules: {
       "@typescript-eslint/no-shadow": "off",
@@ -107,6 +109,18 @@ module.exports = [
     },
   },
   {
+    files: ["**/*.{js,ts,mjc,mts,cjs,cts}"],
+    rules: {
+      "n/prefer-node-protocol": "error",
+      "n/file-extension-in-import": ["error", "always"],
+    },
+    settings: {
+      n: {
+        typescriptExtensionMap: [],
+      },
+    },
+  },
+  {
     files: ["**/*.astro", "*.astro"],
     rules: {
       "astro/prefer-split-class-list": [
@@ -156,8 +170,10 @@ module.exports = [
         "no-undef": "off",
         "jsdoc/require-jsdoc": "off",
         "no-inner-declarations": "off",
+        "no-redeclare": "off",
         "no-unused-vars": "off",
         "no-empty-function": "off",
+        "require-await": "off",
         "one-var": "off",
         "func-style": "off",
         "@typescript-eslint/no-empty-function": "off",
@@ -166,7 +182,7 @@ module.exports = [
         "@typescript-eslint/no-unused-vars": "off",
 
         ...Object.fromEntries(
-          Object.keys(allConfig.rules).map((ruleId) => [ruleId, "off"]),
+          Object.keys(allRules).map((ruleId) => [ruleId, "off"]),
         ),
       },
     },
@@ -188,7 +204,7 @@ module.exports = [
     {
       files: ["tests/fixtures/rules/**/*input.astro"],
       rules: {
-        "prettier/prettier": "off", // TODO
+        "prettier/prettier": "off",
       },
     },
     {
