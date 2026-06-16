@@ -101,7 +101,7 @@
     "@eslint-community/eslint-plugin-eslint-comments": "^4.3.0",
     "@eslint/eslintrc": "^3.0.0",
     "@eslint/js": "^10.0.0",
-    "@eslint/json": "^1.0.1",
+    "@eslint/json": "^2.0.0",
     "@ota-meshi/eslint-plugin": "^0.20.0",
     "@types/eslint-scope": "^9.0.0",
     "@types/eslint-utils": "^3.0.1",
