@@ -83,8 +83,8 @@
   "devDependencies": {
     "@actions/github": "^9.0.0",
     "@astrojs/compiler": "^3.0.0",
-    "@astrojs/mdx": "^4.0.0",
-    "@astrojs/svelte": "^7.0.0",
+    "@astrojs/mdx": "^6.0.0",
+    "@astrojs/svelte": "^8.0.0",
     "@changesets/changelog-github": "^0.7.0",
     "@changesets/cli": "^2.24.2",
     "@eslint-community/eslint-plugin-eslint-comments": "^4.3.0",
