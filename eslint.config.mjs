@@ -72,32 +72,32 @@ export default [
         {
           object: "context",
           property: "getSourceCode",
-          message: "Use src/utils/compat.ts",
+          message: "Use `context.sourceCode`.",
         },
         {
           object: "context",
           property: "getFilename",
-          message: "Use src/utils/compat.ts",
+          message: "Use `context.filename`.",
         },
         {
           object: "context",
           property: "getPhysicalFilename",
-          message: "Use src/utils/compat.ts",
+          message: "Use `context.physicalFilename`.",
         },
         {
           object: "context",
           property: "getCwd",
-          message: "Use src/utils/compat.ts",
+          message: "Use `context.cwd`.",
         },
         {
           object: "context",
           property: "getScope",
-          message: "Use src/utils/compat.ts",
+          message: "Use `sourceCode.getScope(node)`.",
         },
         {
           object: "context",
           property: "parserServices",
-          message: "Use src/utils/compat.ts",
+          message: "Use `context.sourceCode.parserServices`.",
         },
       ],
     },

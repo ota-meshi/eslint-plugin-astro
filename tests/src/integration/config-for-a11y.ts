@@ -1,10 +1,10 @@
 import astroPlugin from "../../../src/index.mts"
 import assert from "node:assert"
-import { FlatESLint } from "../../utils/eslint-compat.ts"
+import { ESLint } from "eslint"
 
 describe("Integration test for a11y config", () => {
   it("should work with a11y config strict", async () => {
-    const eslint = new FlatESLint({
+    const eslint = new ESLint({
       overrideConfigFile: true,
       overrideConfig: astroPlugin.configs["jsx-a11y-strict"],
     })
@@ -41,7 +41,7 @@ const src = 'icon.png'
     )
   })
   it("should work with a11y config recommended", async () => {
-    const eslint = new FlatESLint({
+    const eslint = new ESLint({
       overrideConfigFile: true,
       overrideConfig: astroPlugin.configs["jsx-a11y-recommended"],
     })

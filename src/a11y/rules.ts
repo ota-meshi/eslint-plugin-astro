@@ -5,7 +5,6 @@ import type { ASTNode } from "../types-for-node.ts"
 import { createRule } from "../utils/index.ts"
 import { a11yRuleKeys } from "./keys.ts"
 import { getAttributeName } from "../utils/ast-utils.ts"
-import { getSourceCode } from "../utils/compat.ts"
 
 const TYPE_MAP: Partial<Record<ASTNode["type"], ASTNode["type"]>> = {
   AstroRawText: "JSXText",
@@ -95,7 +94,7 @@ function defineWrapperListener(
   coreRule: PluginRuleModule,
   context: RuleContext,
 ): RuleListener {
-  const sourceCode = getSourceCode(context)
+  const sourceCode = context.sourceCode
   if (!sourceCode.parserServices?.isAstro) {
     return {}
   }

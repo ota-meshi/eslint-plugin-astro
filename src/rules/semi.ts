@@ -1,7 +1,6 @@
 import type { AST } from "astro-eslint-parser"
 import type { TSESTree } from "@typescript-eslint/types"
 import { createRule } from "../utils/index.ts"
-import { getSourceCode } from "../utils/compat.ts"
 import {
   isClosingBraceToken,
   isSemicolonToken,
@@ -71,7 +70,7 @@ export default createRule("semi", {
     },
   },
   create(context) {
-    const sourceCode = getSourceCode(context)
+    const sourceCode = context.sourceCode
     if (!sourceCode.parserServices?.isAstro) {
       return {}
     }

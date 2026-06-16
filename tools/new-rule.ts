@@ -36,9 +36,7 @@ const dirname = path.dirname(fileURLToPath(import.meta.url))
 
   fs.writeFileSync(
     ruleFile,
-    `import { AST } from "astro-eslint-parser"
-import { createRule } from "../utils"
-import { getSourceCode } from "../utils/compat"
+    `import { createRule } from "../utils/index.ts"
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
 export default createRule("${ruleId}", {
@@ -53,8 +51,8 @@ export default createRule("${ruleId}", {
     type: "suggestion", // "problem", or "layout",
   },
   create(context) {
-    const sourceCode = getSourceCode(context)
-    if (!sourceCode.parserServices.isAstro) {
+    const sourceCode = context.sourceCode
+    if (!sourceCode.parserServices?.isAstro) {
       return {}
     }
     
@@ -65,15 +63,15 @@ export default createRule("${ruleId}", {
   )
   fs.writeFileSync(
     testFile,
-    `import { RuleTester } from "../../utils/eslint-compat"
-import rule from "../../../src/rules/${ruleId}"
-import { loadTestCases } from "../../utils/utils"
+    `import { RuleTester } from "eslint"
+import rule from "../../../src/rules/${ruleId}.ts"
+import { loadTestCases } from "../../utils/utils.ts"
 
 const tester = new RuleTester({
-    languageOptions: {
-        ecmaVersion: 2020,
-        sourceType: "module",
-    },
+  languageOptions: {
+    ecmaVersion: 2020,
+    sourceType: "module",
+  },
 })
 
 tester.run("${ruleId}", rule as any, loadTestCases("${ruleId}"))

@@ -1,4 +1,4 @@
-import { RuleTester } from "../../../utils/eslint-compat.ts"
+import { RuleTester } from "eslint"
 import { rules } from "../../../../src/rules/index.ts"
 import { loadTestCases } from "../../../utils/utils.ts"
 

@@ -1,6 +1,5 @@
 import { createRule } from "../utils/index.ts"
 import type { TSESTree } from "@typescript-eslint/types"
-import { getSourceCode } from "../utils/compat.ts"
 import type { RuleModule } from "../types.ts"
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
@@ -18,7 +17,7 @@ export default createRule("no-deprecated-getentrybyslug", {
     type: "problem",
   },
   create(context) {
-    const sourceCode = getSourceCode(context)
+    const sourceCode = context.sourceCode
     if (!sourceCode.parserServices?.isAstro) {
       return {}
     }

@@ -5,7 +5,6 @@ import { getPropertyName } from "@eslint-community/eslint-utils"
 import { createRule } from "../utils/index.ts"
 import { getAttributeName } from "../utils/ast-utils.ts"
 import { iterateCSSVars } from "../utils/style/index.ts"
-import { getSourceCode } from "../utils/compat.ts"
 import type { RuleModule } from "../types.ts"
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
@@ -23,7 +22,7 @@ export default createRule("no-unused-define-vars-in-style", {
     type: "problem",
   },
   create(context) {
-    const sourceCode = getSourceCode(context)
+    const sourceCode = context.sourceCode
     if (!sourceCode.parserServices?.isAstro) {
       return {}
     }

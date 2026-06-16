@@ -1,11 +1,11 @@
 import astroPlugin from "../../../src/index.mts"
 import assert from "node:assert"
 import { tsESLintParser } from "../../../src/configs/has-typescript-eslint-parser.ts"
-import { FlatESLint } from "../../utils/eslint-compat.ts"
+import { ESLint } from "eslint"
 
 describe("Integration test for client-side ts", () => {
   it("should work with client-side-ts processor", async () => {
-    const eslint = new FlatESLint({
+    const eslint = new ESLint({
       overrideConfigFile: true,
       overrideConfig: [
         ...astroPlugin.configs.base,

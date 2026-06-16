@@ -120,6 +120,9 @@ export type RuleContext = {
       ignoreWarnings?: unknown
     }
   }
+  cwd: string
+  filename: string
+  physicalFilename: string
   parserPath: string
   parserOptions: Linter.ParserOptions
   parserServices: Partial<ReturnType<typeof parseForESLint>["services"]>
@@ -139,8 +142,7 @@ export type RuleContext = {
 
   report(descriptor: ReportDescriptor): void
 
-  // eslint@6 does not have this method.
-  getCwd?: () => string
+  getCwd(): string
 }
 
 export type NodeOrToken = {

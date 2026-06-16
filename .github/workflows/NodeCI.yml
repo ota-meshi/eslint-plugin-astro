@@ -58,37 +58,6 @@ jobs:
         run: npm test
       - name: Type Test
         run: npm run test:type
-  test-for-eslint-v9:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [22.22.3, 24.16.0, 26.3.0]
-    steps:
-      - uses: actions/checkout@v6
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v6
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: Install eslint v9
-        run: npm pkg set devDependencies.eslint=^9
-      - name: Install Packages
-        run: npm install -f
-      - name: Test
-        run: npm test
-  test-for-eslint-v8:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - name: Use Node.js 22.22.3
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24.16.0
-      - name: Install eslint v8.57.0
-        run: npm pkg set devDependencies.eslint=^8.57.0
-      - name: Install Packages
-        run: npm install -f
-      - name: Test
-        run: npm test
   test-integration:
     runs-on: ubuntu-latest
     steps:

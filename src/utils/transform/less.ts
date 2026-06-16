@@ -2,7 +2,6 @@ import type { AST } from "astro-eslint-parser"
 import type { TransformResult } from "./types.ts"
 import { getContentRange, loadModule } from "./utils.ts"
 import type { RuleContext } from "../../types.ts"
-import { getFilename, getSourceCode } from "../compat.ts"
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports --- Ignore inline type
 type Less = typeof import("less")
@@ -19,10 +18,10 @@ export function transform(
   }
   const inputRange = getContentRange(node)
 
-  const sourceCode = getSourceCode(context)
+  const sourceCode = context.sourceCode
   const code = sourceCode.text.slice(...inputRange)
 
-  const filename = `${getFilename(context)}.less`
+  const filename = `${context.filename}.less`
   try {
     let output: Awaited<ReturnType<Less["render"]>> | undefined
 

@@ -2,13 +2,8 @@ import json from "@eslint/json"
 import { Linter } from "eslint"
 import { rules } from "../../../src/rules/index.ts"
 import assert from "node:assert"
-import { ESLint } from "eslint"
-import semver from "semver"
 
-const describeSkipWhenESLintV8 = semver.satisfies(ESLint.version, "<9")
-  ? describe.skip
-  : describe
-describeSkipWhenESLintV8("compat with @eslint/json", () => {
+describe("compat with @eslint/json", () => {
   describe("should not throw error from astro rules when used with @eslint/json", () => {
     for (const rule of rules) {
       it(rule.meta.docs.ruleName, () => {

@@ -1,4 +1,4 @@
-import { RuleTester } from "../../utils/eslint-compat.ts"
+import { RuleTester } from "eslint"
 import { astroProcessor } from "../../../src/processor/index.ts"
 import { getCoreRule } from "./get-core-rule.ts"
 import * as autoParser from "./auto-parser.ts"

@@ -15,7 +15,6 @@ import {
 } from "../utils/ast-utils.ts"
 import type { StyleContentCSS } from "../utils/transform/index.ts"
 import { getStyleContentCSS } from "../utils/transform/index.ts"
-import { getSourceCode } from "../utils/compat.ts"
 
 type JSXElementTreeNode = {
   parent: JSXElementTreeNode | RootJSXElementTreeNode
@@ -45,7 +44,7 @@ export default createRule("no-unused-css-selector", {
     type: "problem",
   },
   create(context) {
-    const sourceCode = getSourceCode(context)
+    const sourceCode = context.sourceCode
     if (!sourceCode.parserServices?.isAstro) {
       return {}
     }
@@ -982,7 +981,7 @@ function* extractClassListFromExpression(
     }
     return
   }
-  const sourceCode = getSourceCode(context)
+  const sourceCode = context.sourceCode
   const staticValue = getStaticValue(
     node as never,
     sourceCode.scopeManager.globalScope!,

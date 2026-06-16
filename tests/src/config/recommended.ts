@@ -1,6 +1,6 @@
 import assert from "node:assert"
 import plugin from "../../../src/index.mts"
-import { FlatESLint } from "../../utils/eslint-compat.ts"
+import { ESLint } from "eslint"
 
 const code = `---
 const foo = 42
@@ -14,7 +14,7 @@ const foo = 42
 `
 describe("`recommended` config", () => {
   it("`recommended` config should work. ", async () => {
-    const linter = new FlatESLint({
+    const linter = new ESLint({
       overrideConfigFile: true,
       overrideConfig: [...plugin.configs.recommended],
     })
@@ -37,7 +37,7 @@ describe("`recommended` config", () => {
     )
   })
   it("`recommended` config with *.js should work. ", async () => {
-    const linter = new FlatESLint({
+    const linter = new ESLint({
       overrideConfigFile: true,
       overrideConfig: [...plugin.configs.recommended],
     })
