@@ -21,13 +21,7 @@ export function buildFlatConfigs(): Record<string, Linter.Config[]> {
           newRules[`astro/${ruleName}`] = baseRules[ruleName]
         }
 
-        return [
-          ...flatBase,
-          {
-            plugins: { "jsx-a11y": base },
-            rules: newRules,
-          },
-        ]
+        return [...flatBase, { rules: newRules }]
       },
     })
   }
