@@ -1,6 +1,5 @@
 import type { TSESTree } from "@typescript-eslint/types"
 import { createRule } from "../utils/index.ts"
-import { getSourceCode } from "../utils/compat.ts"
 import type { RuleModule } from "../types.ts"
 
 const ALLOWED_EXPORTS = new Set(["getStaticPaths", "partial", "prerender"])
@@ -20,7 +19,7 @@ export default createRule("no-exports-from-components", {
     type: "problem",
   },
   create(context) {
-    const sourceCode = getSourceCode(context)
+    const sourceCode = context.sourceCode
     if (!sourceCode.parserServices?.isAstro) {
       return {}
     }

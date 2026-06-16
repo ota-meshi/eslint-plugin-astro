@@ -3,7 +3,6 @@ import type { RawSourceMap } from "source-map-js"
 import type { TransformResult } from "./types.ts"
 import { getContentRange, loadModule } from "./utils.ts"
 import type { RuleContext } from "../../types.ts"
-import { getFilename, getSourceCode } from "../compat.ts"
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports --- Ignore inline type
 type Stylus = typeof import("stylus")
@@ -19,10 +18,10 @@ export function transform(
     return null
   }
   const inputRange = getContentRange(node)
-  const sourceCode = getSourceCode(context)
+  const sourceCode = context.sourceCode
   const code = sourceCode.text.slice(...inputRange)
 
-  const filename = `${getFilename(context)}.stylus`
+  const filename = `${context.filename}.stylus`
   try {
     let output: string | undefined
 

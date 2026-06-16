@@ -1,4 +1,4 @@
-import { RuleTester } from "../../utils/eslint-compat.ts"
+import { RuleTester } from "eslint"
 import rule from "../../../src/rules/missing-client-only-directive-value.ts"
 import { loadTestCases } from "../../utils/utils.ts"
 

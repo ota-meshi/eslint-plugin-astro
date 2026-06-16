@@ -7,7 +7,6 @@ import {
   getElementName,
   getStaticAttributeStringValue,
 } from "../utils/ast-utils.ts"
-import { getSourceCode } from "../utils/compat.ts"
 
 type ScriptAttribute =
   | AST.JSXAttribute
@@ -58,7 +57,7 @@ export default createRule("no-unsafe-inline-scripts", {
     type: "suggestion",
   },
   create(context) {
-    const sourceCode = getSourceCode(context)
+    const sourceCode = context.sourceCode
     if (!sourceCode.parserServices?.isAstro) {
       return {}
     }

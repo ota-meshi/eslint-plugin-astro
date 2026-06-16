@@ -2,7 +2,6 @@ import type { AST } from "astro-eslint-parser"
 import type { TransformResult } from "./types.ts"
 import { getContentRange, loadModule } from "./utils.ts"
 import type { RuleContext } from "../../types.ts"
-import { getSourceCode } from "../compat.ts"
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports --- Ignore inline type
 type Sass = typeof import("sass")
@@ -19,7 +18,7 @@ export function transform(
     return null
   }
   const inputRange = getContentRange(node)
-  const sourceCode = getSourceCode(context)
+  const sourceCode = context.sourceCode
   const code = sourceCode.text.slice(...inputRange)
 
   try {

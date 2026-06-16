@@ -9,7 +9,6 @@ import {
   isClosingParenToken,
   getStaticValue,
 } from "@eslint-community/eslint-utils"
-import { getSourceCode } from "./compat.ts"
 
 const anyFunctionPattern =
   /^(?:Function(?:Declaration|Expression)|ArrowFunctionExpression)$/u
@@ -113,7 +112,7 @@ export function getStaticAttributeValue(
     node.value?.type === "JSXExpressionContainer" &&
     node.value.expression.type !== "JSXEmptyExpression"
   ) {
-    const sourceCode = getSourceCode(context)
+    const sourceCode = context.sourceCode
     const staticValue = getStaticValue(
       node.value.expression as never,
       sourceCode.scopeManager.globalScope!,

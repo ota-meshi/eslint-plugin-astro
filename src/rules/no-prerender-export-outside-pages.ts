@@ -1,7 +1,6 @@
 import type { TSESTree } from "@typescript-eslint/types"
 import type { RuleModule } from "../types.ts"
 import { createRule } from "../utils/index.ts"
-import { getSourceCode, getFilename } from "../utils/compat.ts"
 
 const PAGES_DIR_PATTERN = /(?:^|[/\\])pages[/\\]/
 
@@ -20,12 +19,12 @@ const rule: RuleModule = createRule("no-prerender-export-outside-pages", {
     type: "problem",
   },
   create(context) {
-    const sourceCode = getSourceCode(context)
+    const sourceCode = context.sourceCode
     if (!sourceCode.parserServices?.isAstro) {
       return {}
     }
 
-    const filename = getFilename(context)
+    const filename = context.filename
     if (PAGES_DIR_PATTERN.test(filename)) {
       return {}
     }

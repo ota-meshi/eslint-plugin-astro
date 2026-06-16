@@ -1,5 +1,5 @@
 import rule from "../../../src/rules/valid-compile.ts"
-import { RuleTester } from "../../utils/eslint-compat.ts"
+import { RuleTester } from "eslint"
 import { loadTestCases } from "../../utils/utils.ts"
 
 const tester = new RuleTester({

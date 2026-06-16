@@ -8,7 +8,6 @@
         "message": "'foo' is assigned a value but never used.",
         "line": 2,
         "column": 7,
-        "nodeType": "Identifier",
         "messageId": "unusedVar",
         "endLine": 2,
         "endColumn": 10

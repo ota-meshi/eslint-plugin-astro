@@ -1,4 +1,4 @@
-import { RuleTester } from "../../utils/eslint-compat.ts"
+import { RuleTester } from "eslint"
 import { getPlugin } from "../../../src/plugin.ts"
 import { loadTestCases, unIndent } from "../../utils/utils.ts"
 import * as astroESLintParser from "astro-eslint-parser"

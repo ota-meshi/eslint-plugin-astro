@@ -9,7 +9,6 @@ import { transform as transformWithLess } from "./less.ts"
 import { transform as transformWithStylus } from "./stylus.ts"
 import type { TransformResult } from "./types.ts"
 import { LinesAndColumns } from "./lines-and-columns.ts"
-import { getSourceCode } from "../compat.ts"
 
 const cache = new WeakMap<AST.JSXElement, StyleContentCSS>()
 
@@ -26,7 +25,7 @@ export function getStyleContentCSS(
   if (cachedResult) {
     return cachedResult
   }
-  const sourceCode = getSourceCode(context)
+  const sourceCode = context.sourceCode
   const langNode = findAttribute(node, "lang")
   const lang = langNode && getStaticAttributeStringValue(langNode)
   if (!langNode || lang === "css") {
@@ -60,7 +59,7 @@ function transformToStyleContentCSS(
   transform: TransformResult,
   context: RuleContext,
 ): StyleContentCSS {
-  const sourceCode = getSourceCode(context)
+  const sourceCode = context.sourceCode
   let outputLocs: LinesAndColumns | null = null
   let inputLocs: LinesAndColumns | null = null
   let decoded: SourceMapMappings | null = null

@@ -1,7 +1,6 @@
 import type { AST } from "astro-eslint-parser"
 import { createRule } from "../utils/index.ts"
 import { getAttributeName } from "../utils/ast-utils.ts"
-import { getSourceCode } from "../utils/compat.ts"
 import type { RuleModule } from "../types.ts"
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
@@ -22,7 +21,7 @@ export default createRule("prefer-class-list-directive", {
     type: "suggestion",
   },
   create(context) {
-    const sourceCode = getSourceCode(context)
+    const sourceCode = context.sourceCode
     if (!sourceCode.parserServices?.isAstro) {
       return {}
     }

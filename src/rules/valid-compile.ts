@@ -1,6 +1,5 @@
 import type { RuleModule } from "../types.ts"
 import { createRule } from "../utils/index.ts"
-import { getSourceCode } from "../utils/compat.ts"
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
 export default createRule("valid-compile", {
@@ -15,7 +14,7 @@ export default createRule("valid-compile", {
     type: "problem",
   },
   create(context) {
-    const sourceCode = getSourceCode(context)
+    const sourceCode = context.sourceCode
     if (!sourceCode.parserServices?.isAstro) {
       return {}
     }

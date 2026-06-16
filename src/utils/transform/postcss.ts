@@ -3,7 +3,6 @@ import postcss from "postcss"
 import type { RuleContext } from "../../types.ts"
 import { getContentRange, loadModule } from "./utils.ts"
 import type { TransformResult } from "./types.ts"
-import { getCwd, getFilename, getSourceCode } from "../compat.ts"
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports --- Ignore inline type
 type PostcssLoadConfig = typeof import("postcss-load-config")
@@ -20,13 +19,13 @@ export function transform(
   }
   const inputRange = getContentRange(node)
 
-  const sourceCode = getSourceCode(context)
+  const sourceCode = context.sourceCode
   const code = sourceCode.text.slice(...inputRange)
 
-  const filename = `${getFilename(context)}.css`
+  const filename = `${context.filename}.css`
   try {
     const config = postcssLoadConfig.sync({
-      cwd: getCwd(context) ?? process.cwd(),
+      cwd: context.cwd ?? process.cwd(),
       from: filename,
     })
 

@@ -17,7 +17,6 @@ import type { Token } from "../utils/string-literal-parser/index.ts"
 import { parseStringTokens } from "../utils/string-literal-parser/index.ts"
 import type { Rule } from "eslint"
 import { getPropertyName } from "@eslint-community/eslint-utils"
-import { getSourceCode } from "../utils/compat.ts"
 import type { RuleModule } from "../types.ts"
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
@@ -45,7 +44,7 @@ export default createRule("prefer-split-class-list", {
     type: "suggestion",
   },
   create(context) {
-    const sourceCode = getSourceCode(context)
+    const sourceCode = context.sourceCode
     if (!sourceCode.parserServices?.isAstro) {
       return {}
     }
@@ -373,7 +372,7 @@ export default createRule("prefer-split-class-list", {
 
     return {
       Program(node) {
-        const sourceCode = getSourceCode(context)
+        const sourceCode = context.sourceCode
         const referenceTracker = new ReferenceTracker(sourceCode.getScope(node))
         for (const call of referenceTracker.iterateEsmReferences({
           // https://github.com/lukeed/clsx

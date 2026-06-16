@@ -1,4 +1,4 @@
-import { RuleTester, testRuleIdPrefix } from "../../utils/eslint-compat.ts"
+import { RuleTester } from "eslint"
 import { astroProcessor } from "../../../src/processor/index.ts"
 import { getCoreRule } from "./get-core-rule.ts"
 import * as autoParser from "./auto-parser.ts"
@@ -43,12 +43,12 @@ describe("Integration test for linebreak-style", () => {
       {
         filename: "foo.astro",
         processor: astroProcessor,
-        code: `{/*eslint ${testRuleIdPrefix}linebreak-style:0*/}
+        code: `{/*eslint rule-to-test/linebreak-style:0*/}
         <script define:vars={{ bar: 42 }}>
           console.log(foo)\r
         </script>
         `,
-        output: `{/*eslint ${testRuleIdPrefix}linebreak-style:0*/}
+        output: `{/*eslint rule-to-test/linebreak-style:0*/}
         <script define:vars={{ bar: 42 }}>
           console.log(foo)
         </script>
@@ -58,7 +58,7 @@ describe("Integration test for linebreak-style", () => {
       {
         filename: "foo.astro",
         processor: astroProcessor,
-        code: `{/*eslint ${testRuleIdPrefix}linebreak-style:0*/}
+        code: `{/*eslint rule-to-test/linebreak-style:0*/}
 <script define:vars={{ bar: 42 }}>\r
 \r
 \r
@@ -66,7 +66,7 @@ describe("Integration test for linebreak-style", () => {
   console.log(foo)\r
 </script>
         `,
-        output: `{/*eslint ${testRuleIdPrefix}linebreak-style:0*/}
+        output: `{/*eslint rule-to-test/linebreak-style:0*/}
 <script define:vars={{ bar: 42 }}>\r
 
 \r
