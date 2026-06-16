@@ -93,7 +93,7 @@
   },
   "devDependencies": {
     "@actions/github": "^9.0.0",
-    "@astrojs/compiler": "^3.0.0",
+    "@astrojs/compiler": "^4.0.0",
     "@astrojs/mdx": "^6.0.0",
     "@astrojs/svelte": "^8.0.0",
     "@changesets/changelog-github": "^0.7.0",
