@@ -67,7 +67,7 @@ npm install --save-dev eslint-plugin-jsx-a11y
 > **Requirements**
 >
 > - ESLint v8.57.0 and above
-> - Node.js v18.18, v20.9, v21.1 and above
+> - Node.js v22.22.3, v24.16.0, v26.3.0 and above
 
 <!--INSTALL_GUIDE_END-->
 
