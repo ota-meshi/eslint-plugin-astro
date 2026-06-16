@@ -74,10 +74,10 @@ export function buildNotesFromRule(rule: RuleModule, isNew: boolean): string[] {
   } else if (recommended) {
     if (recommended === "base") {
       notes.push(
-        '- ⚙ This rule is included in `"plugin:astro/base"` and `"plugin:astro/recommended"`.',
+        "- ⚙ This rule is included in the `base` and `recommended` configs.",
       )
     } else {
-      notes.push('- ⚙ This rule is included in `"plugin:astro/recommended"`.')
+      notes.push("- ⚙ This rule is included in the `recommended` config.")
     }
   }
   if (fixable) {

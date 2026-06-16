@@ -15,7 +15,7 @@ ${code}
   const statement = result.ast.body[0] as TSESTree.ExpressionStatement
   const expression = statement.expression
   traverseNodes(expression, {
-    visitorKeys: result.visitorKeys as never,
+    visitorKeys: result.visitorKeys,
     enterNode(node) {
       node.loc.start = {
         ...node.loc.start,

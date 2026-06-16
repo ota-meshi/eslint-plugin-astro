@@ -8,7 +8,7 @@ since: "v0.16.0"
 
 > disallow using deprecated `Astro.canonicalURL`
 
-- ⚙ This rule is included in `"plugin:astro/recommended"`.
+- ⚙ This rule is included in the `recommended` config.
 
 ## 📖 Rule Details
 

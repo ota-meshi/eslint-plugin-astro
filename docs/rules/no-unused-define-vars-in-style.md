@@ -8,7 +8,7 @@ since: "v0.6.0"
 
 > disallow unused `define:vars={...}` in `style` tag
 
-- ⚙ This rule is included in `"plugin:astro/recommended"`.
+- ⚙ This rule is included in the `recommended` config.
 
 ## 📖 Rule Details
 

@@ -4,7 +4,7 @@ const path = `docs/${Astro.props.path}`
 const url = `https://api.github.com/repos/withastro/astro/commits?path=${path}`
 const commitsURL = `https://github.com/withastro/astro/commits/main/${path}`
 
-async function getCommits(url: string) {
+async function getCommits(requestUrl: string) {
   try {
     const token = import.meta.env.SNOWPACK_PUBLIC_GITHUB_TOKEN
     if (!token) {
@@ -15,7 +15,7 @@ async function getCommits(url: string) {
 
     const auth = `Basic ${Buffer.from(token, "binary").toString("base64")}`
 
-    const res = await fetch(url, {
+    const res = await fetch(requestUrl, {
       method: "GET",
       headers: {
         Authorization: auth,

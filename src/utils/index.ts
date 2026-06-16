@@ -20,6 +20,6 @@ export function createRule(
         ruleName,
       },
     },
-    create: rule.create as never,
+    create: rule.create,
   }
 }

@@ -23,7 +23,7 @@ describeSkipWhenESLintV8("compat with @eslint/json", () => {
             {
               files: ["**/*.json", "*.json"],
               plugins: {
-                json: json as any,
+                json,
                 astro: {
                   rules: {
                     [rule.meta.docs.ruleName]: rule as any,

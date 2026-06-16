@@ -8,7 +8,7 @@ since: "v0.12.0"
 
 > disallow using deprecated `Astro.fetchContent()`
 
-- ⚙ This rule is included in `"plugin:astro/recommended"`.
+- ⚙ This rule is included in the `recommended` config.
 - 🔧 The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
 
 ## 📖 Rule Details

@@ -8,7 +8,7 @@ since: "v0.33.0"
 
 > the client:only directive is missing the correct component's framework value
 
-- ⚙ This rule is included in `"plugin:astro/recommended"`.
+- ⚙ This rule is included in the `recommended` config.
 
 ## 📖 Rule Details
 
