@@ -1,8 +1,10 @@
-import path from "path"
-import fs from "fs"
-import cp from "child_process"
-import { renderRuleHeader } from "./lib/doc-renderer"
+import path from "node:path"
+import fs from "node:fs"
+import cp from "node:child_process"
+import { fileURLToPath } from "node:url"
+import { renderRuleHeader } from "./lib/doc-renderer.ts"
 const logger = console
+const dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // main
 ;((ruleId) => {
@@ -17,11 +19,11 @@ const logger = console
     return
   }
 
-  const ruleFile = path.resolve(__dirname, `../src/rules/${ruleId}.ts`)
-  const testFile = path.resolve(__dirname, `../tests/src/rules/${ruleId}.ts`)
-  const docFile = path.resolve(__dirname, `../docs/rules/${ruleId}.md`)
+  const ruleFile = path.resolve(dirname, `../src/rules/${ruleId}.ts`)
+  const testFile = path.resolve(dirname, `../tests/src/rules/${ruleId}.ts`)
+  const docFile = path.resolve(dirname, `../docs/rules/${ruleId}.md`)
   const fixturesRoot = path.resolve(
-    __dirname,
+    dirname,
     `../tests/fixtures/rules/${ruleId}/`,
   )
   try {
@@ -38,6 +40,7 @@ const logger = console
 import { createRule } from "../utils"
 import { getSourceCode } from "../utils/compat"
 
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
 export default createRule("${ruleId}", {
   meta: {
     docs: {

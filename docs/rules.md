@@ -1,7 +1,7 @@
 # Available Rules
 
 The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) automatically fixes problems reported by rules which have a wrench 🔧 below.  
-The rules with the following star ⭐ are included in the `plugin:astro/recommended` config.
+The rules with the following star ⭐ are included in the `recommended` config.
 
 > Doesn't the rule you want exist? [Share your idea of that rule with us](https://github.com/ota-meshi/eslint-plugin-astro/issues/new?template=new_rule_request.yml).
 
@@ -20,6 +20,7 @@ These rules relate to possible syntax or logic errors in Astro component code:
 | [astro/no-deprecated-astro-resolve](./rules/no-deprecated-astro-resolve.md) | disallow using deprecated `Astro.resolve()` | ⭐ |
 | [astro/no-deprecated-getentrybyslug](./rules/no-deprecated-getentrybyslug.md) | disallow using deprecated `getEntryBySlug()` | ⭐ |
 | [astro/no-exports-from-components](./rules/no-exports-from-components.md) | disallow value export |  |
+| [astro/no-prerender-export-outside-pages](./rules/no-prerender-export-outside-pages.md) | disallow `prerender` export outside of pages/ directory |  |
 | [astro/no-unused-define-vars-in-style](./rules/no-unused-define-vars-in-style.md) | disallow unused `define:vars={...}` in `style` tag | ⭐ |
 | [astro/valid-compile](./rules/valid-compile.md) | disallow warnings when compiling. | ⭐ |
 
@@ -30,6 +31,7 @@ These rules relate to security vulnerabilities in Astro component code:
 | Rule ID | Description |    |
 |:--------|:------------|:---|
 | [astro/no-set-html-directive](./rules/no-set-html-directive.md) | disallow use of `set:html` to prevent XSS attack |  |
+| [astro/no-unsafe-inline-scripts](./rules/no-unsafe-inline-scripts.md) | disallow inline `<script>` without `src` to encourage CSP-safe patterns |  |
 
 ## Best Practices
 

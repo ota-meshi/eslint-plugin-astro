@@ -1,44 +1,13 @@
-import { ESLint } from "eslint"
-// @ts-expect-error -- ignore
-import jsxA11yPlugin from "eslint-plugin-jsx-a11y"
-import astroPlugin from "../../../src/index.cts"
-import assert from "assert"
-import Module from "module"
-import semver from "semver"
+import astroPlugin from "../../../src/index.mts"
+import assert from "node:assert"
+import { FlatESLint } from "../../utils/eslint-compat.ts"
 
 describe("Integration test for a11y config", () => {
-  // @ts-expect-error -- ignore
-  const originalLoad = Module._load
-  before(() => {
-    // @ts-expect-error -- ignore
-    Module._load = function (name, ...args) {
-      if (name === "eslint-plugin-astro") {
-        return astroPlugin
-      }
-      return originalLoad(name, ...args)
-    }
-  })
-  after(() => {
-    // @ts-expect-error -- ignore
-    Module._load = originalLoad
-  })
   it("should work with a11y config strict", async () => {
-    const eslint = semver.lt(ESLint.version, "9.0.0-0")
-      ? new ESLint({
-          plugins: {
-            "jsx-a11y": jsxA11yPlugin,
-            astro: astroPlugin as any,
-          },
-          useEslintrc: false,
-          overrideConfig: {
-            // @ts-expect-error -- typing bug
-            extends: ["plugin:astro/jsx-a11y-strict"],
-          },
-        })
-      : new ESLint({
-          overrideConfigFile: true as any,
-          overrideConfig: astroPlugin.configs["flat/jsx-a11y-strict"],
-        })
+    const eslint = new FlatESLint({
+      overrideConfigFile: true,
+      overrideConfig: astroPlugin.configs["jsx-a11y-strict"],
+    })
 
     const result = await eslint.lintText(
       `---
@@ -72,22 +41,10 @@ const src = 'icon.png'
     )
   })
   it("should work with a11y config recommended", async () => {
-    const eslint = semver.lt(ESLint.version, "9.0.0-0")
-      ? new ESLint({
-          plugins: {
-            "jsx-a11y": jsxA11yPlugin,
-            astro: astroPlugin as any,
-          },
-          useEslintrc: false,
-          overrideConfig: {
-            // @ts-expect-error -- typing bug
-            extends: ["plugin:astro/jsx-a11y-recommended"],
-          },
-        })
-      : new ESLint({
-          overrideConfigFile: true as any,
-          overrideConfig: astroPlugin.configs["flat/jsx-a11y-recommended"],
-        })
+    const eslint = new FlatESLint({
+      overrideConfigFile: true,
+      overrideConfig: astroPlugin.configs["jsx-a11y-recommended"],
+    })
 
     const result = await eslint.lintText(
       `---

@@ -13,7 +13,7 @@ import type { Linter } from "eslint"
 // Requirements
 // ------------------------------------------------------------------------------
 
-//  const debug = require("debug")("eslint:source-code-fixer");
+//  const debug = debugFactory("eslint:source-code-fixer");
 type Message = {
   fix?: Linter.LintMessage["fix"]
 }

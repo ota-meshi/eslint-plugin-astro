@@ -7,13 +7,18 @@ permissions:
   issues: write
   pull-requests: write
 
+# Allow one concurrent deployment
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   stale:
     if: github.repository == 'ota-meshi/eslint-plugin-astro'
     name: Close stale issues with missing information
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/stale@v9
+      - uses: actions/stale@v10
         with:
           any-of-labels: "needs repro,needs info,needs more info"
           days-before-stale: 60

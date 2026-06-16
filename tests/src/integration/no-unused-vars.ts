@@ -1,13 +1,13 @@
-import { RuleTester } from "../../utils/eslint-compat"
-import { astroProcessor } from "../../../src/processor"
-import { getCoreRule } from "./get-core-rule"
+import { RuleTester } from "../../utils/eslint-compat.ts"
+import { astroProcessor } from "../../../src/processor/index.ts"
+import { getCoreRule } from "./get-core-rule.ts"
+import * as autoParser from "./auto-parser.ts"
 
 describe("Integration test for no-unused-vars", () => {
   const ruleNoUnusedVars = getCoreRule("no-unused-vars")!
   const tester = new RuleTester({
     languageOptions: {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports -- ignore
-      parser: require("./auto-parser"),
+      parser: autoParser,
       ecmaVersion: 2020,
       sourceType: "module",
     },
@@ -16,7 +16,6 @@ describe("Integration test for no-unused-vars", () => {
     valid: [
       {
         filename: "foo.astro",
-        // @ts-expect-error -- missing V9 type
         processor: astroProcessor,
         code: `
         <script define:vars={{ foo: 42 }}>
@@ -28,7 +27,6 @@ describe("Integration test for no-unused-vars", () => {
     invalid: [
       {
         filename: "foo.astro",
-        // @ts-expect-error -- missing V9 type
         processor: astroProcessor,
         code: `
         <script define:vars={{ foo: 42, bar: 42 }}>

@@ -1,8 +1,10 @@
 import type { AST } from "astro-eslint-parser"
-import { createRule } from "../utils"
-import { getAttributeName } from "../utils/ast-utils"
-import { getSourceCode } from "../utils/compat"
+import { createRule } from "../utils/index.ts"
+import { getAttributeName } from "../utils/ast-utils.ts"
+import { getSourceCode } from "../utils/compat.ts"
+import type { RuleModule } from "../types.ts"
 
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
 export default createRule("no-conflict-set-directives", {
   meta: {
     docs: {
@@ -18,7 +20,7 @@ export default createRule("no-conflict-set-directives", {
   },
   create(context) {
     const sourceCode = getSourceCode(context)
-    if (!sourceCode.parserServices.isAstro) {
+    if (!sourceCode.parserServices?.isAstro) {
       return {}
     }
 
@@ -99,4 +101,4 @@ export default createRule("no-conflict-set-directives", {
       },
     }
   },
-})
+}) as RuleModule

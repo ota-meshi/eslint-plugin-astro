@@ -1,7 +1,7 @@
 // eslint-disable-next-line @eslint-community/eslint-comments/disable-enable-pair -- ignore
 /* eslint-disable func-style -- Arrow functions are better when returning string */
-import type { RuleCategory, RuleModule } from "../src/types"
-import { rules } from "../src/rules"
+import type { RuleCategory, RuleModule } from "../src/types.ts"
+import { rules } from "../src/rules/index.ts"
 
 const categories: RuleCategory[] = [
   "Possible Errors",
@@ -124,7 +124,7 @@ const noRulesTableContent = `
 
 //eslint-disable-next-line jsdoc/require-jsdoc -- ignore
 export default function renderRulesTableContent(
-  buildRulePath = buildDefaultRulePath,
+  buildRulePath: (ruleName: string) => string = buildDefaultRulePath,
 ): string {
   let rulesTableContent = categoryRules
     .filter((cat) => cat.rules.length)

@@ -1,41 +1,13 @@
-import { ESLint } from "eslint"
-import astroPlugin from "../../../src/index.cts"
-import assert from "assert"
-import Module from "module"
-import semver from "semver"
+import astroPlugin from "../../../src/index.mts"
+import assert from "node:assert"
+import { FlatESLint } from "../../utils/eslint-compat.ts"
 
 describe("Integration test for parse error", () => {
-  // @ts-expect-error -- ignore
-  const originalLoad = Module._load
-  before(() => {
-    // @ts-expect-error -- ignore
-    Module._load = function (name, ...args) {
-      if (name === "eslint-plugin-astro") {
-        return astroPlugin
-      }
-      return originalLoad(name, ...args)
-    }
-  })
-  after(() => {
-    // @ts-expect-error -- ignore
-    Module._load = originalLoad
-  })
   it("should work with parse error", async () => {
-    const eslint = semver.lt(ESLint.version, "9.0.0-0")
-      ? new ESLint({
-          plugins: {
-            astro: astroPlugin as any,
-          },
-          useEslintrc: false,
-          overrideConfig: {
-            // @ts-expect-error -- typing bug
-            extends: ["plugin:astro/base"],
-          },
-        })
-      : new ESLint({
-          overrideConfigFile: true as any,
-          overrideConfig: astroPlugin.configs["flat/base"],
-        })
+    const eslint = new FlatESLint({
+      overrideConfigFile: true,
+      overrideConfig: astroPlugin.configs.base,
+    })
 
     const result = await eslint.lintText(
       `---

@@ -4,7 +4,7 @@ import type { AST } from "astro-eslint-parser"
 import type { Rule } from "eslint"
 import { getPropertyName } from "@eslint-community/eslint-utils"
 import { isCommaToken } from "@eslint-community/eslint-utils"
-import { createRule } from "../utils"
+import { createRule } from "../utils/index.ts"
 import {
   extractConcatExpressions,
   getAttributeName,
@@ -14,9 +14,11 @@ import {
   isStringCallExpression,
   isStringLiteral,
   needParentheses,
-} from "../utils/ast-utils"
-import { getSourceCode } from "../utils/compat"
+} from "../utils/ast-utils.ts"
+import { getSourceCode } from "../utils/compat.ts"
+import type { RuleModule } from "../types.ts"
 
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
 export default createRule("prefer-object-class-list", {
   meta: {
     docs: {
@@ -34,7 +36,7 @@ export default createRule("prefer-object-class-list", {
   },
   create(context) {
     const sourceCode = getSourceCode(context)
-    if (!sourceCode.parserServices.isAstro) {
+    if (!sourceCode.parserServices?.isAstro) {
       return {}
     }
 
@@ -218,7 +220,7 @@ export default createRule("prefer-object-class-list", {
         | TSESTree.PrivateIdentifier,
     ): string[] | null {
       if (node.type === "TemplateElement") {
-        return [node.value.cooked]
+        return node.value.cooked != null ? [node.value.cooked] : null
       }
       if (node.type === "ConditionalExpression") {
         const values = parseConditionalExpression(node)
@@ -582,8 +584,8 @@ export default createRule("prefer-object-class-list", {
               *fixExpression(data) {
                 const fixer = data.fixer
                 if (
-                  beforeQuasi.value.cooked.trim() ||
-                  afterQuasi.value.cooked.trim() ||
+                  beforeQuasi.value.cooked?.trim() ||
+                  afterQuasi.value.cooked?.trim() ||
                   // has other expression
                   node.expressions.length > 1
                 ) {
@@ -835,4 +837,4 @@ export default createRule("prefer-object-class-list", {
       AstroTemplateLiteralAttribute: verifyAttr,
     }
   },
-})
+}) as RuleModule

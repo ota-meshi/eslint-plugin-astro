@@ -1,8 +1,10 @@
 import type { AST } from "astro-eslint-parser"
 
-import { createRule } from "../utils"
-import { getSourceCode } from "../utils/compat"
+import { createRule } from "../utils/index.ts"
+import { getSourceCode } from "../utils/compat.ts"
+import type { RuleModule } from "../types.ts"
 
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
 export default createRule("sort-attributes", {
   meta: {
     docs: {
@@ -30,7 +32,7 @@ export default createRule("sort-attributes", {
   },
   create(context) {
     const sourceCode = getSourceCode(context)
-    if (!sourceCode.parserServices.isAstro) {
+    if (!sourceCode.parserServices?.isAstro) {
       return {}
     }
 
@@ -143,4 +145,4 @@ export default createRule("sort-attributes", {
       },
     }
   },
-})
+}) as RuleModule

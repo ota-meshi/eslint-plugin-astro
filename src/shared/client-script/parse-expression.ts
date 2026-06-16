@@ -1,6 +1,6 @@
 import { traverseNodes } from "astro-eslint-parser"
 import type { TSESTree } from "@typescript-eslint/types"
-import { resolveParser } from "../../utils/resolve-parser"
+import { resolveParser } from "../../utils/resolve-parser/index.ts"
 
 /**
  * Parse expression
@@ -15,7 +15,7 @@ ${code}
   const statement = result.ast.body[0] as TSESTree.ExpressionStatement
   const expression = statement.expression
   traverseNodes(expression, {
-    visitorKeys: result.visitorKeys as never,
+    visitorKeys: result.visitorKeys,
     enterNode(node) {
       node.loc.start = {
         ...node.loc.start,

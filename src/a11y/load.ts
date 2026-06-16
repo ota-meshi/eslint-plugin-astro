@@ -1,5 +1,8 @@
-import type { RuleContext, RuleListener } from "../types"
-import { requireUserLocal } from "../utils/resolve-parser/require-user"
+import { createRequire } from "node:module"
+import type { RuleContext, RuleListener } from "../types.ts"
+import { requireUserLocal } from "../utils/resolve-parser/require-user.ts"
+
+const requireLocal = createRequire(import.meta.url)
 
 export type PluginRuleModule = {
   meta?: {
@@ -36,13 +39,10 @@ export function getPluginJsxA11y(): PluginJsxA11y | null {
     pluginJsxA11yCache = requireUserLocal("eslint-plugin-jsx-a11y")
   }
   if (!pluginJsxA11yCache) {
-    if (typeof require !== "undefined") {
-      try {
-        // eslint-disable-next-line @typescript-eslint/no-require-imports -- ignore
-        pluginJsxA11yCache = require("eslint-plugin-jsx-a11y")
-      } catch {
-        loaded = true
-      }
+    try {
+      pluginJsxA11yCache = requireLocal("eslint-plugin-jsx-a11y")
+    } catch {
+      loaded = true
     }
   }
 

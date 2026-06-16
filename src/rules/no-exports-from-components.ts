@@ -1,16 +1,17 @@
 import type { TSESTree } from "@typescript-eslint/types"
-import { createRule } from "../utils"
-import { getSourceCode } from "../utils/compat"
+import { createRule } from "../utils/index.ts"
+import { getSourceCode } from "../utils/compat.ts"
+import type { RuleModule } from "../types.ts"
 
 const ALLOWED_EXPORTS = new Set(["getStaticPaths", "partial", "prerender"])
 
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
 export default createRule("no-exports-from-components", {
   meta: {
     docs: {
       description: "disallow value export",
       category: "Possible Errors",
-      // TODO: Switch to recommended: true, in next major version
-      recommended: false,
+      recommended: true,
     },
     schema: [],
     messages: {
@@ -20,7 +21,7 @@ export default createRule("no-exports-from-components", {
   },
   create(context) {
     const sourceCode = getSourceCode(context)
-    if (!sourceCode.parserServices.isAstro) {
+    if (!sourceCode.parserServices?.isAstro) {
       return {}
     }
 
@@ -50,19 +51,13 @@ export default createRule("no-exports-from-components", {
         // Allow specific named exports
         return
       }
-      context.report({
-        node,
-        messageId: "disallowExport",
-      })
+      context.report({ node, messageId: "disallowExport" })
     }
 
     return {
       ExportAllDeclaration(node) {
         if (node.exportKind === "type") return
-        context.report({
-          node,
-          messageId: "disallowExport",
-        })
+        context.report({ node, messageId: "disallowExport" })
       },
       ExportDefaultDeclaration(node) {
         if ((node.exportKind as "value" | "type") === "type") return
@@ -78,12 +73,9 @@ export default createRule("no-exports-from-components", {
             // Allow specific named exports
             continue
           }
-          context.report({
-            node: spec,
-            messageId: "disallowExport",
-          })
+          context.report({ node: spec, messageId: "disallowExport" })
         }
       },
     }
   },
-})
+}) as RuleModule

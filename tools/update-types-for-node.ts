@@ -1,11 +1,10 @@
 import { AST_NODE_TYPES } from "@typescript-eslint/types"
 import { parseForESLint } from "astro-eslint-parser"
-import path from "path"
-import { formatAndSave } from "./lib/utils"
+import path from "node:path"
+import { fileURLToPath } from "node:url"
+import { formatAndSave } from "./lib/utils.ts"
 
-// import { fileURLToPath } from "url"
-// const filename = fileURLToPath(import.meta.url)
-const dirname = __dirname // path.dirname(filename)
+const dirname = path.dirname(fileURLToPath(import.meta.url))
 const codeFilename = path.join(dirname, "../src/types-for-node.ts")
 const { visitorKeys } = parseForESLint("")
 
@@ -25,11 +24,9 @@ const astroNodeNames = Object.keys(visitorKeys).filter(
   (k) => !tsEsNodeNames.includes(k) && !k.startsWith("Experimental"),
 )
 
-let code = `/*
- * IMPORTANT!
- * This file has been automatically generated,
- * in order to update its content execute "npm run update"
- */
+let code = `// IMPORTANT!
+// This file has been automatically generated,
+// in order to update its content execute "npm run update"
 import type { TSESTree, AST_NODE_TYPES } from "@typescript-eslint/types"
 import type { AST } from "astro-eslint-parser"
 
@@ -53,8 +50,12 @@ for (const nodeType of tsEsNodeNames) {
   if (nodeType === "TSIntrinsicKeyword") {
     argType = `TSESTree.Node & { type: AST_NODE_TYPES.${nodeType}}`
   }
-  code += `  ${nodeType}?: (node: ${argType} & ASTNodeWithParent) => void
-  "${nodeType}:exit"?: (node: ${argType} & ASTNodeWithParent) => void
+  code += `  ${nodeType}?: (
+    node: ${argType} & ASTNodeWithParent,
+  ) => void
+  "${nodeType}:exit"?: (
+    node: ${argType} & ASTNodeWithParent,
+  ) => void
 `
 }
 for (const nodeType of astroNodeNames) {
@@ -62,8 +63,12 @@ for (const nodeType of astroNodeNames) {
   if (nodeType === "Program") {
     argType = `AST.AstroProgram`
   }
-  code += `  ${nodeType}?: (node: ${argType} & ASTNodeWithParent) => void
-  "${nodeType}:exit"?: (node: ${argType} & ASTNodeWithParent) => void
+  code += `  ${nodeType}?: (
+    node: ${argType} & ASTNodeWithParent,
+  ) => void
+  "${nodeType}:exit"?: (
+    node: ${argType} & ASTNodeWithParent,
+  ) => void
 `
 }
 code += `
@@ -77,8 +82,12 @@ for (const nodeType of tsNodeNames) {
   if (nodeType === "TSIntrinsicKeyword") {
     argType = `TSESTree.Node & { type: AST_NODE_TYPES.${nodeType}}`
   }
-  code += `  ${nodeType}?: (node: ${argType} & ASTNodeWithParent) => void
-  "${nodeType}:exit"?: (node: ${argType} & ASTNodeWithParent) => void
+  code += `  ${nodeType}?: (
+    node: ${argType} & ASTNodeWithParent,
+  ) => void
+  "${nodeType}:exit"?: (
+    node: ${argType} & ASTNodeWithParent,
+  ) => void
 `
 }
 code += `
@@ -91,8 +100,12 @@ for (const nodeType of astroNodeNames.filter(
   (k) => !esAstroNodeNames.includes(k),
 )) {
   const argType = `AST.${nodeType}`
-  code += `  ${nodeType}?: (node: ${argType} & ASTNodeWithParent) => void
-  "${nodeType}:exit"?: (node: ${argType} & ASTNodeWithParent) => void
+  code += `  ${nodeType}?: (
+    node: ${argType} & ASTNodeWithParent,
+  ) => void
+  "${nodeType}:exit"?: (
+    node: ${argType} & ASTNodeWithParent,
+  ) => void
 `
 }
 code += `

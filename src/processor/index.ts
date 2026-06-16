@@ -1,8 +1,8 @@
 import type { ParseTemplateResult } from "astro-eslint-parser"
 import { parseTemplate } from "astro-eslint-parser"
 import type { Linter } from "eslint"
-import { beginShared, terminateShared } from "../shared"
-import * as meta from "../meta"
+import { beginShared, terminateShared } from "../shared/index.ts"
+import * as meta from "../meta.ts"
 
 export const astroProcessor: Linter.Processor = {
   preprocess(code: string, filename: string) {
