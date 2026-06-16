@@ -1,13 +1,16 @@
 import type { ParserOptions, TSESTree } from "@typescript-eslint/types"
-import { createRequire } from "node:module"
+import Module, { createRequire } from "node:module"
 import path from "node:path"
+import * as espree from "espree"
 import { requireUserLocal } from "./require-user.ts"
 
 type Espree = {
   parse(code: string, options?: ParserOptions | null): TSESTree.Program
 }
+type ModuleWithCache = typeof Module & {
+  _cache?: Record<string, unknown>
+}
 let espreeCache: Espree | null = null
-const requireLocal = createRequire(import.meta.url)
 
 /** Checks if given path is linter path */
 function isLinterPath(p: string): boolean {
@@ -21,7 +24,8 @@ function isLinterPath(p: string): boolean {
 export function getEspree(): Espree {
   if (!espreeCache) {
     // Lookup the loaded eslint
-    const linterPath = Object.keys(require.cache || {}).find(isLinterPath)
+    const moduleCache = (Module as ModuleWithCache)._cache
+    const linterPath = Object.keys(moduleCache || {}).find(isLinterPath)
     if (linterPath) {
       try {
         espreeCache = createRequire(linterPath)("espree")
@@ -34,8 +38,8 @@ export function getEspree(): Espree {
     espreeCache = requireUserLocal("espree")
   }
   if (!espreeCache) {
-    espreeCache = requireLocal("espree")
+    espreeCache = espree
   }
 
-  return espreeCache!
+  return espreeCache
 }

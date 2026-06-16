@@ -8,7 +8,10 @@
 
   const dispatch = createEventDispatcher()
 
-  import { loadMonacoEditor } from "./scripts/monaco-loader.mjs"
+  import {
+    loadMonacoEditor,
+    DARK_THEME_NAME,
+  } from "./scripts/monaco-loader.mjs"
   export let code = ""
   export let rightCode = ""
   export let language = "javascript"
@@ -105,7 +108,7 @@
     const options = {
       value: code,
       readOnly,
-      theme: "vs-dark",
+      theme: DARK_THEME_NAME,
       language,
       automaticLayout: true,
       fontSize: 14,

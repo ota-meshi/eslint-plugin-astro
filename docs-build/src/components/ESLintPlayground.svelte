@@ -13,13 +13,20 @@
   } from "./eslint/scripts/linter.mts"
   import { Linter } from "eslint"
 
-  let tsParser = undefined
   const linter = loadMonacoEditor().then(async () => {
-    tsParser = await import("@typescript-eslint/parser")
+    const tsParser = await import("@typescript-eslint/parser")
     const pluginJsxA11y = await import("eslint-plugin-jsx-a11y")
-    if (typeof window !== "undefined") {
-      window.require.define("@typescript-eslint/parser", tsParser)
-      window.require.define("eslint-plugin-jsx-a11y", pluginJsxA11y)
+
+    globalThis._ESLINT_PLUGIN_ASTRO_MODULES = {
+      require: (id) => {
+        if (id === "@typescript-eslint/parser") {
+          return tsParser
+        }
+        if (id === "eslint-plugin-jsx-a11y") {
+          return pluginJsxA11y
+        }
+        throw new Error(`Module not found: ${id}`)
+      },
     }
 
     return new Linter()
