@@ -1,9 +1,11 @@
 import type { parseForESLint } from "@typescript-eslint/parser"
-import { createRequire } from "node:module"
 import { getEspree } from "./espree.ts"
 import { requireUserLocal } from "./require-user.ts"
 
-const requireLocal = createRequire(import.meta.url)
+/** A variable used to load modules within our website. */
+declare const _ESLINT_PLUGIN_ASTRO_MODULES: {
+  require: <T>(id: string) => T
+}
 
 /** Resolve parser */
 export function resolveParser(): { parseForESLint: typeof parseForESLint } {
@@ -19,12 +21,14 @@ export function resolveParser(): { parseForESLint: typeof parseForESLint } {
     }
     return parser
   }
-
   try {
-    return toParserForESLint(requireLocal("@typescript-eslint/parser"))!
+    return toParserForESLint(
+      _ESLINT_PLUGIN_ASTRO_MODULES.require("@typescript-eslint/parser"),
+    )!
   } catch {
     // ignore
   }
+
   return toParserForESLint(getEspree())!
 }
 

@@ -1,8 +1,10 @@
-import { createRequire } from "node:module"
 import type { RuleContext, RuleListener } from "../types.ts"
 import { requireUserLocal } from "../utils/resolve-parser/require-user.ts"
 
-const requireLocal = createRequire(import.meta.url)
+/** A variable used to load modules within our website. */
+declare const _ESLINT_PLUGIN_ASTRO_MODULES: {
+  require: <T>(id: string) => T
+}
 
 export type PluginRuleModule = {
   meta?: {
@@ -40,11 +42,15 @@ export function getPluginJsxA11y(): PluginJsxA11y | null {
   }
   if (!pluginJsxA11yCache) {
     try {
-      pluginJsxA11yCache = requireLocal("eslint-plugin-jsx-a11y")
+      if (typeof _ESLINT_PLUGIN_ASTRO_MODULES !== "undefined")
+        pluginJsxA11yCache = _ESLINT_PLUGIN_ASTRO_MODULES.require(
+          "eslint-plugin-jsx-a11y",
+        )
     } catch {
-      loaded = true
+      // ignore
     }
   }
 
+  loaded = true
   return pluginJsxA11yCache || null
 }
