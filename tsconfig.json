@@ -14,14 +14,12 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "baseUrl": ".",
-    // "paths": {
-    //     "*": ["typings/*"]
-    // },
     "esModuleInterop": true,
     "outDir": "lib",
+    "types": ["node", "mocha"],
     "paths": {
-      "@eslint-community/*": ["typings/@eslint-community/*"]
+      "src/*": ["./src/*"],
+      "@eslint-community/*": ["./typings/@eslint-community/*"]
     },
 
     "skipLibCheck": true,
