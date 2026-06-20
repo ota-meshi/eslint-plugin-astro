@@ -134,7 +134,7 @@
     "eslint-plugin-svelte": "^3.0.0",
     "eslint-plugin-yml": "^3.0.0",
     "expect-type": "^1.0.0",
-    "js-yaml": "^4.1.0",
+    "js-yaml": "^5.0.0",
     "less": "^4.1.2",
     "mocha": "^11.0.0",
     "monaco-editor": "^0.55.0",
