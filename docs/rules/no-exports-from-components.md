@@ -8,6 +8,8 @@ since: "v1.1.0"
 
 > disallow value export
 
+- ⚙ This rule is included in the `recommended` config.
+
 ## 📖 Rule Details
 
 This rule reports value exports from Astro components.
