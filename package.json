@@ -70,7 +70,7 @@
   "dependencies": {
     "@eslint-community/eslint-utils": "^4.5.1",
     "@jridgewell/sourcemap-codec": "^1.5.0",
-    "@typescript-eslint/types": "^8.28.0",
+    "@typescript-eslint/types": "^8.61.0",
     "astro-eslint-parser": "^2.0.0",
     "espree": "^11.0.0",
     "globals": "^17.0.0",
@@ -78,7 +78,7 @@
     "postcss-selector-parser": "^7.1.0"
   },
   "peerDependencies": {
-    "@typescript-eslint/parser": ">=8.28.0",
+    "@typescript-eslint/parser": ">=8.61.0",
     "eslint": ">=10.0.0",
     "eslint-plugin-jsx-a11y": ">=6.10.2"
   },
@@ -111,8 +111,8 @@
     "@types/node": "^24.0.0",
     "@types/react": "^19.0.0",
     "@types/stylus": "^0.48.38",
-    "@typescript-eslint/eslint-plugin": "^8.28.0",
-    "@typescript-eslint/parser": "^8.28.0",
+    "@typescript-eslint/eslint-plugin": "^8.61.0",
+    "@typescript-eslint/parser": "^8.61.0",
     "assert": "^2.0.0",
     "astro": "^6.4.0",
     "env-cmd": "^11.0.0",
@@ -152,7 +152,7 @@
     "tsdown": "^0.22.2",
     "tsx": "^4.22.4",
     "typescript": "~6.0.0",
-    "typescript-eslint": "^8.28.0",
+    "typescript-eslint": "^8.61.0",
     "vite-plugin-eslint4b": "^0.8.1"
   },
   "publishConfig": {

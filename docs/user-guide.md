@@ -38,7 +38,7 @@ npm install --save-dev eslint-plugin-jsx-a11y
 
 #### Flat Config \(`eslint.config.js`\)
 
-This package is ESM-only. Use `eslint.config.js` or `eslint.config.mjs` to configure rules. See also: [https://eslint.org/docs/latest/use/configure/configuration-files](https://eslint.org/docs/latest/use/configure/configuration-files).
+This package is ESM-only. Use `eslint.config.mjs`, or use `eslint.config.js` in a project with `"type": "module"`. See also: [https://eslint.org/docs/latest/use/configure/configuration-files](https://eslint.org/docs/latest/use/configure/configuration-files).
 
 Example **eslint.config.js**:
 
