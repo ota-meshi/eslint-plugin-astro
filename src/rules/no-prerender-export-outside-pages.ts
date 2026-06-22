@@ -9,7 +9,7 @@ const rule: RuleModule = createRule("no-prerender-export-outside-pages", {
     docs: {
       description: "disallow `prerender` export outside of pages/ directory",
       category: "Possible Errors",
-      recommended: false,
+      recommended: true,
     },
     schema: [],
     messages: {
