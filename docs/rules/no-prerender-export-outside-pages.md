@@ -8,6 +8,8 @@ since: "v1.7.0"
 
 > disallow `prerender` export outside of pages/ directory
 
+- ⚙ This rule is included in the `recommended` config.
+
 ## 📖 Rule Details
 
 This rule reports `prerender` exports from Astro files that are not inside a `pages/` directory.
