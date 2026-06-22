@@ -1,5 +1,31 @@
 # eslint-plugin-astro
 
+## 2.0.0
+
+### Major Changes
+
+- [#571](https://github.com/ota-meshi/eslint-plugin-astro/pull/571) [`adfce70`](https://github.com/ota-meshi/eslint-plugin-astro/commit/adfce7087710f3bf7b4d75410aa9150ef0ddbb42) Thanks [@ota-meshi](https://github.com/ota-meshi)! - Require Node.js `^22.22.3 || ^24.16.0 || >=26.3.0`.
+
+- [#574](https://github.com/ota-meshi/eslint-plugin-astro/pull/574) [`db26988`](https://github.com/ota-meshi/eslint-plugin-astro/commit/db269889511ecbf8e34b46197daf35e725c21251) Thanks [@ota-meshi](https://github.com/ota-meshi)! - Drop support for ESLint v8 and v9. ESLint v10.0.0 or later is now required.
+
+- [#569](https://github.com/ota-meshi/eslint-plugin-astro/pull/569) [`f0e1756`](https://github.com/ota-meshi/eslint-plugin-astro/commit/f0e1756859d43ba9de3915dd31ec76eb40a34cc7) Thanks [@ota-meshi](https://github.com/ota-meshi)! - Drop CommonJS entry points and support ESM-only package usage.
+
+- [#477](https://github.com/ota-meshi/eslint-plugin-astro/pull/477) [`cf6ff71`](https://github.com/ota-meshi/eslint-plugin-astro/commit/cf6ff7167d12ad1f7c5c175a12225a932f32c3ce) Thanks [@ota-meshi](https://github.com/ota-meshi)! - feat! update configs
+
+- [#479](https://github.com/ota-meshi/eslint-plugin-astro/pull/479) [`805fffa`](https://github.com/ota-meshi/eslint-plugin-astro/commit/805fffa1d307f71677a04f91a1125bd308f45395) Thanks [@ota-meshi](https://github.com/ota-meshi)! - Update and reorganize dependencies for the ESLint v10 release line.
+
+  The minimum optional `@typescript-eslint/parser` peer dependency is now `8.61.0`,
+  matching the first supported range used here that declares compatibility with
+  ESLint v10 and TypeScript 6.
+
+- [#580](https://github.com/ota-meshi/eslint-plugin-astro/pull/580) [`919a837`](https://github.com/ota-meshi/eslint-plugin-astro/commit/919a837cb75b9f0be48c8a85e23a041082eba9e9) Thanks [@ota-meshi](https://github.com/ota-meshi)! - Add `astro/no-prerender-export-outside-pages` to the `recommended` config.
+
+- [#579](https://github.com/ota-meshi/eslint-plugin-astro/pull/579) [`efd5988`](https://github.com/ota-meshi/eslint-plugin-astro/commit/efd59888c3aa8a5acac4cf3ead9cecd96b772e52) Thanks [@ota-meshi](https://github.com/ota-meshi)! - feat!: update astro-eslint-parser to v2.0.0
+
+### Minor Changes
+
+- [#478](https://github.com/ota-meshi/eslint-plugin-astro/pull/478) [`46106bb`](https://github.com/ota-meshi/eslint-plugin-astro/commit/46106bb27c879e4a65a8eb95c6f6b804a9ade86e) Thanks [@ota-meshi](https://github.com/ota-meshi)! - feat! clarification Versioning policy
+
 ## 1.7.0
 
 ### Minor Changes
