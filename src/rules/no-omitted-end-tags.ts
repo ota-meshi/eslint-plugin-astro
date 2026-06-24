@@ -223,16 +223,19 @@ export default createRule("no-omitted-end-tags", {
       node: AST.JSXElement | AST.JSXFragment | AST.AstroFragment,
     ) {
       if (isRoot(node)) {
+        // The new target will be verified by itself. Hide it from the current
+        // parent target first so expression JSX and nested fragments do not
+        // influence the HTML structure around the place where they are written.
         mask(node)
 
         const range: AST.Range =
           node.type === "JSXFragment"
-            ? // Parse only the fragment children. In `{show && <><p>one<p>two</>}`,
-              // a target spanning the whole fragment would include the closing
-              // `</>` as trailing masked spaces. parse5 then treats EOF as after
-              // those spaces, and may fix `<><p>one<p>two</>` as
-              // `<><p>one</p><p>two</></p>`. Using the child range makes EOF
-              // line up immediately before `</>`.
+            ? // Parse only the fragment children. If the target covered the
+              // whole `<>...</>` range, the JSX delimiters would have to be
+              // masked because they are not HTML. Those trailing masked spaces
+              // after `two` make parse5 place EOF after `</>`, so it may fix
+              // `<><p>one<p>two</>` as `<><p>one</p><p>two</></p>`. Using the
+              // child range makes EOF line up immediately before `</>`.
               [node.openingFragment.range[1], node.closingFragment.range[0]]
             : node.range
 
@@ -289,6 +292,9 @@ export default createRule("no-omitted-end-tags", {
       JSXFragment: (node) => enterElement(node),
       "JSXFragment:exit": (node) => exitElement(node),
 
+      // These nodes are Astro/JSX syntax, not HTML. They are masked only in the
+      // current parse target; JSX elements or fragments inside expressions are
+      // still visited separately and become their own parse targets via isRoot().
       AstroRawText: (node) => mask(node),
       AstroShorthandAttribute: (node) => mask(node),
       AstroTemplateLiteralAttribute: (node) => mask(node),
