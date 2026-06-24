@@ -5,6 +5,8 @@ import type { RuleModule } from "../types.ts"
 
 type Parse5Element = DefaultTreeAdapterTypes.Element
 type Parse5Node = DefaultTreeAdapterTypes.Node
+type Parse5ChildNode = DefaultTreeAdapterTypes.ChildNode
+type Parse5DocumentFragment = DefaultTreeAdapterTypes.DocumentFragment
 
 type TemplateStack = {
   node: AST.JSXElement | AST.JSXFragment | AST.AstroFragment
@@ -395,9 +397,14 @@ function getOmittedEndTag(
 
   const nameStart =
     baseOffset + loc.startTag.startOffset + tagNameData.startOffset
+  // parse5 can report `endOffset: 0` for EOF-terminated RCDATA/RAWTEXT
+  // elements such as `<textarea>hello`. If we used that value directly, the
+  // fixer would insert `</textarea>` at the start of the file, so recover the
+  // insertion point from the furthest source location in the subtree.
+  const endOffset = getSourceEndOffset(node) ?? loc.endOffset
   return {
     children: [],
-    insertIndex: baseOffset + loc.endOffset,
+    insertIndex: baseOffset + endOffset,
     nameRange: [nameStart, nameStart + tagNameData.tagName.length],
     parent,
     tagName: tagNameData.tagName,
@@ -407,6 +414,27 @@ function getOmittedEndTag(
 /** Check whether a parse5 node is an element. */
 function isParse5Element(node: Parse5Node): node is Parse5Element {
   return "tagName" in node
+}
+
+/** Get the furthest source end offset in the parse5 subtree. */
+function getSourceEndOffset(
+  node: Parse5Element | Parse5ChildNode | Parse5DocumentFragment,
+): number | null {
+  let endOffset: number | null = null
+  const loc = node.sourceCodeLocation
+  if (loc) {
+    endOffset = loc.endOffset
+  }
+
+  if ("childNodes" in node) {
+    for (const child of node.childNodes) {
+      endOffset = max(endOffset, getSourceEndOffset(child))
+    }
+  }
+  if ("content" in node) {
+    endOffset = max(endOffset, getSourceEndOffset(node.content))
+  }
+  return endOffset
 }
 
 /** Check whether the original start tag used self-closing syntax. */
@@ -459,4 +487,13 @@ function buildEndTagsAtSameIndex(omittedEndTag: OmittedEndTag) {
     endTags.push(`</${parent.tagName}>`)
   }
   return endTags.join("")
+}
+
+/**
+ * Get the maximum of two numbers, treating `null` as negative infinity.
+ */
+function max(a: number | null, b: number | null): number | null {
+  if (a === null) return b
+  if (b === null) return a
+  return Math.max(a, b)
 }
