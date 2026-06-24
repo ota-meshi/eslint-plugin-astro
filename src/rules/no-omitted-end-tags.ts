@@ -368,7 +368,19 @@ export default createRule("no-omitted-end-tags", {
       const omittedEndTags = collectOmittedEndTags({
         maskedHtml: currentStack.html,
         maskedHtmlRange: currentStack.range,
-        parseAsDocument: currentStack.node === rootAstroFragment,
+        parseAsDocument:
+          currentStack.node === rootAstroFragment &&
+          // `<html><head><body>` is not required in Astro, but parse5 will insert them
+          rootAstroFragment.children.some((node) => {
+            if (node.type !== "JSXElement") return false
+            const name = node.openingElement.name
+            if (name.type !== "JSXIdentifier") return false
+            return (
+              name.name === "html" ||
+              name.name === "head" ||
+              name.name === "body"
+            )
+          }),
         originalText: sourceCode.text,
       })
       for (const omittedEndTag of omittedEndTags) {
