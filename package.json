@@ -28,7 +28,7 @@
     "test:integration-wo-build": "npm run mocha -- \"tests/integration/**/*.ts\" --reporter dot --timeout 60000",
     "test:type": "tsc --noEmit",
     "cover": "nyc --reporter=lcov npm run test",
-    "debug": "npm run mocha -- \"tests/src/**/*.ts\" --reporter dot --timeout 60000",
+    "debug": "npm run mocha:debug -- \"tests/src/**/*.ts\" --reporter dot --timeout 60000",
     "lint": "npm run lint:js && npm run lint:ts",
     "prelint:js": "npm run build:tsdown",
     "lint:js": "eslint . --ignore-pattern=\"tests/fixtures/integration/*/src/\"",
@@ -47,7 +47,8 @@
     "prerelease": "npm run build",
     "release": "changeset publish",
     "ts": "tsx",
-    "mocha": "npm run ts -- ./node_modules/mocha/bin/mocha.js"
+    "mocha": "npm run ts -- ./node_modules/mocha/bin/mocha.js",
+    "mocha:debug": "node --experimental-strip-types --experimental-transform-types ./node_modules/mocha/bin/mocha.js"
   },
   "repository": {
     "type": "git",

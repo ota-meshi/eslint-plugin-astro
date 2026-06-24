@@ -1,6 +1,7 @@
 import assert from "node:assert"
 import { getPlugin } from "../../src/plugin.ts"
-import { version } from "../../package.json"
+import pkg from "../../package.json" with { type: "json" }
+const { version } = pkg
 const plugin = getPlugin()
 const expectedMeta = {
   name: "eslint-plugin-astro",

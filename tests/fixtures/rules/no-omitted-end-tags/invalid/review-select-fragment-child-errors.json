@@ -1,0 +1,12 @@
+[
+  {
+    "message": "Expected an end tag for `<option>`.",
+    "line": 1,
+    "column": 26
+  },
+  {
+    "message": "Expected an end tag for `<option>`.",
+    "line": 1,
+    "column": 35
+  }
+]

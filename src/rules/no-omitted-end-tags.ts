@@ -7,6 +7,7 @@ type Parse5Element = DefaultTreeAdapterTypes.Element
 type Parse5Node = DefaultTreeAdapterTypes.Node
 type Parse5ChildNode = DefaultTreeAdapterTypes.ChildNode
 type Parse5DocumentFragment = DefaultTreeAdapterTypes.DocumentFragment
+type Parse5Template = DefaultTreeAdapterTypes.Template
 
 type TemplateStack = {
   node: AST.JSXElement | AST.JSXFragment | AST.AstroFragment
@@ -26,12 +27,18 @@ type OmittedEndTag = {
 const htmlVoidElements = new Set([
   "area",
   "base",
+  "basefont",
+  "bgsound",
   "br",
   "col",
+  "command",
   "embed",
+  "frame",
   "hr",
+  "image",
   "img",
   "input",
+  "keygen",
   "link",
   "meta",
   "param",
@@ -116,6 +123,7 @@ export default createRule("no-omitted-end-tags", {
         | AST.AstroFragment
         | AST.AstroHTMLComment
         | AST.JSXText,
+      maskChar = " ",
     ) {
       if (!templateStack) {
         return
@@ -128,7 +136,7 @@ export default createRule("no-omitted-end-tags", {
         // AST ranges are UTF-16 offsets. With the Unicode flag, a match may be
         // a surrogate pair, so preserve its code-unit length when masking.
         .replace(/[^\n\r]/gu, (char) =>
-          " ".repeat(char.length),
+          maskChar.repeat(char.length),
         )}${templateStack.html.slice(maskEnd)}`
     }
 
@@ -243,7 +251,7 @@ export default createRule("no-omitted-end-tags", {
       if (node.type !== "JSXElement") return false
       const name = node.openingElement.name
       if (name.type !== "JSXIdentifier") return false
-      return hasRealClosingElement(node) && name.name === "foreignObject"
+      return name.name === "foreignObject"
     }
 
     /** Get the source range containing only an element's children. */
@@ -299,7 +307,50 @@ export default createRule("no-omitted-end-tags", {
       if (isHtmlIntegrationPoint(node)) {
         return getChildrenRange(node)
       }
-      return node.range
+
+      // Due to a bug in the parser, the offset of child nodes
+      // will also be taken into consideration in the calculation.
+      const childrenRange = getRangeFromChildren(node)
+      return childrenRange
+        ? [
+            Math.min(node.range[0], childrenRange[0]),
+            Math.max(node.range[1], childrenRange[1]),
+          ]
+        : node.range
+
+      /**
+       * Get the source range containing only an element's children, including
+       * any nested elements. This is used to mask the children from the parent
+       * parse target while still allowing them to be parsed as their own target.
+       * The range is used to extract the HTML text for parse5, so it must be
+       * contiguous and include all children, even if they are nested.
+       */
+      function getRangeFromChildren(
+        node: AST.JSXElement | AST.JSXFragment | AST.AstroFragment,
+      ): AST.Range | null {
+        if (node.children.length === 0) {
+          return null
+        }
+        const first = node.children[0]
+        const last = node.children[node.children.length - 1]
+        const firstChildrenRange =
+          first.type === "JSXElement" || first.type === "JSXFragment"
+            ? getRangeFromChildren(first)
+            : null
+        const lastChildrenRange =
+          last.type === "JSXElement" || last.type === "JSXFragment"
+            ? getRangeFromChildren(last)
+            : null
+
+        return [
+          firstChildrenRange
+            ? Math.min(first.range[0], firstChildrenRange[0])
+            : first.range[0],
+          lastChildrenRange
+            ? Math.max(last.range[1], lastChildrenRange[1])
+            : last.range[1],
+        ]
+      }
     }
 
     /** Verify a template node as its own parse5 target. */
@@ -349,7 +400,7 @@ export default createRule("no-omitted-end-tags", {
       // These nodes are Astro/JSX syntax, not HTML. They are masked only in the
       // current parse target; JSX elements or fragments inside expressions are
       // still visited separately and become their own parse targets via isRoot().
-      AstroRawText: (node) => mask(node),
+      AstroRawText: (node) => mask(node, "x"),
       AstroShorthandAttribute: (node) => mask(node),
       AstroTemplateLiteralAttribute: (node) => mask(node),
       JSXExpressionContainer: (node) => mask(node),
@@ -464,17 +515,22 @@ function getOmittedEndTag(
 }
 
 /** Check whether a parse5 node is an element. */
-function isParse5Element(node: Parse5Node): node is Parse5Element {
+function isParse5Element(
+  node: Parse5Node,
+): node is Parse5Element | Parse5Template {
   return "tagName" in node
 }
 
 /** Get the maximum end offset among the children of a parse5 element. */
 function getChildrenEndOffset(
-  node: Parse5Element | Parse5DocumentFragment,
+  node: Parse5Element | Parse5Template | Parse5DocumentFragment,
 ): number | null {
   let endOffset: number | null = null
   for (const child of node.childNodes) {
     endOffset = max(endOffset, getSourceEndOffset(child))
+  }
+  if ("content" in node) {
+    endOffset = max(endOffset, getSourceEndOffset(node.content))
   }
   return endOffset
 }
