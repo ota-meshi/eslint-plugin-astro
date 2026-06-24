@@ -8,6 +8,7 @@ import noDeprecatedAstroFetchcontent from "./no-deprecated-astro-fetchcontent.ts
 import noDeprecatedAstroResolve from "./no-deprecated-astro-resolve.ts"
 import noDeprecatedGetentrybyslug from "./no-deprecated-getentrybyslug.ts"
 import noExportsFromComponents from "./no-exports-from-components.ts"
+import noOmittedEndTags from "./no-omitted-end-tags.ts"
 import noPrerenderExportOutsidePages from "./no-prerender-export-outside-pages.ts"
 import noSetHtmlDirective from "./no-set-html-directive.ts"
 import noSetTextDirective from "./no-set-text-directive.ts"
@@ -31,6 +32,7 @@ export const originalRules: RuleModule[] = [
   noDeprecatedAstroResolve,
   noDeprecatedGetentrybyslug,
   noExportsFromComponents,
+  noOmittedEndTags,
   noPrerenderExportOutsidePages,
   noSetHtmlDirective,
   noSetTextDirective,
