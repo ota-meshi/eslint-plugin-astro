@@ -1,6 +1,7 @@
 ---
 title: "astro/no-omitted-end-tags"
 description: "disallow omitted end tags"
+since: "v2.1.0"
 ---
 
 # astro/no-omitted-end-tags
@@ -9,7 +10,6 @@ description: "disallow omitted end tags"
 
 - ⚙ This rule is included in the `recommended` config.
 - 🔧 The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
-- ❗ <badge text="This rule has not been released yet." vertical="middle" type="error"> **_This rule has not been released yet._** </badge>
 
 ## 📖 Rule Details
 
@@ -75,6 +75,10 @@ respects that doctype, including quirks-mode doctypes.
 
 - [Astro v7 Upgrade Guide > Rust compiler](https://docs.astro.build/en/guides/upgrade-to/v7/#rust-compiler)
 - [`@astrojs/compiler-rs` issue #50: don't infer HTML optional end tags](https://github.com/withastro/compiler-rs/issues/50)
+
+## 🚀 Version
+
+This rule was introduced in eslint-plugin-astro v2.1.0
 
 ## 🔍 Implementation
 

@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 2.1.0
+
+### Minor Changes
+
+- [#585](https://github.com/ota-meshi/eslint-plugin-astro/pull/585) [`bd92f3b`](https://github.com/ota-meshi/eslint-plugin-astro/commit/bd92f3b98f9cc5400d5cf33ce7c8ee3311de188e) Thanks [@ota-meshi](https://github.com/ota-meshi)! - Add `astro/no-omitted-end-tags` rule
+
 ## 2.0.0
 
 ### Major Changes
