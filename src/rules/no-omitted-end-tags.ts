@@ -24,6 +24,8 @@ type OmittedEndTag = {
   tagName: string
 }
 
+const HTML_NAMESPACE = "http://www.w3.org/1999/xhtml"
+
 const htmlVoidElements = new Set([
   "area",
   "base",
@@ -35,7 +37,6 @@ const htmlVoidElements = new Set([
   "embed",
   "frame",
   "hr",
-  "image",
   "img",
   "input",
   "keygen",
@@ -46,6 +47,12 @@ const htmlVoidElements = new Set([
   "track",
   "wbr",
 ])
+
+// HTML has no `<image>` element, but the HTML parser rewrites a start tag
+// named "image" to "img". Keep that parse5-only alias separate from real void
+// elements: source `<image>` still needs an end tag, while parse5 must not be
+// allowed to collapse `<image>` or component names such as `<Image>` to `<img>`.
+const parse5HtmlVoidElementAliases = new Set(["image"])
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
 export default createRule("no-omitted-end-tags", {
@@ -160,6 +167,9 @@ export default createRule("no-omitted-end-tags", {
       if (!isSyntaxSelfClosingElement(node)) return false
       const name = node.openingElement.name
       if (name.type !== "JSXIdentifier") return false
+      // Do not use isParse5HtmlVoidElementName() here. A source `<image />` is
+      // not a real HTML void element; treating it as one would let the parse5
+      // alias leak into source semantics instead of masking Astro's `/>`.
       return !isHtmlVoidElementName(name.name)
     }
 
@@ -202,25 +212,37 @@ export default createRule("no-omitted-end-tags", {
       return htmlVoidElements.has(tagName)
     }
 
-    /** Check whether a JSX tag name collides with an HTML void tag in parse5. */
-    function isVoidNamedJsxComponentName(tagName: string) {
+    /** Check whether parse5 will handle this tag name as an HTML void element. */
+    function isParse5HtmlVoidElementName(tagName: string) {
       return (
-        !isHtmlVoidElementName(tagName) &&
-        htmlVoidElements.has(tagName.toLowerCase())
+        isHtmlVoidElementName(tagName) ||
+        parse5HtmlVoidElementAliases.has(tagName)
       )
     }
 
-    /** Replace JSX component names that parse5 would otherwise treat as void HTML. */
-    function replaceVoidNamedJsxComponent(node: AST.JSXElement) {
+    /** Check whether parse5 would collapse this source tag into an HTML void element. */
+    function hasParse5VoidNameCollision(tagName: string) {
+      return (
+        // This must use the real void-element list, not
+        // isParse5HtmlVoidElementName(). The whole point is to catch source
+        // names like `<image>` that are not void in Astro source but would be
+        // collapsed by parse5 before we can detect a missing end tag.
+        !isHtmlVoidElementName(tagName) &&
+        isParse5HtmlVoidElementName(tagName.toLowerCase())
+      )
+    }
+
+    /** Replace source names that parse5 would otherwise treat as void HTML. */
+    function replaceParse5VoidNameCollision(node: AST.JSXElement) {
       const name = node.openingElement.name
       if (name.type !== "JSXIdentifier") return
       const tagName = name.name
-      if (!isVoidNamedJsxComponentName(tagName)) {
+      if (!hasParse5VoidNameCollision(tagName)) {
         return
       }
-      // parse5 lowercases tag names, so `<Input>` would become the void HTML
-      // element `<input>` and never report a missing end tag. Use a same-length
-      // non-void name in the parse input so offsets still point to the original.
+      // parse5 lowercases tag names and rewrites the legacy HTML `<image>`
+      // alias to `<img>`. Use a same-length non-void name in the parse input so
+      // omitted end tags are still found while offsets point to the original.
       const replacement = toNonVoidTagName(tagName)
       replaceName(node.openingElement.name, replacement)
       const closingElement = node.closingElement
@@ -418,7 +440,7 @@ export default createRule("no-omitted-end-tags", {
           // change the surrounding structure.
           mask(node)
         } else {
-          replaceVoidNamedJsxComponent(node)
+          replaceParse5VoidNameCollision(node)
         }
       },
       "JSXElement:exit": (node) => exitElement(node),
@@ -506,7 +528,14 @@ function getOmittedEndTag(
   if (!loc?.startTag || loc.endTag) {
     return null
   }
-  if (htmlVoidElements.has(node.tagName)) {
+  // Keep this namespace guard and the real void-element list. Void elements are
+  // HTML-only, and parse5 aliases such as `<image>` must not be excluded here:
+  // this is the final "does this source element truly not need an end tag?"
+  // check, not a parse5-behavior check.
+  if (
+    node.namespaceURI === HTML_NAMESPACE &&
+    htmlVoidElements.has(node.tagName)
+  ) {
     return null
   }
 
