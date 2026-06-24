@@ -64,6 +64,13 @@ current parser can still read those files.
 
 Nothing.
 
+## 📌 Note
+
+When a template contains `html`, `head`, or `body`, this rule parses it as an
+HTML document. If the source omits a doctype, the rule parses it as if
+`<!DOCTYPE html>` were present. If the source has an explicit doctype, the rule
+respects that doctype, including quirks-mode doctypes.
+
 ## 📚 Further Reading
 
 - [Astro v7 Upgrade Guide > Rust compiler](https://docs.astro.build/en/guides/upgrade-to/v7/#rust-compiler)

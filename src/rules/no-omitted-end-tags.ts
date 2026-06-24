@@ -12,7 +12,7 @@ type Parse5Template = DefaultTreeAdapterTypes.Template
 type TemplateStack = {
   node: AST.JSXElement | AST.JSXFragment | AST.AstroFragment
   html: string
-  range: AST.Range
+  startOffset: number
   upper: TemplateStack | null
 }
 
@@ -128,8 +128,8 @@ export default createRule("no-omitted-end-tags", {
       if (!templateStack) {
         return
       }
-      const maskStart = node.range[0] - templateStack.range[0]
-      const maskEnd = node.range[1] - templateStack.range[0]
+      const maskStart = node.range[0] - templateStack.startOffset
+      const maskEnd = node.range[1] - templateStack.startOffset
 
       templateStack.html = `${templateStack.html.slice(0, maskStart)}${templateStack.html
         .slice(maskStart, maskEnd)
@@ -148,8 +148,8 @@ export default createRule("no-omitted-end-tags", {
       if (!templateStack) {
         return
       }
-      const replaceStart = nameNode.range[0] - templateStack.range[0]
-      const replaceEnd = nameNode.range[1] - templateStack.range[0]
+      const replaceStart = nameNode.range[0] - templateStack.startOffset
+      const replaceEnd = nameNode.range[1] - templateStack.startOffset
       templateStack.html = `${templateStack.html.slice(0, replaceStart)}${
         replacement
       }${templateStack.html.slice(replaceEnd)}`
@@ -285,7 +285,7 @@ export default createRule("no-omitted-end-tags", {
         templateStack = {
           node,
           html: sourceCode.text.slice(range[0], range[1]),
-          range,
+          startOffset: range[0],
           upper: templateStack,
         }
       }
@@ -365,22 +365,38 @@ export default createRule("no-omitted-end-tags", {
 
     /** Verify one source range with parse5 and report omitted end tags. */
     function verifyTarget(currentStack: TemplateStack) {
+      let fragmentHtml = currentStack.html
+      let fragmentHtmlStartOffset = currentStack.startOffset
+      let parseAsDocument = false
+      if (
+        currentStack.node === rootAstroFragment &&
+        // `<html><head><body>` is not required in Astro, but parse5 will insert them
+        rootAstroFragment.children.some((node) => {
+          if (node.type !== "JSXElement") return false
+          const name = node.openingElement.name
+          if (name.type !== "JSXIdentifier") return false
+          return (
+            name.name === "html" || name.name === "head" || name.name === "body"
+          )
+        })
+      ) {
+        parseAsDocument = true
+
+        if (
+          rootAstroFragment.children.every(
+            (node) => node.type !== "AstroDoctype",
+          )
+        ) {
+          const doctype = "<!DOCTYPE html>"
+          fragmentHtml = `${doctype}${fragmentHtml}`
+          fragmentHtmlStartOffset -= doctype.length
+        }
+      }
+
       const omittedEndTags = collectOmittedEndTags({
-        maskedHtml: currentStack.html,
-        maskedHtmlRange: currentStack.range,
-        parseAsDocument:
-          currentStack.node === rootAstroFragment &&
-          // `<html><head><body>` is not required in Astro, but parse5 will insert them
-          rootAstroFragment.children.some((node) => {
-            if (node.type !== "JSXElement") return false
-            const name = node.openingElement.name
-            if (name.type !== "JSXIdentifier") return false
-            return (
-              name.name === "html" ||
-              name.name === "head" ||
-              name.name === "body"
-            )
-          }),
+        fragmentHtml,
+        fragmentHtmlStartOffset,
+        parseAsDocument,
         originalText: sourceCode.text,
       })
       for (const omittedEndTag of omittedEndTags) {
@@ -429,19 +445,19 @@ function containsRange(outer: AST.Range, inner: AST.Range) {
 
 /** Collect omitted end tags using parse5's HTML tree construction. */
 function collectOmittedEndTags({
-  maskedHtml,
-  maskedHtmlRange,
+  fragmentHtml,
+  fragmentHtmlStartOffset,
   parseAsDocument,
   originalText,
 }: {
-  maskedHtml: string
-  maskedHtmlRange: AST.Range
+  fragmentHtml: string
+  fragmentHtmlStartOffset: number
   parseAsDocument: boolean
   originalText: string
 }) {
   const document = parseAsDocument
-    ? parse(maskedHtml, { sourceCodeLocationInfo: true })
-    : parseFragment(maskedHtml, { sourceCodeLocationInfo: true })
+    ? parse(fragmentHtml, { sourceCodeLocationInfo: true })
+    : parseFragment(fragmentHtml, { sourceCodeLocationInfo: true })
   const omittedEndTags: OmittedEndTag[] = []
 
   /** Traverse the parse5 tree and keep omitted-tag ancestry for fixes. */
@@ -449,7 +465,7 @@ function collectOmittedEndTags({
     const omittedEndTag = getOmittedEndTag(
       node,
       originalText,
-      maskedHtmlRange[0],
+      fragmentHtmlStartOffset,
       parent,
     )
     const currentParent = omittedEndTag ?? parent

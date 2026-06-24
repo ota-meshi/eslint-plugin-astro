@@ -1,0 +1,17 @@
+[
+  {
+    "message": "Expected an end tag for `<body>`.",
+    "line": 1,
+    "column": 2
+  },
+  {
+    "message": "Expected an end tag for `<p>`.",
+    "line": 1,
+    "column": 8
+  },
+  {
+    "message": "Expected an end tag for `<div>`.",
+    "line": 1,
+    "column": 12
+  }
+]
