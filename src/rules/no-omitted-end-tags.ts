@@ -73,17 +73,21 @@ export default createRule("no-omitted-end-tags", {
       )
     }
 
-    /** Check whether this node should start its own parse target. */
+    /** Check whether this node should be parsed independently by parse5. */
     function isRoot(
       node: AST.JSXElement | AST.JSXFragment | AST.AstroFragment,
     ) {
+      if (!isInTemplate(node)) return false
       if (node.type === "AstroFragment" || node.type === "JSXFragment") {
-        // Fragments are template boundaries, even when their parent is another fragment.
-        return isInTemplate(node)
+        // Fragment delimiters are not HTML. Give every fragment its own target,
+        // including nested fragments, so parse5 only sees the fragment children.
+        return true
       }
       const parent = node.parent
+      // A JSX element whose parent is an expression node is not guaranteed to
+      // be rendered at this source position. Parse it as an isolated target
+      // instead of letting it affect the surrounding Astro template.
       return (
-        isInTemplate(node) &&
         parent != null &&
         parent.type !== "JSXElement" &&
         parent.type !== "JSXFragment" &&
@@ -91,7 +95,7 @@ export default createRule("no-omitted-end-tags", {
       )
     }
 
-    /** Add the range to the list of ranges hidden from parse5. */
+    /** Hide the node from parse5 while preserving offsets and line breaks. */
     function mask(
       node:
         | AST.AstroRawText
@@ -163,6 +167,9 @@ export default createRule("no-omitted-end-tags", {
         data: { tagName: omittedEndTag.tagName },
         fix(fixer) {
           if (hasOmittedEndTagDescendantAtSameIndex(omittedEndTag)) {
+            // The deepest report owns a shared insertion point and inserts the
+            // whole end-tag chain. Skipping ancestor fixes avoids duplicate
+            // edits at the same offset.
             return null
           }
           return fixer.insertTextBeforeRange(
@@ -203,7 +210,7 @@ export default createRule("no-omitted-end-tags", {
       }
     }
 
-    /** Check whether the element has a real closing tag in the source. */
+    /** Check whether the closing element comes from source text. */
     function hasRealClosingElement(node: AST.JSXElement) {
       return (
         node.closingElement != null &&
@@ -220,9 +227,12 @@ export default createRule("no-omitted-end-tags", {
 
         const range: AST.Range =
           node.type === "JSXFragment"
-            ? // Parse only the children. If the surrounding target merely masks
-              // `<>` and `</>`, parse5 still sees one continuous HTML fragment
-              // and may fix `<><p>one<p>two</>` as `<><p>one</p><p>two</></p>`.
+            ? // Parse only the fragment children. In `{show && <><p>one<p>two</>}`,
+              // a target spanning the whole fragment would include the closing
+              // `</>` as trailing masked spaces. parse5 then treats EOF as after
+              // those spaces, and may fix `<><p>one<p>two</>` as
+              // `<><p>one</p><p>two</></p>`. Using the child range makes EOF
+              // line up immediately before `</>`.
               [node.openingFragment.range[1], node.closingFragment.range[0]]
             : node.range
 
@@ -264,11 +274,12 @@ export default createRule("no-omitted-end-tags", {
       JSXElement: (node) => {
         enterElement(node)
         if (isNonVoidSelfClosingElement(node)) {
-          // Astro accepts self-closing syntax for any element, but HTML only
-          // treats void elements as self-closing. If parse5 sees `<div />`,
-          // it keeps a `<div>` element open and may report a missing `</div>`
-          // later in the template. Since this syntax cannot contain children,
-          // hide the whole element from the parent parse target.
+          // Astro accepts self-closing syntax for any element, while HTML only
+          // treats void elements as self-closing. If parse5 sees `<div />`, it
+          // keeps a `<div>` element open and may report a missing `</div>` later
+          // in the target. Since this Astro node cannot contain children, hide
+          // the whole element from the parse input instead of letting the slash
+          // change the surrounding structure.
           mask(node)
         } else {
           replaceVoidNamedJsxComponent(node)
@@ -310,7 +321,7 @@ function collectOmittedEndTags({
     : parseFragment(maskedHtml, { sourceCodeLocationInfo: true })
   const omittedEndTags: OmittedEndTag[] = []
 
-  /** Traverse the parse5 tree. */
+  /** Traverse the parse5 tree and keep omitted-tag ancestry for fixes. */
   function traverse(node: Parse5Node, parent: OmittedEndTag | null) {
     const omittedEndTag = getOmittedEndTag(
       node,
@@ -320,6 +331,9 @@ function collectOmittedEndTags({
     )
     const currentParent = omittedEndTag ?? parent
     if (omittedEndTag) {
+      // When source such as `<ul><li><p>text` reaches EOF, parse5 omits
+      // several end tags at the same source offset. Keeping the omitted parent
+      // chain lets the deepest report insert `</p></li></ul>` in one fix.
       omittedEndTags.push(omittedEndTag)
       parent?.children.push(omittedEndTag)
     }
@@ -362,6 +376,9 @@ function getOmittedEndTag(
     baseOffset + loc.startTag.endOffset,
   )
   if (isSelfClosingStartTag(startTagText)) {
+    // parse5 still exposes a start tag for non-void syntax like `<div />`,
+    // but Astro has already closed that node. Do not turn self-closing Astro
+    // syntax into an omitted-end-tag report.
     return null
   }
 
@@ -412,7 +429,7 @@ function toNonVoidTagName(tagName: string) {
   return `x${tagName.slice(1)}`
 }
 
-/** Check whether a child will insert end tags at the same offset. */
+/** Check whether a descendant report owns the same insertion point. */
 function hasOmittedEndTagDescendantAtSameIndex(omittedEndTag: OmittedEndTag) {
   for (const child of omittedEndTag.children) {
     if (child.insertIndex === omittedEndTag.insertIndex) {
@@ -425,7 +442,7 @@ function hasOmittedEndTagDescendantAtSameIndex(omittedEndTag: OmittedEndTag) {
   return false
 }
 
-/** Build this element's end tag plus omitted ancestors at the same point. */
+/** Build the end-tag chain owned by the deepest report at this offset. */
 function buildEndTagsAtSameIndex(omittedEndTag: OmittedEndTag) {
   const endTags = [`</${omittedEndTag.tagName}>`]
   for (
