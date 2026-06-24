@@ -1,0 +1,17 @@
+[
+  {
+    "message": "Expected an end tag for `<svg>`.",
+    "line": 1,
+    "column": 2
+  },
+  {
+    "message": "Expected an end tag for `<foreignObject>`.",
+    "line": 1,
+    "column": 7
+  },
+  {
+    "message": "Expected an end tag for `<p>`.",
+    "line": 1,
+    "column": 22
+  }
+]

@@ -1,0 +1,12 @@
+[
+  {
+    "message": "Expected an end tag for `<g>`.",
+    "line": 1,
+    "column": 7
+  },
+  {
+    "message": "Expected an end tag for `<path>`.",
+    "line": 1,
+    "column": 10
+  }
+]

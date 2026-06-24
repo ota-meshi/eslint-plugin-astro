@@ -1,0 +1,7 @@
+[
+  {
+    "message": "Expected an end tag for `<my-element>`.",
+    "line": 1,
+    "column": 2
+  }
+]

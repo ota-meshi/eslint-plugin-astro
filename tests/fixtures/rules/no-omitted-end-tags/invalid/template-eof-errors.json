@@ -1,0 +1,12 @@
+[
+  {
+    "message": "Expected an end tag for `<template>`.",
+    "line": 1,
+    "column": 2
+  },
+  {
+    "message": "Expected an end tag for `<p>`.",
+    "line": 1,
+    "column": 12
+  }
+]

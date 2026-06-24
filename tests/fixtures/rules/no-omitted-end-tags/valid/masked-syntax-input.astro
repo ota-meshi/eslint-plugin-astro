@@ -1,0 +1,30 @@
+---
+const html = "<p>not markup";
+---
+
+{/* <p>not markup */}
+<div
+  title={`${html} 🚀`}
+  data-label=`<p>${html}`
+  {...props}
+>{html}</div>
+
+<div set:html={"<p>raw"} />
+
+<script>
+  const html = "<p>";
+</script>
+
+<style>
+  .x::before {
+    content: "<p>";
+  }
+</style>
+
+<Fragment>
+  <p>ok</p>
+</Fragment>
+
+<>
+  <p>ok</p>
+</>

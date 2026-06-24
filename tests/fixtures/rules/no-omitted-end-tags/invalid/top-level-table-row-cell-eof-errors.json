@@ -1,0 +1,12 @@
+[
+  {
+    "message": "Expected an end tag for `<tr>`.",
+    "line": 1,
+    "column": 2
+  },
+  {
+    "message": "Expected an end tag for `<td>`.",
+    "line": 1,
+    "column": 6
+  }
+]

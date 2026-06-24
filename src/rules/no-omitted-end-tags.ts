@@ -1,0 +1,673 @@
+import type { AST } from "astro-eslint-parser"
+import { parse, parseFragment, type DefaultTreeAdapterTypes } from "parse5"
+import { createRule } from "../utils/index.ts"
+import type { RuleModule } from "../types.ts"
+
+type Parse5Element = DefaultTreeAdapterTypes.Element
+type Parse5Node = DefaultTreeAdapterTypes.Node
+type Parse5ChildNode = DefaultTreeAdapterTypes.ChildNode
+type Parse5DocumentFragment = DefaultTreeAdapterTypes.DocumentFragment
+type Parse5Template = DefaultTreeAdapterTypes.Template
+
+type TemplateStack = {
+  node: AST.JSXElement | AST.JSXFragment | AST.AstroFragment
+  html: string
+  startOffset: number
+  upper: TemplateStack | null
+}
+
+type OmittedEndTag = {
+  children: OmittedEndTag[]
+  insertIndex: number
+  nameRange: AST.Range
+  parent: OmittedEndTag | null
+  tagName: string
+}
+
+const HTML_NAMESPACE = "http://www.w3.org/1999/xhtml"
+
+const htmlVoidElements = new Set([
+  "area",
+  "base",
+  "basefont",
+  "bgsound",
+  "br",
+  "col",
+  "command",
+  "embed",
+  "frame",
+  "hr",
+  "img",
+  "input",
+  "keygen",
+  "link",
+  "meta",
+  "param",
+  "source",
+  "track",
+  "wbr",
+])
+
+// HTML has no `<image>` element, but the HTML parser rewrites a start tag
+// named "image" to "img". Keep that parse5-only alias separate from real void
+// elements: source `<image>` still needs an end tag, while parse5 must not be
+// allowed to collapse `<image>` or component names such as `<Image>` to `<img>`.
+const parse5HtmlVoidElementAliases = new Set(["image"])
+
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- Avoid isolatedDeclarations error
+export default createRule("no-omitted-end-tags", {
+  meta: {
+    docs: {
+      description: "disallow omitted end tags",
+      category: "Stylistic Issues",
+      recommended: true,
+    },
+    schema: [],
+    messages: {
+      missing: "Expected an end tag for `<{{tagName}}>`.",
+    },
+    type: "layout",
+    fixable: "code",
+  },
+  create(context) {
+    const sourceCode = context.sourceCode
+    if (!sourceCode.parserServices?.isAstro) {
+      return {}
+    }
+
+    const rootAstroFragment = sourceCode.ast.body.find(
+      (node): node is AST.AstroFragment => node.type === "AstroFragment",
+    )
+
+    let templateStack: TemplateStack | null = null
+
+    /** Check whether this node belongs to the Astro template body. */
+    function isInTemplate(node: { range: AST.Range }) {
+      return (
+        rootAstroFragment != null &&
+        containsRange(rootAstroFragment.range, node.range)
+      )
+    }
+
+    /** Check whether this node should be parsed independently by parse5. */
+    function isRoot(
+      node: AST.JSXElement | AST.JSXFragment | AST.AstroFragment,
+    ) {
+      if (!isInTemplate(node)) return false
+      if (node.type === "AstroFragment" || node.type === "JSXFragment") {
+        // Fragment delimiters are not HTML. Give every fragment its own target,
+        // including nested fragments, so parse5 only sees the fragment children.
+        return true
+      }
+      if (isHtmlIntegrationPoint(node)) {
+        // `foreignObject` is an SVG HTML integration point. Parse its children
+        // separately while keeping the wrapper in the SVG target.
+        return true
+      }
+      const parent = node.parent
+      // A JSX element whose parent is an expression node is not guaranteed to
+      // be rendered at this source position. Parse it as an isolated target
+      // instead of letting it affect the surrounding Astro template.
+      return (
+        parent != null &&
+        parent.type !== "JSXElement" &&
+        parent.type !== "JSXFragment" &&
+        parent.type !== "AstroFragment"
+      )
+    }
+
+    /** Hide the node from parse5 while preserving offsets and line breaks. */
+    function mask(
+      node:
+        | AST.AstroRawText
+        | AST.AstroShorthandAttribute
+        | AST.AstroTemplateLiteralAttribute
+        | AST.JSXExpressionContainer
+        | AST.JSXSpreadAttribute
+        | AST.JSXSpreadChild
+        | AST.JSXElement
+        | AST.JSXFragment
+        | AST.AstroFragment
+        | AST.AstroHTMLComment
+        | AST.JSXText,
+      maskChar = " ",
+    ) {
+      if (!templateStack) {
+        return
+      }
+      const maskStart = node.range[0] - templateStack.startOffset
+      const maskEnd = node.range[1] - templateStack.startOffset
+
+      templateStack.html = `${templateStack.html.slice(0, maskStart)}${templateStack.html
+        .slice(maskStart, maskEnd)
+        // AST ranges are UTF-16 offsets. With the Unicode flag, a match may be
+        // a surrogate pair, so preserve its code-unit length when masking.
+        .replace(/[^\n\r]/gu, (char) =>
+          maskChar.repeat(char.length),
+        )}${templateStack.html.slice(maskEnd)}`
+    }
+
+    /** Add a same-length source replacement for the parse5 input. */
+    function replaceName(
+      nameNode: AST.JSXTagNameExpression,
+      replacement: string,
+    ) {
+      if (!templateStack) {
+        return
+      }
+      const replaceStart = nameNode.range[0] - templateStack.startOffset
+      const replaceEnd = nameNode.range[1] - templateStack.startOffset
+      templateStack.html = `${templateStack.html.slice(0, replaceStart)}${
+        replacement
+      }${templateStack.html.slice(replaceEnd)}`
+    }
+
+    /** Check whether parse5 would treat Astro self-closing syntax as unclosed HTML. */
+    function isNonVoidSelfClosingElement(node: AST.JSXElement) {
+      if (!isSyntaxSelfClosingElement(node)) return false
+      const name = node.openingElement.name
+      if (name.type !== "JSXIdentifier") return false
+      // Do not use isParse5HtmlVoidElementName() here. A source `<image />` is
+      // not a real HTML void element; treating it as one would let the parse5
+      // alias leak into source semantics instead of masking Astro's `/>`.
+      return !isHtmlVoidElementName(name.name)
+    }
+
+    /** Check whether the original opening tag uses `/>`. */
+    function isSyntaxSelfClosingElement(node: AST.JSXElement) {
+      return isSelfClosingStartTag(
+        sourceCode.text.slice(
+          node.openingElement.range[0],
+          node.openingElement.range[1],
+        ),
+      )
+    }
+
+    /** Report one omitted end tag. */
+    function reportOmittedEndTag(omittedEndTag: OmittedEndTag) {
+      context.report({
+        loc: {
+          start: sourceCode.getLocFromIndex(omittedEndTag.nameRange[0]),
+          end: sourceCode.getLocFromIndex(omittedEndTag.nameRange[1]),
+        },
+        messageId: "missing",
+        data: { tagName: omittedEndTag.tagName },
+        fix(fixer) {
+          if (hasOmittedEndTagDescendantAtSameIndex(omittedEndTag)) {
+            // The deepest report owns a shared insertion point and inserts the
+            // whole end-tag chain. Skipping ancestor fixes avoids duplicate
+            // edits at the same offset.
+            return null
+          }
+          return fixer.insertTextBeforeRange(
+            [omittedEndTag.insertIndex, omittedEndTag.insertIndex],
+            buildEndTagsAtSameIndex(omittedEndTag),
+          )
+        },
+      })
+    }
+
+    /** Check whether the source tag name is an HTML void element name. */
+    function isHtmlVoidElementName(tagName: string) {
+      return htmlVoidElements.has(tagName)
+    }
+
+    /** Check whether parse5 will handle this tag name as an HTML void element. */
+    function isParse5HtmlVoidElementName(tagName: string) {
+      return (
+        isHtmlVoidElementName(tagName) ||
+        parse5HtmlVoidElementAliases.has(tagName)
+      )
+    }
+
+    /** Check whether parse5 would collapse this source tag into an HTML void element. */
+    function hasParse5VoidNameCollision(tagName: string) {
+      return (
+        // This must use the real void-element list, not
+        // isParse5HtmlVoidElementName(). The whole point is to catch source
+        // names like `<image>` that are not void in Astro source but would be
+        // collapsed by parse5 before we can detect a missing end tag.
+        !isHtmlVoidElementName(tagName) &&
+        isParse5HtmlVoidElementName(tagName.toLowerCase())
+      )
+    }
+
+    /** Replace source names that parse5 would otherwise treat as void HTML. */
+    function replaceParse5VoidNameCollision(node: AST.JSXElement) {
+      const name = node.openingElement.name
+      if (name.type !== "JSXIdentifier") return
+      const tagName = name.name
+      if (!hasParse5VoidNameCollision(tagName)) {
+        return
+      }
+      // parse5 lowercases tag names and rewrites the legacy HTML `<image>`
+      // alias to `<img>`. Use a same-length non-void name in the parse input so
+      // omitted end tags are still found while offsets point to the original.
+      const replacement = toNonVoidTagName(tagName)
+      replaceName(node.openingElement.name, replacement)
+      const closingElement = node.closingElement
+      if (closingElement && hasRealClosingElement(node)) {
+        replaceName(closingElement.name, replacement)
+      }
+    }
+
+    /** Check whether the closing element comes from source text. */
+    function hasRealClosingElement(node: AST.JSXElement) {
+      return (
+        node.closingElement != null &&
+        node.closingElement.range[0] < node.closingElement.range[1]
+      )
+    }
+
+    /** Check whether this node should split HTML parsing inside SVG. */
+    function isHtmlIntegrationPoint(
+      node: AST.JSXElement | AST.JSXFragment | AST.AstroFragment,
+    ): node is AST.JSXElement & {
+      openingElement: {
+        name: AST.JSXTagNameExpression & {
+          type: "JSXIdentifier"
+          name: "foreignObject"
+        }
+      }
+    } {
+      if (node.type !== "JSXElement") return false
+      const name = node.openingElement.name
+      if (name.type !== "JSXIdentifier") return false
+      return name.name === "foreignObject"
+    }
+
+    /** Get the source range containing only an element's children. */
+    function getChildrenRange(node: AST.JSXElement): AST.Range {
+      return [
+        node.openingElement.range[1],
+        hasRealClosingElement(node)
+          ? node.closingElement!.range[0]
+          : node.range[1],
+      ]
+    }
+
+    /** Handle an entered template node. */
+    function enterElement(
+      node: AST.JSXElement | AST.JSXFragment | AST.AstroFragment,
+    ) {
+      if (isRoot(node)) {
+        // The new target will be verified by itself. Hide it from the current
+        // parent target first so expression JSX and nested fragments do not
+        // influence the HTML structure around the place where they are written.
+        if (!isHtmlIntegrationPoint(node)) {
+          mask(node)
+        } else {
+          for (const child of node.children) {
+            mask(child)
+          }
+        }
+
+        const range = getTemplateHTMLRange(node)
+
+        templateStack = {
+          node,
+          html: sourceCode.text.slice(range[0], range[1]),
+          startOffset: range[0],
+          upper: templateStack,
+        }
+      }
+    }
+
+    /** Get the source range to parse as the current HTML target. */
+    function getTemplateHTMLRange(
+      node: AST.JSXElement | AST.JSXFragment | AST.AstroFragment,
+    ): AST.Range {
+      if (node.type === "JSXFragment") {
+        // Parse only the fragment children. If the target covered the whole
+        // `<>...</>` range, the JSX delimiters would have to be masked because
+        // they are not HTML. Those trailing masked spaces after `two` make
+        // parse5 place EOF after `</>`, so it may fix `<><p>one<p>two</>` as
+        // `<><p>one</p><p>two</></p>`. Using the child range makes EOF line up
+        // immediately before `</>`.
+        return [node.openingFragment.range[1], node.closingFragment.range[0]]
+      }
+      if (isHtmlIntegrationPoint(node)) {
+        return getChildrenRange(node)
+      }
+
+      // Due to a bug in the parser, the offset of child nodes
+      // will also be taken into consideration in the calculation.
+      const childrenRange = getRangeFromChildren(node)
+      return childrenRange
+        ? [
+            Math.min(node.range[0], childrenRange[0]),
+            Math.max(node.range[1], childrenRange[1]),
+          ]
+        : node.range
+
+      /**
+       * Get the source range containing only an element's children, including
+       * any nested elements. This is used to mask the children from the parent
+       * parse target while still allowing them to be parsed as their own target.
+       * The range is used to extract the HTML text for parse5, so it must be
+       * contiguous and include all children, even if they are nested.
+       */
+      function getRangeFromChildren(
+        node: AST.JSXElement | AST.JSXFragment | AST.AstroFragment,
+      ): AST.Range | null {
+        if (node.children.length === 0) {
+          return null
+        }
+        const first = node.children[0]
+        const last = node.children[node.children.length - 1]
+        const firstChildrenRange =
+          first.type === "JSXElement" || first.type === "JSXFragment"
+            ? getRangeFromChildren(first)
+            : null
+        const lastChildrenRange =
+          last.type === "JSXElement" || last.type === "JSXFragment"
+            ? getRangeFromChildren(last)
+            : null
+
+        return [
+          firstChildrenRange
+            ? Math.min(first.range[0], firstChildrenRange[0])
+            : first.range[0],
+          lastChildrenRange
+            ? Math.max(last.range[1], lastChildrenRange[1])
+            : last.range[1],
+        ]
+      }
+    }
+
+    /** Verify a template node as its own parse5 target. */
+    function exitElement(
+      node: AST.JSXElement | AST.JSXFragment | AST.AstroFragment,
+    ) {
+      if (templateStack?.node === node) {
+        verifyTarget(templateStack)
+        templateStack = templateStack?.upper ?? null
+      }
+    }
+
+    /** Verify one source range with parse5 and report omitted end tags. */
+    function verifyTarget(currentStack: TemplateStack) {
+      let fragmentHtml = currentStack.html
+      let fragmentHtmlStartOffset = currentStack.startOffset
+      let parseAsDocument = false
+      if (
+        currentStack.node === rootAstroFragment &&
+        // `<html><head><body>` is not required in Astro, but parse5 will insert them
+        rootAstroFragment.children.some((node) => {
+          if (node.type !== "JSXElement") return false
+          const name = node.openingElement.name
+          if (name.type !== "JSXIdentifier") return false
+          return (
+            name.name === "html" || name.name === "head" || name.name === "body"
+          )
+        })
+      ) {
+        parseAsDocument = true
+
+        if (
+          rootAstroFragment.children.every(
+            (node) => node.type !== "AstroDoctype",
+          )
+        ) {
+          const doctype = "<!DOCTYPE html>"
+          fragmentHtml = `${doctype}${fragmentHtml}`
+          fragmentHtmlStartOffset -= doctype.length
+        }
+      }
+
+      const omittedEndTags = collectOmittedEndTags({
+        fragmentHtml,
+        fragmentHtmlStartOffset,
+        parseAsDocument,
+        originalText: sourceCode.text,
+      })
+      for (const omittedEndTag of omittedEndTags) {
+        reportOmittedEndTag(omittedEndTag)
+      }
+    }
+
+    return {
+      AstroFragment: (node) => enterElement(node),
+      "AstroFragment:exit": (node) => exitElement(node),
+      JSXElement: (node) => {
+        enterElement(node)
+        if (isNonVoidSelfClosingElement(node)) {
+          // Astro accepts self-closing syntax for any element, while HTML only
+          // treats void elements as self-closing. If parse5 sees `<div />`, it
+          // keeps a `<div>` element open and may report a missing `</div>` later
+          // in the target. Since this Astro node cannot contain children, hide
+          // the whole element from the parse input instead of letting the slash
+          // change the surrounding structure.
+          mask(node)
+        } else {
+          replaceParse5VoidNameCollision(node)
+        }
+      },
+      "JSXElement:exit": (node) => exitElement(node),
+      JSXFragment: (node) => enterElement(node),
+      "JSXFragment:exit": (node) => exitElement(node),
+
+      // These nodes are Astro/JSX syntax, not HTML. They are masked only in the
+      // current parse target; JSX elements or fragments inside expressions are
+      // still visited separately and become their own parse targets via isRoot().
+      AstroRawText: (node) => mask(node, "x"),
+      AstroShorthandAttribute: (node) => mask(node),
+      AstroTemplateLiteralAttribute: (node) => mask(node),
+      JSXExpressionContainer: (node) => mask(node),
+      JSXSpreadAttribute: (node) => mask(node),
+      JSXSpreadChild: (node) => mask(node),
+    }
+  },
+}) as RuleModule
+
+/** Check whether the outer range contains the inner range. */
+function containsRange(outer: AST.Range, inner: AST.Range) {
+  return outer[0] <= inner[0] && inner[1] <= outer[1]
+}
+
+/** Collect omitted end tags using parse5's HTML tree construction. */
+function collectOmittedEndTags({
+  fragmentHtml,
+  fragmentHtmlStartOffset,
+  parseAsDocument,
+  originalText,
+}: {
+  fragmentHtml: string
+  fragmentHtmlStartOffset: number
+  parseAsDocument: boolean
+  originalText: string
+}) {
+  const document = parseAsDocument
+    ? parse(fragmentHtml, { sourceCodeLocationInfo: true })
+    : parseFragment(fragmentHtml, { sourceCodeLocationInfo: true })
+  const omittedEndTags: OmittedEndTag[] = []
+
+  /** Traverse the parse5 tree and keep omitted-tag ancestry for fixes. */
+  function traverse(node: Parse5Node, parent: OmittedEndTag | null) {
+    const omittedEndTag = getOmittedEndTag(
+      node,
+      originalText,
+      fragmentHtmlStartOffset,
+      parent,
+    )
+    const currentParent = omittedEndTag ?? parent
+    if (omittedEndTag) {
+      // When source such as `<ul><li><p>text` reaches EOF, parse5 omits
+      // several end tags at the same source offset. Keeping the omitted parent
+      // chain lets the deepest report insert `</p></li></ul>` in one fix.
+      omittedEndTags.push(omittedEndTag)
+      parent?.children.push(omittedEndTag)
+    }
+
+    if ("childNodes" in node) {
+      for (const child of node.childNodes) {
+        traverse(child, currentParent)
+      }
+    }
+    if ("content" in node) {
+      traverse(node.content, currentParent)
+    }
+  }
+
+  traverse(document, null)
+  return omittedEndTags
+}
+
+/** Get omitted end tag data for a parse5 node. */
+function getOmittedEndTag(
+  node: Parse5Node,
+  text: string,
+  baseOffset: number,
+  parent: OmittedEndTag | null,
+): OmittedEndTag | null {
+  if (!isParse5Element(node)) {
+    return null
+  }
+
+  const loc = node.sourceCodeLocation
+  if (!loc?.startTag || loc.endTag) {
+    return null
+  }
+  // Keep this namespace guard and the real void-element list. Void elements are
+  // HTML-only, and parse5 aliases such as `<image>` must not be excluded here:
+  // this is the final "does this source element truly not need an end tag?"
+  // check, not a parse5-behavior check.
+  if (
+    node.namespaceURI === HTML_NAMESPACE &&
+    htmlVoidElements.has(node.tagName)
+  ) {
+    return null
+  }
+
+  const startTagText = text.slice(
+    baseOffset + loc.startTag.startOffset,
+    baseOffset + loc.startTag.endOffset,
+  )
+  if (isSelfClosingStartTag(startTagText)) {
+    // parse5 still exposes a start tag for non-void syntax like `<div />`,
+    // but Astro has already closed that node. Do not turn self-closing Astro
+    // syntax into an omitted-end-tag report.
+    return null
+  }
+
+  const tagNameData = getRawTagName(startTagText)
+  if (!tagNameData) {
+    return null
+  }
+
+  const nameStart =
+    baseOffset + loc.startTag.startOffset + tagNameData.startOffset
+  // parse5 can report `endOffset: 0` for EOF-terminated RCDATA/RAWTEXT
+  // elements such as `<textarea>hello`. If we used that value directly, the
+  // fixer would insert `</textarea>` at the start of the file, so recover the
+  // insertion point from the furthest source location in the subtree.
+  const endOffset = getChildrenEndOffset(node) ?? loc.endOffset
+  return {
+    children: [],
+    insertIndex: baseOffset + endOffset,
+    nameRange: [nameStart, nameStart + tagNameData.tagName.length],
+    parent,
+    tagName: tagNameData.tagName,
+  }
+}
+
+/** Check whether a parse5 node is an element. */
+function isParse5Element(
+  node: Parse5Node,
+): node is Parse5Element | Parse5Template {
+  return "tagName" in node
+}
+
+/** Get the maximum end offset among the children of a parse5 element. */
+function getChildrenEndOffset(
+  node: Parse5Element | Parse5Template | Parse5DocumentFragment,
+): number | null {
+  let endOffset: number | null = null
+  for (const child of node.childNodes) {
+    endOffset = max(endOffset, getSourceEndOffset(child))
+  }
+  if ("content" in node) {
+    endOffset = max(endOffset, getSourceEndOffset(node.content))
+  }
+  return endOffset
+}
+
+/** Get the furthest source end offset in the parse5 subtree. */
+function getSourceEndOffset(
+  node: Parse5Element | Parse5ChildNode | Parse5DocumentFragment,
+): number | null {
+  let endOffset: number | null = null
+  const loc = node.sourceCodeLocation
+  if (loc) {
+    endOffset = loc.endOffset
+  }
+
+  if ("childNodes" in node) {
+    endOffset = max(endOffset, getChildrenEndOffset(node))
+  }
+  if ("content" in node) {
+    endOffset = max(endOffset, getSourceEndOffset(node.content))
+  }
+  return endOffset
+}
+
+/** Check whether the original start tag used self-closing syntax. */
+function isSelfClosingStartTag(startTagText: string) {
+  return /\/\s*>$/u.test(startTagText)
+}
+
+/** Extract the original tag name and its offset within the start tag. */
+function getRawTagName(startTagText: string) {
+  const beforeName = /^<\s*/u.exec(startTagText)?.[0]
+  if (beforeName == null) {
+    return null
+  }
+  const tagName = /^[^\s/>]+/u.exec(startTagText.slice(beforeName.length))?.[0]
+  if (!tagName) {
+    return null
+  }
+  return {
+    startOffset: beforeName.length,
+    tagName,
+  }
+}
+
+/** Build a same-length tag name that parse5 will not treat as a void element. */
+function toNonVoidTagName(tagName: string) {
+  return `x${tagName.slice(1)}`
+}
+
+/** Check whether a descendant report owns the same insertion point. */
+function hasOmittedEndTagDescendantAtSameIndex(omittedEndTag: OmittedEndTag) {
+  for (const child of omittedEndTag.children) {
+    if (child.insertIndex === omittedEndTag.insertIndex) {
+      return true
+    }
+    if (hasOmittedEndTagDescendantAtSameIndex(child)) {
+      return true
+    }
+  }
+  return false
+}
+
+/** Build the end-tag chain owned by the deepest report at this offset. */
+function buildEndTagsAtSameIndex(omittedEndTag: OmittedEndTag) {
+  const endTags = [`</${omittedEndTag.tagName}>`]
+  for (
+    let parent = omittedEndTag.parent;
+    parent && parent.insertIndex === omittedEndTag.insertIndex;
+    parent = parent.parent
+  ) {
+    endTags.push(`</${parent.tagName}>`)
+  }
+  return endTags.join("")
+}
+
+/**
+ * Get the maximum of two numbers, treating `null` as negative infinity.
+ */
+function max(a: number | null, b: number | null): number | null {
+  if (a === null) return b
+  if (b === null) return a
+  return Math.max(a, b)
+}

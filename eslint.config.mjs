@@ -14,7 +14,7 @@ export default [
       "!.github/",
       "tests/fixtures/rules/*/invalid/template-attr-*.astro",
       "tests/fixtures/rules/*/invalid/template-attr-*.astro",
-      "tests/fixtures/rules/*/invalid/_*.astro",
+      "tests/fixtures/rules/*/invalid/_ignore_*.astro",
       "docs-build/src/md/",
       "docs-build/src/pages/",
       "docs-build/README.md",

@@ -1,0 +1,27 @@
+[
+  {
+    "message": "Expected an end tag for `<body>`.",
+    "line": 1,
+    "column": 2
+  },
+  {
+    "message": "Expected an end tag for `<p>`.",
+    "line": 1,
+    "column": 8
+  },
+  {
+    "message": "Expected an end tag for `<table>`.",
+    "line": 1,
+    "column": 12
+  },
+  {
+    "message": "Expected an end tag for `<tr>`.",
+    "line": 1,
+    "column": 19
+  },
+  {
+    "message": "Expected an end tag for `<td>`.",
+    "line": 1,
+    "column": 23
+  }
+]
