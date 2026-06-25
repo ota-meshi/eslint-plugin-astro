@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 2.1.1
+
+### Patch Changes
+
+- [#588](https://github.com/ota-meshi/eslint-plugin-astro/pull/588) [`3a04d1e`](https://github.com/ota-meshi/eslint-plugin-astro/commit/3a04d1e9aaeb3d6c32dac21b3a44fd34477e11fe) Thanks [@ota-meshi](https://github.com/ota-meshi)! - Fix false positives in `astro/no-omitted-end-tags` for component names that overlap with HTML tag names, such as `<Head>`, while preserving reported source offsets.
+
 ## 2.1.0
 
 ### Minor Changes
