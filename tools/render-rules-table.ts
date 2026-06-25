@@ -86,9 +86,37 @@ function toDeprecatedRuleRow(
   const link = `[${rule.meta.docs.ruleId}](${buildRulePath(
     rule.meta.docs.ruleName || "",
   )})`
-  const replacedRules = rule.meta.replacedBy || []
+  const replacedRules =
+    rule.meta.deprecated && typeof rule.meta.deprecated === "object"
+      ? rule.meta.deprecated?.replacedBy
+      : null
   const replacedBy = replacedRules
-    .map((name) => `[astro/${name}](${buildRulePath(name)})`)
+    ?.map((replaced) => {
+      if (replaced.rule) {
+        const rule = replaced.rule
+        if (rule.name) {
+          if (rule.name.startsWith("astro/"))
+            return `[${rule.name}](${buildRulePath(rule.name.slice(6))})`
+        }
+        if (rule.name && rule.url) {
+          return `[${rule.name}](${rule.url})`
+        }
+        if (rule.name) {
+          return rule.name
+        }
+      }
+      if (replaced.plugin) {
+        const plugin = replaced.plugin
+        if (plugin.name && plugin.url) {
+          return `[${plugin.name}](${plugin.url})`
+        }
+        if (plugin.name) {
+          return plugin.name
+        }
+      }
+      return null
+    })
+    .filter((item): item is string => item !== null)
     .join(", ")
 
   return `| ${link} | ${replacedBy || "(no replacement)"} |`
@@ -113,7 +141,6 @@ const deprecatedTable = (buildRulePath: BuildRulePathFunc) => `
 
 - ⚠️ We're going to remove deprecated rules in the next major release. Please migrate to successor/new rules.
 - 😇 We don't fix bugs which are in deprecated rules since we don't have enough resources.
-
 ${tableHeader}
 ${deprecatedRules.map((rule) => toDeprecatedRuleRow(rule, buildRulePath)).join("\n")}
 `

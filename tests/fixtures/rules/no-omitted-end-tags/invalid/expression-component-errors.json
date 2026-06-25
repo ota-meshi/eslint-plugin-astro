@@ -1,7 +1,0 @@
-[
-  {
-    "message": "Expected an end tag for `<MyComponent>`.",
-    "line": 1,
-    "column": 16
-  }
-]
