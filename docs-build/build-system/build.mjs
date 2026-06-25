@@ -15,6 +15,7 @@ build(
     "fs",
     "module",
     "fast-glob",
+    "tinyglobby",
     { name: "@typescript-eslint/parser", kind: "cjs" },
   ],
 )
