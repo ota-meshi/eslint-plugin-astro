@@ -21,8 +21,13 @@ export default async function ({ github, context, output }) {
 
   const packages = output.packages.map((p) => {
     let normalizedUrl = p.url
-    if (pullRequestNumber && p.url.endsWith(sha)) {
-      normalizedUrl = `${p.url.slice(0, -sha.length)}${pullRequestNumber}`
+    if (pullRequestNumber) {
+      for (let len = sha.length; len >= 7; len--) {
+        const shortSha = sha.slice(0, len)
+        if (!normalizedUrl.endsWith(shortSha)) continue
+        normalizedUrl = `${p.url.slice(0, -len)}${pullRequestNumber}`
+        break
+      }
     }
     const repoPath = `/${context.repo.owner}/${context.repo.repo}/`
     normalizedUrl = normalizedUrl.replace(repoPath, "/")
