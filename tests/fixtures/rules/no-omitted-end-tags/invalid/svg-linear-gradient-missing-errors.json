@@ -1,0 +1,7 @@
+[
+  {
+    "message": "Expected an end tag for `<linearGradient>`.",
+    "line": 1,
+    "column": 13
+  }
+]
