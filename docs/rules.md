@@ -41,6 +41,7 @@ These rules relate to better ways of doing things to help you avoid problems:
 |:--------|:------------|:---|
 | [astro/no-set-text-directive](./rules/no-set-text-directive.md) | disallow use of `set:text` | 🔧 |
 | [astro/no-unused-css-selector](./rules/no-unused-css-selector.md) | disallow selectors defined in `style` tag that don't use in HTML |  |
+| [astro/prefer-astro-zod-import](./rules/prefer-astro-zod-import.md) | enforce importing Zod from `astro/zod` to stay in sync with the version bundled with Astro | 🔧 |
 
 ## Stylistic Issues
 
