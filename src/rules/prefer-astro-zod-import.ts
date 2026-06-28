@@ -12,7 +12,43 @@ function isZodSource(value: unknown): value is string {
   )
 }
 
-export default createRule("prefer-astro-zod-import", {
+/**
+ * Returns the given node when it is a string-valued `Literal`, otherwise `null`.
+ * Dynamic sources we cannot statically resolve (template literals with
+ * expressions, identifiers, calls, etc.) are intentionally skipped.
+ */
+function asStringLiteral(
+  node: TSESTree.Node | null | undefined,
+): TSESTree.StringLiteral | null {
+  if (node && node.type === "Literal" && typeof node.value === "string") {
+    return node
+  }
+  return null
+}
+
+/**
+ * Resolves the string-literal source of a `TSImportType` across both
+ * `@typescript-eslint/types` v7 (only `argument` is populated) and v8+
+ * (the dedicated `source` field).
+ */
+function getTSImportTypeSource(
+  node: TSESTree.TSImportType,
+): TSESTree.StringLiteral | null {
+  const v8Source = (
+    node as TSESTree.TSImportType & { source?: TSESTree.StringLiteral }
+  ).source
+  if (v8Source) {
+    return asStringLiteral(v8Source)
+  }
+  const arg = (node as TSESTree.TSImportType & { argument?: TSESTree.Node })
+    .argument
+  if (arg && arg.type === "TSLiteralType") {
+    return asStringLiteral(arg.literal)
+  }
+  return null
+}
+
+const rule: RuleModule = createRule("prefer-astro-zod-import", {
   meta: {
     docs: {
       description:
@@ -29,7 +65,7 @@ export default createRule("prefer-astro-zod-import", {
     fixable: "code",
   },
   create(context) {
-    /** Reports the given import/export source if it targets `zod`. */
+    /** Reports the given source string literal if it targets `zod`. */
     function checkSource(
       sourceNode: TSESTree.StringLiteral | null | undefined,
     ) {
@@ -57,6 +93,14 @@ export default createRule("prefer-astro-zod-import", {
       ExportAllDeclaration(node: TSESTree.ExportAllDeclaration) {
         checkSource(node.source)
       },
+      ImportExpression(node: TSESTree.ImportExpression) {
+        checkSource(asStringLiteral(node.source))
+      },
+      TSImportType(node: TSESTree.TSImportType) {
+        checkSource(getTSImportTypeSource(node))
+      },
     }
   },
-}) satisfies RuleModule
+})
+
+export default rule

@@ -1,0 +1,6 @@
+---
+// `zod/v3` and `zod/locales/*` are reported but not auto-fixed because the
+// API of `astro/zod` (Zod v4) is not compatible / does not re-export them.
+const v3 = await import("zod/v3")
+type LocaleModule = typeof import("zod/locales/de")
+---

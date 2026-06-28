@@ -17,7 +17,13 @@ The [Astro documentation for `astro/zod`](https://docs.astro.build/en/reference/
 - Removes the need to install `zod` as a separate dependency.
 - Ensures your code uses the same Zod version as Astro's [Content Collections](https://docs.astro.build/en/guides/content-collections/) and [Actions](https://docs.astro.build/en/guides/actions/).
 
-This rule reports `import` and re-`export` declarations whose source is `zod` or any `zod/*` subpath, and offers an auto-fix when the replacement with `astro/zod` is API-compatible.
+This rule reports the following constructs whose source is `zod` or any `zod/*` subpath, and offers an auto-fix when the replacement with `astro/zod` is API-compatible:
+
+- `import` declarations and re-`export` declarations
+- Dynamic `import()` expressions (when the specifier is a static string)
+- TypeScript `import(...)` type queries (e.g. `typeof import("zod")`)
+
+Dynamic specifiers that cannot be resolved statically — identifiers, calls, or template literals containing expressions — are not reported.
 
 <ESLintCodeBlock fix>
 
@@ -29,10 +35,14 @@ This rule reports `import` and re-`export` declarations whose source is `zod` or
 
 /* ✓ GOOD */
 import { z } from "astro/zod"
+const zod = await import("astro/zod")
+type ZodModule = typeof import("astro/zod")
 
 /* ✗ BAD */
 import { z } from "zod"
 import { z } from "zod/v4"
+const zod = await import("zod")
+type ZodModule = typeof import("zod")
 ---
 ```
 
