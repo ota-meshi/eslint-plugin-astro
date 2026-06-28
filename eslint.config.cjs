@@ -226,6 +226,12 @@ module.exports = [
       },
     },
     {
+      files: ["tests/fixtures/rules/prefer-astro-zod-import/**/ts/*.astro"],
+      rules: {
+        "@typescript-eslint/consistent-type-imports": "off",
+      },
+    },
+    {
       files: ["**/*.md/*.js", "**/*.md/*.ts"],
       rules: {
         "@typescript-eslint/no-namespace": "off",
