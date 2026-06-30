@@ -9,7 +9,7 @@ import {
   renderExtensionNote,
   renderImplementation,
   renderRuleHeader,
-  renderVerion,
+  renderVersion,
 } from "./lib/doc-renderer.ts"
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -84,8 +84,12 @@ class DocFile {
     const { ruleName, extensionRule } = this.rule.meta.docs
     const footerPattern = /## (?:(?:🔍)? ?Implementation|🚀 Version).+$/s
     const since = await this.since
-    const version = since ? renderVerion(since) : ""
-    const implementation = renderImplementation(ruleName)
+    const version = since ? renderVersion(since) : ""
+    const implementation = renderImplementation(ruleName, {
+      hasTestFixtures: fs.existsSync(
+        path.resolve(dirname, "../tests/fixtures/rules", ruleName),
+      ),
+    })
     const extensionNote = renderExtensionNote(extensionRule)
     const footer = `${version}\n\n${implementation}${extensionNote}`
     this.content = footerPattern.test(this.content)

@@ -15,7 +15,7 @@ export type PluginRuleModule = {
     schema?: never
     type?: never
     fixable?: never
-    deprecated?: boolean
+    deprecated?: boolean | object
   }
   create: (context: RuleContext) => RuleListener
 }

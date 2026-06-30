@@ -52,17 +52,47 @@ export function buildNotesFromRule(rule: RuleModule, isNew: boolean): string[] {
       fixable,
       hasSuggestions,
       deprecated,
-      replacedBy,
       docs: { recommended },
     },
   } = rule
   const notes = []
 
   if (deprecated) {
-    if (replacedBy) {
-      const replacedRules = replacedBy.map(
-        (name) => `[astro/${name}](${name}.md) rule`,
-      )
+    const replacedRules =
+      typeof deprecated === "object" && deprecated.replacedBy
+        ? deprecated.replacedBy
+            .map((replaced) => {
+              if (replaced.rule) {
+                const rule = replaced.rule
+                if (rule.name) {
+                  if (rule.name.startsWith("astro/")) {
+                    const astroRuleName = rule.name.slice(6)
+                    return `[${rule.name}](${astroRuleName}.md) rule`
+                  }
+                }
+                if (rule.name && rule.url) {
+                  return `[${rule.name}](${rule.url}) rule`
+                }
+                if (rule.name) {
+                  return `${rule.name} rule`
+                }
+              }
+              if (replaced.plugin) {
+                const plugin = replaced.plugin
+                if (plugin.name && plugin.url) {
+                  return `[${plugin.name}](${plugin.url})`
+                }
+                if (plugin.name) {
+                  return plugin.name
+                }
+              }
+
+              return null
+            })
+            .filter((item): item is string => item !== null)
+        : null
+
+    if (replacedRules?.length) {
       notes.push(
         `- ⚠️ This rule was **deprecated** and replaced by ${formatItems(
           replacedRules,
@@ -98,18 +128,25 @@ export function buildNotesFromRule(rule: RuleModule, isNew: boolean): string[] {
   return notes
 }
 
-export const renderVerion = (since: string): string => `## 🚀 Version
+export const renderVersion = (since: string): string => `## 🚀 Version
 
 This rule was introduced in eslint-plugin-astro ${since}`
 
 export const renderImplementation = (
   ruleName: string,
-): string => `## 🔍 Implementation
+  { hasTestFixtures }: { hasTestFixtures: boolean },
+): string => {
+  const testFixtureSources = hasTestFixtures
+    ? `- [Test fixture sources](https://github.com/ota-meshi/eslint-plugin-astro/tree/main/tests/fixtures/rules/${ruleName})
+`
+    : ""
+
+  return `## 🔍 Implementation
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/${ruleName}.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/${ruleName}.ts)
-- [Test fixture sources](https://github.com/ota-meshi/eslint-plugin-astro/tree/main/tests/fixtures/rules/${ruleName})
-`
+${testFixtureSources}`
+}
 
 const buildExtensionNoteString = (plugin: string, url: string): string => `
 <sup>Taken with ❤️ [from ${plugin}](${url})</sup>

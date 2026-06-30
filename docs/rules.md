@@ -48,7 +48,6 @@ These rules relate to style guidelines, and are therefore quite subjective:
 
 | Rule ID | Description |    |
 |:--------|:------------|:---|
-| [astro/no-omitted-end-tags](./rules/no-omitted-end-tags.md) | disallow omitted end tags | ⭐🔧 |
 | [astro/prefer-class-list-directive](./rules/prefer-class-list-directive.md) | require `class:list` directives instead of `class` with expressions | 🔧 |
 | [astro/prefer-object-class-list](./rules/prefer-object-class-list.md) | require use object instead of ternary expression in `class:list` | 🔧 |
 | [astro/prefer-split-class-list](./rules/prefer-split-class-list.md) | require use split array elements in `class:list` | 🔧 |
@@ -105,5 +104,14 @@ These rules extend the rules provided by ESLint itself to work well in Astro com
 | Rule ID | Description |    |
 |:--------|:------------|:---|
 | [astro/semi](./rules/semi.md) | Require or disallow semicolons instead of ASI | 🔧 |
+
+## Deprecated
+
+- ⚠️ We're going to remove deprecated rules in the next major release. Please migrate to successor/new rules.
+- 😇 We don't fix bugs which are in deprecated rules since we don't have enough resources.
+
+| Rule ID | Description |    |
+|:--------|:------------|:---|
+| [astro/no-omitted-end-tags](./rules/no-omitted-end-tags.md) | (no replacement) |
 
 [eslint-plugin-jsx-a11y]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y
