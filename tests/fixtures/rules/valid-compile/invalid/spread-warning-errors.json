@@ -1,0 +1,7 @@
+[
+  {
+    "message": "Invalid spread attribute. Did you mean `{...seo}`?",
+    "line": 6,
+    "column": 6
+  }
+]

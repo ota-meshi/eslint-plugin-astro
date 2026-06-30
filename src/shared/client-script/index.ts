@@ -1,9 +1,13 @@
-import type { ElementNode, TextNode } from "@astrojs/compiler/types"
 import type { ParseTemplateResult } from "astro-eslint-parser"
 import type { Linter } from "eslint"
 import type { TSESTree } from "@typescript-eslint/types"
 import { AST_NODE_TYPES } from "@typescript-eslint/types"
 import { parseExpression } from "./parse-expression.ts"
+import type {
+  JSXAttributeNode,
+  JSXElementNode,
+  JSXExpressionContainerNode,
+} from "../../processor/astro/types.ts"
 
 const RE_LEADING_SPACES = /^[\t ]+/u
 let seq = 0
@@ -36,7 +40,7 @@ export class ClientScript {
 
   private readonly code: string
 
-  private readonly script: ElementNode
+  private readonly script: JSXElementNode
 
   private readonly parsed: ParseTemplateResult
 
@@ -47,7 +51,7 @@ export class ClientScript {
 
   public constructor(
     code: string,
-    script: ElementNode,
+    script: JSXElementNode,
     parsed: ParseTemplateResult,
   ) {
     this.code = code
@@ -59,9 +63,12 @@ export class ClientScript {
   }
 
   private initBlock() {
-    const textNode = this.script.children[0] as TextNode
-    const startOffset = textNode.position!.start.offset
-    const endOffset = this.parsed.getEndOffset(textNode)
+    const textRangeData = {
+      start: this.script.openingElement.end,
+      end: this.script.closingElement!.start,
+    }
+    const startOffset = textRangeData.start
+    const endOffset = textRangeData.end
     const startLoc = this.parsed.getLocFromIndex(startOffset)
 
     const lines = this.code.slice(startOffset, endOffset).split(/(?<=\n)/u)
@@ -208,14 +215,20 @@ export class ClientScript {
   }
 
   private extractDefineVars() {
-    const defineVars = this.script.attributes.find(
-      (attr) => attr.kind === "expression" && attr.name === "define:vars",
+    const defineVars = this.script.openingElement.attributes.find(
+      (
+        attr,
+      ): attr is JSXAttributeNode & { value: JSXExpressionContainerNode } =>
+        attr.type === "JSXAttribute" &&
+        attr.name.type === "JSXIdentifier" &&
+        attr.name.name === "define:vars" &&
+        attr.value?.type === "JSXExpressionContainer",
     )
     if (!defineVars) {
       return []
     }
-    const valueStart = this.parsed.calcAttributeValueStartOffset(defineVars)
-    const valueEnd = this.parsed.calcAttributeEndOffset(defineVars)
+    const valueStart = defineVars.value.start
+    const valueEnd = defineVars.value.end
     let expression: TSESTree.Expression
     try {
       expression = parseExpression(
