@@ -563,8 +563,7 @@ export default createRule("prefer-object-class-list", {
               afterIsWord() {
                 const targetIndex = node.expressions.indexOf(expression)
                 const afterElements: (
-                  | TSESTree.Expression
-                  | TSESTree.TemplateElement
+                  TSESTree.Expression | TSESTree.TemplateElement
                 )[] = [node.quasis[targetIndex + 1]]
                 for (
                   let index = targetIndex + 1;

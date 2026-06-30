@@ -246,9 +246,7 @@ export function needParentheses(
  */
 export function getParenthesizedTokens(
   node:
-    | TSESTree.Expression
-    | TSESTree.SpreadElement
-    | TSESTree.PrivateIdentifier,
+    TSESTree.Expression | TSESTree.SpreadElement | TSESTree.PrivateIdentifier,
   sourceCode: SourceCode,
 ): { left: TSESTree.Token; right: TSESTree.Token } {
   let lastLeft = sourceCode.getFirstToken(node)
@@ -290,9 +288,7 @@ export function getParenthesizedRange(
  */
 function getParentSyntaxParen(
   node:
-    | TSESTree.Expression
-    | TSESTree.SpreadElement
-    | TSESTree.PrivateIdentifier,
+    TSESTree.Expression | TSESTree.SpreadElement | TSESTree.PrivateIdentifier,
   sourceCode: SourceCode,
 ) {
   const parent = node.parent

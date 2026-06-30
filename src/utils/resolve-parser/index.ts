@@ -34,9 +34,7 @@ export function resolveParser(): { parseForESLint: typeof parseForESLint } {
 
 /** Get the installed parser ID */
 export function getInstalledParserId():
-  | "@typescript-eslint/parser"
-  | "@babel/eslint-parser"
-  | undefined {
+  "@typescript-eslint/parser" | "@babel/eslint-parser" | undefined {
   const modules = ["@typescript-eslint/parser", "@babel/eslint-parser"] as const
   return modules.find(requireUserLocal)
 }

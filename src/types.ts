@@ -245,8 +245,7 @@ export interface SourceCode {
   getFirstToken(
     node: NodeOrToken,
     options?:
-      | Parameters<ESLintSourceCode["getFirstToken"]>[1]
-      | { skip?: number },
+      Parameters<ESLintSourceCode["getFirstToken"]>[1] | { skip?: number },
   ): AST.Token | AST.Comment | null
 
   getFirstTokens(
