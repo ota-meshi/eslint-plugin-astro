@@ -69,10 +69,7 @@ export interface CSSCommentToken {
   range: TSESTree.Range
 }
 export type CSSToken =
-  | CSSWordToken
-  | CSSQuotedToken
-  | CSSPunctuatorToken
-  | CSSCommentToken
+  CSSWordToken | CSSQuotedToken | CSSPunctuatorToken | CSSCommentToken
 
 export type CSSTokenizeOption = { inlineComment?: boolean }
 
