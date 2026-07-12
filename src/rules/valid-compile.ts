@@ -7,7 +7,13 @@ export default createRule("valid-compile", {
     docs: {
       description: "disallow warnings when compiling.",
       category: "Possible Errors",
-      recommended: true,
+      recommended: false,
+    },
+    deprecated: {
+      message:
+        "This rule is deprecated. Use `astro check` to check your project for errors instead.",
+      url: "https://ota-meshi.github.io/eslint-plugin-astro/rules/valid-compile/",
+      replacedBy: [],
     },
     schema: [],
     messages: {},

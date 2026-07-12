@@ -8,32 +8,35 @@ since: "v0.21.0"
 
 > disallow warnings when compiling.
 
-- ⚙ This rule is included in the `recommended` config.
+- ⚠️ This rule was **deprecated**.
 
 ## 📖 Rule Details
 
-This rule uses `@astrojs/compiler` to check the source code.
+This rule uses compiler diagnostics exposed by `astro-eslint-parser` to report
+warnings while ESLint processes individual `.astro` files. It is now deprecated
+and is no longer included in the `recommended` config.
 
-<ESLintCodeBlock>
+Use Astro's [`astro check`](https://docs.astro.build/en/reference/cli-reference/#astro-check)
+command instead. It runs project-wide diagnostics, including type checking in
+`.astro` files, reports errors to the console, and exits with status code `1`
+when errors are found. The command is designed for use in CI workflows.
 
-<!--eslint-skip-->
-
-```astro
----
-/* eslint astro/valid-compile: "error" */
----
-
-{/* ✗ BAD */}
-<p set:html="string">string</p>
+```sh
+npx astro check
 ```
-
-</ESLintCodeBlock>
 
 ## 🔧 Options
 
 Nothing.
 
+## 📌 Note
+
+Remove this rule from your ESLint configuration and run `astro check`
+separately instead.
+
 ## 📚 Further Reading
+
+- [Astro CLI Reference > `astro check`](https://docs.astro.build/en/reference/cli-reference/#astro-check)
 
 ## 👫 Related Rules
 
