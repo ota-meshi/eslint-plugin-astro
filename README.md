@@ -261,7 +261,6 @@ These rules relate to possible syntax or logic errors in Astro component code:
 | [astro/no-exports-from-components](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-exports-from-components/) | disallow value export | ⭐ |
 | [astro/no-prerender-export-outside-pages](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-prerender-export-outside-pages/) | disallow `prerender` export outside of pages/ directory | ⭐ |
 | [astro/no-unused-define-vars-in-style](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-unused-define-vars-in-style/) | disallow unused `define:vars={...}` in `style` tag | ⭐ |
-| [astro/valid-compile](https://ota-meshi.github.io/eslint-plugin-astro/rules/valid-compile/) | disallow warnings when compiling. | ⭐ |
 
 ## Security Vulnerability
 
@@ -352,6 +351,7 @@ These rules extend the rules provided by ESLint itself to work well in Astro com
 | Rule ID | Description |    |
 |:--------|:------------|:---|
 | [astro/no-omitted-end-tags](https://ota-meshi.github.io/eslint-plugin-astro/rules/no-omitted-end-tags/) | (no replacement) |
+| [astro/valid-compile](https://ota-meshi.github.io/eslint-plugin-astro/rules/valid-compile/) | (no replacement) |
 
 <!--RULES_TABLE_END-->
 <!--RULES_SECTION_END-->

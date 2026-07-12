@@ -18,7 +18,6 @@ export default [
       "astro/no-exports-from-components": "error",
       "astro/no-prerender-export-outside-pages": "error",
       "astro/no-unused-define-vars-in-style": "error",
-      "astro/valid-compile": "error",
     },
   },
 ] as Linter.Config[]

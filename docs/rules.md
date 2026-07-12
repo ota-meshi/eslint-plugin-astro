@@ -22,7 +22,6 @@ These rules relate to possible syntax or logic errors in Astro component code:
 | [astro/no-exports-from-components](./rules/no-exports-from-components.md) | disallow value export | ⭐ |
 | [astro/no-prerender-export-outside-pages](./rules/no-prerender-export-outside-pages.md) | disallow `prerender` export outside of pages/ directory | ⭐ |
 | [astro/no-unused-define-vars-in-style](./rules/no-unused-define-vars-in-style.md) | disallow unused `define:vars={...}` in `style` tag | ⭐ |
-| [astro/valid-compile](./rules/valid-compile.md) | disallow warnings when compiling. | ⭐ |
 
 ## Security Vulnerability
 
@@ -113,5 +112,6 @@ These rules extend the rules provided by ESLint itself to work well in Astro com
 | Rule ID | Description |    |
 |:--------|:------------|:---|
 | [astro/no-omitted-end-tags](./rules/no-omitted-end-tags.md) | (no replacement) |
+| [astro/valid-compile](./rules/valid-compile.md) | (no replacement) |
 
 [eslint-plugin-jsx-a11y]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y
