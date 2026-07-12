@@ -9,6 +9,16 @@ declare const _ESLINT_PLUGIN_ASTRO_MODULES: {
 
 /** Resolve parser */
 export function resolveParser(): { parseForESLint: typeof parseForESLint } {
+  if (typeof _ESLINT_PLUGIN_ASTRO_MODULES !== "undefined") {
+    try {
+      return toParserForESLint(
+        _ESLINT_PLUGIN_ASTRO_MODULES.require("@typescript-eslint/parser"),
+      )!
+    } catch {
+      // ignore
+    }
+  }
+
   const modules = [
     "@typescript-eslint/parser",
     "@babel/eslint-parser",
@@ -20,13 +30,6 @@ export function resolveParser(): { parseForESLint: typeof parseForESLint } {
       continue
     }
     return parser
-  }
-  try {
-    return toParserForESLint(
-      _ESLINT_PLUGIN_ASTRO_MODULES.require("@typescript-eslint/parser"),
-    )!
-  } catch {
-    // ignore
   }
 
   return toParserForESLint(getEspree())!

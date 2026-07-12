@@ -34,21 +34,25 @@ let loaded = false
  * Load `eslint-plugin-jsx-a11y` from the user local.
  */
 export function getPluginJsxA11y(): PluginJsxA11y | null {
-  if (loaded) {
-    return pluginJsxA11yCache
-  }
-  if (!pluginJsxA11yCache) {
-    pluginJsxA11yCache = requireUserLocal("eslint-plugin-jsx-a11y")
-  }
-  if (!pluginJsxA11yCache) {
+  if (typeof _ESLINT_PLUGIN_ASTRO_MODULES !== "undefined") {
     try {
-      if (typeof _ESLINT_PLUGIN_ASTRO_MODULES !== "undefined")
-        pluginJsxA11yCache = _ESLINT_PLUGIN_ASTRO_MODULES.require(
-          "eslint-plugin-jsx-a11y",
-        )
+      pluginJsxA11yCache = _ESLINT_PLUGIN_ASTRO_MODULES.require(
+        "eslint-plugin-jsx-a11y",
+      )
     } catch {
       // ignore
     }
+    if (pluginJsxA11yCache) {
+      loaded = true
+      return pluginJsxA11yCache
+    }
+  }
+  if (loaded) {
+    return pluginJsxA11yCache
+  }
+
+  if (!pluginJsxA11yCache) {
+    pluginJsxA11yCache = requireUserLocal("eslint-plugin-jsx-a11y")
   }
 
   loaded = true

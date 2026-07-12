@@ -13,6 +13,9 @@ const base: UserConfig = {
       "espree",
     ],
   },
+  define: {
+    _ESLINT_PLUGIN_ASTRO_MODULES: "undefined",
+  },
 }
 
 const config: UserConfig = defineConfig({
