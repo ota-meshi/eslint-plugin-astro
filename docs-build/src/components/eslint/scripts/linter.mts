@@ -143,7 +143,6 @@ export function rulesMap(): Map<string, Rule.RuleModule> {
 export async function createLinterConfig(): Promise<Linter.Config[]> {
   const tsParser = await import("@typescript-eslint/parser")
 
-  await (astroEslintParser as any).setup()
   return [
     {
       files: ["**"],

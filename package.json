@@ -94,6 +94,7 @@
   "devDependencies": {
     "@actions/github": "^9.0.0",
     "@astrojs/compiler": "^4.0.0",
+    "@astrojs/compiler-binding-wasm32-wasi": "^0.3.1",
     "@astrojs/markdown-satteri": "0.3.3",
     "@astrojs/mdx": "^7.0.0",
     "@astrojs/svelte": "^9.0.0",

@@ -8,17 +8,17 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname)
 // const babelCore = require("@babel/core")
 // const t = require("@babel/types")
 
-build(
-  require.resolve("./src/astro-eslint-parser.mjs"),
-  path.join(__dirname, "../shim/astro-eslint-parser.mjs"),
-  [
-    "fs",
-    "module",
-    "fast-glob",
-    "tinyglobby",
-    { name: "@typescript-eslint/parser", kind: "cjs" },
-  ],
-)
+// build(
+//   require.resolve("./src/astro-eslint-parser.mjs"),
+//   path.join(__dirname, "../shim/astro-eslint-parser.mjs"),
+//   [
+//     "fs",
+//     "module",
+//     "fast-glob",
+//     "tinyglobby",
+//     { name: "@typescript-eslint/parser", kind: "cjs" },
+//   ],
+// )
 build(
   require.resolve("./src/eslint-plugin-jsx-a11y.mjs"),
   path.join(__dirname, "../shim/eslint-plugin-jsx-a11y.mjs"),
