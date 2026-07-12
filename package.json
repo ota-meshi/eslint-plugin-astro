@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-astro",
-  "version": "2.1.1",
+  "version": "3.0.0",
   "description": "ESLint plugin for Astro component",
   "type": "module",
   "main": "lib/index.mjs",

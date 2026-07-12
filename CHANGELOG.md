@@ -1,5 +1,20 @@
 # eslint-plugin-astro
 
+## 3.0.0
+
+### Major Changes
+
+- [#590](https://github.com/ota-meshi/eslint-plugin-astro/pull/590) [`f5c3cec`](https://github.com/ota-meshi/eslint-plugin-astro/commit/f5c3cecce4bf4add78f7127ea7dbf39edc5ba54d) Thanks [@ota-meshi](https://github.com/ota-meshi)! - Deprecate `astro/no-omitted-end-tags`, make it a no-op, and remove it from the
+  recommended configuration. This rule can no longer report omitted end tags once
+  Astro's Rust compiler rejects them during parsing.
+
+- [#596](https://github.com/ota-meshi/eslint-plugin-astro/pull/596) [`f8cbb64`](https://github.com/ota-meshi/eslint-plugin-astro/commit/f8cbb64f93a39955a4099f13905e11ac0c072597) Thanks [@ota-meshi](https://github.com/ota-meshi)! - Deprecate `astro/valid-compile` and remove it from the recommended
+  configuration. Astro's `astro check` command is now recommended for
+  project-wide diagnostics.
+
+- [#568](https://github.com/ota-meshi/eslint-plugin-astro/pull/568) [`df28a46`](https://github.com/ota-meshi/eslint-plugin-astro/commit/df28a46cf283b74e7abeded1b9ed448344baeb9e) Thanks [@ota-meshi](https://github.com/ota-meshi)! - Upgrade `astro-eslint-parser` to v3. Astro files are now parsed with Astro's
+  Rust compiler (`@astrojs/compiler-rs`) instead of `@astrojs/compiler`.
+
 ## 2.1.1
 
 ### Patch Changes
