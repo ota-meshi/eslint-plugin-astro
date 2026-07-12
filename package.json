@@ -72,7 +72,7 @@
     "@eslint-community/eslint-utils": "^4.5.1",
     "@jridgewell/sourcemap-codec": "^1.5.0",
     "@typescript-eslint/types": "^8.61.0",
-    "astro-eslint-parser": "^2.0.0",
+    "astro-eslint-parser": "^3.0.0",
     "espree": "^11.0.0",
     "globals": "^17.0.0",
     "postcss": "^8.5.3",
@@ -94,6 +94,7 @@
   "devDependencies": {
     "@actions/github": "^9.0.0",
     "@astrojs/compiler": "^4.0.0",
+    "@astrojs/compiler-binding-wasm32-wasi": "^0.3.1",
     "@astrojs/markdown-satteri": "0.3.3",
     "@astrojs/mdx": "^7.0.0",
     "@astrojs/svelte": "^9.0.0",

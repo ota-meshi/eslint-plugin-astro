@@ -32,14 +32,20 @@ export default createRule("valid-compile", {
 
     return {
       Program() {
-        for (const { text, code, location, severity } of diagnostics) {
-          if (severity === 2 /* Warning */) {
+        for (const { text, labels, severity } of diagnostics) {
+          if (severity === "warning") {
+            const label = labels?.[0]
             context.report({
-              loc: {
-                start: location,
-                end: location,
-              },
-              message: `${text} [${code}]`,
+              loc: label
+                ? {
+                    start: sourceCode.getLocFromIndex(label.start),
+                    end: sourceCode.getLocFromIndex(label.end),
+                  }
+                : {
+                    start: { line: 1, column: 0 },
+                    end: { line: 1, column: 0 },
+                  },
+              message: `${text}`,
             })
           }
         }

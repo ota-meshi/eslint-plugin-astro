@@ -1,13 +1,13 @@
 import { ClientScript } from "./client-script/index.ts"
-import type { ElementNode } from "@astrojs/compiler/types"
 import type { ParseTemplateResult } from "astro-eslint-parser"
+import type { JSXElementNode } from "../processor/astro/types.ts"
 
 export class Shared {
   public readonly clientScripts: ClientScript[] = []
 
   public addClientScript(
     code: string,
-    node: ElementNode,
+    node: JSXElementNode,
     parsed: ParseTemplateResult,
   ): ClientScript {
     const clientScript = new ClientScript(code, node, parsed)

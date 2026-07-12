@@ -5,15 +5,19 @@ import type {
   Scope,
   SourceCode as ESLintSourceCode,
 } from "eslint"
-import type { AST, parseForESLint } from "astro-eslint-parser"
+import type {
+  AST,
+  parseForESLint,
+  ParseTemplateResult,
+} from "astro-eslint-parser"
 import type * as ESTree from "estree"
 import type {
   ASTNode,
   ASTNodeWithParent,
   ASTNodeListener,
 } from "./types-for-node.ts"
-import type { ParseResult } from "@astrojs/compiler"
 import type { DeprecatedInfo } from "@eslint/core"
+type ParseResult = ParseTemplateResult["result"]
 
 export type { ASTNode, ASTNodeWithParent, ASTNodeListener }
 export interface RuleListener extends ASTNodeListener {
