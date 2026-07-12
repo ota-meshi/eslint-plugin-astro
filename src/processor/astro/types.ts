@@ -94,9 +94,7 @@ export type LiteralNode = LocatedNode & {
 }
 
 export type JSXNameNode =
-  | JSXIdentifierNode
-  | JSXMemberExpressionNode
-  | JSXNamespacedNameNode
+  JSXIdentifierNode | JSXMemberExpressionNode | JSXNamespacedNameNode
 
 export type JSXIdentifierNode = LocatedNode & {
   type: "JSXIdentifier"
