@@ -2,4 +2,5 @@
 "eslint-plugin-astro": major
 ---
 
-feat!: use astro-eslint-parser v2
+Upgrade `astro-eslint-parser` to v3. Astro files are now parsed with Astro's
+Rust compiler (`@astrojs/compiler-rs`) instead of `@astrojs/compiler`.
