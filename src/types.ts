@@ -13,6 +13,7 @@ import type {
   ASTNodeListener,
 } from "./types-for-node.ts"
 import type { ParseResult } from "@astrojs/compiler"
+import type { DeprecatedInfo } from "@eslint/core"
 
 export type { ASTNode, ASTNodeWithParent, ASTNodeListener }
 export interface RuleListener extends ASTNodeListener {
@@ -78,8 +79,7 @@ export interface RuleMetaData {
   fixable?: "code" | "whitespace"
   hasSuggestions?: boolean
   schema: JSONSchema4 | JSONSchema4[]
-  deprecated?: boolean
-  replacedBy?: string[]
+  deprecated?: boolean | DeprecatedInfo
   type: "problem" | "suggestion" | "layout"
 }
 
@@ -106,8 +106,7 @@ export interface PartialRuleMetaData {
   fixable?: "code" | "whitespace"
   hasSuggestions?: boolean
   schema: JSONSchema4 | JSONSchema4[]
-  deprecated?: boolean
-  replacedBy?: string[]
+  deprecated?: boolean | DeprecatedInfo
   type: "problem" | "suggestion" | "layout"
 }
 

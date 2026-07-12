@@ -8,57 +8,24 @@ since: "v2.1.0"
 
 > disallow omitted end tags
 
-- ⚙ This rule is included in the `recommended` config.
-- 🔧 The `--fix` option on the [command line](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems) can automatically fix some of the problems reported by this rule.
+- ⚠️ This rule was **deprecated**.
 
 ## 📖 Rule Details
 
-This rule reports elements whose end tags are omitted.
+This rule was a temporary migration aid for finding elements whose end tags
+were omitted. It is now deprecated and no longer reports any problems.
 
 Astro's Rust compiler (`@astrojs/compiler-rs`) does not infer HTML optional
 end tags such as `<p>one<p>two`, `<li>one<li>two`, or
-`<option>A<option>B`. Astro v7 makes the Rust compiler the default compiler
-and requires every non-void element to have a matching end tag. This rule helps
-you find and fix templates that relied on omitted end tags before they fail to
-parse with the Rust compiler.
+`<option>A<option>B`. Astro v7 made the Rust compiler the default compiler and
+requires every non-void element to have a matching end tag. Files with omitted
+end tags are rejected before ESLint rules can run, so this rule can no longer
+report them.
 
 Historically, the previous compiler documented
 [unclosed HTML tags](https://github.com/withastro/compiler/blob/271eee2e499432015ab4c6dc510c5331e1961b84/SYNTAX_SPEC.md#unclosed-html-tags)
-as accepted syntax. This rule intentionally prefers the explicit form now
-required by the Rust compiler.
-
-This rule is intended as a temporary migration aid. It will be deprecated in
-the next version of eslint-plugin-astro because this plugin's parser will also
-be replaced with the Rust compiler. Once that happens, files with omitted end
-tags can no longer be parsed, so this rule will no longer be able to report
-them. Enable this rule before upgrading to add the missing end tags while your
-current parser can still read those files.
-
-<ESLintCodeBlock fix>
-
-<!--eslint-skip-->
-
-```astro
----
-/* eslint astro/no-omitted-end-tags: "error" */
----
-
-{/* ✓ GOOD */}
-<p>Hello</p>
-<ul>
-  <li>one</li>
-  <li>two</li>
-</ul>
-
-{/* ✗ BAD */}
-<p>Hello
-<ul>
-  <li>one
-  <li>two
-</ul>
-```
-
-</ESLintCodeBlock>
+as accepted syntax. The explicit form required by the Rust compiler should be
+used instead.
 
 ## 🔧 Options
 
@@ -66,10 +33,15 @@ Nothing.
 
 ## 📌 Note
 
-When a template contains `html`, `head`, or `body`, this rule parses it as an
-HTML document. If the source omits a doctype, the rule parses it as if
-`<!DOCTYPE html>` were present. If the source has an explicit doctype, the rule
-respects that doctype, including quirks-mode doctypes.
+This rule is kept as a deprecated no-op so existing ESLint configurations that
+still mention `astro/no-omitted-end-tags` do not fail with an unknown-rule
+configuration error.
+
+If you still need the historical linting and autofix behavior while migrating a
+codebase, keep using an earlier `eslint-plugin-astro` release from v2.1 onward
+that still implements this rule. Once the source has been updated to use
+explicit end tags, you can upgrade safely and remove this rule from your
+configuration.
 
 ## 📚 Further Reading
 
@@ -84,4 +56,3 @@ This rule was introduced in eslint-plugin-astro v2.1.0
 
 - [Rule source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/src/rules/no-omitted-end-tags.ts)
 - [Test source](https://github.com/ota-meshi/eslint-plugin-astro/blob/main/tests/src/rules/no-omitted-end-tags.ts)
-- [Test fixture sources](https://github.com/ota-meshi/eslint-plugin-astro/tree/main/tests/fixtures/rules/no-omitted-end-tags)
