@@ -124,7 +124,7 @@
     "esbuild-register": "^3.3.3",
     "eslint": "^10.0.0",
     "eslint-config-prettier": "^10.0.0",
-    "eslint-plugin-astro": "^2.0.0",
+    "eslint-plugin-astro": "^3.0.0",
     "eslint-plugin-eslint-plugin": "^7.0.0",
     "eslint-plugin-jsdoc": "^63.0.0",
     "eslint-plugin-json-schema-validator": "^6.0.0",
