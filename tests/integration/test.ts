@@ -52,7 +52,7 @@ for (const dirent of fs.readdirSync(TEST_FIXTURES_ROOT, {
           assert.ok(Array.isArray(results), "output is not array")
           const result = results.map((r) => ({
             ...r,
-            filePath: path.relative(TEST_CWD, r.filePath),
+            filePath: path.relative(TEST_CWD, r.filePath).replace(/\\/g, "/"),
           }))
           fs.writeFileSync(actualFile, JSON.stringify(result, null, 2))
 
