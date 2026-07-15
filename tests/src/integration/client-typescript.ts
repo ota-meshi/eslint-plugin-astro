@@ -44,4 +44,33 @@ describe("Integration test for client-side ts", () => {
       ],
     )
   })
+
+  it("should work with self-closing script", async () => {
+    const eslint = new ESLint({
+      overrideConfigFile: true,
+      overrideConfig: [
+        ...astroPlugin.configs.base,
+        {
+          files: ["*.ts", "**/*.ts"],
+          languageOptions: {
+            parser: tsESLintParser,
+          },
+        },
+      ],
+    })
+
+    const result = await eslint.lintText(
+      `
+      <script src="something.ts" />
+      `,
+      { filePath: "path/to/test.astro" },
+    )
+
+    assert.deepStrictEqual(
+      result
+        .flatMap((r) => r.messages)
+        .map((m) => ({ ruleId: m.ruleId, message: m.message })),
+      [],
+    )
+  })
 })
