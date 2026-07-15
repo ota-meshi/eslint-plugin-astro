@@ -37,4 +37,25 @@ describe("Integration test for client-side script", () => {
       ],
     )
   })
+
+  it("should work with self-closing script", async () => {
+    const eslint = new ESLint({
+      overrideConfigFile: true,
+      overrideConfig: [...astroPlugin.configs.base],
+    })
+
+    const result = await eslint.lintText(
+      `
+      <script src="something.js" />
+      `,
+      { filePath: "path/to/test.astro" },
+    )
+
+    assert.deepStrictEqual(
+      result
+        .flatMap((r) => r.messages)
+        .map((m) => ({ ruleId: m.ruleId, message: m.message })),
+      [],
+    )
+  })
 })
