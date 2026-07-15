@@ -1,0 +1,26 @@
+---
+import Card from "@/components/Card.astro"
+import Section from "@/components/Section.astro"
+---
+
+<Section>
+  <Card className="special-card">
+    <p>Hello World!</p>
+  </Card>
+</Section>
+
+<Section>
+  <Card className={"another-special-card"}>
+    <p>Lorem Ipsum</p>
+  </Card>
+</Section>
+
+<style>
+  .special-card {
+    background-color: red;
+  }
+
+  .another-special-card {
+    background-color: blue;
+  }
+</style>

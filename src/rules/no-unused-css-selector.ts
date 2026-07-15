@@ -477,10 +477,29 @@ function nodeToJSXElementMatcher(
   })()
   return (element, subject) => {
     if (isComponentElement(element)) {
+      if (selector.type === "class") {
+        return componentClassNameMatches(selector, element, context)
+      }
       return false
     }
     return baseMatcher(element, subject)
   }
+}
+
+/** Check whether a component's className prop can match the selector. */
+function componentClassNameMatches(
+  selector: parser.ClassName,
+  element: JSXElementTreeNode,
+  context: RuleContext,
+): boolean {
+  const attr = getAttribute(element, "className", context)
+  if (attr == null) {
+    return false
+  }
+  if (attr.unknown || !attr.staticValue) {
+    return true
+  }
+  return attr.staticValue.value.split(/\s+/u).includes(selector.value)
 }
 
 /**
