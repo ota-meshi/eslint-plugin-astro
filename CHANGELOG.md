@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 3.0.1
+
+### Patch Changes
+
+- [#601](https://github.com/ota-meshi/eslint-plugin-astro/pull/601) [`e5c330d`](https://github.com/ota-meshi/eslint-plugin-astro/commit/e5c330db360bc26a9faac1445d44d5d575a3e854) Thanks [@astrochemx](https://github.com/astrochemx)! - Fix a `TypeError` that occurs during the preprocessing phase when `eslint-plugin-astro` encounters a self-closing `<script />` tag.
+
 ## 3.0.0
 
 ### Major Changes
