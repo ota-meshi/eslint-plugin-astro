@@ -153,7 +153,7 @@
     "stylus": "^0.64.0",
     "svelte": "^5.0.0",
     "tsdown": "^0.22.2",
-    "typescript": "~6.0.0",
+    "typescript": "~7.0.0",
     "typescript-eslint": "^8.61.0",
     "vite-plugin-eslint4b": "^0.8.1"
   },
