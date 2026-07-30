@@ -119,6 +119,25 @@ The pull request diff [here](https://github.com/withastro/docs/pull/710/files) i
 
 See [https://github.com/ota-meshi/astro-eslint-parser#readme](https://github.com/ota-meshi/astro-eslint-parser#readme).
 
+#### Using `eslint-plugin-import`
+
+When using [`eslint-plugin-import`](https://github.com/import-js/eslint-plugin-import), configure it to parse Astro files and recognize Astro's virtual modules. After applying the plugin's recommended configuration, add the following config object:
+
+```json
+{
+  "settings": {
+    "import/core-modules": ["astro:content", "astro:transitions"],
+    "import/parsers": {
+      "astro-eslint-parser": [".astro"],
+      "espree": [".js", ".mjs", ".cjs"],
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    }
+  }
+}
+```
+
+Add any other virtual `astro:*` modules that your project imports to `import/core-modules`. Only include parser entries for file types and parsers that your project uses.
+
 ### Resolving Error in JSX: Unsafe return of an `any` typed value
 
 Astro supports JSX from multiple frameworks such as **React**, **Preact**, and **Solid.js** by defining JSX Elements as `HTMLElement | any;`. When a framework with a JSX type definition is not present in your project this **any** can cause the ESLint error `@typescript-eslint/no-unsafe-return`.
