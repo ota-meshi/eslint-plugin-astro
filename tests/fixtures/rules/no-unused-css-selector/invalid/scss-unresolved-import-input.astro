@@ -1,0 +1,19 @@
+---
+const { name } = Astro.props
+---
+
+<div class="hello">
+  <p>Hello, {name}!</p>
+</div>
+
+<style lang="scss">
+  @use "../styles/mixins" as mixins;
+
+  .ok {
+    color: red;
+
+    @include mixins.breakpoint("small") {
+      display: none;
+    }
+  }
+</style>

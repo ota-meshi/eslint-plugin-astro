@@ -46,6 +46,13 @@ export function getStyleContentCSS(
     transform = transformWithStylus(node, context)
   }
   if (!transform) {
+    if (lang === "scss") {
+      const inputRange = getContentRange(node)
+      return {
+        css: sourceCode.text.slice(...inputRange),
+        remap: (i) => inputRange[0] + i,
+      }
+    }
     return null
   }
 
