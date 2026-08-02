@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 3.1.0
+
+### Minor Changes
+
+- [#616](https://github.com/ota-meshi/eslint-plugin-astro/pull/616) [`425aebb`](https://github.com/ota-meshi/eslint-plugin-astro/commit/425aebb35b387289db0ff30a95eae9c166686e8b) Thanks [@ota-meshi](https://github.com/ota-meshi)! - Resolve the TypeScript parser from the `typescript-eslint` package when `@typescript-eslint/parser` is not installed directly.
+
 ## 3.0.1
 
 ### Patch Changes
