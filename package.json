@@ -81,13 +81,17 @@
   "peerDependencies": {
     "@typescript-eslint/parser": ">=8.61.0",
     "eslint": ">=10.0.0",
-    "eslint-plugin-jsx-a11y": ">=6.10.2"
+    "eslint-plugin-jsx-a11y": ">=6.10.2",
+    "typescript-eslint": ">=8.61.0"
   },
   "peerDependenciesMeta": {
     "@typescript-eslint/parser": {
       "optional": true
     },
     "eslint-plugin-jsx-a11y": {
+      "optional": true
+    },
+    "typescript-eslint": {
       "optional": true
     }
   },
