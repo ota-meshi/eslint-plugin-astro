@@ -49,9 +49,11 @@ See [documents](https://ota-meshi.github.io/eslint-plugin-astro/).
 npm install --save-dev eslint eslint-plugin-astro
 ```
 
-If you write TypeScript in Astro components, you also need to install the `@typescript-eslint/parser`:
+If you write TypeScript in Astro components, you also need to install either `typescript-eslint` or `@typescript-eslint/parser`:
 
 ```bash
+npm install --save-dev typescript-eslint
+# or
 npm install --save-dev @typescript-eslint/parser
 ```
 
