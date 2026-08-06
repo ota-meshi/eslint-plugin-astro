@@ -1,0 +1,27 @@
+[
+  {
+    "message": "Cannot use `client:load` on an Astro component. Astro components are server-only and cannot be hydrated on the client.",
+    "line": 5,
+    "column": 17
+  },
+  {
+    "message": "Cannot use `client:idle` on an Astro component. Astro components are server-only and cannot be hydrated on the client.",
+    "line": 6,
+    "column": 17
+  },
+  {
+    "message": "Cannot use `client:visible` on an Astro component. Astro components are server-only and cannot be hydrated on the client.",
+    "line": 7,
+    "column": 17
+  },
+  {
+    "message": "Cannot use `client:media` on an Astro component. Astro components are server-only and cannot be hydrated on the client.",
+    "line": 8,
+    "column": 17
+  },
+  {
+    "message": "Cannot use `client:only` on an Astro component. Astro components are server-only and cannot be hydrated on the client.",
+    "line": 9,
+    "column": 17
+  }
+]
