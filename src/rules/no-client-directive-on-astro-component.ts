@@ -16,7 +16,7 @@ export default createRule("no-client-directive-on-astro-component", {
     schema: [],
     messages: {
       unexpected:
-        "Cannot use `{{directive}}` on an Astro component. Astro components are server-only and cannot be hydrated on the client.",
+        "Cannot use `{{directive}}` on an Astro component. Astro components are server-only and cannot be rendered on the client.",
     },
     type: "problem",
   },
