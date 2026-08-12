@@ -103,7 +103,7 @@
     "@astrojs/mdx": "^7.0.0",
     "@astrojs/svelte": "^9.0.0",
     "@changesets/changelog-github": "^1.0.0",
-    "@changesets/cli": "^2.24.2",
+    "@changesets/cli": "^3.0.0",
     "@eslint-community/eslint-plugin-eslint-comments": "^4.3.0",
     "@eslint/eslintrc": "^3.0.0",
     "@eslint/js": "^10.0.0",
