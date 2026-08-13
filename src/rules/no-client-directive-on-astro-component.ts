@@ -43,7 +43,11 @@ export default createRule("no-client-directive-on-astro-component", {
       }
 
       const elementName = getElementName(element)
-      if (!elementName || !astroComponentNames.has(elementName)) {
+      if (
+        !elementName ||
+        /^[a-z]/u.test(elementName) ||
+        !astroComponentNames.has(elementName)
+      ) {
         return
       }
 
