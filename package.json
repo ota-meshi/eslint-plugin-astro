@@ -99,7 +99,7 @@
     "@actions/github": "^9.0.0",
     "@astrojs/compiler": "^4.0.0",
     "@astrojs/compiler-binding-wasm32-wasi": "^0.4.0",
-    "@astrojs/markdown-satteri": "0.3.5",
+    "@astrojs/markdown-satteri": "0.3.7",
     "@astrojs/mdx": "^7.0.0",
     "@astrojs/svelte": "^9.0.0",
     "@changesets/changelog-github": "^1.0.0",
