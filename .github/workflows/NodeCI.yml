@@ -52,6 +52,11 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Update npm
+        # npm 10 (bundled with Node 22) crashes with
+        # "Cannot read properties of null (reading 'edgesOut')"
+        # while resolving the peer set of vitest@4.1.11.
+        run: npm install -g npm@^11
       - name: Install Packages
         run: npm install -f
       - name: Test
