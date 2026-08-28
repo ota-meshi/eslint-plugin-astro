@@ -1,6 +1,6 @@
 import type { RuleContext, RuleListener, RuleModule } from "../types.ts"
-import type { PluginRuleModule } from "./load.ts"
-import { getPluginJsxA11y } from "./load.ts"
+import type { PluginJsxA11yRuleModule } from "./load.ts"
+import { getPluginJsxA11y, PLUGIN_NAMES } from "./load.ts"
 import type { ASTNode } from "../types-for-node.ts"
 import { createRule } from "../utils/index.ts"
 import { a11yRuleKeys } from "./keys.ts"
@@ -19,7 +19,36 @@ const ATTRIBUTE_MAP: Record<string, string | undefined> = {
   for: "htmlFor",
 }
 
-/** Get `eslint-plugin-jsx-a11y` rule. */
+/**
+ * Get the documentation URL for an a11y rule.
+ */
+function getRuleDocsUrl(
+  ruleName: string,
+  baseRule?: PluginJsxA11yRuleModule,
+): string {
+  if (baseRule?.meta?.docs?.url) {
+    return baseRule.meta.docs.url
+  }
+
+  return `https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/${ruleName}.md`
+}
+
+/**
+ * Get the name of the a11y plugin being used.
+ * `eslint-plugin-jsx-a11y-x` is preferred by `getPluginJsxA11y()`, while
+ * `eslint-plugin-jsx-a11y` remains as a fallback for compatibility.
+ */
+function getPluginName(baseRule?: PluginJsxA11yRuleModule): string {
+  const url = baseRule?.meta?.docs?.url
+
+  if (url?.includes("es-tooling/eslint-plugin-jsx-a11y-x")) {
+    return PLUGIN_NAMES.jsxA11yX
+  }
+
+  return PLUGIN_NAMES.jsxA11y
+}
+
+/** Get `eslint-plugin-jsx-a11y-x` or `eslint-plugin-jsx-a11y` rules. */
 function getPluginJsxA11yRule(ruleName: string) {
   const base = getPluginJsxA11y()
   return base?.rules?.[ruleName]
@@ -49,22 +78,20 @@ export function buildRules(): RuleModule[] {
         if (!baseRule) {
           context.report({
             loc: { line: 0, column: 0 },
-            message: `If you want to use ${astroRuleName} rule, you need to install eslint-plugin-jsx-a11y.`,
+            message: `If you want to use ${astroRuleName} rule, you need to install ${PLUGIN_NAMES.jsxA11yX} or ${PLUGIN_NAMES.jsxA11y}.`,
           })
           return {}
         }
         return defineWrapperListener(baseRule, context)
       },
     })
+    const baseRule = getPluginJsxA11yRule(ruleKey)
     const docs: RuleModule["meta"]["docs"] = {
       ...ruleWithoutMeta.meta.docs,
       extensionRule: {
-        plugin: "eslint-plugin-jsx-a11y",
+        plugin: getPluginName(baseRule),
         get url() {
-          return (
-            getPluginJsxA11yRule(ruleKey)?.meta?.docs?.url ??
-            `https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/main/docs/rules/${ruleKey}.md`
-          )
+          return getRuleDocsUrl(ruleKey, getPluginJsxA11yRule(ruleKey))
         },
       },
     }
@@ -91,7 +118,7 @@ export function buildRules(): RuleModule[] {
  * Define the wrapped plugin rule.
  */
 function defineWrapperListener(
-  coreRule: PluginRuleModule,
+  coreRule: PluginJsxA11yRuleModule,
   context: RuleContext,
 ): RuleListener {
   const sourceCode = context.sourceCode
