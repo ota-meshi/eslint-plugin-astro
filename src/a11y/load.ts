@@ -7,8 +7,8 @@ declare const _ESLINT_PLUGIN_ASTRO_MODULES: {
 }
 
 export const PLUGIN_NAMES = {
-  jsxA11yX: "eslint-plugin-jsx-a11y-x",
   jsxA11y: "eslint-plugin-jsx-a11y",
+  jsxA11yX: "eslint-plugin-jsx-a11y-x",
 } as const
 export type PluginJsxA11yRuleModule = {
   meta?: {
@@ -110,14 +110,14 @@ function requirePlugin(
 }
 
 /**
- * Load `eslint-plugin-jsx-a11y-x` or `eslint-plugin-jsx-a11y` from the user local.
+ * Load `eslint-plugin-jsx-a11y` or `eslint-plugin-jsx-a11y-x` from the user local.
  */
 export function getPluginJsxA11y(): PluginJsxA11y | null {
   if (loaded) {
     return pluginJsxA11yCache
   }
 
-  const pluginNames = [PLUGIN_NAMES.jsxA11yX, PLUGIN_NAMES.jsxA11y]
+  const pluginNames = [PLUGIN_NAMES.jsxA11y, PLUGIN_NAMES.jsxA11yX]
 
   for (const pluginName of pluginNames) {
     const plugin = requirePlugin(pluginName)

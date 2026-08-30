@@ -35,20 +35,24 @@ function getRuleDocsUrl(
 
 /**
  * Get the name of the a11y plugin being used.
- * `eslint-plugin-jsx-a11y-x` is preferred by `getPluginJsxA11y()`, while
- * `eslint-plugin-jsx-a11y` remains as a fallback for compatibility.
+ * `eslint-plugin-jsx-a11y` is preferred by `getPluginJsxA11y()`, while
+ * `eslint-plugin-jsx-a11y-x` remains as a fallback for compatibility.
  */
 function getPluginName(baseRule?: PluginJsxA11yRuleModule): string {
   const url = baseRule?.meta?.docs?.url
 
-  if (url?.includes("es-tooling/eslint-plugin-jsx-a11y-x")) {
+  if (url?.includes("eslint-plugin-jsx-a11y")) {
+    return PLUGIN_NAMES.jsxA11y
+  }
+
+  if (url?.includes("eslint-plugin-jsx-a11y-x")) {
     return PLUGIN_NAMES.jsxA11yX
   }
 
   return PLUGIN_NAMES.jsxA11y
 }
 
-/** Get `eslint-plugin-jsx-a11y-x` or `eslint-plugin-jsx-a11y` rules. */
+/** Get `eslint-plugin-jsx-a11y` or `eslint-plugin-jsx-a11y-x` rules. */
 function getPluginJsxA11yRule(ruleName: string) {
   const base = getPluginJsxA11y()
   return base?.rules?.[ruleName]
@@ -78,7 +82,7 @@ export function buildRules(): RuleModule[] {
         if (!baseRule) {
           context.report({
             loc: { line: 0, column: 0 },
-            message: `If you want to use ${astroRuleName} rule, you need to install ${PLUGIN_NAMES.jsxA11yX} or ${PLUGIN_NAMES.jsxA11y}.`,
+            message: `If you want to use ${astroRuleName} rule, you need to install ${PLUGIN_NAMES.jsxA11y} or ${PLUGIN_NAMES.jsxA11yX}.`,
           })
           return {}
         }
