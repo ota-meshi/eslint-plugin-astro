@@ -57,14 +57,21 @@ npm install --save-dev typescript-eslint
 npm install --save-dev @typescript-eslint/parser
 ```
 
-If you want to use the rules for checking accessibility (A11Y), you also need to install [eslint-plugin-jsx-a11y] additionally:  
-(It is used internally in the rules for A11Y.)
+If you want to use the rules for checking accessibility (A11Y), you also need to install [eslint-plugin-jsx-a11y] or [eslint-plugin-jsx-a11y-x] additionally:  
+(Either plugin may be used internally by the A11Y rules.)
 
 ```bash
 npm install --save-dev eslint-plugin-jsx-a11y
 ```
 
+or
+
+```bash
+npm install --save-dev eslint-plugin-jsx-a11y-x
+```
+
 [eslint-plugin-jsx-a11y]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y
+[eslint-plugin-jsx-a11y-x]: https://github.com/es-tooling/eslint-plugin-jsx-a11y-x
 
 > **Requirements**
 >
@@ -109,7 +116,7 @@ This plugin provides configs:
 - `base` ... Minimal configuration to enable correct Astro component linting.
 - `recommended` ... Above, plus rules to prevent errors or unintended behavior.
 - `all` ... Configuration enables all astro rules. It's meant for testing, not for production use because it changes with every minor and major version of the plugin. Use it at your own risk.
-- Extension of sharable configuration provided by [eslint-plugin-jsx-a11y]. You need to install [eslint-plugin-jsx-a11y] to use it.
+- Extension of sharable configuration provided by [eslint-plugin-jsx-a11y]. You need to install [eslint-plugin-jsx-a11y] or [eslint-plugin-jsx-a11y-x] to use it.
   - `jsx-a11y-recommended` ... Similar to the [`jsx-a11y` recommended configuration](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y#rule-strictness-in-different-modes), but with the rules extended for Astro components enabled.
   - `jsx-a11y-strict` ... Similar to the [`jsx-a11y` strict configuration](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y#rule-strictness-in-different-modes), but with the rules extended for Astro components enabled.
 
@@ -315,7 +322,7 @@ These rules relate to style guidelines, and are therefore quite subjective:
 ## A11Y Extension Rules
 
 These rules extend the rules provided by [eslint-plugin-jsx-a11y] to work well in Astro component:  
-(You need to install [eslint-plugin-jsx-a11y] to use the rules.)
+(You need to install [eslint-plugin-jsx-a11y] or [eslint-plugin-jsx-a11y-x] to use the rules.)
 
 | Rule ID | Description |    |
 |:--------|:------------|:---|

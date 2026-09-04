@@ -10,6 +10,7 @@ const base: UserConfig = {
     neverBundle: [
       "@typescript-eslint/parser",
       "eslint-plugin-jsx-a11y",
+      "eslint-plugin-jsx-a11y-x",
       "espree",
     ],
   },

@@ -82,6 +82,7 @@
     "@typescript-eslint/parser": ">=8.61.0",
     "eslint": ">=10.0.0",
     "eslint-plugin-jsx-a11y": ">=6.10.2",
+    "eslint-plugin-jsx-a11y-x": ">=0.2.0",
     "typescript-eslint": ">=8.61.0"
   },
   "peerDependenciesMeta": {
@@ -89,6 +90,9 @@
       "optional": true
     },
     "eslint-plugin-jsx-a11y": {
+      "optional": true
+    },
+    "eslint-plugin-jsx-a11y-x": {
       "optional": true
     },
     "typescript-eslint": {
@@ -134,6 +138,7 @@
     "eslint-plugin-json-schema-validator": "^6.0.0",
     "eslint-plugin-jsonc": "^3.0.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-jsx-a11y-x": "^0.2.0",
     "eslint-plugin-markdown": "^5.1.0",
     "eslint-plugin-n": "^18.0.0",
     "eslint-plugin-node-dependencies": "^2.0.0",
