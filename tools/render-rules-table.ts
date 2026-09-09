@@ -23,7 +23,7 @@ const descriptions: Record<RuleCategory, string> = {
   "Stylistic Issues":
     "These rules relate to style guidelines, and are therefore quite subjective:",
   "A11Y Extension Rules":
-    "These rules extend the rules provided by [eslint-plugin-jsx-a11y] to work well in Astro component:  \n(You need to install [eslint-plugin-jsx-a11y] to use the rules.)",
+    "These rules extend the rules provided by [eslint-plugin-jsx-a11y] to work well in Astro component:  \n(You need to install [eslint-plugin-jsx-a11y] or [eslint-plugin-jsx-a11y-x] to use the rules.)",
   "Extension Rules":
     "These rules extend the rules provided by ESLint itself to work well in Astro component:",
   System: "These rules relate to this plugin works:",

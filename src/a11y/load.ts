@@ -6,7 +6,11 @@ declare const _ESLINT_PLUGIN_ASTRO_MODULES: {
   require: <T>(id: string) => T
 }
 
-export type PluginRuleModule = {
+export const PLUGIN_NAMES = {
+  jsxA11y: "eslint-plugin-jsx-a11y",
+  jsxA11yX: "eslint-plugin-jsx-a11y-x",
+} as const
+export type PluginJsxA11yRuleModule = {
   meta?: {
     docs?: {
       url?: string
@@ -19,42 +23,111 @@ export type PluginRuleModule = {
   }
   create: (context: RuleContext) => RuleListener
 }
-type PluginConfig = {
+type PluginRules = Record<string, PluginJsxA11yRuleModule | undefined>
+type PluginJsxA11yConfig = {
   plugins?: string | string[]
   parserOptions?: unknown
   rules?: Record<string, string | unknown[]>
+  languageOptions?: unknown
 }
-export type PluginJsxA11y = {
-  rules?: Record<string, PluginRuleModule | undefined>
-  configs?: Record<string, PluginConfig | undefined>
+type PluginJsxA11y = {
+  rules?: PluginRules
+  configs?: Record<string, PluginJsxA11yConfig | undefined>
+}
+type PluginJsxA11yXRuleModule = {
+  meta?: {
+    name?: string
+    version?: string
+  }
+  rules?: PluginRules
+}
+type PluginJsxA11yXConfig = Omit<PluginJsxA11yConfig, "plugins"> & {
+  plugins?: Record<string, PluginJsxA11yXRuleModule>
+}
+type PluginJsxA11yX = {
+  configs?: Record<string, PluginJsxA11yXConfig | undefined>
 }
 let pluginJsxA11yCache: PluginJsxA11y | null = null
 let loaded = false
+
 /**
- * Load `eslint-plugin-jsx-a11y` from the user local.
+ * Normalize `eslint-plugin-jsx-a11y-x` to the interface used internally.
+ * `eslint-plugin-jsx-a11y-x` exposes its rules through: configs.<config>.plugins["jsx-a11y-x"].rules
+ * while `eslint-plugin-jsx-a11y` exposes them directly through: rules
+ * Both plugins are normalized to the same internal interface.
  */
-export function getPluginJsxA11y(): PluginJsxA11y | null {
+function normalizePlugin(
+  plugin: PluginJsxA11y | PluginJsxA11yX,
+): PluginJsxA11y {
+  if ("rules" in plugin && plugin.rules) {
+    return plugin
+  }
+  const jsxA11yXPlugin = plugin as PluginJsxA11yX
+  const configs = jsxA11yXPlugin.configs
+  if (!configs) {
+    return {}
+  }
+
+  const rules =
+    configs.recommended?.plugins?.["jsx-a11y-x"]?.rules ??
+    configs.strict?.plugins?.["jsx-a11y-x"]?.rules
+  const normalizedConfigs: Record<string, PluginJsxA11yConfig> = {}
+
+  for (const [configName, config] of Object.entries(configs)) {
+    if (!config) {
+      continue
+    }
+
+    normalizedConfigs[configName] = {
+      rules: config.rules,
+      languageOptions: config.languageOptions,
+    }
+  }
+
+  return {
+    rules,
+    configs: normalizedConfigs,
+  }
+}
+
+/**
+ * Resolves a plugin by name from the available module sources.
+ */
+function requirePlugin(
+  pluginName: string,
+): PluginJsxA11y | PluginJsxA11yX | null {
   if (typeof _ESLINT_PLUGIN_ASTRO_MODULES !== "undefined") {
     try {
-      pluginJsxA11yCache = _ESLINT_PLUGIN_ASTRO_MODULES.require(
-        "eslint-plugin-jsx-a11y",
-      )
+      return _ESLINT_PLUGIN_ASTRO_MODULES.require<
+        PluginJsxA11y | PluginJsxA11yX
+      >(pluginName)
     } catch {
       // ignore
     }
-    if (pluginJsxA11yCache) {
-      loaded = true
-      return pluginJsxA11yCache
-    }
   }
+
+  return requireUserLocal<PluginJsxA11y | PluginJsxA11yX>(pluginName)
+}
+
+/**
+ * Load `eslint-plugin-jsx-a11y` or `eslint-plugin-jsx-a11y-x` from the user local.
+ */
+export function getPluginJsxA11y(): PluginJsxA11y | null {
   if (loaded) {
     return pluginJsxA11yCache
   }
 
-  if (!pluginJsxA11yCache) {
-    pluginJsxA11yCache = requireUserLocal("eslint-plugin-jsx-a11y")
+  const pluginNames = [PLUGIN_NAMES.jsxA11y, PLUGIN_NAMES.jsxA11yX]
+
+  for (const pluginName of pluginNames) {
+    const plugin = requirePlugin(pluginName)
+
+    if (plugin) {
+      pluginJsxA11yCache = normalizePlugin(plugin)
+      loaded = true
+      return pluginJsxA11yCache
+    }
   }
 
-  loaded = true
-  return pluginJsxA11yCache || null
+  return null
 }
