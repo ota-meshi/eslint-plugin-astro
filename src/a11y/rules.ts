@@ -1,6 +1,6 @@
 import type { RuleContext, RuleListener, RuleModule } from "../types.ts"
 import type { PluginJsxA11yRuleModule } from "./load.ts"
-import { getPluginJsxA11y, PLUGIN_NAMES } from "./load.ts"
+import { getPluginJsxA11y } from "./load.ts"
 import type { ASTNode } from "../types-for-node.ts"
 import { createRule } from "../utils/index.ts"
 import { a11yRuleKeys } from "./keys.ts"
@@ -42,14 +42,14 @@ function getPluginName(baseRule?: PluginJsxA11yRuleModule): string {
   const url = baseRule?.meta?.docs?.url
 
   if (url?.includes("eslint-plugin-jsx-a11y")) {
-    return PLUGIN_NAMES.jsxA11y
+    return "eslint-plugin-jsx-a11y"
   }
 
   if (url?.includes("eslint-plugin-jsx-a11y-x")) {
-    return PLUGIN_NAMES.jsxA11yX
+    return "eslint-plugin-jsx-a11y-x"
   }
 
-  return PLUGIN_NAMES.jsxA11y
+  return "eslint-plugin-jsx-a11y"
 }
 
 /** Get `eslint-plugin-jsx-a11y` or `eslint-plugin-jsx-a11y-x` rules. */
@@ -82,7 +82,7 @@ export function buildRules(): RuleModule[] {
         if (!baseRule) {
           context.report({
             loc: { line: 0, column: 0 },
-            message: `If you want to use ${astroRuleName} rule, you need to install ${PLUGIN_NAMES.jsxA11y} or ${PLUGIN_NAMES.jsxA11yX}.`,
+            message: `If you want to use ${astroRuleName} rule, you need to install eslint-plugin-jsx-a11y or eslint-plugin-jsx-a11y-x.`,
           })
           return {}
         }
