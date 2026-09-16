@@ -41,10 +41,6 @@ function getRuleDocsUrl(
 function getPluginName(baseRule?: PluginJsxA11yRuleModule): string {
   const url = baseRule?.meta?.docs?.url
 
-  if (url?.includes("eslint-plugin-jsx-a11y")) {
-    return "eslint-plugin-jsx-a11y"
-  }
-
   if (url?.includes("eslint-plugin-jsx-a11y-x")) {
     return "eslint-plugin-jsx-a11y-x"
   }
