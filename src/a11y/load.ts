@@ -34,79 +34,22 @@ type PluginJsxA11y = {
   rules?: PluginRules
   configs?: Record<string, PluginJsxA11yConfig | undefined>
 }
-type PluginJsxA11yXRuleModule = {
-  meta?: {
-    name?: string
-    version?: string
-  }
-  rules?: PluginRules
-}
-type PluginJsxA11yXConfig = Omit<PluginJsxA11yConfig, "plugins"> & {
-  plugins?: Record<string, PluginJsxA11yXRuleModule>
-}
-type PluginJsxA11yX = {
-  configs?: Record<string, PluginJsxA11yXConfig | undefined>
-}
 let pluginJsxA11yCache: PluginJsxA11y | null = null
 let loaded = false
 
 /**
- * Normalize `eslint-plugin-jsx-a11y-x` to the interface used internally.
- * `eslint-plugin-jsx-a11y-x` exposes its rules through: configs.<config>.plugins["jsx-a11y-x"].rules
- * while `eslint-plugin-jsx-a11y` exposes them directly through: rules
- * Both plugins are normalized to the same internal interface.
- */
-function normalizePlugin(
-  plugin: PluginJsxA11y | PluginJsxA11yX,
-): PluginJsxA11y {
-  if ("rules" in plugin && plugin.rules) {
-    return plugin
-  }
-  const jsxA11yXPlugin = plugin as PluginJsxA11yX
-  const configs = jsxA11yXPlugin.configs
-  if (!configs) {
-    return {}
-  }
-
-  const rules =
-    configs.recommended?.plugins?.["jsx-a11y-x"]?.rules ??
-    configs.strict?.plugins?.["jsx-a11y-x"]?.rules
-  const normalizedConfigs: Record<string, PluginJsxA11yConfig> = {}
-
-  for (const [configName, config] of Object.entries(configs)) {
-    if (!config) {
-      continue
-    }
-
-    normalizedConfigs[configName] = {
-      rules: config.rules,
-      languageOptions: config.languageOptions,
-    }
-  }
-
-  return {
-    rules,
-    configs: normalizedConfigs,
-  }
-}
-
-/**
  * Resolves a plugin by name from the available module sources.
  */
-function requirePlugin(
-  pluginName: string,
-): PluginJsxA11y | PluginJsxA11yX | null {
+function requirePlugin(pluginName: string): PluginJsxA11y | null {
   if (typeof _ESLINT_PLUGIN_ASTRO_MODULES !== "undefined") {
     try {
-      return _ESLINT_PLUGIN_ASTRO_MODULES.require<
-        PluginJsxA11y | PluginJsxA11yX
-      >(pluginName)
+      return _ESLINT_PLUGIN_ASTRO_MODULES.require<PluginJsxA11y>(pluginName)
     } catch {
       // ignore
     }
   }
 
-  return requireUserLocal<PluginJsxA11y | PluginJsxA11yX>(pluginName)
+  return requireUserLocal<PluginJsxA11y>(pluginName)
 }
 
 /**
@@ -123,7 +66,7 @@ export function getPluginJsxA11y(): PluginJsxA11y | null {
     const plugin = requirePlugin(pluginName)
 
     if (plugin) {
-      pluginJsxA11yCache = normalizePlugin(plugin)
+      pluginJsxA11yCache = plugin
       loaded = true
       return pluginJsxA11yCache
     }
