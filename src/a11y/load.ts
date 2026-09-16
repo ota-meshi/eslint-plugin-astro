@@ -6,7 +6,7 @@ declare const _ESLINT_PLUGIN_ASTRO_MODULES: {
   require: <T>(id: string) => T
 }
 
-export type PluginRuleModule = {
+export type PluginJsxA11yRuleModule = {
   meta?: {
     docs?: {
       url?: string
@@ -19,42 +19,55 @@ export type PluginRuleModule = {
   }
   create: (context: RuleContext) => RuleListener
 }
-type PluginConfig = {
+type PluginRules = Record<string, PluginJsxA11yRuleModule | undefined>
+type PluginJsxA11yConfig = {
   plugins?: string | string[]
   parserOptions?: unknown
   rules?: Record<string, string | unknown[]>
+  languageOptions?: unknown
 }
-export type PluginJsxA11y = {
-  rules?: Record<string, PluginRuleModule | undefined>
-  configs?: Record<string, PluginConfig | undefined>
+type PluginJsxA11y = {
+  rules?: PluginRules
+  configs?: Record<string, PluginJsxA11yConfig | undefined>
 }
 let pluginJsxA11yCache: PluginJsxA11y | null = null
 let loaded = false
+
 /**
- * Load `eslint-plugin-jsx-a11y` from the user local.
+ * Resolves a plugin by name from the available module sources.
  */
-export function getPluginJsxA11y(): PluginJsxA11y | null {
+function requirePlugin(pluginName: string): PluginJsxA11y | null {
   if (typeof _ESLINT_PLUGIN_ASTRO_MODULES !== "undefined") {
     try {
-      pluginJsxA11yCache = _ESLINT_PLUGIN_ASTRO_MODULES.require(
-        "eslint-plugin-jsx-a11y",
-      )
+      return _ESLINT_PLUGIN_ASTRO_MODULES.require<PluginJsxA11y>(pluginName)
     } catch {
       // ignore
     }
-    if (pluginJsxA11yCache) {
-      loaded = true
-      return pluginJsxA11yCache
-    }
   }
+
+  return requireUserLocal<PluginJsxA11y>(pluginName)
+}
+
+/**
+ * Load `eslint-plugin-jsx-a11y` or `eslint-plugin-jsx-a11y-x` from the user local.
+ */
+export function getPluginJsxA11y(): PluginJsxA11y | null {
   if (loaded) {
     return pluginJsxA11yCache
   }
 
-  if (!pluginJsxA11yCache) {
-    pluginJsxA11yCache = requireUserLocal("eslint-plugin-jsx-a11y")
+  const pluginNames = ["eslint-plugin-jsx-a11y", "eslint-plugin-jsx-a11y-x"]
+
+  for (const pluginName of pluginNames) {
+    const plugin = requirePlugin(pluginName)
+
+    if (plugin) {
+      pluginJsxA11yCache = plugin
+      loaded = true
+      return pluginJsxA11yCache
+    }
   }
 
   loaded = true
-  return pluginJsxA11yCache || null
+  return null
 }

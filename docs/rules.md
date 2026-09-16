@@ -55,7 +55,7 @@ These rules relate to style guidelines, and are therefore quite subjective:
 ## A11Y Extension Rules
 
 These rules extend the rules provided by [eslint-plugin-jsx-a11y] to work well in Astro component:  
-(You need to install [eslint-plugin-jsx-a11y] to use the rules.)
+(You need to install [eslint-plugin-jsx-a11y] or [eslint-plugin-jsx-a11y-x] to use the rules.)
 
 | Rule ID | Description |    |
 |:--------|:------------|:---|
@@ -115,3 +115,4 @@ These rules extend the rules provided by ESLint itself to work well in Astro com
 | [astro/valid-compile](./rules/valid-compile.md) | (no replacement) |
 
 [eslint-plugin-jsx-a11y]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y
+[eslint-plugin-jsx-a11y-x]: https://github.com/es-tooling/eslint-plugin-jsx-a11y-x
