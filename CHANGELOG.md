@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 3.2.0
+
+### Minor Changes
+
+- [#629](https://github.com/ota-meshi/eslint-plugin-astro/pull/629) [`f3187f7`](https://github.com/ota-meshi/eslint-plugin-astro/commit/f3187f7306990517adfbe1d33e39849a486445fa) Thanks [@felixicaza](https://github.com/felixicaza)! - feat: add support for eslint-plugin-jsx-a11y-x
+
 ## 3.1.0
 
 ### Minor Changes
