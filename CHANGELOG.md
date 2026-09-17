@@ -1,5 +1,13 @@
 # eslint-plugin-astro
 
+## 3.2.1
+
+### Patch Changes
+
+- [#636](https://github.com/ota-meshi/eslint-plugin-astro/pull/636) [`bd55613`](https://github.com/ota-meshi/eslint-plugin-astro/commit/bd55613f8434f4286ba2dddf66e290814954825e) Thanks [@renovate](https://github.com/apps/renovate)! - Fix `<style lang="postcss">` transform to accept ESM-only PostCSS plugins loaded via `postcss-load-config`
+
+- [#639](https://github.com/ota-meshi/eslint-plugin-astro/pull/639) [`2ecb3bd`](https://github.com/ota-meshi/eslint-plugin-astro/commit/2ecb3bd52284b2122a5d5006973ca83314386291) Thanks [@ota-meshi](https://github.com/ota-meshi)! - Support `postcss-load-config` v4 and later for `<style lang="postcss">` by running PostCSS in a worker thread. `postcss-load-config` v3 keeps working.
+
 ## 3.2.0
 
 ### Minor Changes
