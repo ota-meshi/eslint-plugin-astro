@@ -29,7 +29,7 @@ export function transform(
       from: filename,
     })
 
-    const result = postcss(config.plugins).process(code, {
+    const result = postcss(config.plugins.map(unwrapDefault)).process(code, {
       ...config.options,
       map: {
         inline: false,
@@ -51,4 +51,23 @@ export function transform(
  */
 function loadPostcssLoadConfig(context: RuleContext): PostcssLoadConfig | null {
   return loadModule(context, "postcss-load-config")
+}
+
+/**
+ * Unwrap the default export of an ES module namespace object.
+ *
+ * `postcss-load-config` loads plugins with `require`, so an ESM-only plugin
+ * (e.g. `postcss-nested` v8) is returned as a module namespace object,
+ * which PostCSS does not accept as a plugin.
+ */
+function unwrapDefault<T>(plugin: T): T {
+  if (
+    typeof plugin === "object" &&
+    plugin !== null &&
+    "default" in plugin &&
+    plugin.default
+  ) {
+    return plugin.default as T
+  }
+  return plugin
 }
