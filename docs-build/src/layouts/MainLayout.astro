@@ -146,13 +146,11 @@ const githubEditUrl =
           <slot />
         </PageContent>
       </div>
-      {
-        !hiddenRight && (
-          <aside id="grid-right" class="grid-sidebar" title="Table of Contents">
-            <RightSidebar {content} {githubEditUrl} {hiddenTOC} />
-          </aside>
-        )
-      }
+      {!hiddenRight && (
+        <aside id="grid-right" class="grid-sidebar" title="Table of Contents">
+          <RightSidebar {content} {githubEditUrl} {hiddenTOC} />
+        </aside>
+      )}
     </main>
   </body>
 </html>
