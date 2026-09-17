@@ -21,7 +21,10 @@ const base: UserConfig = {
 
 const config: UserConfig = defineConfig({
   ...base,
-  entry: ["src/index.mts"],
+  entry: {
+    index: "src/index.mts",
+    "postcss-worker": "src/utils/transform/postcss-worker.mts",
+  },
   format: ["esm"],
 })
 export default config

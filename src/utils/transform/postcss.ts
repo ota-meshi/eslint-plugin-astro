@@ -1,11 +1,14 @@
 import type { AST } from "astro-eslint-parser"
-import postcss from "postcss"
+import path from "node:path"
+import { fileURLToPath } from "node:url"
+import { createSyncFn } from "synckit"
 import type { RuleContext } from "../../types.ts"
-import { getContentRange, loadModule } from "./utils.ts"
+import { getContentRange, resolveModule } from "./utils.ts"
 import type { TransformResult } from "./types.ts"
+import type { PostcssWorker } from "./postcss-worker.mts"
 
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports --- Ignore inline type
-type PostcssLoadConfig = typeof import("postcss-load-config")
+let transformSync: ReturnType<typeof createSyncFn<PostcssWorker>> | null = null
+
 /**
  * Transform with postcss
  */
@@ -13,8 +16,8 @@ export function transform(
   node: AST.JSXElement,
   context: RuleContext,
 ): TransformResult | null {
-  const postcssLoadConfig = loadPostcssLoadConfig(context)
-  if (!postcssLoadConfig) {
+  // Avoid starting the worker when postcss-load-config is not installed.
+  if (!resolveModule(context, "postcss-load-config")) {
     return null
   }
   const inputRange = getContentRange(node)
@@ -22,24 +25,17 @@ export function transform(
   const sourceCode = context.sourceCode
   const code = sourceCode.text.slice(...inputRange)
 
-  const filename = `${context.filename}.css`
   try {
-    const config = postcssLoadConfig.sync({
+    const result = getTransformSync()({
       cwd: context.cwd ?? process.cwd(),
-      from: filename,
-    })
-
-    const result = postcss(config.plugins.map(unwrapDefault)).process(code, {
-      ...config.options,
-      map: {
-        inline: false,
-      },
+      filename: `${context.filename}.css`,
+      code,
     })
 
     return {
       inputRange,
-      output: result.content,
-      mappings: result.map.toJSON().mappings,
+      output: result.output,
+      mappings: result.mappings,
     }
   } catch {
     return null
@@ -47,27 +43,18 @@ export function transform(
 }
 
 /**
- * Load postcss-load-config
- */
-function loadPostcssLoadConfig(context: RuleContext): PostcssLoadConfig | null {
-  return loadModule(context, "postcss-load-config")
-}
-
-/**
- * Unwrap the default export of an ES module namespace object.
+ * Get the synchronous function that runs the postcss worker.
  *
- * `postcss-load-config` loads plugins with `require`, so an ESM-only plugin
- * (e.g. `postcss-nested` v8) is returned as a module namespace object,
- * which PostCSS does not accept as a plugin.
+ * `postcss-load-config` v4 and later only provide an async API, so the
+ * transform runs in a worker thread and is synchronized with `synckit`.
  */
-function unwrapDefault<T>(plugin: T): T {
-  if (
-    typeof plugin === "object" &&
-    plugin !== null &&
-    "default" in plugin &&
-    plugin.default
-  ) {
-    return plugin.default as T
+function getTransformSync(): ReturnType<typeof createSyncFn<PostcssWorker>> {
+  if (!transformSync) {
+    const dirname = path.dirname(fileURLToPath(import.meta.url))
+    // synckit falls back to `postcss-worker.mts` when running from the sources.
+    transformSync = createSyncFn<PostcssWorker>(
+      path.join(dirname, "postcss-worker.mjs"),
+    )
   }
-  return plugin
+  return transformSync
 }
