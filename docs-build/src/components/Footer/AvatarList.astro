@@ -100,24 +100,19 @@ const additionalContributors = unique.length - recentContributors.length // list
 
     display: grid;
     list-style: none;
-    /* Default to displaying most of the avatar to
-  enable easier access on touch devices, ensuring
-  the WCAG touch target size is met or exceeded */
+    /* Default to displaying most of the avatar to enable easier access on touch devices, ensuring the WCAG touch target size is met or exceeded */
     grid-template-columns: repeat(
       var(--avatar-count),
       max(44px, calc(var(--avatar-size) / 1.15))
     );
-    /* `padding` matches added visual dimensions of
-  the `box-shadow` to help create a more accurate
-  computed component size */
+    /* `padding` matches added visual dimensions of the `box-shadow` to help create a more accurate computed component size */
     padding: 0.08em;
     font-size: var(--avatar-size);
   }
 
   @media (any-hover: hover) and (any-pointer: fine) {
     .avatar-list {
-      /* We create 1 extra cell to enable the computed 
-    width to match the final visual width */
+      /* We create 1 extra cell to enable the computed width to match the final visual width */
       grid-template-columns: repeat(
         calc(var(--avatar-count) + 1),
         calc(var(--avatar-size) / 1.75)
