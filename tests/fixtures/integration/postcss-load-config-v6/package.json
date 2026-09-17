@@ -1,0 +1,16 @@
+{
+  "name": "eslint-plugin-astro-integration-test-for-postcss-load-config-v6",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "eslint . --format json"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^10.0.0",
+    "eslint-plugin-astro": "file:../../../..",
+    "postcss-load-config": "^6.0.1",
+    "postcss-nested": "^8.0.1"
+  }
+}

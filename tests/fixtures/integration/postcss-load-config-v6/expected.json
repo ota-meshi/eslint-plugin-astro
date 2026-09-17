@@ -1,0 +1,25 @@
+[
+  {
+    "filePath": "src/index.astro",
+    "messages": [
+      {
+        "ruleId": "astro/no-unused-css-selector",
+        "severity": 2,
+        "message": "Unused CSS selector `.foo .foo`",
+        "line": 9,
+        "column": 5,
+        "messageId": "unused",
+        "endLine": 10,
+        "endColumn": 1
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "<div class=\"foo\">\n  <div class=\"bar\" />\n</div>\n\n<style lang=\"postcss\">\n  .foo {\n    height: 20px;\n    width: 20px;\n    & .foo {\n      height: 10px;\n      width: 10px;\n    }\n  }\n</style>\n",
+    "usedDeprecatedRules": []
+  }
+]

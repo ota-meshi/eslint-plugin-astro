@@ -87,6 +87,10 @@ export default defineConfig({
           replacement: path.join(dirname, "./docs-build/shim/module.mjs"),
         },
         {
+          find: "synckit",
+          replacement: path.join(dirname, "./docs-build/shim/synckit.mjs"),
+        },
+        {
           find: "fast-glob",
           replacement: path.join(dirname, "./docs-build/shim/fast-glob.mjs"),
         },

@@ -76,7 +76,8 @@
     "espree": "^11.0.0",
     "globals": "^17.0.0",
     "postcss": "^8.5.3",
-    "postcss-selector-parser": "^7.1.0"
+    "postcss-selector-parser": "^7.1.0",
+    "synckit": "^0.11.13"
   },
   "peerDependencies": {
     "@typescript-eslint/parser": ">=8.61.0",

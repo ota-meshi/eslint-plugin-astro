@@ -25,6 +25,21 @@ export function loadModule<R>(context: RuleContext, name: string): R | null {
   }
 }
 
+/**
+ * Resolve module path
+ */
+export function resolveModule(
+  context: RuleContext,
+  name: string,
+): string | null {
+  try {
+    const relativeTo = path.join(context.cwd, "__placeholder__.js")
+    return Module.createRequire(relativeTo).resolve(name)
+  } catch {
+    return null
+  }
+}
+
 /** Get content range */
 export function getContentRange(node: AST.JSXElement): AST.Range {
   if (node.closingElement) {
