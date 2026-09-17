@@ -1,9 +1,9 @@
 import { defineConfig } from "astro/config"
 import svelte from "@astrojs/svelte"
 import mdx from "@astrojs/mdx"
-import gfm from "remark-gfm"
+import { satteri } from "@astrojs/markdown-satteri"
 import eslint4b from "vite-plugin-eslint4b"
-import replaceLink from "./docs-build/remark-replace-link.mjs"
+import replaceLink from "./docs-build/satteri-replace-link.mjs"
 import "./docs-build/setup-docs.mjs"
 import path from "path"
 import { version as monacoVersion } from "monaco-editor/package.json"
@@ -17,32 +17,16 @@ export default defineConfig({
   publicDir: "./docs-build/public",
   outDir: "./docs-build/dist/eslint-plugin-astro",
   root: dirname,
-  integrations: [
-    svelte(),
-    mdx({
-      remarkPlugins: [
-        gfm,
-        [
-          replaceLink,
-          {
-            srcDir: "./docs-build/src",
-            base: "/eslint-plugin-astro",
-          },
-        ],
-      ],
-    }),
-  ],
+  integrations: [svelte(), mdx()],
   markdown: {
-    remarkPlugins: [
-      gfm,
-      [
-        replaceLink,
-        {
+    processor: satteri({
+      mdastPlugins: [
+        replaceLink({
           srcDir: "./docs-build/src",
           base: "/eslint-plugin-astro",
-        },
+        }),
       ],
-    ],
+    }),
   },
   vite: {
     define: {
