@@ -1,0 +1,12 @@
+[
+  {
+    "message": "Prefer importing Zod from 'astro/zod' instead of 'zod' to stay in sync with the version bundled with Astro.",
+    "line": 3,
+    "column": 24
+  },
+  {
+    "message": "Prefer importing Zod from 'astro/zod' instead of 'zod' to stay in sync with the version bundled with Astro.",
+    "line": 3,
+    "column": 46
+  }
+]
