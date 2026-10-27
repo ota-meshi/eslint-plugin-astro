@@ -1,0 +1,7 @@
+---
+// Dynamic sources that cannot be statically resolved to a string literal
+// must not be reported. The rule has no way to know what these resolve to.
+const pkg = "zod"
+const dyn = await import(pkg)
+const tpl = await import(`zod-${"plugin"}`)
+---

@@ -1,0 +1,10 @@
+---
+// `astro/zod` used in every form the rule now recognises: declaration import,
+// dynamic `import()` expression and TypeScript `import(...)` type query.
+import { z } from "astro/zod"
+
+type ZodModule = typeof import("astro/zod")
+const m: ZodModule = await import("astro/zod")
+
+const schema = z.string()
+---
