@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 3.2.2
+
+### Patch Changes
+
+- [#654](https://github.com/ota-meshi/eslint-plugin-astro/pull/654) [`c4fdb84`](https://github.com/ota-meshi/eslint-plugin-astro/commit/c4fdb8456a56a1ff87bad352c575a340ace7af59) Thanks [@bardrop](https://github.com/bardrop)! - Fix `astro/no-unused-css-selector` skipping indented `<style lang="sass">` blocks with sass 1.106.0 and later.
+
 ## 3.2.1
 
 ### Patch Changes
