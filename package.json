@@ -113,7 +113,7 @@
     "@eslint/eslintrc": "^3.0.0",
     "@eslint/js": "^10.0.0",
     "@eslint/json": "^2.0.0",
-    "@ota-meshi/eslint-plugin": "^0.20.0",
+    "@ota-meshi/eslint-plugin": "^0.21.0",
     "@oxc-node/core": "^0.1.0",
     "@types/eslint-scope": "^9.0.0",
     "@types/eslint-utils": "^3.0.1",
