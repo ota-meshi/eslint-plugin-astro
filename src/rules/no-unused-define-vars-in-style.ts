@@ -61,7 +61,7 @@ export default createRule("no-unused-define-vars-in-style", {
 
         const definedVars = defineVars.value.expression.properties
           .filter(
-            (prop): prop is TSESTree.Property =>
+            (prop): prop is TSESTree.ObjectExpressionProperty =>
               prop.type === AST_NODE_TYPES.Property,
           )
           .map((prop) => ({

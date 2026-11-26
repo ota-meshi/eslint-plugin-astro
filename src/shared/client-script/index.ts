@@ -240,8 +240,18 @@ export class ClientScript {
     if (expression.type !== AST_NODE_TYPES.ObjectExpression) return []
     const startLoc = this.parsed.getLocFromIndex(valueStart + 1)
     return expression.properties
-      .filter((p): p is TSESTree.Property => p.type === AST_NODE_TYPES.Property)
-      .filter((p): p is TSESTree.PropertyNonComputedName => !p.computed)
+      .filter(
+        (p): p is TSESTree.ObjectExpressionProperty =>
+          p.type === AST_NODE_TYPES.Property,
+      )
+      .filter(
+        (
+          p,
+        ): p is Exclude<
+          TSESTree.ObjectExpressionProperty,
+          { computed: true }
+        > => !p.computed,
+      )
       .map((p) => {
         return {
           name:

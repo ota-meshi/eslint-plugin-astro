@@ -134,9 +134,9 @@ let b: number = 1;
 
 <div class="playground-root">
   <div class="playground-tools">
-    <label style:margin-left="16px"
-      >FileName<input bind:value={filePath} /></label
-    >
+    <label style:margin-left="16px">
+      FileName<input bind:value={filePath} />
+    </label>
     <span style:margin-left="auto" style:margin-right="16px">{time}</span>
   </div>
   <div class="playground-content">
@@ -164,16 +164,20 @@ let b: number = 1;
               <a
                 href="#"
                 on:click={(evt) => onClickMessage(evt, msg)}
-                class="message-link">[{msg.line}:{msg.column}]</a
-              >:
+                class="message-link"
+              >
+                [{msg.line}:{msg.column}]
+              </a>:
               {msg.message}
               <a
                 class="rule-link {getRule(msg.ruleId)?.classes}"
                 class:is-rule-error={msg.ruleId}
                 href={getRule(msg.ruleId)?.url}
                 target="_blank"
-                rel="noopener noreferrer">({msg.ruleId})</a
+                rel="noopener noreferrer"
               >
+                ({msg.ruleId})
+              </a>
             </li>
           {/each}
         </ol>

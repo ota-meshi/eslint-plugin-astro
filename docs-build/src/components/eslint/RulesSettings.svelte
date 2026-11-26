@@ -170,7 +170,8 @@
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="open rule in new tab"
-                    ><svg
+                  >
+                    <svg
                       xmlns="http://www.w3.org/2000/svg"
                       aria-hidden="true"
                       x="0px"
@@ -187,9 +188,9 @@
                       <polygon
                         fill="currentColor"
                         points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"
-                      /></svg
-                    ></a
-                  >
+                      />
+                    </svg>
+                  </a>
                 </li>
               {/each}
             </ul>
