@@ -3,4 +3,4 @@ let a = true
 let b = true
 ---
 
-<button class:list={{"a": a, "no-b": !a, "b": !a}}>foo</button>
+<button class:list={{"a": a, "no-b": !a && !b, "b": !a && b}}>foo</button>
