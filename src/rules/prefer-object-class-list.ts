@@ -154,26 +154,28 @@ export default createRule("prefer-object-class-list", {
     /**
      * Expr to string
      */
-    function exprToString({ node, not }: Expr): string {
+    function exprToString(expr: Expr): string {
+      const { chains } = expr
+      if (!chains) {
+        return conditionToString(expr)
+      }
+      let text = conditionToString(expr)
+      if (needParenthesesForLogical(expr)) {
+        text = `(${text})`
+      }
+      let chainsText = exprToString(chains)
+      if (!chains.chains && needParenthesesForLogical(chains)) {
+        chainsText = `(${chainsText})`
+      }
+      return `${text} && ${chainsText}`
+    }
+
+    /**
+     * Condition to string. Ignores `chains`.
+     */
+    function conditionToString({ node, not }: Expr): string {
       let text = sourceCode.text.slice(...node.range)
 
-      // *Currently not supported.
-      // if (chains) {
-      //   if (needParentheses(node, "logical")) {
-      //     text = `(${text})`
-      //   }
-      //   let chainsText = exprToString(chains)
-      //   const needParenForChains =
-      //     !/^[!(]/u.test(chainsText) && needParentheses(chains.node, "logical")
-      //   if (needParenForChains) {
-      //     chainsText = `(${chainsText})`
-      //   }
-      //   text = `${text} && ${chainsText}`
-      //   if (not) {
-      //     text = `!(${text})`
-      //   }
-      //   return text
-      // }
       if (not) {
         if (node.type === "BinaryExpression") {
           if (
@@ -207,6 +209,34 @@ export default createRule("prefer-object-class-list", {
         text = `!${text}`
       }
       return text
+    }
+
+    /**
+     * Checks whether the result of `exprToString()` needs parentheses
+     * when used as an operand of `&&`.
+     */
+    function needParenthesesForLogical({ node, not }: Expr): boolean {
+      let target = node
+      if (not) {
+        if (
+          node.type !== "UnaryExpression" ||
+          node.operator !== "!" ||
+          !node.prefix
+        ) {
+          // The result starts with `!` or is an equality expression.
+          return false
+        }
+        // `!x` is converted to `x`.
+        target = node.argument
+      }
+      return (
+        target.type === "ArrowFunctionExpression" ||
+        target.type === "AssignmentExpression" ||
+        target.type === "ConditionalExpression" ||
+        (target.type === "LogicalExpression" && target.operator !== "&&") ||
+        target.type === "SequenceExpression" ||
+        target.type === "YieldExpression"
+      )
     }
 
     /**

@@ -8,7 +8,7 @@ let d = true
 <button
   class:list={[
     `${d === true ? " d" : ""}`,
-    { c: c, "no-c": !c,"a": a, "b": !a },
+    { c: c, "no-c": !c,"a": a, "b": !a && b },
   ]}
   >foo
 </button>
