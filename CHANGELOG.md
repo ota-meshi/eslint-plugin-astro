@@ -1,5 +1,11 @@
 # eslint-plugin-astro
 
+## 3.2.3
+
+### Patch Changes
+
+- [#658](https://github.com/ota-meshi/eslint-plugin-astro/pull/658) [`17e6378`](https://github.com/ota-meshi/eslint-plugin-astro/commit/17e6378f7dcf6b2d9039e4fd85c3b4511f659780) Thanks [@bardrop](https://github.com/bardrop)! - Fix `astro/prefer-object-class-list` autofix dropping the outer condition of nested ternaries.
+
 ## 3.2.2
 
 ### Patch Changes
